@@ -2,7 +2,8 @@
 
 let
 	commonPackages = [ # Packages that are common to all platforms
-		pkgs.cowsay
+		# pkgs.cowsay
+		pkgs.neovim
 	];
 
 	platformPackages = pkgs.lib.optionals pkgs.hostPlatform.isDarwin [
@@ -52,6 +53,11 @@ in
 		nix = { # Configure the Nix package manager
 			package = pkgs.nix;
 			settings.experimental-features = [ "nix-command" ];
+		};
+
+		xdg.configFile.nvim = {
+			source = ./config/nvim;
+			recursive = true;
 		};
 
 		# Let Home Manager install and manage itself.
