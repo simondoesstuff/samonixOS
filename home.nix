@@ -4,7 +4,7 @@
 	home = {
 		#INFO: The user account and path that Home Manager will manage
 		username = "mason";
-		homeDirectory = "/Users/mason";
+		homeDirectory = if pkgs.hostPlatform.isDarwin then "/Users/mason" else "/home/mason";
 
 		#WARNING: You should not change this value, even if you update Home Manager. Check release notes if desired to change.
 		stateVersion = "23.11";
