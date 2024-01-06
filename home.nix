@@ -42,7 +42,7 @@
 		};
 	};
 
-	imports = [ ./programs/wezterm.nix ]; # Import the configuration for wezterm
+	# imports = [ ./programs/wezterm.nix ]; # Import the configuration for wezterm
 
 	nixpkgs.config.allowUnfree = true; # Allow unfree licensed packages, like discord
 
@@ -53,6 +53,11 @@
 
 	xdg.configFile.nvim = {
 		source = ./config/neovim;
+		recursive = true;
+	};
+
+	xdg.configFile.wezterm = {
+		source = ./config/wezterm;
 		recursive = true;
 	};
 
