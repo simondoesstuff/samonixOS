@@ -12,8 +12,8 @@
 		packages = [
 			pkgs.neovim # text editor
 			pkgs.lazygit # TUI git client
-			pkgs.starship # Cool shell prompt
 			pkgs.fira-code-nerdfont # monospace font with symbols and ligatures
+			pkgs.starship # Shell prompt
 		] ++ pkgs.lib.optionals pkgs.hostPlatform.isDarwin [
   		(pkgs.writeShellScriptBin "hello" ''echo "Hello, ${config.home.username}, from nix Darwin!"'')
 			pkgs.wezterm # Mac linux terminal
@@ -21,6 +21,7 @@
 		 (pkgs.writeShellScriptBin "hello" ''echo "Hello, ${config.home.username}, from nix Windows!"'')
 		] ++ pkgs.lib.optionals pkgs.hostPlatform.isLinux [
 		 (pkgs.writeShellScriptBin "hello" ''echo "Hello, ${config.home.username}, from nix Linux!"'')
+			pkgs.wezterm # Mac linux terminal
 		];
 		# Home Manager is pretty good at managing dotfiles. The primary way to manage
 		# plain files is through 'home.file'.
@@ -62,6 +63,15 @@
 	xdg.configFile.wezterm = {
 		source = ./config/wezterm;
 		recursive = true;
+	};
+
+	programs.starship = {
+		enable = true;
+	};
+
+	programs.zsh = { # To set zsh as default shell must be set by system
+		enable = true;
+		# promptInit = ''eval "$(starship init bash)"'';
 	};
 
 	# Let Home Manager install and manage itself.
