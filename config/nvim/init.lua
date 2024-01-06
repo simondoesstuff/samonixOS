@@ -23,5 +23,5 @@ else
 
 	-- Import lazy config and bootstrap and stuff
 	require("default.config.lazy")
-	vim.notify("Loaded default config NIXER", "info", { title = "Neovim" })
+	-- vim.notify("Successfully loaded NIX NEOVIM", "info", { title = "Neovim" })
 end
