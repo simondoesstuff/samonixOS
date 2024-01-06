@@ -3,9 +3,8 @@
 {
   programs.wezterm = {
 		enable = true;
+		# local wezterm = require 'wezterm' is included by default int extra config
 		extraConfig = "
-				local wezterm = require 'wezterm'
-
 				-- This table will hold the configuration.
 				local config = {}
 
