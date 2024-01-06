@@ -12,27 +12,6 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- config.default_cursor_style = 'SteadyBar' -- Set default cursor to not be a block
-
---config.default_gui_startup_args = {}
-
--- config.ssh_domains = {
---   {
---     -- This name identifies the domain
---     name = 'my.server',
---     -- The hostname or address to connect to. Will be used to match settings
---     -- from your ssh config file
---     remote_address = '192.168.1.1',
--- 		multiplexing = 'None',
---     -- The username to use on the remote host
---     username = 'mason',
---   },
--- }
---
--- config.default_domain = 'my.server'
-
--- This is where you actually apply your config choices
-
 -- For example, changing the color scheme:
 config.color_scheme = "tokyonight"
 config.default_cursor_style = "BlinkingBar"
@@ -52,7 +31,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.animation_fps = 32
-config.font = wezterm.font("Hack Nerd Font") -- Nerd font, glyps can be found on website
+config.font = wezterm.font("FiraCode Nerd Font") -- Nerd font, glyps can be found on website
 
 -- Config for the window frame
 config.window_frame = {
