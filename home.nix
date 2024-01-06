@@ -10,9 +10,10 @@
 		stateVersion = "23.11";
 
 		packages = [
-			pkgs.neovim
+			pkgs.neovim # text editor
+			pkgs.lazygit # TUI git client
 			pkgs.starship # Cool shell prompt
-			pkgs.fira-code-nerdfont # Monospace font with symbols and ligatures
+			pkgs.fira-code-nerdfont # monospace font with symbols and ligatures
 		] ++ pkgs.lib.optionals pkgs.hostPlatform.isDarwin [
   		(pkgs.writeShellScriptBin "hello" ''echo "Hello, ${config.home.username}, from nix Darwin!"'')
 			pkgs.wezterm # Mac linux terminal
@@ -43,7 +44,7 @@
 		};
 	};
 
-	# imports = [ ./programs/wezterm.nix ]; # Import the configuration for wezterm
+	imports = [ ./programs/git.nix ]; # Import the configuration for git
 
 	fonts.fontconfig.enable = true; # Enable fonts
 	nixpkgs.config.allowUnfree = true; # Allow unfree licensed packages, like discord
