@@ -1,6 +1,8 @@
 
 { config, pkgs, ... }:
 
+# Contains all shell related configuarion
+
 {
 	programs.starship = {
 		enable = true;
