@@ -12,15 +12,15 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
--- For example, changing the color scheme:
+-- Aesthetics
 config.color_scheme = "tokyonight"
 config.default_cursor_style = "BlinkingBar"
--- Window transparency // opacity
--- config.window_background_opacity = 0.92
-
 config.hide_tab_bar_if_only_one_tab = true
+config.animation_fps = 32
+config.font = wezterm.font("FiraCode Nerd Font")
 
--- Don't prompt on close
+-- Convenience
+config.warn_about_missing_glyphs = false
 config.window_close_confirmation = "NeverPrompt"
 
 -- Removing the weird window padding from terminal
@@ -30,9 +30,6 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-config.animation_fps = 32
-config.font = wezterm.font("FiraCode Nerd Font") -- Nerd font, glyps can be found on website
-
 -- Config for the window frame
 config.window_frame = {
 	-- font = wezterm.font { family = 'Roboto', weight = 'Bold' },
@@ -52,36 +49,17 @@ config.window_frame = {
 
 config.colors = {
 	tab_bar = {
-		-- The active tab is the one that has focus in the window
-		active_tab = {
-			-- The color of the background area for the tab
+		active_tab = { -- Tab with current focus
 			bg_color = "#1A1B26",
-			-- The color of the text for the tab
 			fg_color = "#c0c0c0",
-
-			intensity = "Normal",
-
-			underline = "None",
-
-			-- Specify whether you want the text to be italic (true) or not (false)
-			-- for this tab.  The default is false.
-			italic = false,
-
-			-- Specify whether you want the text to be rendered with strikethrough (true)
-			-- or not for this tab.  The default is false.
-			strikethrough = false,
 		},
 
 		-- The divider between tabs
 		inactive_tab_edge = "#333333",
 
-		-- Inactive tabs are the tabs that do not have focus
-		inactive_tab = {
+		inactive_tab = { -- Tabs without focus
 			bg_color = "#333333",
 			fg_color = "#808080",
-
-			-- The same options that were listed under the `active_tab` section above
-			-- can also be used for `inactive_tab`.
 		},
 
 		-- You can configure some alternate styling when the mouse pointer
@@ -117,5 +95,4 @@ config.colors = {
 	},
 }
 
--- and finally, return the configuration to wezterm
 return config
