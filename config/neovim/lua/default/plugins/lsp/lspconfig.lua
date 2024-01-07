@@ -1,20 +1,22 @@
 -- Controls the language servers for environments, and assists completion (cmp)
+
 return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-			{ "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
-			"mason.nvim",
-			-- "mfussenegger/nvim-dap",
-			--  	"jay-babu/mason-nvim-dap.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			{ "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
+			{ "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
+			local lspconfig = require('lspconfig')
+
+			lspconfig.lua_ls.setup {}
+			lspconfig.rust_analyzer.setup {}
+
 			vim.diagnostic.config({
-				virtual_text = false,
+				virtual_text = true,
 				signs = true,
 				underline = true,
 				update_in_insert = false,
@@ -98,7 +100,7 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim", -- Fidget spinner showing lsp processes
-		tag = "legacy", -- To avoid breaking changes
+		tag = "legacy",    -- To avoid breaking changes
 		config = function()
 			require("fidget").setup({})
 		end,

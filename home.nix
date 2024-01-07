@@ -14,6 +14,8 @@
 			pkgs.lazygit # TUI git client
 			pkgs.fira-code-nerdfont # monospace font with symbols and ligatures
 			pkgs.starship # Shell prompt
+			pkgs.lua-language-server # implied
+			pkgs.rust-analyzer
 		] ++ pkgs.lib.optionals pkgs.hostPlatform.isDarwin [
   		(pkgs.writeShellScriptBin "hello" ''echo "Hello, ${config.home.username}, from nix Darwin!"'')
 			pkgs.wezterm # Mac linux terminal
