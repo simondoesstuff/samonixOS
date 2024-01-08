@@ -1,6 +1,3 @@
-
-{ config, pkgs, ... }:
-
 # This file stores all the sourcing of all non-nix configuration files
 
 {

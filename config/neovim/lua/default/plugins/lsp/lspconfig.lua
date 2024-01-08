@@ -14,6 +14,7 @@ return {
 
 			lspconfig.lua_ls.setup {}
 			lspconfig.rust_analyzer.setup {}
+			lspconfig.nil_ls.setup {}
 
 			vim.diagnostic.config({
 				virtual_text = true,
