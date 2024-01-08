@@ -10,6 +10,7 @@ in
 		./extra/shell.nix 
 		./extra/config.nix 
 		./packages/dev.nix
+		./packages/personal.nix
 	];
 
 	# linux.enable = true;
