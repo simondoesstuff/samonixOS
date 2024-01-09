@@ -45,6 +45,4 @@ in
 		package = pkgs.nix;
 		settings.experimental-features = [ "nix-command" ];
 	};
-
-	xsession.enable = true;
 }

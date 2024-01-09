@@ -13,5 +13,6 @@ in
 	home.packages = with pkgs; ([
 		obsidian # MD note taker editor
 		discord # Voicechat and social app
+		neofetch # Show os info and such
 	]);
 }
