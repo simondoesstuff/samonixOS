@@ -16,10 +16,15 @@ in
 		neovim # text editor
 	]
 
+	# Rust development
+	++ [
+		cargo # rust package manager
+		rust-analyzer # rust language serv
+	]
+
 	# Language servers
 	++ [
 		lua-language-server # lua language serv
-		rust-analyzer # rust language serv
 		nil # nix language serv
 	]
 
