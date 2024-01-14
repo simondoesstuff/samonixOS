@@ -5,10 +5,13 @@
 		# General packages
 		[
 			fira-code-nerdfont # decent nerd font
-			lazygit # TUI git client
 			neovim # text editor
 			neofetch # Show os info and such
 		]
-
 	);
+
+	xdg.configFile.nvim = {
+		source = ../config/neovim;
+		recursive = true;
+	}; # Source neovim config
 }

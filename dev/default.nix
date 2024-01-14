@@ -3,9 +3,8 @@
 	imports = [
 	./lang # import languaged related configs
 
-	./dev.nix
 	./git.nix
+	./misc.nix
 	./terminal.nix
-	./externalconf.nix
 	];
 }

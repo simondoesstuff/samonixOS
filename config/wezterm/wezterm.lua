@@ -88,9 +88,6 @@ config.colors = {
 			bg_color = "#3b3052",
 			fg_color = "#909090",
 			italic = true,
-
-			-- The same options that were listed under the `active_tab` section above
-			-- can also be used for `new_tab_hover`.
 		},
 	},
 }
