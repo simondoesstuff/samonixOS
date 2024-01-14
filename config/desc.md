@@ -1,1 +1,1 @@
-Directory that shouuld be build just like I want ./config to be, and will be symbolically linked
+Directory that houses all the source files that symlinks in ~/.config will point to.

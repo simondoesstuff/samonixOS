@@ -1,8 +1,9 @@
 # File sourced by default to control all imports from this folder 
 {
 	imports = [
-	./dev.nix
-	./git.nix
-	./terminal.nix
+		./nix.nix # Configure home-manager to download nix
+
+		./personal.nix
+		./hey.nix
 	];
 }

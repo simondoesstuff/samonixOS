@@ -12,7 +12,7 @@ in
 		if isDarwin then "/Users/mason" else unsupported;
 
 	#INFO: Import all configs and packages from external files
-	imports = [ ./packages ];
+	imports = [ ./dev ./other ];
 
 	#WARNING: Don't change this without reading docs
 	home.stateVersion = "23.11";
@@ -24,5 +24,4 @@ in
 	};
 
 	fonts.fontconfig.enable = true; # Enable fonts
-	nixpkgs.config.allowUnfree = true; # Allow unfree licensed packages, like discord
 }
