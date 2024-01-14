@@ -7,7 +7,7 @@
 	xdg.configFile.wezterm = {
 		source = ../config/wezterm;
 		recursive = true;
-	}; # Source wezterm config
+	}; # Source wezterm config as a dotfile
 
 	programs.zsh = { # To set zsh as default shell must be set by system
 		enable = true;

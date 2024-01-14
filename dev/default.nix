@@ -5,6 +5,6 @@
 
 	./git.nix
 	./misc.nix
-	./terminal.nix
+	./terminal.nix # All terminal related configs
 	];
 }

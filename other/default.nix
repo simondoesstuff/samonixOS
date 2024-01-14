@@ -3,7 +3,7 @@
 	imports = [
 		./nix.nix # Configure home-manager to download nix
 
-		./personal.nix
-		./hey.nix
+		./personal.nix # Personal configuration for items like discord or games
+		./hey.nix # Simple OS-specific greet response
 	];
 }

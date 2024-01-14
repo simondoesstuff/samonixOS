@@ -3,7 +3,7 @@
 { pkgs, ... }:
 {
 	home.packages = with pkgs; [
-			lua-language-server # lua language serv
-			nil # nix language serv
+			lua-language-server # lua language server
+			nil 								# nix language server
 	];
 }
