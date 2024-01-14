@@ -35,7 +35,7 @@ in
 
 	# Manage environment (shell) variables
 	home.sessionVariables = {
-		EDITOR = "neovim";
+		EDITOR = "nvim";
 	};
 
 	fonts.fontconfig.enable = true; # Enable fonts

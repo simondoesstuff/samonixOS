@@ -97,7 +97,7 @@ return {
 			-- 嗀
 			dashboard.button("t", "  > Themes", ":Telescope colorscheme<CR>"),
 			dashboard.button("p", "  > Plugins", ":Lazy<CR>"),
-			dashboard.button("m", "  > Language servers", ":Mason<CR>"),
+			dashboard.button("m", "  > Language servers (nix)", ":e ~/.config/home-manager/packages/dev.nix<CR>"),
 			--dashboard.button("s", "  > Settings", ":e ~/.config/nvim/lua/common/settings.lua<CR>"),
 			dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
 		}

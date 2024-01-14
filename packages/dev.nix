@@ -28,14 +28,5 @@ in
 		nil # nix language serv
 	]
 
-	# Linux specific packages
-	# ++ lib.optionals isLinux [
-	# 	(writeShellScriptBin "hello" ''echo "Hello from nix Linux!"'')
-	#
-	# # Darwin specific packages
-	# ] ++ lib.optionals isDarwin [
- #  	(writeShellScriptBin "hello" ''echo "Hello from nix Darwin!"'')
-	# ]
 	);
-
 }
