@@ -14,6 +14,9 @@
 		syntaxHighlighting.enable = true;
 		enableAutosuggestions = true;
 		enableCompletion = true;
+		profileExtra = "
+			export PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"
+		";
 	};
 
 	programs.starship = { # The nice looking shell prompt

@@ -3,6 +3,7 @@
 # File sourced by default to control all imports from this folder 
 {
 	imports = [
+		#INFO: Enabled
 		./lsp.nix  # General language servers
 		./rust.nix # Full rust language setup
 	];

@@ -7,6 +7,7 @@
 			fira-code-nerdfont # decent nerd font
 			neovim # text editor
 			neofetch # Show os info and such
+			# docker
 		]
 	);
 
