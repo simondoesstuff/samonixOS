@@ -12,12 +12,21 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."mason" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+    {
+			homeConfigurations = {
+      "mason@mac" = home-manager.lib.homeManagerConfiguration {
+      	pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Darwin package source
+        # inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home.nix ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
+      homeConfigurations."mason@linux" = home-manager.lib.homeManagerConfiguration {
+      	pkgs = nixpkgs.legacyPackages.x86_64linux; # linux package source
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
@@ -27,4 +36,5 @@
         # to pass through arguments to home.nix
       };
     };
+	};
 }
