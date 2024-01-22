@@ -2,6 +2,7 @@
   description = "Home Manager configuration of mason";
 
   inputs = {
+		# flake inputs are not automatically updated by Home Manager. Standard nix flake update command is needed.
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
