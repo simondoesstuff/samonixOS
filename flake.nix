@@ -13,20 +13,21 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     {
-			homeConfigurations = {
-			# Available through 'home-manager switch --flake #mason@mac'
-      "mason@mac" = home-manager.lib.homeManagerConfiguration {
-      	pkgs = nixpkgs.legacyPackages.aarch64-darwin; # Darwin package source
+			packages.x86_64-linux.homeConfiguratoins = {
+				"mason" = home-manager.lib.homeManagerConfiguration {
+					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
 
-        modules = [ ./home.nix ];
-      };
+					modules = [ ./home.nix ];
+				};
+			};
 
-			# Available through 'home-manager switch --flake #mason@linux'
-      "mason@linux" = home-manager.lib.homeManagerConfiguration {
-      	pkgs = nixpkgs.legacyPackages.x86_64linux; # linux package source
+			packages.aarch64-darwin.homeConfigurations = {
+				# defualt (cross-platform items) through home-manager switch
+				"mason" = home-manager.lib.homeManagerConfiguration {
+					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
 
-        modules = [ ./home.nix ];
-      };
+					modules = [ ./home/default.nix ];
+				};
     };
 	};
 }
