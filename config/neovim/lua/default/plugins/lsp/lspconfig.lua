@@ -12,9 +12,12 @@ return {
 		config = function()
 			local lspconfig = require('lspconfig')
 
+			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
 			lspconfig.lua_ls.setup {}
-			lspconfig.rust_analyzer.setup {}
 			lspconfig.nil_ls.setup {}
+			lspconfig.tsserver.setup {}
+			lspconfig.tailwindcss.setup {}
+			lspconfig.html.setup {}
 
 			vim.diagnostic.config({
 				virtual_text = true,

@@ -26,7 +26,7 @@
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
 
-					modules = [ ./home/default.nix ];
+					modules = [ ./home/default.nix ./darwin/default.nix ];
 				};
     };
 	};

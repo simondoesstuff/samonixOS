@@ -6,14 +6,14 @@
 	];
 
 	home.packages = with pkgs; (
-		# General packages
+		# General packages for system-wide use
 		[
 			fira-code-nerdfont # decent nerd font
 			neofetch # Show os info and such
-			# docker
+			# nodejs
 		]
 
-		# Personal stuff
+		# Personal stuff (also system-wide)
 		++ [
 			obsidian # MD note taker editor
 			discord # Voicechat and social app

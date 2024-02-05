@@ -24,6 +24,7 @@ in
 		./packages.nix
 		./language.nix
 		./starship.nix
+		./direnv.nix
   ];
 
 	#WARNING: Don't change this without reading docs
