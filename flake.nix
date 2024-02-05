@@ -13,9 +13,9 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     {
-			packages.x86_64-linux.homeConfiguratoins = {
+			packages.x86_64-linux.homeConfigurations = {
 				"mason" = home-manager.lib.homeManagerConfiguration {
-					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
+					pkgs = nixpkgs.legacyPackages.x86_64-linux; # darwin package source
 
 					modules = [ ./home/default.nix ];
 				};
