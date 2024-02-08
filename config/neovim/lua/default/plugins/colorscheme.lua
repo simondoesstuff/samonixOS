@@ -27,4 +27,9 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = true, -- Load 2nd scheme, so it can be selected
 	},
+
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false, -- Load 2nd scheme, so it can be selected
+	},
 }

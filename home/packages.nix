@@ -17,7 +17,6 @@
 		++ [
 			obsidian # MD note taker editor
 			discord # Voicechat and social app
-			# ollama # Locally host LLMS easily (used inside obsidian)
 		]
 	);
 }

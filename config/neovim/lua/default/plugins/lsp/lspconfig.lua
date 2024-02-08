@@ -23,16 +23,16 @@ return {
 				virtual_text = true,
 				signs = true,
 				underline = true,
+				severity_sort = true,
 				update_in_insert = false,
-				severity_sort = false,
 			})
 
 			-- Following lines are from : https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#show-line-diagnostics-automatically-in-hover-window
 			-- You will likely want to reduce updatetime which affects CursorHold
 			-- note: this setting is global and should be set only once
 			-- Hover
-			vim.o.updatetime = 250
-			vim.cmd([[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]])
+			-- vim.o.updatetime = 250
+			-- vim.cmd([[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 			-- LSP keybinds
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -49,13 +49,14 @@ return {
 						vim.lsp.buf.declaration,
 						{ buffer = ev.buf, desc = "see declaration" }
 					)
+					vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, desc = "hover action" })
+					vim.keymap.set("n", "<leader>lK", vim.lsp.buf.hover, { buffer = ev.buf, desc = "hover action" })
 					vim.keymap.set(
 						"n",
 						"<leader>ld",
 						vim.lsp.buf.definition,
 						{ buffer = ev.buf, desc = "see definition" }
 					)
-					vim.keymap.set("n", "<leader>lK", vim.lsp.buf.hover, { buffer = ev.buf, desc = "hover action" })
 					vim.keymap.set(
 						"n",
 						"<leader>li",
@@ -63,12 +64,6 @@ return {
 						{ buffer = ev.buf, desc = "see implementation" }
 					)
 
-					-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts) -- collides with window changing
-					-- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-					-- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-					-- vim.keymap.set("n", "<space>wl", function()
-					-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-					-- end, opts)
 					vim.keymap.set(
 						"n",
 						"<leader>lt",
@@ -86,20 +81,20 @@ return {
 				end,
 			})
 
-			vim.api.nvim_create_autocmd("CursorHold", {
-				buffer = bufnr,
-				callback = function()
-					local opts = {
-						focusable = false,
-						close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-						border = "rounded",
-						source = "always",
-						prefix = " ",
-						scope = "cursor",
-					}
-					vim.diagnostic.open_float(nil, opts)
-				end,
-			})
+			-- vim.api.nvim_create_autocmd("CursorHold", {
+			-- 	buffer = bufnr,
+			-- 	callback = function()
+			-- 		local opts = {
+			-- 			focusable = false,
+			-- 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+			-- 			border = "rounded",
+			-- 			source = "always",
+			-- 			prefix = " ",
+			-- 			scope = "cursor",
+			-- 		}
+			-- 		vim.diagnostic.open_float(nil, opts)
+			-- 	end,
+			-- })
 		end,
 	},
 	{
