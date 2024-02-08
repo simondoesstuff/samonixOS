@@ -94,9 +94,11 @@ return {
 			dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
 			--dashboard.button("b", "  > Bookmarks", ":Telescope marks<CR>"),
 			dashboard.button("b", "  > Projects", ":Telescope projects<CR>"),
-			-- 嗀
+			dashboard.button("L", "󰧑  > Leetcode", ":Leet<CR>"),
+
 			dashboard.button("t", "  > Themes", ":Telescope colorscheme<CR>"),
 			dashboard.button("p", "  > Plugins", ":Lazy<CR>"),
+
 			dashboard.button("s", "  > System conf", ":e ~/.config/home-manager/flake.nix<CR>"),
 
 			dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
