@@ -34,6 +34,7 @@ return {
 			},
 			-- DAP configuration
 			dap = {
+				autoload_configurations = true
 			},
 		}
 	end

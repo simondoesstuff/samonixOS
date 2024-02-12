@@ -3,11 +3,8 @@
 	home.packages = with pkgs; [
 			lua-language-server # lua language server
 			nil 								# nix language server
-			javascript-typescript-langserver # JS/TS
 			vscode-langservers-extracted # HTML/CSS/JSON/ESLint
 			tailwindcss-language-server # Tailwind CSS
-			# gcc # C compiler
-		
 
 			#INFO: rust
 			rustc
@@ -15,7 +12,11 @@
 			rustfmt
 			rust-analyzer
 			clippy
+			lldb
 
+			#INFO: Node/ts(js) lang server
+			nodejs
+			nodePackages_latest.typescript-language-server
 
 			#INFO: python3
 			# python3

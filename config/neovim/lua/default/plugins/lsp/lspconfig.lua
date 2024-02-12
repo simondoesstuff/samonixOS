@@ -18,6 +18,7 @@ return {
 			lspconfig.tsserver.setup {}
 			lspconfig.tailwindcss.setup {}
 			lspconfig.html.setup {}
+			lspconfig.jsonls.setup {}
 
 			vim.diagnostic.config({
 				virtual_text = true,
