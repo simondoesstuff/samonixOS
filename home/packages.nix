@@ -14,8 +14,8 @@
 			# nodejs
 
 			# Used in neovim telescope, as well as just generally useful
-			ripgrep
-			fd
+			ripgrep # Fast grep
+			fd # Advanced find
 		]
 
 		# Personal stuff (also system-wide)

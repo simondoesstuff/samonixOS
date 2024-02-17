@@ -4,8 +4,13 @@
 		syntaxHighlighting.enable = true;
 		enableAutosuggestions = true;
 		enableCompletion = true;
+		# Added to (end) of .zprofile
 		profileExtra = "
 			export PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"
+		";
+		# Added to (end) of .zshrc, init zoxide
+		initExtra = "
+			eval \"$(zoxide init zsh --cmd cd)\"
 		";
 	};
 }

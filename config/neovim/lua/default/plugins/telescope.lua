@@ -13,10 +13,9 @@ return {
 
 		telescope.setup({})
 	end,
-	cmd = "Telescope",                                                                                         -- lazy load on any telescope cmd
+	cmd = "Telescope", -- lazy load on any telescope cmd
 	keys = {
-		{ "<leader>f",  "",                                                                  desc = "file cmds" }, -- Used so whichkey will name the category
-		{ "<leader>ff", "<cmd>Telescope find_files<cr>",                                     desc = "search pwd files" },
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>",                                     desc = "search cwd files" },
 		{ "<leader>fd", "<cmd>Telescope diagnostics<cr>",                                    desc = "lsp diagnostics" },
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>",                                      desc = "search live grep" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>",                                       desc = "search recent files" },

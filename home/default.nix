@@ -25,6 +25,7 @@ in
 		./language.nix
 		./starship.nix
 		./direnv.nix
+		./zoxide.nix
   ];
 
 	#WARNING: Don't change this without reading docs
