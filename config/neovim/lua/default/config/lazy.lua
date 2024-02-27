@@ -7,9 +7,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-local config = vim.fn.stdpath("config")
---require(config .. '/lua/defaults/config/keymaps.lua')
-
 require("lazy").setup({
 	spec = {
 		{ import = "default.plugins" },

@@ -8,7 +8,15 @@ return {
 
 	config = function()
 		require("sniprun").setup({
-			-- your options
+			-- selected_intepreters = { 'Python3_fifo' },
+			repl_enable = { "Python3_original" },
+
+			live_mode_toggle = 'enable',
 		});
+
+
+		vim.keymap.set("n", "<leader>sr", ":SnipRun<CR>", { desc = "SnipRun" });
+		vim.keymap.set("n", "<leader>sl", ":SnipLive<CR>", { desc = "SnipRun Live Mode" });
+		vim.keymap.set("v", "f", ":SnipRun<CR>", { desc = "SnipRun run visual" });
 	end,
 }

@@ -1,3 +1,4 @@
+# { pkgs, custompkgs, ... }:
 { pkgs, ... }:
 {
 	home.packages = with pkgs; [

@@ -26,6 +26,7 @@ in
 		./starship.nix
 		./direnv.nix
 		./zoxide.nix
+		./eza.nix
   ];
 
 	#WARNING: Don't change this without reading docs

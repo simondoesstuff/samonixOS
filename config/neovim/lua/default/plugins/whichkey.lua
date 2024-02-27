@@ -30,6 +30,7 @@ return {
 			l = { name = "lsp", { l = "which_key_ignore" } }, -- Need an empty bind to get title to work for some reason
 			L = { name = "leet" },                         -- Need an empty bind to get title to work for some reason
 			d = { name = "debug" },                        -- Need an empty bind to get title to work for some reason
+			s = { name = "sniprun" },                      -- Need an empty bind to get title to work for some reason
 		}, { prefix = "<leader>" })
 
 		-- -- Add rust cargo when in rust

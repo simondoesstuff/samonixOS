@@ -1,8 +1,8 @@
 
 	{
 		programs.zoxide = {# Zoxide is a sbetter CD
-		enable = true;
+			enable = true;
 
-		enableZshIntegration = true;
+			enableZshIntegration = true;
 		};
 	}

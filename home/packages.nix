@@ -22,6 +22,12 @@
 		++ [
 			obsidian # MD note taker editor
 			discord # Voicechat and social app
+			spotify-tui # CLI for playing spotify
+		]
+
+		# Stuff for school courses
+		++ [
+			# postman
 		]
 	);
 }

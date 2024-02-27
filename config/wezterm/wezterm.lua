@@ -23,6 +23,9 @@ config.font = wezterm.font("FiraCode Nerd Font")
 config.warn_about_missing_glyphs = false
 config.window_close_confirmation = "NeverPrompt"
 
+config.underline_position = -5
+-- config.underline_thickness = "2pt"
+
 -- Removing the weird window padding from terminal
 config.window_padding = {
 	left = 0,

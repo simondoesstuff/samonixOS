@@ -23,6 +23,7 @@
 			#INFO: Node/ts(js) lang server
 			nodejs
 			nodePackages_latest.typescript-language-server
+			nodePackages_latest.svelte-language-server
 
 			#INFO: python3
 			python3

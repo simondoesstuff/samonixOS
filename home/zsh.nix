@@ -9,7 +9,9 @@
 			export PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"
 		";
 		# Added to (end) of .zshrc, init zoxide
+		#alias gsed='sed'
 		initExtra = "
+			alias gsed='sed'
 			eval \"$(zoxide init zsh --cmd cd)\"
 		";
 	};
