@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 #INFO: Version 4.0.1 of Anime4k
 let 
@@ -16,23 +16,14 @@ in
 		recursive = true;
 	};
 
-	home.file."/usr/local/bin/jerry" = {
-		source = pkgs.fetchurl {
-			url = "https://github.com/justchokingaround/jerry/raw/main/jerry.sh";
-			sha256 = "1jcc0cakrdxarqps6r2v03xvdqd3hmj63qw0fbzzgda0ydinappq"; # nix-preferch-url hash
-			# sha256 = "0zjwwcjgydklsri1i03widgkjyfw1003i9jqml8nnr7q8xl3s6ly";
-		};
-		executable = true;
-	};
-	#
-	# home.packages = [ 
-	# 	(fetchFromGitHub { # https://github.com/justchokingaround/jerry/raw/main/jerry.sh
-	# 			owner = "justchokingaround";
-	# 			repo = "jerry";
-	# 			rev = "main";
-	# 			sha256 = "1jcc0cakrdxarqps6r2v03xvdqd3hmj63qw0fbzzgda0ydinappq"; # nix-preferch-url hash
-	# 	}) 
-	# ];
+	# home.file."/usr/local/bin/jerry" = {
+	# 	source = pkgs.fetchurl {
+	# 		url = "https://github.com/justchokingaround/jerry/raw/main/jerry.sh";
+	# 		sha256 = "1jcc0cakrdxarqps6r2v03xvdqd3hmj63qw0fbzzgda0ydinappq"; # nix-preferch-url hash
+	# 		# sha256 = "0zjwwcjgydklsri1i03widgkjyfw1003i9jqml8nnr7q8xl3s6ly";
+	# 	};
+	# 	executable = true;
+	# };
 
 	home.packages = with pkgs; [
 		ani-cli # anime CLI
@@ -41,5 +32,7 @@ in
 		aria2 # Download manager for cli
 		yt-dlp # m3u8 downloader
 		fzf # Fuzzy finder for jerry
+		ueberzugpp # images in terminal
+		# (pkgs.writeShellScriptBin "gsed" "${pkgs.gnused}/bin/sed $@") Instaled throguh brew :(
 	];
 }

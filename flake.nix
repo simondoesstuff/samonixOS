@@ -9,9 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+		lobster.url = "github:justchokingaround/lobster"; # add this line
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, lobster, ... }:
     {
 			packages.x86_64-linux.homeConfigurations = {
 				"mason" = home-manager.lib.homeManagerConfiguration {
@@ -25,8 +26,8 @@
 				# defualt (cross-platform items) through home-manager switch
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
-
-					modules = [ ./home/default.nix ./darwin/default.nix ];
+					extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
+					modules = [ ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
 				};
     };
 	};

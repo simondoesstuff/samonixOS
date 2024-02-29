@@ -11,8 +11,8 @@
 		# Added to (end) of .zshrc, init zoxide
 		#alias gsed='sed'
 		initExtra = "
-			alias gsed='sed'
 			eval \"$(zoxide init zsh --cmd cd)\"
+			eval \"$(/opt/homebrew/bin/brew shellenv)\"
 		";
 	};
 }
