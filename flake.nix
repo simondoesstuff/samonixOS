@@ -18,7 +18,8 @@
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.x86_64-linux; # linux package source
 
-					modules = [ ./home/default.nix ];
+					extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
+					modules = [ ./home/default.nix ./linux/default.nix ];
 				};
 			};
 
@@ -26,6 +27,7 @@
 				# defualt (cross-platform items) through home-manager switch
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
+
 					extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
 					modules = [ ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
 				};

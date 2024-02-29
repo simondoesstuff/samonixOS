@@ -1,0 +1,6 @@
+# { fetchurl, ... }:
+{
+	imports = [
+		./packages.nix
+	];
+}
