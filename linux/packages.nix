@@ -8,7 +8,6 @@
 	];
 
 	imports = [
-		# inputs.lobster.nixosModules.lobster # add this line
 	];
 }
 

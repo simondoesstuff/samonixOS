@@ -6,15 +6,15 @@ let
 in 
 {
 # Note, to use with IINA must edit settings to point to mpv configuration
-	home.file.".config/mpv" = {
-		source = fetchFromGitHub {
-			owner = "Tama47";
-			repo = "Anime4K";
-			rev = "v4.0.1";
-			sha256 = "1d50zzqwyh264rbqj3dr9hdylcjs4xbji95hrna5icl3a2fmy7q2"; # nix-preferch-url --unpack hash
-		};
-		recursive = true;
-	};
+	# home.file.".config/mpv" = {
+	# 	source = fetchFromGitHub {
+	# 		owner = "Tama47";
+	# 		repo = "Anime4K";
+	# 		rev = "v4.0.1";
+	# 		sha256 = "1d50zzqwyh264rbqj3dr9hdylcjs4xbji95hrna5icl3a2fmy7q2"; # nix-preferch-url --unpack hash
+	# 	};
+	# 	recursive = true;
+	# };
 
 	# home.file."/usr/local/bin/jerry" = {
 	# 	source = pkgs.fetchurl {
@@ -26,13 +26,13 @@ in
 	# };
 
 	home.packages = with pkgs; [
-		ani-cli # anime CLI
-		iina # Video player for MAC
+		# LOBSTER
 		mpv # Video player for cli
-		aria2 # Download manager for cli
-		yt-dlp # m3u8 downloader
+		vlc # Videoplater 2??
 		fzf # Fuzzy finder for jerry
+		rofi-wayland # Externalgui
+		socat # Vid positions
 		ueberzugpp # images in terminal
-		# (pkgs.writeShellScriptBin "gsed" "${pkgs.gnused}/bin/sed $@") Instaled throguh brew :(
+		gnupatch
 	];
 }
