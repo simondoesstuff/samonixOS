@@ -29,7 +29,7 @@
 					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
 
 					extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
-					modules = [ ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
+					modules = [ ./home.nix ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
 				};
     };
 	};
