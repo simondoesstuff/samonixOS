@@ -5,9 +5,7 @@
 		# darwin.libiconv # Required for rust toolchain? Won't compile C nix library without
 		# ollama
 		lobster.packages.x86_64-linux.lobster
-	];
-
-	imports = [
+		wl-clipboard # Clipboard manager
 	];
 }
 

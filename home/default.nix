@@ -18,7 +18,6 @@ in
 	#INFO: Import all configs and packages from external files
 	imports = [
 		./git.nix
-		./zsh.nix
 		./nvim.nix
 		./wezterm.nix
 		./packages.nix
