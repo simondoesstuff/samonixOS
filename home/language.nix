@@ -27,6 +27,9 @@
 
 			#INFO: python3
 			python3
+			# (pkgs.python3.withPackages (python-pkgs: [
+			# 	python-pkgs.mov-cli
+			# ]))
 			# # Jupyter stuff
 			# python311Packages.jupyter_client
 			# python311Packages.pynvim

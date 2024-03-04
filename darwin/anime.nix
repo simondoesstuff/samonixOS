@@ -3,6 +3,12 @@
 #INFO: Version 4.0.1 of Anime4k
 let 
 	fetchFromGitHub = pkgs.fetchFromGitHub;
+	# jerry = pkgs.fetchFromGitHub {
+	# 	owner = "justchokingaround";
+	# 	repo = "jerry";
+	# 	rev = "a5e3bdae8ec49fa3fb0aa71f8f71cc0695612518"; # commit, for the hash
+	# 	hash=
+	# };
 in 
 {
 # Note, to use with IINA must edit settings to point to mpv configuration
@@ -16,16 +22,8 @@ in
 		recursive = true;
 	};
 
-	# home.file."/usr/local/bin/jerry" = {
-	# 	source = pkgs.fetchurl {
-	# 		url = "https://github.com/justchokingaround/jerry/raw/main/jerry.sh";
-	# 		sha256 = "1jcc0cakrdxarqps6r2v03xvdqd3hmj63qw0fbzzgda0ydinappq"; # nix-preferch-url hash
-	# 		# sha256 = "0zjwwcjgydklsri1i03widgkjyfw1003i9jqml8nnr7q8xl3s6ly";
-	# 	};
-	# 	executable = true;
-	# };
-
 	home.packages = with pkgs; [
+		# jerry
 		ani-cli # anime CLI
 		iina # Video player for MAC
 		mpv # Video player for cli
