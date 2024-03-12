@@ -27,13 +27,30 @@ in
 	home.packages = with pkgs; [
 		# LOBSTER
 		mpv # Video player for cli
-		vlc # Videoplater 2??
+		# vlc # Videoplater 2??
 		fzf # Fuzzy finder for jerry
 		rofi-wayland # Externalgui
 		socat # Vid positions
 		ueberzugpp # images in terminal
 		gnupatch
 		jerry
+
+		# Directly from repo
+		coreutils
+		curl
+		ffmpeg
+		# fzf
+		gnugrep
+		# gnupatch
+		gnused
+		html-xml-utils
+		makeWrapper
+		# mpv
+		openssl
+		# testers
+		# ueberzugpp
+		# rofi
+		jq
 	];
 }
 
