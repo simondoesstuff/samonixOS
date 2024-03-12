@@ -2,7 +2,8 @@
 {
 	home.packages = with pkgs; [
 			lua-language-server # lua language server
-			nil 								# nix language server
+			# nil 								# nix language server
+			nixd
 			vscode-langservers-extracted # HTML/CSS/JSON/ESLint
 			tailwindcss-language-server # Tailwind CSS
 

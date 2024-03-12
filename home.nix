@@ -1,5 +1,4 @@
 # This file derpicated wit the new flake config setup
-
 { pkgs, ... }:
 let
 	isLinux = pkgs.stdenv.hostPlatform.isLinux;

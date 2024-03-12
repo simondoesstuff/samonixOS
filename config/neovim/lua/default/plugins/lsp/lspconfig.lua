@@ -14,7 +14,8 @@ return {
 
 			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
 			lspconfig.lua_ls.setup {}
-			lspconfig.nil_ls.setup {}
+			-- lspconfig.nil_ls.setup {}
+			lspconfig.nixd.setup {}
 			lspconfig.tsserver.setup {}
 			lspconfig.tailwindcss.setup {}
 			lspconfig.html.setup {}

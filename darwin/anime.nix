@@ -31,6 +31,6 @@ in
 		yt-dlp # m3u8 downloader
 		fzf # Fuzzy finder for jerry
 		ueberzugpp # images in terminal
-		# (pkgs.writeShellScriptBin "gsed" "${pkgs.gnused}/bin/sed $@") Instaled throguh brew :(
+		jq # json parser
 	];
 }
