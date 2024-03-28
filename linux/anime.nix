@@ -33,7 +33,6 @@ in
 	# 	};
 	# 	recursive = true;
 	# };
-
 	home.packages = with pkgs; [
 		# LOBSTER
 		mpv # Video player for cli

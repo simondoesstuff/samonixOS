@@ -21,6 +21,11 @@ return {
 			lspconfig.html.setup {}
 			lspconfig.jsonls.setup {}
 			lspconfig.svelte.setup {}
+			lspconfig.glsl_analyzer.setup {
+				filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
+			}
+
+			-- glsl analyzer looks good, not on nix tho
 
 			vim.diagnostic.config({
 				virtual_text = true,

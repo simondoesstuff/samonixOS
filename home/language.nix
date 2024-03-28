@@ -1,4 +1,25 @@
 { pkgs, ... }:
+
+let
+	#https://github.com/nolanderc/glsl_analyzer/releases/download/v1.4.4/aarch64-macos.zip
+  version = "1.4.4";
+  url = "https://github.com/nolanderc/glsl_analyzer/releases/download/v${version}/aarch64-macos.zip";
+
+	glslanalyzer = pkgs.stdenv.mkDerivation {
+		pname = "glslanalyzer";
+		version = "1.4.4";
+
+		src = pkgs.fetchzip {
+			url = "https://github.com/nolanderc/glsl_analyzer/releases/download/v${version}/aarch64-macos.zip";
+			sha256 = "1p1crnfbfa9jl96p8m44mpa7fw2n0bdabp67vhmy74a3j26dnl3f";
+		};
+
+		installPhase = ''
+			mkdir -p $out/bin
+			cp -r $src/* $out/bin
+		'';
+	};
+in
 {
 	home.packages = with pkgs; [
 			lua-language-server # lua language server
@@ -20,6 +41,11 @@
 			# 		vadimcn.vscode-lldb
 			# 	];
 			# })
+
+			# GLSL
+			glslanalyzer
+			# glslls # language server not mac?
+			# glslviewer # live renderer
 
 			#INFO: Node/ts(js) lang server
 			nodejs
