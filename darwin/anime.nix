@@ -1,14 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, jerry, ... }:
 
 #INFO: Version 4.0.1 of Anime4k
 let 
 	fetchFromGitHub = pkgs.fetchFromGitHub;
-	# jerry = pkgs.fetchFromGitHub {
-	# 	owner = "justchokingaround";
-	# 	repo = "jerry";
-	# 	rev = "a5e3bdae8ec49fa3fb0aa71f8f71cc0695612518"; # commit, for the hash
-	# 	hash=
-	# };
 in 
 {
 # Note, to use with IINA must edit settings to point to mpv configuration
@@ -23,14 +17,10 @@ in
 	};
 
 	home.packages = with pkgs; [
-		# jerry
+		jerry.packages.aarch64-darwin.jerry
 		ani-cli # anime CLI
 		iina # Video player for MAC
-		mpv # Video player for cli
-		aria2 # Download manager for cli
-		yt-dlp # m3u8 downloader
-		fzf # Fuzzy finder for jerry
-		ueberzugpp # images in terminal
-		jq # json parser
+		mpv
+		fzf
 	];
 }

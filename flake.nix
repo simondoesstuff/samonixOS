@@ -10,9 +10,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 		lobster.url = "github:justchokingaround/lobster"; # add this line
+		jerry.url = "github:justchokingaround/jerry";
   };
 
-  outputs = { nixpkgs, home-manager, lobster, ... }:
+  outputs = { nixpkgs, home-manager, lobster, jerry, ... }:
     {
 			packages.x86_64-linux.homeConfigurations = {
 				"mason" = home-manager.lib.homeManagerConfiguration {
@@ -28,7 +29,7 @@
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
 
-					extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
+					extraSpecialArgs = { inherit lobster; inherit jerry; }; # pass lobster/jerry as a special args 
 					modules = [ ./home.nix ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
 				};
     };

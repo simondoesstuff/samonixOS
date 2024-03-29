@@ -2,6 +2,7 @@
 {
 	programs.eza = {
 		enable = true;
-		enableAliases = true; # Default aliases
+		enableZshIntegration = true;
+		# enableAliases = true; # Default aliases
 	};
 }

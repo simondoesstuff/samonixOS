@@ -1,4 +1,3 @@
-# { fetchurl, ... }:
 {
 	imports = [
 		./packages.nix
