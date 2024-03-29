@@ -11,8 +11,6 @@
 			fira-code-nerdfont # decent nerd font
 			neofetch # Show os info and such
 
-			# nodejs
-
 			# Used in neovim telescope, as well as just generally useful
 			ripgrep # Fast grep
 			fd # Advanced find

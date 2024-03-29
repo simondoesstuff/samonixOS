@@ -9,7 +9,6 @@
 			export PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"
 		";
 		# Added to (end) of .zshrc, init zoxide
-		#alias gsed='sed'
 		initExtra = "
 			eval \"$(zoxide init zsh --cmd cd)\"
 			eval \"$(/opt/homebrew/bin/brew shellenv)\"

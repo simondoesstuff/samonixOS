@@ -1,7 +1,3 @@
-# NOTE: The default home directory is meant for items that are cross
-# platform and global. For project specific installations, I should
-# include project-specific flake files.
-
 { pkgs, username, ... }:
 let
 	isLinux = pkgs.stdenv.hostPlatform.isLinux;

@@ -24,7 +24,7 @@ in
 	home.packages = with pkgs; [
 			lua-language-server # lua language server
 			# nil 								# nix language server
-			nixd
+			nixd # nix language server but better?
 			vscode-langservers-extracted # HTML/CSS/JSON/ESLint
 			tailwindcss-language-server # Tailwind CSS
 
@@ -42,7 +42,7 @@ in
 			# 	];
 			# })
 
-			# GLSL
+			#INFO: GLSL
 			glslanalyzer
 			# glslls # language server not mac?
 			# glslviewer # live renderer

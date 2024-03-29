@@ -17,7 +17,8 @@ in
 	};
 
 	home.packages = with pkgs; [
-		jerry.packages.aarch64-darwin.jerry
+		# jerry.packages.aarch64-darwin.jerry
+		jerry # anime CLI with anilist integration
 		ani-cli # anime CLI
 		iina # Video player for MAC
 		mpv

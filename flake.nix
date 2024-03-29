@@ -29,7 +29,7 @@
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.aarch64-darwin; # darwin package source
 
-					extraSpecialArgs = { inherit lobster; inherit jerry; }; # pass lobster/jerry as a special args 
+					extraSpecialArgs = { inherit lobster jerry; }; # pass lobster/jerry as a special args 
 					modules = [ ./home.nix ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
 				};
     };
