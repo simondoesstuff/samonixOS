@@ -2,7 +2,7 @@
 {
 	nixpkgs.config.allowUnfree = true; # Allow unfree licensed packages, like discord
 	nixpkgs.config.permittedInsecurePackages = [
-		"electron-25.9.0" # Required for obsidian for some reason
+		"electron-25.9.0" # Required for obsidian
 	];
 
 	home.packages = with pkgs; (
@@ -19,6 +19,7 @@
 		# Personal stuff (also system-wide)
 		++ [
 			obsidian # MD note taker editor
+			git-lfs # Large file storage for git, used in obsidian notes
 			discord # Voicechat and social app
 		]
 
