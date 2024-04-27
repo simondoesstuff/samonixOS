@@ -37,8 +37,9 @@ in
 
 			#INFO: Node/ts(js) lang server
 			nodejs
-			nodePackages_latest.typescript-language-server
+			# nodePackages_latest.typescript-language-server
 			nodePackages_latest.svelte-language-server
+			prettierd
 
 			#INFO: python3
 			python3

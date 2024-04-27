@@ -16,14 +16,16 @@ return {
 			lspconfig.lua_ls.setup {}
 			-- lspconfig.nil_ls.setup {}
 			lspconfig.nixd.setup {}
-			lspconfig.tsserver.setup {}
-			lspconfig.tailwindcss.setup {}
-			lspconfig.html.setup {}
-			lspconfig.jsonls.setup {}
-			lspconfig.svelte.setup {}
 			lspconfig.glsl_analyzer.setup {
 				filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
 			}
+
+			-- Web langauge servers
+			lspconfig.tailwindcss.setup {}
+			lspconfig.svelte.setup {}
+			lspconfig.html.setup {}
+			lspconfig.tsserver.setup {}
+			lspconfig.jsonls.setup {}
 
 			-- glsl analyzer looks good, not on nix tho
 

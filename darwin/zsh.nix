@@ -11,7 +11,6 @@
 		# Added to (end) of .zshrc, init zoxide
 		initExtra = "
 			eval \"$(zoxide init zsh --cmd cd)\"
-			eval \"$(/opt/homebrew/bin/brew shellenv)\"
 		";
 	};
 }
