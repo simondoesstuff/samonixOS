@@ -23,7 +23,7 @@
 					pkgs = import nixpkgs { system = "aarch64-darwin"; };
 
 					extraSpecialArgs = { inherit lobster jerry; }; # pass lobster/jerry as a special args 
-					modules = [ ./home.nix ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
+				  modules = [ ./home.nix ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
 				};
     };
 	};
