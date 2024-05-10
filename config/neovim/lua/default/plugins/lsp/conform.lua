@@ -19,6 +19,7 @@ return {
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			javascript = { { "prettierd", "prettier" } },
+			typescript = { { "prettierd", "prettier" } },
 			html = { "prettierd", "prettier" },
 			rust = { "rustfmt" },
 		},
