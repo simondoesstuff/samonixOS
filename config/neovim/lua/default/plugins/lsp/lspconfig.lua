@@ -26,6 +26,7 @@ return {
 			lspconfig.html.setup {}
 			lspconfig.tsserver.setup {}
 			lspconfig.jsonls.setup {}
+			lspconfig.pyright.setup {} -- Python type checking and LS
 
 			-- glsl analyzer looks good, not on nix tho
 
