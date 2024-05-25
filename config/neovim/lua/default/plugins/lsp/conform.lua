@@ -14,13 +14,15 @@ return {
 	},
 	-- Everything in opts will be passed to setup()
 	opts = {
-		-- Define your formatters
+		-- Define your formatters: syntax { { } } vs { }
+		-- { { run, first, in, list, available } }
+		-- { run, formatters, in, list sequentially }
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			javascript = { { "prettierd", "prettier" } },
 			typescript = { { "prettierd", "prettier" } },
-			html = { "prettierd", "prettier" },
+			html = { { "prettierd", "prettier" } },
 			rust = { "rustfmt" },
 		},
 		-- Set up format-on-save
