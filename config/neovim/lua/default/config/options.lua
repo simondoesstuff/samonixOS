@@ -22,6 +22,7 @@ local options = {
 	-- timeoutlen = 100, -- Controls how fast whichkey appears among other things
 	relativenumber = true,
 	-- autochdir = true,
+	scroll = 25, -- Number of lines to scroll with ctrl-u and ctrl-d
 }
 
 for option, value in pairs(options) do

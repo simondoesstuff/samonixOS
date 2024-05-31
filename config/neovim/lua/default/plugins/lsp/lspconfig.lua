@@ -13,7 +13,19 @@ return {
 			local lspconfig = require('lspconfig')
 
 			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
-			lspconfig.lua_ls.setup {}
+
+			lspconfig.lua_ls.setup {
+				settings = {
+					Lua = {
+						workspace = {
+							library = {
+								-- Computer craft library
+								"/Users/mason/dev/computercraft/ccls/library"
+							}
+						}
+					}
+				}
+			}
 			-- lspconfig.nil_ls.setup {}
 			lspconfig.nixd.setup {}
 			lspconfig.glsl_analyzer.setup {

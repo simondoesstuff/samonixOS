@@ -16,16 +16,11 @@
 			fd # Advanced find
 		]
 
-		# Personal stuff (also system-wide)
+		# Personal systen packages 
 		++ [
 			obsidian # MD note taker editor
 			git-lfs # Large file storage for git, used in obsidian notes
 			discord # Voicechat and social app
-		]
-
-		# Stuff for school courses
-		++ [
-			# postman
 		]
 	);
 }

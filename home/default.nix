@@ -23,20 +23,4 @@ in
 		./zoxide.nix
 		./eza.nix
   ];
-
-	#WARNING: Don't change this without reading docs
-	home.stateVersion = "23.11";
-	programs.home-manager.enable = true; # Let home manager manage itself
-
-	# Manage environment (shell) variables
-	home.sessionVariables = {
-		EDITOR = "nvim";
-	};
-
-	fonts.fontconfig.enable = true; # Enable fonts
-
-	nix = { # Configure the Nix package manager itself
-		package = pkgs.nix;
-		settings.experimental-features = [ "nix-command" "flakes" ];
-	};
 }

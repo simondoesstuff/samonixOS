@@ -32,7 +32,6 @@ return {
 		end,
 	},
 }
--- 	{
--- 		-- "nvim-treesitter/playground", -- Note, only works on nightly nvim
--- 	},
--- }
+-- {
+-- 	-- "nvim-treesitter/playground", -- Note, only works on nightly nvim
+-- },
