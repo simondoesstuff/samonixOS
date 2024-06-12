@@ -39,7 +39,7 @@ in
 			nodejs
 			nodePackages_latest.typescript-language-server
 			nodePackages_latest.svelte-language-server
-			prettierd
+      nodePackages_latest.prettier
 
 			#INFO: python3
 			(python3.withPackages (ps: with ps; [
@@ -48,6 +48,5 @@ in
 				pyright # lang server for type checking
 				matplotlib
 			]))
-			nodePackages_latest.pyright
 	];
 }

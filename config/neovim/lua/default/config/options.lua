@@ -6,12 +6,12 @@ local options = {
 	clipboard = "unnamedplus", -- Neovim and OS clipboard are friends now
 	tabstop = 2,              -- Tab length 4 spaces
 	shiftwidth = 2,           -- 4 spaces when indenting with '>'
-	smartcase = true,
-	ignorecase = true,
+	smartcase = false,        -- Ignore case if pattern is all lowercase
+	ignorecase = false,       -- make patterns case insinsitive
 	-- Fold based on indents rather than manual
-	cmdheight = 0,    -- When a command is not being typed, height is 0 instead of 1 line
-	scrolloff = 2,    -- Handled in VSCode settings, makes it so it starts scrolling before cursor reaches e
-	sidescrolloff = 8, -- Handled in VSCode settings
+	cmdheight = 0,            -- When a command is not being typed, height is 0 instead of 1 line
+	scrolloff = 2,            -- Handled in VSCode settings, makes it so it starts scrolling before cursor reaches e
+	sidescrolloff = 8,        -- Handled in VSCode settings
 	laststatus = 3,
 	-- Folding options
 	foldmethod = "indent",
