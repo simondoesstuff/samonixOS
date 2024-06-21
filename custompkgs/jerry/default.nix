@@ -8,29 +8,30 @@
   gnupatch,
   gnused,
   html-xml-utils,
+	chafa,
   lib,
   makeWrapper,
   mpv,
-	iina,
   openssl,
   stdenvNoCC,
   testers,
   rofi,
-  ueberzugpp,
+	iina,
   jq,
   withRofi ? false,
+	withIINA ? false,
   imagePreviewSupport ? false,
   infoSupport ? false,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "jerry";
-  version = "b786ab0edfcadc4ac00c626617793d46a2a25215";
+  version = "989ec646f514387265a1f19550d24914ba67fcdf";
 
   src = fetchFromGitHub {
     owner = "justchokingaround";
     repo = "jerry";
     rev = "${finalAttrs.version}";
-    sha256 = "jZAM4gX6mHo1hF1NRoTLWYnkSObdUNMMdJlI9JSxZ4A=";
+    sha256 = "pjS2b2P15z9LqwoHqG02vtX/mVeKM4t5dmn5URiszeI=";
   };
 
   patches = [
@@ -49,12 +50,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       gnused
       html-xml-utils
       mpv
-			iina
       openssl
     ]
     ++ lib.optional withRofi rofi
-    ++ lib.optional imagePreviewSupport ueberzugpp
-    ++ lib.optional infoSupport jq;
+    ++ lib.optional imagePreviewSupport chafa
+    ++ lib.optional infoSupport jq
+		++ lib.optional withIINA iina;
 
   installPhase = ''
     runHook preInstall
