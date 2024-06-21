@@ -16,13 +16,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "lobster";
-  version = "e513c273560b380a868244869efc82eb985a7530";
+  version = "cff0995afb09c4e98d8fc5ddf7599e1f4617504a";
 
   src = fetchFromGitHub {
     owner = "justchokingaround";
     repo = "lobster";
     rev = "${finalAttrs.version}";
-    hash = "sha256-6iMMX+aXnBa5kHBVvu4G1WPtba/R7R9aXAOzUlh/8ZQ=";
+		hash = "sha256-8hODt9vSVNnK1UK8vh1GP6+H4h1g37h3xc9VTQQWXYw=";
   };
 
   patches = [
