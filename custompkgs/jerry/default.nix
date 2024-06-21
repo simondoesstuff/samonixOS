@@ -11,6 +11,7 @@
   lib,
   makeWrapper,
   mpv,
+	iina,
   openssl,
   stdenvNoCC,
   testers,
@@ -23,13 +24,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "jerry";
-  version = "989ec646f514387265a1f19550d24914ba67fcdf";
+  version = "b786ab0edfcadc4ac00c626617793d46a2a25215";
 
   src = fetchFromGitHub {
     owner = "justchokingaround";
     repo = "jerry";
     rev = "${finalAttrs.version}";
-    sha256 = "pjS2b2P15z9LqwoHqG02vtX/mVeKM4t5dmn5URiszeI=";
+    sha256 = "jZAM4gX6mHo1hF1NRoTLWYnkSObdUNMMdJlI9JSxZ4A=";
   };
 
   patches = [
@@ -48,6 +49,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       gnused
       html-xml-utils
       mpv
+			iina
       openssl
     ]
     ++ lib.optional withRofi rofi
