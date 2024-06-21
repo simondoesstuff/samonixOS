@@ -13,7 +13,7 @@
 					pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
 					# extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
-					modules = [ ./home/default.nix ./linux/default.nix ];
+					modules = [ ./hosts/home/default.nix ./hosts/linux/default.nix ];
 				};
 			};
 
@@ -23,7 +23,7 @@
 					pkgs = import nixpkgs { system = "aarch64-darwin"; };
 
 					extraSpecialArgs = { inherit jerry; }; # pass lobster/jerry as a special args 
-				  modules = [ ./home.nix ./home/default.nix ./darwin/default.nix ]; # pass inputs as an argument
+				  modules = [ ./home.nix ./hosts/home/default.nix ./hosts/darwin/default.nix ]; # pass inputs as an argument
 				};
     };
 	};

@@ -7,7 +7,7 @@
 
 	# Source neovim/wezterm custom (non-nix) config
 	xdg.configFile.nvim = {
-		source = ../config/neovim;
+		source = ../../config/neovim;
 		recursive = true;
 	};
 }

@@ -3,7 +3,7 @@
 
 	# Source wezterm dotfile directly 
 	xdg.configFile.wezterm = {
-		source = ../config/wezterm;
+		source = ../../config/wezterm;
 		recursive = true;
 	}; 
 }

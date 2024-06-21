@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let 
-  lobster = pkgs.callPackage ../custom/lobster/default.nix { };
+  lobster = pkgs.callPackage ../../custom/lobster/default.nix { };
 in
 {
   home.packages = [
