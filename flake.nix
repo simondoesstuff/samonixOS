@@ -7,7 +7,7 @@
 	inputs.jerry.url = "github:justchokingaround/jerry";
 
   outputs = { nixpkgs, home-manager, jerry, ... }:
-    {
+		{
 			packages.x86_64-linux.homeConfigurations = {
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -22,9 +22,15 @@
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = import nixpkgs { system = "aarch64-darwin"; };
 
-					extraSpecialArgs = { inherit jerry; }; # pass lobster/jerry as a special args 
-				  modules = [ ./home.nix ./hosts/shared/default.nix ./hosts/darwin/default.nix ];
+					extraSpecialArgs = { 
+						inherit jerry; 
+						custompkgs = import ./custompkgs { 
+							pkgs = import nixpkgs { system = "aarch64-darwin"; };
+						};
+					};						
+
+					modules = [ ./home.nix ./hosts/shared/default.nix ./hosts/darwin/default.nix ];
 				};
-    };
-	};
+			};
+		};
 }

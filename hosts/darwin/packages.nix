@@ -1,11 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, custompkgs, ... }:
 
 let 
-  lobster = pkgs.callPackage ../../custom/lobster/default.nix { };
+  # lobster = pkgs.callPackage ../../custom/lobster/default.nix { };
+	# mycustompackages = import ../../custompkgs { inherit pkgs; };
 in
 {
   home.packages = [
     pkgs.ollama
-		lobster
+		custompkgs.lobster
 	];
 }
