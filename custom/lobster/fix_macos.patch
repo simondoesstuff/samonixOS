@@ -1,0 +1,13 @@
+diff --git a/lobster.sh b/lobster.sh
+index fd134c0..09c16bc 100755
+--- a/lobster.sh
++++ b/lobster.sh
+@@ -69,7 +69,7 @@ trap cleanup EXIT INT TERM
+     tmp_position="/tmp/lobster_position"
+     case "$(uname -s)" in
+         MINGW* | *Msys) separator=';' && path_thing='' && sed="sed" ;;
+-        *arwin) separator=':' && path_thing="\\" && sed="gsed" ;;
++        *arwin) separator=':' && path_thing="\\" && sed="sed" ;;
+         *) separator=':' && path_thing="\\" && sed="sed" ;;
+     esac
+ 

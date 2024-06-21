@@ -1,10 +1,11 @@
-# { pkgs, custompkgs, ... }:
-{ pkgs, lobster, ... }:
+{ pkgs, ... }:
+
+let 
+  lobster = pkgs.callPackage ../custom/lobster/default.nix { };
+in
 {
-	home.packages = with pkgs; [
-		ollama
-		lobster.packages.aarch64-darwin.lobster # flake doesn't specify ${system} as an arg? not necessary for jerry
-		# jdk17
+  home.packages = [
+    pkgs.ollama
+		lobster
 	];
 }
-
