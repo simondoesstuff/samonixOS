@@ -4,15 +4,10 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
-			{ "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
-			"hrsh7th/cmp-nvim-lsp",
-		},
+		dependencies = { "folke/neoconf.nvim", "folke/neodev.nvim", "hrsh7th/cmp-nvim-lsp" },
 		config = function()
 			local lspconfig = require('lspconfig')
 
-			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
 
 			lspconfig.lua_ls.setup {
 				settings = {
@@ -26,7 +21,9 @@ return {
 					}
 				}
 			}
-			-- lspconfig.nil_ls.setup {}
+
+			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
+
 			lspconfig.nixd.setup {}
 			lspconfig.glsl_analyzer.setup {
 				filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
@@ -35,12 +32,17 @@ return {
 			-- Web langauge servers
 			lspconfig.tailwindcss.setup {}
 			lspconfig.svelte.setup {}
-			lspconfig.html.setup {}
 			lspconfig.tsserver.setup {}
-			lspconfig.jsonls.setup {}
-			lspconfig.pyright.setup {} -- Python type checking and LS
+			-- lspconfig.pyright.setup {} -- Python type checking and LS
+			lspconfig.pylsp.setup {}
 
-			-- glsl analyzer looks good, not on nix tho
+
+			--INFO: JSON/HTML/CSS (vscode-language-servers-extracted)
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
+			lspconfig.html.setup { capabilities = capabilities }
+			lspconfig.cssls.setup { capabilities = capabilities }
+			lspconfig.jsonls.setup { capabilities = capabilities }
 
 			vim.diagnostic.config({
 				virtual_text = true,

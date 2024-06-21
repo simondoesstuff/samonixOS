@@ -5,8 +5,8 @@
 
 	programs.git = {
     enable = true;
-    userName = "your_username";
-    userEmail = "your_email@example.com";
+    userName = "masoniis";
+    userEmail = "bott.m@comcast.net";
     extraConfig = {
       credential = {
         helper = "store";
@@ -16,6 +16,9 @@
 					smtpuser = "masonmbott@gmail.com";
 					smtpencryption = "tls";
 					smtpserverport = 587;
+			};
+			merge = {
+				tool = "nvimdiff2";
 			};
     };
 	};
