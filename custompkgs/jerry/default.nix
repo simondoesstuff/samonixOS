@@ -49,13 +49,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       gnupatch
       gnused
       html-xml-utils
-      mpv
       openssl
     ]
     ++ lib.optional withRofi rofi
     ++ lib.optional imagePreviewSupport chafa
     ++ lib.optional infoSupport jq
-		++ lib.optional withIINA iina;
+		# ++ lib.optional withIINA iina
+		++ (if withIINA then [ iina ] else [ mpv ]);
 
   installPhase = ''
     runHook preInstall

@@ -1,7 +1,7 @@
 { pkgs, custompkgs, ... }:
 
 {
-	#INFO: source low end shaders
+	#INFO: source low end shaders. Note if I want to use with iina, must import the input.conf as keybindings manually
 	xdg.configFile.mpv = {
 		source = pkgs.fetchzip {
 			url = "https://github.com/Tama47/Anime4K/releases/download/v4.0.1/GLSL_Mac_Linux_Low-end.zip";
