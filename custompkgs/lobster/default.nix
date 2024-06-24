@@ -13,6 +13,8 @@
   openssl,
   stdenv,
   testers,
+	iina,
+	withIINA ? false,
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "lobster";
@@ -30,36 +32,28 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   nativeBuildInputs = [
-    coreutils # wc
-    curl
-    ffmpeg
-    fzf
-    gnugrep
-    gnupatch
-    gnused
-    html-xml-utils
     makeWrapper
-    mpv
-    openssl
   ];
+
+	runtimeInputs = [
+		coreutils
+		curl
+		ffmpeg
+		fzf
+		gnugrep
+		gnupatch
+		gnused
+		html-xml-utils
+		mpv
+		openssl
+	] ++ (if withIINA then [ iina ] else [ mpv ]);
 
   installPhase = ''
       mkdir -p $out/bin
       cp lobster.sh $out/bin/lobster
       wrapProgram $out/bin/lobster \
-        --prefix PATH : ${lib.makeBinPath [
-          coreutils
-          curl
-          ffmpeg
-          fzf
-          gnugrep
-          gnupatch
-          gnused
-          html-xml-utils
-          mpv
-          openssl
-        ]}
-    '';
+        --prefix PATH : ${lib.makeBinPath finalAttrs.runtimeInputs}
+  '';
 
   passthru.tests.version = testers.testVersion {
     package = finalAttrs.finalPackage;

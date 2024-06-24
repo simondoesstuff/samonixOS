@@ -1,7 +1,8 @@
 { pkgs, custompkgs, ... }:
 
 {
-	#INFO: source low end shaders. Note if I want to use with iina, must import the input.conf as keybindings manually
+	#INFO: Source 4k upscale shaders for anime. 
+	# Note for IINA: must import the input.conf as keybindings manually
 	xdg.configFile.mpv = {
 		source = pkgs.fetchzip {
 			url = "https://github.com/Tama47/Anime4K/releases/download/v4.0.1/GLSL_Mac_Linux_Low-end.zip";
@@ -14,13 +15,18 @@
 		recursive = true;
 	};
 
-
 	xdg.configFile.jerry = {
-		source = ../../config/jerry;
+		source = ./config/jerry;
+		recursive = true;
+	};
+
+	xdg.configFile.lobster = {
+		source = ./config/lobster;
 		recursive = true;
 	};
 
 	home.packages = [
 		custompkgs.jerry
+		custompkgs.lobster
 	];
 }

@@ -1,8 +1,7 @@
-{ pkgs, custompkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [
     pkgs.ollama
-		custompkgs.lobster
 	];
 }
