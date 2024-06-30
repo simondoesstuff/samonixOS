@@ -4,9 +4,7 @@
 	inputs.home-manager.url = "github:nix-community/home-manager";
 	inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-	inputs.jerry.url = "github:justchokingaround/jerry";
-
-  outputs = { nixpkgs, home-manager, jerry, ... }:
+  outputs = { nixpkgs, home-manager, ... }:
 		{
 			packages.x86_64-linux.homeConfigurations = {
 				"mason" = home-manager.lib.homeManagerConfiguration {
@@ -23,7 +21,6 @@
 					pkgs = import nixpkgs { system = "aarch64-darwin"; };
 
 					extraSpecialArgs = { 
-						inherit jerry; 
 						custompkgs = import ./custompkgs { 
 							pkgs = import nixpkgs { system = "aarch64-darwin"; };
 						};
