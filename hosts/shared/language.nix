@@ -48,6 +48,7 @@ in
 				isort # import sorter
 				pyright # lang server for type checking
 				matplotlib
+				python-lsp-server
 			]))
 	];
 }
