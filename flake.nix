@@ -11,7 +11,7 @@
 					pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
 					# extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
-					modules = [ ./hosts/shared/default.nix ./hosts/linux/default.nix ];
+					modules = [ ./home.nix ./hosts/linux/default.nix ];
 				};
 			};
 
@@ -26,7 +26,7 @@
 						};
 					};						
 
-					modules = [ ./home.nix ./hosts/shared/default.nix ./hosts/darwin/default.nix ];
+					modules = [ ./home.nix ./hosts/darwin/default.nix ];
 				};
 			};
 		};

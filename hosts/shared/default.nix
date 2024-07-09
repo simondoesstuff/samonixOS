@@ -17,10 +17,10 @@ in
 		./nvim.nix
 		./wezterm.nix
 		./packages.nix
-		./language.nix
 		./starship.nix
 		./direnv.nix
 		./zoxide.nix
 		./eza.nix
+		./language/default.nix
   ];
 }
