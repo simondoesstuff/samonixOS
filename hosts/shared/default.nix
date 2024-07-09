@@ -22,5 +22,6 @@ in
 		./zoxide.nix
 		./eza.nix
 		./language/default.nix
+		./glfw.nix
   ];
 }
