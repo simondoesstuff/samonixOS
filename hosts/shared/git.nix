@@ -20,6 +20,9 @@
 			merge = {
 				tool = "nvimdiff2";
 			};
+			init = {
+				defaultBranch = "main";
+			};
     };
 	};
 }
