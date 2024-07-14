@@ -95,4 +95,12 @@ config.colors = {
 	},
 }
 
+config.keys = {
+	{
+		key = 'w',
+		mods = 'CMD',
+		action = wezterm.action.CloseCurrentPane { confirm = false },
+	},
+}
+
 return config
