@@ -5,6 +5,7 @@
 		./entertainment.nix
 		./packages.nix
 		./zsh.nix
+		./spotify.nix
 	] ++ [
 		#INFO: Specified shared configs
 		../shared/default.nix # In this case, take everything from shared

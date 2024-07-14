@@ -29,24 +29,52 @@ return {
 			dir = "git_dir",
 			direction = "float",
 			start_in_insert = false,
+			close_on_exit = false,
 			on_create = function()
 				vim.cmd("stopinsert")
 			end,
 			on_open = function(term)
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "Q", "<cmd>q!<CR>", { noremap = true, silent = true })
+			end,
+			on_exit = function(term, code)
+				if code == 0 then
+					vim.cmd("q!") -- Close the terminal if it exits successfully
+				end
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
 			end,
 		})
 
-		local hm_update = Terminal:new({
+		local hm_switch = Terminal:new({
 			cmd = "home-manager switch",
 			dir = "git_dir",
 			direction = "float",
 			start_in_insert = false,
+			close_on_exit = false, -- Keep term open in case of error
 			on_create = function()
 				vim.cmd("stopinsert")
 			end,
 			on_open = function(term)
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				-- Kill the terminal with Q
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "Q", "<cmd>q!<CR>", { noremap = true, silent = true })
+			end,
+			on_exit = function(term, _)
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
+			end,
+		})
+
+		local spotify   = Terminal:new({
+			cmd = "spotify_player",
+			dir = "git_dir",
+			direction = "float",
+			on_open = function(term)
+				vim.cmd("startinsert!")
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-d>", "<C-c>", { silent = true })
 			end,
 		})
 
@@ -59,8 +87,12 @@ return {
 			ollama:toggle()
 		end
 
-		function _HomeManagerUpdate()
-			hm_update:toggle()
+		function _HomeManagerSwitch()
+			hm_switch:toggle()
+		end
+
+		function _Spotify_Toggle()
+			spotify:toggle()
 		end
 
 		--  INFO: Toggle keymaps
@@ -76,7 +108,10 @@ return {
 		vim.api.nvim_set_keymap("n", "<leader>to", "<cmd>lua _Ollama_Toggle()<CR>",
 			{ noremap = true, silent = true, desc = "toggle ollama serve" })
 
-		vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua _HomeManagerUpdate()<CR>",
-			{ noremap = true, silent = true, desc = "toggle home manager update" })
+		vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua _HomeManagerSwitch()<CR>",
+			{ noremap = true, silent = true, desc = "toggle home manager switch" })
+
+		vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>lua _Spotify_Toggle()<CR>",
+			{ noremap = true, silent = true, desc = "toggle spotify player" })
 	end
 }
