@@ -17,4 +17,8 @@
 			}
 		];
 	};
+
+	home.shellAliases = {
+		spt = "spotify_player";
+	};
 }
