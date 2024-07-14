@@ -19,8 +19,7 @@ return {
 		-- { run, formatters, in, list sequentially }
 		formatters_by_ft = {
 			lua = { "stylua" },
-			-- python = { "isort", "black" },
-			python = { "black" },
+			python = { "isort", "black" },
 			javascript = { { "prettierd", "prettier" } },
 			typescript = { { "prettierd", "prettier" } },
 			typescriptreact = { { "prettierd", "prettier" } },
