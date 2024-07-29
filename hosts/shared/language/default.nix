@@ -5,6 +5,9 @@
 		./rust.nix
 		./python.nix
 		./glsl.nix
-		./other.nix
+		./lua.nix
+		./nix.nix
+		./web.nix
+		./flutter.nix
   ];
 }

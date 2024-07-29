@@ -3,13 +3,17 @@
 
 {
 	home.packages = with pkgs; [
-			#INFO: python3
 			(python3.withPackages (ps: with ps; [
 				black # formatter
 				isort # import sorter
 				pyright # lang server for type checking
+				python-lsp-server # other lang server
 				matplotlib
-				python-lsp-server
+				numpy
 			]))
 	];
+
+	programs.poetry = {
+		enable = true;
+	};
 }

@@ -21,7 +21,9 @@ in
 		./direnv.nix
 		./zoxide.nix
 		./eza.nix
-		./language/default.nix
 		./glfw.nix
+
+		# Import all language servers
+		./language/default.nix
   ];
 }
