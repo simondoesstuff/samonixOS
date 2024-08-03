@@ -24,6 +24,7 @@
 						custompkgs = import ./custompkgs { 
 							pkgs = import nixpkgs { system = "aarch64-darwin"; };
 						};
+						username = "mason";
 					};						
 
 					modules = [ ./home.nix ./hosts/darwin/default.nix ];
