@@ -41,8 +41,9 @@ return {
 			on_exit = function(term, code)
 				if code == 0 then
 					vim.cmd("q!") -- Close the terminal if it exits successfully
+				else
+					vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
 				end
-				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
 			end,
 		})
 
@@ -65,9 +66,9 @@ return {
 				if vim.api.nvim_get_current_buf() ~= term.bufnr then -- If buffer is not being displayed
 					vim.notify("Home Manager switch complete with exit code: " .. code)
 					pcall(vim.api.nvim_buf_delete, term.bufnr, { force = true })
+				else
+					vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
 				end
-
-				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
 			end,
 		})
 

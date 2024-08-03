@@ -7,7 +7,8 @@
   outputs = { nixpkgs, home-manager, ... }:
 		{
 			packages.x86_64-linux.homeConfigurations = {
-				"mason" = home-manager.lib.homeManagerConfiguration {
+				# "mason" = home-manager.lib.homeManagerConfiguration {
+				mason = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
 					extraSpecialArgs = { 
@@ -19,7 +20,7 @@
 			};
 
 			packages.aarch64-darwin.homeConfigurations = {
-				"mason" = home-manager.lib.homeManagerConfiguration {
+				mason = home-manager.lib.homeManagerConfiguration {
 					pkgs = import nixpkgs { system = "aarch64-darwin"; };
 
 					extraSpecialArgs = { 
