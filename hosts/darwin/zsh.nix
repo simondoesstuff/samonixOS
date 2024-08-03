@@ -6,7 +6,7 @@
 		enableCompletion = true;
 		# Added to (end) of .zprofile
 		# INFO:
-		# 1st export: Add docker to path, forgot why
+		# 1st export: Add docker to path, docker desktop isn't on nix I think?
 		# 2nd export: Add flutter to path, manually install because using nix on mac wouldn't work
 		profileExtra = "
 			export PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"
