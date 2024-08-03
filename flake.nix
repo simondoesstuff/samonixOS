@@ -10,13 +10,15 @@
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
-					# extraSpecialArgs = { inherit lobster; }; # pass lobster as a special argument
+					extraSpecialArgs = { 
+						username = "mason";
+					};						
+
 					modules = [ ./home.nix ./hosts/linux/default.nix ];
 				};
 			};
 
 			packages.aarch64-darwin.homeConfigurations = {
-				# defualt (cross-platform items) through home-manager switch
 				"mason" = home-manager.lib.homeManagerConfiguration {
 					pkgs = import nixpkgs { system = "aarch64-darwin"; };
 
