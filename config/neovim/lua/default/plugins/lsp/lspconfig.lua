@@ -35,6 +35,7 @@ return {
 			lspconfig.tsserver.setup {}
 			-- lspconfig.pyright.setup {} -- Python type checking and LS
 			lspconfig.pylsp.setup {}
+			lspconfig.dartls.setup {}
 
 
 			--INFO: JSON/HTML/CSS (vscode-language-servers-extracted)
