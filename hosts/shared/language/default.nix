@@ -8,6 +8,5 @@
 		./lua.nix
 		./nix.nix
 		./web.nix
-		# ./flutter.nix
   ];
 }
