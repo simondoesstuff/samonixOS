@@ -16,7 +16,7 @@ return {
 	"karb94/neoscroll.nvim",
 	opts = {
 		hide_cursor = false,
-		easing_function = "circular"
+		-- easing_function = "circular"
 	},
 }
 

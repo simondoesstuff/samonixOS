@@ -48,78 +48,41 @@ return {
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
-				underline = true,
+				underline = false,
 				severity_sort = true,
 				update_in_insert = false,
 			})
 
-			-- Following lines are from : https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#show-line-diagnostics-automatically-in-hover-window
-			-- You will likely want to reduce updatetime which affects CursorHold
-			-- note: this setting is global and should be set only once
-			-- Hover
 			-- vim.o.updatetime = 250
-			-- vim.cmd([[autocmd! CursorHold * lua vim.diagnostic.open_float(nil, {focus=false})]])
-
-			-- LSP keybinds
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-				callback = function(ev)
-					-- Enable completion triggered by <c-x><c-o>
-					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-					-- See `:help vim.lsp.*` for documentation on any of the below functions
-					local opts = { buffer = ev.buf }
-					vim.keymap.set(
-						"n",
-						"<leader>lD",
-						vim.lsp.buf.declaration,
-						{ buffer = ev.buf, desc = "see declaration" }
-					)
-					vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, desc = "hover action" })
-					vim.keymap.set("n", "<leader>lK", vim.lsp.buf.hover, { buffer = ev.buf, desc = "hover action" })
-					vim.keymap.set(
-						"n",
-						"<leader>ld",
-						vim.lsp.buf.definition,
-						{ buffer = ev.buf, desc = "see definition" }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>li",
-						vim.lsp.buf.implementation,
-						{ buffer = ev.buf, desc = "see implementation" }
-					)
-
-					vim.keymap.set(
-						"n",
-						"<leader>lt",
-						vim.lsp.buf.type_definition,
-						{ buffer = ev.buf, desc = "type definition" }
-					)
-					vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { buffer = ev.buf, desc = "rename symbol" })
-					vim.keymap.set(
-						"n",
-						"<leader>la",
-						vim.lsp.buf.code_action,
-						{ buffer = ev.buf, desc = "code action" }
-					)
-					vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { buffer = ev.buf, desc = "references" })
-					vim.keymap.set("n", "<leader>lf", vim.diagnostic.open_float(), { buffer = ev.buf, desc = "diagnostics float" })
-				end,
+			vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+				group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+				callback = function()
+					vim.diagnostic.open_float(nil, { focus = false })
+				end
 			})
 
-			vim.api.nvim_create_autocmd("CursorHold", {
-				buffer = bufnr,
-				callback = function()
-					local opts = {
-						focusable = false,
-						close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-						border = "rounded",
-						source = "always",
-						prefix = " ",
-						scope = "cursor",
-					}
-					vim.diagnostic.open_float(nil, opts)
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local bufnr = args.buf
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client.supports_method("textDocument/completion") then
+						vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+					end
+					if client.supports_method("textDocument/definition") then
+						vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
+					end
+					--INFO: LSP keybinds defined here
+					vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "see declaration" })
+					vim.keymap.set("n", "<leader>lK", vim.lsp.buf.hover, { buffer = bufnr, desc = "hover action" })
+					vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, { buffer = bufnr, desc = "see definition" })
+					vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { buffer = bufnr, desc = "see implementation" })
+					vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "type definition" })
+					vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "rename symbol" })
+					vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
+					vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { buffer = bufnr, desc = "references" })
+					vim.keymap.set("n", "<leader>lf", function() vim.diagnostic.open_float() end,
+						{ buffer = bufnr, desc = "diagnostics float" })
+					vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, desc = "hover action" })
 				end,
 			})
 		end,
