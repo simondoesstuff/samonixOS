@@ -11,6 +11,7 @@
 		profileExtra = "
 			export PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"
 			export PATH=$PATH:$HOME/dev/sdk/flutter/bin:$PATH
+			export CHROME_EXECUTABLE=\"/Applications/Microsoft Edge Dev.app/Contents/MacOS/Microsoft Edge Dev\"
 		";
 		# Added to (end) of .zshrc, init zoxide as per docs
 		initExtra = "

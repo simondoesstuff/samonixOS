@@ -1,26 +1,24 @@
+-- WARNING: I am suspicious that cinnamon might be the plugin that is
+-- breaking my setscroll= value and causing it to become low
 -- return {
---   "karb94/neoscroll.nvim",
---   config = function ()
---     require('neoscroll').setup({
--- 			hide_cursor = false,
--- 			easing_function = "circular"
--- 		})
---   end
+-- 	'declancm/cinnamon.nvim',
+-- 	opts = {
+-- 		keymaps = {
+-- 			basic = true,
+-- 			extra = true,
+-- 		},
+-- 		max_delta = {
+-- 			time = 600,
+-- 		},
+-- 	}
 -- }
 return {
-	'declancm/cinnamon.nvim',
-	config = function()
-		require('cinnamon').setup({
-			default_keymaps = true, -- Create default keymaps.
-			extra_keymaps = true, -- Create extra keymaps.
-			extended_keymaps = true, -- Create extended keymaps.
-			override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
-
-			scroll_limit = 80,
-		})
-	end
+	"karb94/neoscroll.nvim",
+	opts = {
+		hide_cursor = false,
+		easing_function = "circular"
+	},
 }
-
 
 
 

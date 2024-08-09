@@ -15,8 +15,9 @@ return {
 		});
 
 
-		vim.keymap.set("n", "<leader>sr", ":SnipRun<CR>", { desc = "SnipRun" });
-		vim.keymap.set("n", "<leader>sl", ":SnipLive<CR>", { desc = "SnipRun Live Mode" });
-		vim.keymap.set("v", "f", ":SnipRun<CR>", { desc = "SnipRun run visual" });
+		vim.keymap.set("n", "<leader>s", "", { desc = "sniprun" });
+		vim.keymap.set("n", "<leader>sr", ":SnipRun<CR>", { desc = "sniprun run" });
+		vim.keymap.set("n", "<leader>sl", ":SnipLive<CR>", { desc = "sniprun live mode" });
+		vim.keymap.set("v", "f", ":SnipRun<CR>", { desc = "sniprun visual" });
 	end,
 }

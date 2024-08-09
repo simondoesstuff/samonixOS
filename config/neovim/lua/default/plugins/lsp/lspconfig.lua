@@ -104,23 +104,24 @@ return {
 						{ buffer = ev.buf, desc = "code action" }
 					)
 					vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, { buffer = ev.buf, desc = "references" })
+					vim.keymap.set("n", "<leader>lf", vim.diagnostic.open_float(), { buffer = ev.buf, desc = "diagnostics float" })
 				end,
 			})
 
-			-- vim.api.nvim_create_autocmd("CursorHold", {
-			-- 	buffer = bufnr,
-			-- 	callback = function()
-			-- 		local opts = {
-			-- 			focusable = false,
-			-- 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-			-- 			border = "rounded",
-			-- 			source = "always",
-			-- 			prefix = " ",
-			-- 			scope = "cursor",
-			-- 		}
-			-- 		vim.diagnostic.open_float(nil, opts)
-			-- 	end,
-			-- })
+			vim.api.nvim_create_autocmd("CursorHold", {
+				buffer = bufnr,
+				callback = function()
+					local opts = {
+						focusable = false,
+						close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+						border = "rounded",
+						source = "always",
+						prefix = " ",
+						scope = "cursor",
+					}
+					vim.diagnostic.open_float(nil, opts)
+				end,
+			})
 		end,
 	},
 	{

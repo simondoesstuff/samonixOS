@@ -2,10 +2,19 @@ return {
 	'akinsho/toggleterm.nvim',
 	version = "*",
 	config = function()
-		local Terminal  = require('toggleterm.terminal').Terminal
+		local Terminal    = require('toggleterm.terminal').Terminal
 
 		--INFO: Terminals
-		local lazygit   = Terminal:new({
+		local togglefloat = Terminal:new({
+			direction = "float",
+			on_open = function(term)
+				vim.cmd("startinsert!")
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "Q", "<cmd>q!<CR>", { noremap = true, silent = true })
+			end,
+		})
+
+		local lazygit     = Terminal:new({
 			cmd = "lazygit",
 			dir = "git_dir",
 			direction = "float",
@@ -24,7 +33,7 @@ return {
 			end,
 		})
 
-		local ollama    = Terminal:new({
+		local ollama      = Terminal:new({
 			cmd = "ollama serve",
 			dir = "git_dir",
 			direction = "float",
@@ -47,7 +56,7 @@ return {
 			end,
 		})
 
-		local hm_switch = Terminal:new({
+		local hm_switch   = Terminal:new({
 			cmd = "home-manager switch",
 			dir = "git_dir",
 			direction = "float",
@@ -72,7 +81,7 @@ return {
 			end,
 		})
 
-		local spotify   = Terminal:new({
+		local spotify     = Terminal:new({
 			cmd = "spotify_player",
 			dir = "git_dir",
 			direction = "float",
@@ -87,7 +96,26 @@ return {
 			end,
 		})
 
+		local flutter_run = Terminal:new({
+			cmd = "flutter run",
+			dir = "git_dir",
+			direction = "float",
+			on_open = function(term)
+				vim.cmd("startinsert!")
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "Q", "<cmd>q!<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "Q", "<cmd>q!<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-d>", "<C-c>", { silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<esc>", { noremap = true, silent = true })
+			end,
+		})
+
 		--  INFO: Global functions
+		function _ToggleTerm()
+			togglefloat:toggle()
+		end
+
 		function _Lazygit_Toggle()
 			lazygit:toggle()
 		end
@@ -104,23 +132,30 @@ return {
 			spotify:toggle()
 		end
 
+		function _FlutterRun()
+			flutter_run:toggle()
+		end
+
 		--  INFO: Toggle keymaps
 		vim.api.nvim_set_keymap("n", "<leader>t", "<leader>t",
-			{ noremap = true, silent = true, desc = "toggle terminals" })
+			{ noremap = true, silent = true, desc = "toggle terms" })
 
-		vim.api.nvim_set_keymap("n", "<leader>ft", "<cmd>lua _Lazygit_Toggle()<CR>",
-			{ noremap = true, silent = true, desc = "toggle lazygit" })
+		vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _ToggleTerm()<CR>",
+			{ noremap = true, silent = true, desc = "floating term" })
 
 		vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua _Lazygit_Toggle()<CR>",
-			{ noremap = true, silent = true, desc = "toggle lazygit" })
+			{ noremap = true, silent = true, desc = "lazygit term" })
 
 		vim.api.nvim_set_keymap("n", "<leader>to", "<cmd>lua _Ollama_Toggle()<CR>",
-			{ noremap = true, silent = true, desc = "toggle ollama serve" })
+			{ noremap = true, silent = true, desc = "ollama serve term" })
 
 		vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>lua _HomeManagerSwitch()<CR>",
-			{ noremap = true, silent = true, desc = "toggle home manager switch" })
+			{ noremap = true, silent = true, desc = "hm switch term" })
 
 		vim.api.nvim_set_keymap("n", "<leader>ts", "<cmd>lua _Spotify_Toggle()<CR>",
-			{ noremap = true, silent = true, desc = "toggle spotify player" })
+			{ noremap = true, silent = true, desc = "spotify term" })
+
+		vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>lua _FlutterRun()<CR>",
+			{ noremap = true, silent = true, desc = "flutter run term" })
 	end
 }
