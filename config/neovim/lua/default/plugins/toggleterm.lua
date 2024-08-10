@@ -11,6 +11,10 @@ return {
 				vim.cmd("startinsert!")
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "Q", "<cmd>q!<CR>", { noremap = true, silent = true })
+				-- make escape normal so it doesn't exit to normal mode
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<esc>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<esc>", "<cmd>close<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<cmd>close<CR>", { noremap = true, silent = true })
 			end,
 		})
 
@@ -137,9 +141,6 @@ return {
 		end
 
 		--  INFO: Toggle keymaps
-		vim.api.nvim_set_keymap("n", "<leader>t", "<leader>t",
-			{ noremap = true, silent = true, desc = "toggle terms" })
-
 		vim.api.nvim_set_keymap("n", "<leader>tt", "<cmd>lua _ToggleTerm()<CR>",
 			{ noremap = true, silent = true, desc = "floating term" })
 

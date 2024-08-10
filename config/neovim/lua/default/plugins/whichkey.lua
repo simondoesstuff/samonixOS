@@ -25,6 +25,7 @@ return {
 			{ "<leader>c",        group = "change" },
 			{ "<leader>l",        group = "lsp" },
 			{ "<leader>d",        group = "debug" },
+			{ "<leader>t",        group = "terminal" },
 		},
 	},
 	keys = {
