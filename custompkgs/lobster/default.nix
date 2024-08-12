@@ -18,17 +18,18 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "lobster";
-  version = "cff0995afb09c4e98d8fc5ddf7599e1f4617504a";
+  version = "942ad9f466a1056fe48961826c1ff34da4beb976";
 
   src = fetchFromGitHub {
     owner = "justchokingaround";
     repo = "lobster";
     rev = "${finalAttrs.version}";
-		hash = "sha256-8hODt9vSVNnK1UK8vh1GP6+H4h1g37h3xc9VTQQWXYw=";
+		hash = "sha256-ch91LYKs6MswTC08Xi8VcIxooWvDprGuIn0B2Yo3ufo=";
   };
 
+	# info: to create this patch file, run a git diff after editing source code manually 
   patches = [
-    ./fix_macos.patch
+    ./fix_macos2.patch
   ];
 
   nativeBuildInputs = [
