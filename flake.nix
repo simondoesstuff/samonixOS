@@ -25,7 +25,7 @@
 						username = "user";
 					};						
 
-					modules = [ ./home.nix ./hosts/linux/default.nix ./hosts/shared/default.nix ];
+					modules = [ ./home.nix ./hosts/linux/default.nix ./hosts/shared/nvim.nix ./hosts/shared/git.nix ./hosts/shared/eza.nix ./hosts/shared/zoxide.nix ];
 				};
       };
 
