@@ -7,7 +7,6 @@
   outputs = { nixpkgs, home-manager, ... }:
 		{
 			packages.x86_64-linux.homeConfigurations = {
-				# "mason" = home-manager.lib.homeManagerConfiguration {
 				mason = home-manager.lib.homeManagerConfiguration {
 					pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
@@ -16,8 +15,19 @@
 					};						
 
 					modules = [ ./home.nix ./hosts/linux/default.nix ];
+			    };
+
+				# Profile used for OS VM
+				user = home-manager.lib.homeManagerConfiguration {
+					pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+					extraSpecialArgs = { 
+						username = "user";
+					};						
+
+					modules = [ ./home.nix ./hosts/linux/default.nix ./hosts/shared/default.nix ];
 				};
-			};
+      };
 
 			packages.aarch64-darwin.homeConfigurations = {
 				mason = home-manager.lib.homeManagerConfiguration {
