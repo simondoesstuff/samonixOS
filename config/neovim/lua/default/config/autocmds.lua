@@ -19,15 +19,15 @@ api.nvim_create_autocmd("TermOpen", { command = [[setlocal nonumber norelativenu
 -- api.nvim_create_autocmd("TermOpen", { command = [[set ma]] }) --- SOMEWHAT DANGEROUS: sets terminal buffers to modifable to take use of vim -a vi
 -- api.nvim_create_autocmd("BufEnter,WinEnter", { pattern = { "term://*" }, command = "startinsert", nested = true }) -- Inter insert mode on window temrinal focus
 
+-- INFO: Deprecated with new float command bar I use (noice)
 -- When entering command mode, set height to 1 in order to shift statusline up so it remains visible
-api.nvim_create_autocmd("CmdlineEnter", {
-	command = ":set cmdheight=1",
-})
-
+-- api.nvim_create_autocmd("CmdlineEnter", {
+-- 	command = ":set cmdheight=1",
+-- })
 -- When leaving, set height back to 0 to hide command line
-api.nvim_create_autocmd("CmdlineLeave", {
-	command = ":set cmdheight=0",
-})
+-- api.nvim_create_autocmd("CmdlineLeave", {
+-- 	command = ":set cmdheight=0",
+-- })
 
 -- Highlight cursorline in active windows only
 local cl_var = "auto_cursorline"
