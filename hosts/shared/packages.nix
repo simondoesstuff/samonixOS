@@ -19,8 +19,11 @@
 		# Personal systen packages 
 		++ [
 			obsidian # MD note taker editor
-			git-lfs # Large file storage for git, used in obsidian notes
-			discord # Voicechat and social app
+			#INFO: On mac, since this modifies signed discord, it now has to be allowed in security settings.
+			(discord.override {
+				withOpenASAR = true;
+				withVencord = true;
+			})
 		]
 	);
 }
