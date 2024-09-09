@@ -34,7 +34,7 @@
           username = "user";
         };
 
-        modules = [./home.nix ./hosts/linux/os_class/default.nix];
+        modules = [./home.nix ./hosts/linux/os_vm.nix];
       };
     };
 
@@ -49,7 +49,7 @@
           username = "mason";
         };
 
-        modules = [./home.nix ./hosts/darwin/default.nix];
+        modules = [./home.nix ./hosts/darwin/masonmac.nix];
       };
     };
   };
