@@ -1,8 +1,11 @@
 {
   description = "Home Manager configuration of mason";
 
-	inputs.home-manager.url = "github:nix-community/home-manager";
-	inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
+	inputs.home-manager = {
+		url = "github:nix-community/home-manager";
+		inputs.nixpkgs.follows = "nixpkgs";
+	};
+	inputs.customPackages.url = "path:./custompkgs";
 
   outputs = { nixpkgs, home-manager, ... }:
 		{

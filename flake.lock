@@ -1,5 +1,17 @@
 {
   "nodes": {
+    "customPackages": {
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-N2yNjhzHo7AzYKijCmkR/ZbJBKEAONBQWvLx64AJLu8=",
+        "path": "./custompkgs",
+        "type": "path"
+      },
+      "original": {
+        "path": "./custompkgs",
+        "type": "path"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -36,6 +48,7 @@
     },
     "root": {
       "inputs": {
+        "customPackages": "customPackages",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
       }

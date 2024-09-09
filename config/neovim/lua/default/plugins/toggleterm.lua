@@ -113,6 +113,14 @@ return {
 				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<C-d>", "<C-c>", { silent = true })
 				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<esc>", { noremap = true, silent = true })
 			end,
+			on_exit = function(term, code)
+				if vim.api.nvim_get_current_buf() ~= term.bufnr then -- If buffer is not being displayed
+					vim.notify("Flutter exited with code: " .. code)
+					pcall(vim.api.nvim_buf_delete, term.bufnr, { force = true })
+				else
+					vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
+				end
+			end,
 		})
 
 		--  INFO: Global functions
