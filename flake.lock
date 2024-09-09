@@ -1,17 +1,5 @@
 {
   "nodes": {
-    "customPackages": {
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-Idkkoz1mMj2kU4GINqknyOzkW14YO0ZI/9lzhOYV90U=",
-        "path": "./custompkgs",
-        "type": "path"
-      },
-      "original": {
-        "path": "./custompkgs",
-        "type": "path"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -32,6 +20,18 @@
         "type": "github"
       }
     },
+    "masonpkgs": {
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-Idkkoz1mMj2kU4GINqknyOzkW14YO0ZI/9lzhOYV90U=",
+        "path": "./masonpkgs",
+        "type": "path"
+      },
+      "original": {
+        "path": "./masonpkgs",
+        "type": "path"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1725634671,
@@ -50,8 +50,8 @@
     },
     "root": {
       "inputs": {
-        "customPackages": "customPackages",
         "home-manager": "home-manager",
+        "masonpkgs": "masonpkgs",
         "nixpkgs": "nixpkgs"
       }
     }

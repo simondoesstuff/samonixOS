@@ -1,5 +1,6 @@
 {
-	programs.starship = { # The nice looking shell prompt
-		enable = true;
-	};
+  programs.starship = {
+    # The nice looking shell prompt
+    enable = true;
+  };
 }

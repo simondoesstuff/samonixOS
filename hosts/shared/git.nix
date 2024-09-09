@@ -1,9 +1,9 @@
 {
-	programs.lazygit = {
-		enable = true;
-	};
+  programs.lazygit = {
+    enable = true;
+  };
 
-	programs.git = {
+  programs.git = {
     enable = true;
     userName = "masoniis";
     userEmail = "bott.m@comcast.net";
@@ -11,18 +11,18 @@
       credential = {
         helper = "store";
       };
-			sendemail = {
-					smtpserver = "smtp.gmail.com";
-					smtpuser = "masonmbott@gmail.com";
-					smtpencryption = "tls";
-					smtpserverport = 587;
-			};
-			merge = {
-				tool = "nvimdiff2";
-			};
-			init = {
-				defaultBranch = "main";
-			};
+      sendemail = {
+        smtpserver = "smtp.gmail.com";
+        smtpuser = "masonmbott@gmail.com";
+        smtpencryption = "tls";
+        smtpserverport = 587;
+      };
+      merge = {
+        tool = "nvimdiff2";
+      };
+      init = {
+        defaultBranch = "main";
+      };
     };
-	};
+  };
 }

@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-
-{
-	home.packages = [
-		pkgs.glfw
-	];
+{pkgs, ...}: {
+  home.packages = [
+    pkgs.glfw
+  ];
 }

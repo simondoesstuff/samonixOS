@@ -8,7 +8,7 @@
   gnupatch,
   gnused,
   html-xml-utils,
-	chafa,
+  chafa,
   lib,
   makeWrapper,
   mpv,
@@ -16,10 +16,10 @@
   stdenvNoCC,
   testers,
   rofi,
-	iina,
+  iina,
   jq,
   withRofi ? false,
-	withIINA ? false,
+  withIINA ? false,
   imagePreviewSupport ? false,
   infoSupport ? false,
 }:
@@ -54,8 +54,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ++ lib.optional withRofi rofi
     ++ lib.optional imagePreviewSupport chafa
     ++ lib.optional infoSupport jq
-		# ++ lib.optional withIINA iina
-		++ (if withIINA then [ iina ] else [ mpv ]);
+    # ++ lib.optional withIINA iina
+    ++ (
+      if withIINA
+      then [iina]
+      else [mpv]
+    );
 
   installPhase = ''
     runHook preInstall

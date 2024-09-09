@@ -1,9 +1,9 @@
 {
-	programs.wezterm.enable = true;
+  programs.wezterm.enable = true;
 
-	# Source wezterm dotfile directly 
-	xdg.configFile.wezterm = {
-		source = ../../config/wezterm;
-		recursive = true;
-	}; 
+  # Source wezterm dotfile directly
+  xdg.configFile.wezterm = {
+    source = ../../config/wezterm;
+    recursive = true;
+  };
 }

@@ -25,6 +25,8 @@ return {
 			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
 
 			lspconfig.nixd.setup {}
+			lspconfig.nil_ls.setup {}
+
 			lspconfig.glsl_analyzer.setup {
 				filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
 			}
