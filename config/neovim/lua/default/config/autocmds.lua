@@ -29,6 +29,16 @@ api.nvim_create_autocmd("TermOpen", { command = [[setlocal nonumber norelativenu
 -- 	command = ":set cmdheight=0",
 -- })
 
+-- Function to dynamically update scroll and scrolloff
+local function set_scroll_to_half_screen()
+	local half_screen = math.floor(vim.api.nvim_get_option("lines") / 2)
+	vim.opt.scroll = half_screen
+end
+
+vim.api.nvim_create_autocmd("VimResized", {
+	callback = set_scroll_to_half_screen
+})
+
 -- Highlight cursorline in active windows only
 local cl_var = "auto_cursorline"
 

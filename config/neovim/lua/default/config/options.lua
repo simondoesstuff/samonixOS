@@ -22,7 +22,7 @@ local options = {
 	-- timeoutlen = 100, -- Controls how fast whichkey appears among other things
 	relativenumber = true,
 	-- autochdir = true,
-	scroll = 25,  -- Number of lines to scroll with ctrl-u and ctrl-d
+	scroll = math.floor(vim.api.nvim_get_option("lines") / 2),
 	hidden = true, -- Allow hidden buffers for things like toggleterm
 }
 

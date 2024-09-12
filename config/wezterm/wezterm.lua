@@ -26,6 +26,8 @@ config.window_close_confirmation = "NeverPrompt"
 config.underline_position = -5
 -- config.underline_thickness = "2pt"
 
+config.window_decorations = "RESIZE" -- Remove the mac "traffic light" buttons bar
+
 -- Removing the weird window padding from terminal
 config.window_padding = {
 	left = 0,

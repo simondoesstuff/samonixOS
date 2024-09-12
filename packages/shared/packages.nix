@@ -19,8 +19,8 @@
       obsidian # MD note taker editor
       #INFO: On mac, since this modifies signed discord, it now has to be allowed in security settings.
       (discord.override {
-        withOpenASAR = true;
-        # withVencord = true;
+        # withOpenASAR = true;
+        withVencord = true;
       })
     ]
   );
