@@ -39,6 +39,8 @@ return {
 			lspconfig.pylsp.setup {}
 			lspconfig.dartls.setup {}
 
+			lspconfig.clangd.setup {}
+
 
 			--INFO: JSON/HTML/CSS (vscode-language-servers-extracted)
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
