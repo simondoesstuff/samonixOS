@@ -47,6 +47,7 @@
             pkgs = import nixpkgs {system = "aarch64-darwin";};
           };
           username = "mason";
+          root = ./.;
         };
 
         modules = [./home.nix ./hosts/darwin/masonmac.nix];

@@ -1,4 +1,8 @@
 {
+  pkgs,
+  root,
+  ...
+}: {
   programs.neovim.enable = true;
 
   home.sessionVariables = {
@@ -7,7 +11,12 @@
 
   # Source neovim/wezterm custom (non-nix) config
   xdg.configFile.nvim = {
-    source = ../../config/neovim;
+    source = root + /config/neovim;
     recursive = true;
   };
+
+  home.packages = with pkgs; [
+    ripgrep # Fast grep
+    fd # Advanced find
+  ];
 }

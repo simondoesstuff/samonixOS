@@ -1,5 +1,6 @@
 {
   pkgs,
+  root,
   masonpkgs,
   ...
 }: {
@@ -18,12 +19,12 @@
   };
 
   xdg.configFile.jerry = {
-    source = ./config/jerry;
+    source = root + /config/jerry;
     recursive = true;
   };
 
   xdg.configFile.lobster = {
-    source = ./config/lobster;
+    source = root + /config/lobster;
     recursive = true;
   };
 
