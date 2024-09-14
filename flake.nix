@@ -21,6 +21,7 @@
 
         extraSpecialArgs = {
           username = "mason";
+					root = ./.;
         };
 
         modules = [./home.nix ./hosts/linux/default.nix];
@@ -32,6 +33,7 @@
 
         extraSpecialArgs = {
           username = "user";
+					root = ./.;
         };
 
         modules = [./home.nix ./hosts/linux/os_vm.nix];
