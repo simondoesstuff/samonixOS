@@ -2,11 +2,10 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local gitsigns = require("gitsigns");
-
-		gitsigns.setup({
-			-- Config here, using defaults
-		})
-	end,
+	opts = {
+		-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+		-- animation = true,
+		-- insert_at_start = true,
+		-- …etc.
+	},
 }

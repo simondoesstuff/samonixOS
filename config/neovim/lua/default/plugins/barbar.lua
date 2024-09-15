@@ -18,6 +18,7 @@ return {
 			separator = { left = "┃", right = "" },
 			separator_at_end = false,
 			inactive = { separator = { left = "┃", right = "" } },
+			button = '', -- no close button
 		},
 		sidebar_filetypes = {
 			["neo-tree"] = { event = "BufWipeout", text = "file tree" },

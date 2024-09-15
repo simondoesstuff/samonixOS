@@ -34,7 +34,7 @@ return {
 			-- Web langauge servers
 			lspconfig.tailwindcss.setup {}
 			lspconfig.svelte.setup {}
-			lspconfig.tsserver.setup {}
+			lspconfig.ts_ls.setup {}
 			-- lspconfig.pyright.setup {} -- Python type checking and LS
 			lspconfig.pylsp.setup {}
 			lspconfig.dartls.setup {}
