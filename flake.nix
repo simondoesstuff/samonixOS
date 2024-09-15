@@ -3,11 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     masonpkgs.url = "path:./masonpkgs";
+    masonpkgs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -21,7 +20,7 @@
 
         extraSpecialArgs = {
           username = "mason";
-					root = ./.;
+          root = ./.;
         };
 
         modules = [./home.nix ./hosts/linux/default.nix];
@@ -33,7 +32,7 @@
 
         extraSpecialArgs = {
           username = "user";
-					root = ./.;
+          root = ./.;
         };
 
         modules = [./home.nix ./hosts/linux/os_vm.nix];
