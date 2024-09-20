@@ -8,6 +8,7 @@
         python-lsp-server # other lang server
         matplotlib
         numpy
+        bandit
       ]))
   ];
 
