@@ -9,6 +9,7 @@ end
 
 -- Might be best frontend, but also fixes nix mc bug that was on main 9/19/24
 config.front_end = "WebGpu"
+config.enable_kitty_graphics = true
 
 
 -- Aesthetics

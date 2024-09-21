@@ -32,4 +32,9 @@
     masonpkgs.jerry
     masonpkgs.lobster
   ];
+
+  home.shellAliases = {
+    jerry = "command jerry --dub";
+    jerrysub = "command jerry";
+  };
 }
