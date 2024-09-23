@@ -11,7 +11,6 @@ end
 config.front_end = "WebGpu"
 config.enable_kitty_graphics = true
 
-
 -- Aesthetics
 config.color_scheme = "tokyonight"
 config.default_cursor_style = "BlinkingBar"
@@ -22,11 +21,9 @@ config.font = wezterm.font("FiraCode Nerd Font")
 -- Convenience
 config.warn_about_missing_glyphs = true
 config.window_close_confirmation = "NeverPrompt"
+config.native_macos_fullscreen_mode = true
 
 config.underline_position = -5
--- config.underline_thickness = "2pt"
-
--- config.window_decorations = "RESIZE" -- Remove the mac "traffic light" buttons bar
 
 -- Removing the weird window padding from terminal
 config.window_padding = {
@@ -37,7 +34,7 @@ config.window_padding = {
 }
 
 config.window_frame = {
-	-- font = wezterm.font { family = 'Roboto', weight = 'Bold' },
+	font = wezterm.font('Roboto', { weight = 'Bold' }),
 	font_size = 12.0,
 	-- tab bar BG color based on window focused/unfocused
 	active_titlebar_bg = "#000000",

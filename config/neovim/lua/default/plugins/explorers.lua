@@ -20,12 +20,11 @@ return {
 		keys = {
 			{
 				"<leader>e",
-				"<cmd>Neotree show source=filesystem reveal=true position=left<cr>",
+				"<cmd>Neotree toggle source=filesystem reveal=true position=left<cr>",
 				desc = "neotree explorer"
 			},
 		},
 	},
-	---@type LazySpec
 	{
 		"mikavilpas/yazi.nvim",
 		event = "VeryLazy",
