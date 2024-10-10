@@ -104,6 +104,7 @@ return {
 			cmd = "flutter run",
 			dir = "git_dir",
 			direction = "float",
+			close_on_exit = false, -- Keep term open in case of error
 			on_open = function(term)
 				vim.cmd("startinsert!")
 				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
@@ -119,6 +120,7 @@ return {
 					pcall(vim.api.nvim_buf_delete, term.bufnr, { force = true })
 				else
 					vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
+					vim.api.nvim_buf_set_keymap(term.bufnr, "t", "q", "<cmd>q!<CR>", { noremap = true, silent = true })
 				end
 			end,
 		})
