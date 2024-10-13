@@ -26,20 +26,6 @@
         modules = [./home.nix ./hosts/linux/default.nix];
       };
 
-      # Add a new configuration for WSL
-      mason-wsl = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {
-          username = "mason";
-          root = ./.;
-          isWSL = true;
-        };
-        modules = [
-          ./home.nix
-          ./hosts/linux/wsl.nix
-        ];
-      };
-
       # Profile used for OS VM
       user = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
