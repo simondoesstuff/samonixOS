@@ -1,4 +1,3 @@
--- return {}
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -6,7 +5,7 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				-- A list of parser names, or "all"
-				ensure_installed = "all",
+				ensure_installed = { "lua", "c", "cpp", "rust", "python", "bash", "json", "yaml", "toml", "html", "css", "javascript", "typescript", "tsx", "regex", "comment" },
 
 				ignore_install = { "zig" }, -- was erroring 9/14/2024 (mason)
 
@@ -19,9 +18,9 @@ return {
 				auto_install = true,
 
 
-				-- enable glsl syntax highlighting on .vsh and .fsh files
 			})
 
+			-- enable glsl syntax highlighting on .vsh and .fsh files
 			vim.treesitter.language.register("glsl", { "vsh", "fsh" })
 
 			-- Make it so vsh is detected as vsh and not .conf for whatever reason
@@ -30,8 +29,6 @@ return {
 				command = 'set filetype=vsh',
 				group = vim.api.nvim_create_augroup('vsh_filetype', { clear = true })
 			})
-
-			-- Create the autocmd
 		end,
 	},
 }
