@@ -1,7 +1,8 @@
 {
-  description = "Home Manager configuration of mason";
+  description = "doomsday nix configuration";
 
   inputs = {
+    # TODO: Upgrade to 24.11 and transition yazi when mac swift is fixed upstream
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
