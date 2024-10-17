@@ -1,8 +1,13 @@
-Nix home manager setup
+A flake that is expanding to encompass all dotfiles and system configs across linux/darwin hosts including wsl.
 
 ## Sections philosophy
-hosts has packages that should be found on a particular machine in the future, or the generic hosts "darwin" and "linux" that can be installed on any machine that doesn't need special setup
+- `nixos/` includes direct nixos configurations
+- `hosts/` includes host setups that call modules and home-manager configurations based on the host
+- `custompkgs/` includes my own custom derivations for things that aren't in nixpkgs
+- `config/` includes dotfiles that are managed through nixos configuration directly
 
-custompkgs is my packages that I import and use throughout modules
+You can build a specific host with
+- `sudo nixos-rebuild switch --flake .#user@hostname` for nixos configs + home-manager
+- `home-manager switch --flake .#user@hostname` for just home-manager packages 
 
-config is global config, but then config can also be stored inside hosts
+The `flake.nix` defines all of the configurations and what modules they call.
