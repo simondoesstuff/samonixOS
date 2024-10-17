@@ -3,17 +3,29 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     masonpkgs.url = "path:./masonpkgs";
+
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     masonpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
+    nixos-wsl,
     ...
   }: {
+    nixosConfigurations."mason@wsl" = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit nixos-wsl;};
+      modules = [
+        ./nixos/wsl.nix
+      ];
+    };
+
     packages.x86_64-linux.homeConfigurations = {
       mason = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
