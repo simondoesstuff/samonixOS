@@ -1,13 +1,12 @@
 # Host for the operating system class virtual machine
-{root, ...}:
-{
+{root, ...}: {
   imports = [
-		(root + /packages/shared/dev/git.nix)
-		(root + /packages/shared/dev/nvim.nix)
-		(root + /packages/shared/dev/zoxide.nix)
-		../../packages/shared/dev/language/c.nix
+    (root + /modules/shared/dev/git.nix)
+    (root + /modules/shared/dev/nvim.nix)
+    (root + /modules/shared/dev/zoxide.nix)
+    ../../modules/shared/dev/language/c.nix
 
-		(root + /packages/linux/packages.nix)
-		(root + /packages/linux/zsh.nix)
+    (root + /modules/linux/modules.nix)
+    (root + /modules/linux/zsh.nix)
   ];
 }

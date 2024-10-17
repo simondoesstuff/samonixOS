@@ -1,5 +1,5 @@
 {
   imports = [
-    ../../packages/linux/default.nix
+    ../../modules/linux/default.nix
   ];
 }
