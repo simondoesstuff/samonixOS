@@ -2,9 +2,9 @@
   description = "Home Manager configuration of mason";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     masonpkgs.url = "path:./masonpkgs";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,12 +18,14 @@
     nixos-wsl,
     ...
   }: {
-    nixosConfigurations."mason@wsl" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit nixos-wsl;};
-      modules = [
-        ./nixos/wsl.nix
-      ];
+    nixosConfigurations = {
+      "mason@wsl" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit nixos-wsl;};
+        modules = [
+          ./nixos/wsl.nix
+        ];
+      };
     };
 
     packages.x86_64-linux.homeConfigurations = {
