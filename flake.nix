@@ -16,20 +16,17 @@
   outputs = {
     nixpkgs,
     home-manager,
-    nixos-wsl,
     ...
-  }: {
+  } @ inputs: {
     nixosConfigurations = {
-      "mason@wsl" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit nixos-wsl;};
-        modules = [
-          ./nixos/wsl.nix
-        ];
-      };
+      "mason@wsl" = import ./hosts/linux/wsl.nix {inherit inputs;};
     };
 
+    # To load a home-manager config isolated from the system config, these can be used.
+    # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
+      # "mason@wsl" = nixosConfigurations.mason
+
       mason = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
