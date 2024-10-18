@@ -4,18 +4,16 @@
 # https://github.com/nix-community/NixOS-WSL
 {
   config,
-  # lib,
+  lib,
   pkgs,
   ...
 }: {
-  # imports = [
-  #   # include NixOS-WSL modules
-  #   nixos-wsl.nixosModules.wsl
-  # ];
   nix = {
     package = pkgs.nix;
     settings.experimental-features = ["nix-command" "flakes"];
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   wsl.enable = true;
   wsl.defaultUser = "mason";
