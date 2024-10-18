@@ -3,12 +3,14 @@
 
   inputs = {
     # TODO: Upgrade to 24.11 and transition yazi when mac swift is fixed upstream
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+		nix-darwin.url = "github:LnL7/nix-darwin";
     masonpkgs.url = "path:./masonpkgs";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     masonpkgs.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,7 +19,7 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: {
+  } @ inputs: rec {
     # To load a nixos config with home-manager built into it run
     # sudo nixos-rebuild switch --flake .#user@hostname
     nixosConfigurations = {
@@ -25,10 +27,17 @@
       "mason@xps" = import ./hosts/linux/xps_laptop {inherit inputs;};
     };
 
+		# To load a darwin config with home-manager built into it run
+		# nix run nix-darwin -- switch --flake .#masonmac
+		darwinConfigurations = {
+			"masonmac" = import ./hosts/masonmac {inherit inputs;};
+    };
+
     # To load a home-manager config isolated from the system config, these can be used.
     # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
-      # "mason@wsl" = nixosConfigurations.mason
+      "mason@wsl" = nixosConfigurations."mason@wsl".config.home-manager.users."mason".home;
+
       mason = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
