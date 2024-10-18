@@ -1,17 +1,17 @@
 {inputs, ...}:
-with inputs;
+let
+  inherit (inputs) nixpkgs nixos-wsl home-manager;
+in
   nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     # specialArgs = {inherit nixos-wsl;};
     modules = [
-      # include NixOS-WSL modules
-      nixos-wsl.nixosModules.wsl
+      nixos-wsl.nixosModules.wsl # nixos-wsl modules
       ./configuration.nix
       home-manager.nixosModules.home-manager
       {
-        # nix.registry.nixpkgs.flake = nixpkgs;
-        # home-manager.useGlobalPkgs = true;
-        # home-manager.useUserPackages = true;
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
         home-manager.users.mason = {...}: {
           imports = [./temphome.nix ../../modules/linux/default.nix];
         };
@@ -20,9 +20,6 @@ with inputs;
           username = "mason";
           root = ../..;
         };
-
-        # Optionally, use home-manager.extraSpecialArgs to pass
-        # arguments to home.nix
       }
     ];
   }

@@ -2,8 +2,9 @@
 {pkgs, ...}: {
   nixpkgs.config.allowUnfree = true; # Allow unfree licensed packages, like discord
 
-  home.packages = with pkgs; [
-    (discord.override {
+  home.packages = [
+		# See https://github.com/NixOS/nixpkgs/issues/208749 for errors with openasar "module not found"
+    (pkgs.discord.override {
       withOpenASAR = true;
       withVencord = true;
     })
