@@ -2,15 +2,23 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-# TODO: this is just a placeholder pretty much, switch over laptop nixos to flake eventually
 {
   config,
-  lib,
+  # lib,
   pkgs,
   ...
 }: {
-  imports = [
-  ];
+  # imports = [
+  #   # include NixOS-WSL modules
+  #   nixos-wsl.nixosModules.wsl
+  # ];
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = ["nix-command" "flakes"];
+  };
+
+  wsl.enable = true;
+  wsl.defaultUser = "mason";
 
   users.users.mason = {
     packages = with pkgs; [

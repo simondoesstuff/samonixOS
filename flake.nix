@@ -18,15 +18,17 @@
     home-manager,
     ...
   } @ inputs: {
+    # To load a nixos config with home-manager built into it run
+    # sudo nixos-rebuild switch --flake .#user@hostname
     nixosConfigurations = {
-      "mason@wsl" = import ./hosts/linux/wsl.nix {inherit inputs;};
+      "mason@wsl" = import ./hosts/wsl {inherit inputs;};
+      "mason@xps" = import ./hosts/linux/xps_laptop {inherit inputs;};
     };
 
     # To load a home-manager config isolated from the system config, these can be used.
     # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
       # "mason@wsl" = nixosConfigurations.mason
-
       mason = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
