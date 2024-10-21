@@ -74,7 +74,10 @@
           root = ./.;
         };
 
-        modules = [./home.nix ./hosts/darwin/masonmac.nix];
+        modules = [
+					./home.nix 
+					./modules/darwin/default.nix
+				];
       };
     };
   };
