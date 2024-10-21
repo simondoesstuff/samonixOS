@@ -7,11 +7,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 		nix-darwin.url = "github:LnL7/nix-darwin";
-    masonpkgs.url = "path:./masonpkgs";
+    masonpkgs.url = "git+file:.?dir=masonpkgs";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    masonpkgs.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -24,7 +23,7 @@
     # sudo nixos-rebuild switch --flake .#user@hostname
     nixosConfigurations = {
       "mason@wsl" = import ./hosts/wsl {inherit inputs;};
-      "mason@xps" = import ./hosts/linux/xps_laptop {inherit inputs;};
+      "mason@xps" = import ./hosts/xps {inherit inputs;};
     };
 
 		# To load a darwin config with home-manager built into it run
@@ -37,6 +36,8 @@
     # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
       "mason@wsl" = nixosConfigurations."mason@wsl".config.home-manager.users."mason".home;
+
+			"mason@xps" = nixosConfigurations."mason@xps".config.home-manager.users."mason".home;
 
       mason = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;

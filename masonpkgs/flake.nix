@@ -11,14 +11,19 @@
   # 		jerry = jerryFlake.packages.jerry;
   # 	};
   # };
+	inputs = {
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+	};
 
-  outputs = {nixpkgs}: {
+	outputs = { self, nixpkgs, ... }:
+	rec {
+		pkgs = import nixpkgs { system = "x86_64-linux";};
     packages = {
-      jerry = nixpkgs.callPackage ./jerry.nix {withIINA = true;};
-      lobster = nixpkgs.callPackage ./lobster.nix {
-        withIINA = true;
-        withImageSupport = true;
-      };
+      jerry = pkgs.callPackage ./jerry {withIINA = false;};
+      # lobster = pkgs.callPackage ./lobster {
+      #   withIINA = false;
+      #   withImageSupport = false;
+      # };
     };
   };
 }

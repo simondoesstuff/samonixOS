@@ -57,19 +57,21 @@
     },
     "masonpkgs": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-UwaBQoZAOw3v0sC0OBunz3vYwq9aNQgUYhVNBQFNE7g=",
-        "path": "./masonpkgs",
-        "type": "path"
+        "dir": "masonpkgs",
+        "dirtyRev": "1117003ec1941bbbaf5ec9cba6dcef32ec164372-dirty",
+        "dirtyShortRev": "1117003-dirty",
+        "lastModified": 1729278118,
+        "narHash": "sha256-xVRHoTOhJ52H8lYWMUye2ABvPBG9E1hokU4WbrHNZOs=",
+        "type": "git",
+        "url": "file:.?dir=masonpkgs"
       },
       "original": {
-        "path": "./masonpkgs",
-        "type": "path"
+        "dir": "masonpkgs",
+        "type": "git",
+        "url": "file:.?dir=masonpkgs"
       }
     },
     "nix-darwin": {
@@ -101,11 +103,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1728905507,
-        "narHash": "sha256-wQ/K5S3GbgInO3Rtl1NPVHzwBCNmZA++NNQWSQCZqCU=",
+        "lastModified": 1729300178,
+        "narHash": "sha256-mkAPu2o5u7F/glAAfBzDji726iL1u2pm2fyN1SPWRQk=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "66bbd8fb32b6bb513ec093323081747945bb5f08",
+        "rev": "42c23a6d5a2a1cbfd3fd137a7ff3d47c6d718033",
         "type": "github"
       },
       "original": {
@@ -116,11 +118,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1728909085,
-        "narHash": "sha256-WLxED18lodtQiayIPDE5zwAfkPJSjHJ35UhZ8h3cJUg=",
+        "lastModified": 1729181673,
+        "narHash": "sha256-LDiPhQ3l+fBjRATNtnuDZsBS7hqoBtPkKBkhpoBHv3I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c0b1da36f7c34a7146501f684e9ebdf15d2bebf8",
+        "rev": "4eb33fe664af7b41a4c446f87d20c9a0a6321fa3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1729181673,
+        "narHash": "sha256-LDiPhQ3l+fBjRATNtnuDZsBS7hqoBtPkKBkhpoBHv3I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4eb33fe664af7b41a4c446f87d20c9a0a6321fa3",
         "type": "github"
       },
       "original": {
@@ -136,7 +154,7 @@
         "masonpkgs": "masonpkgs",
         "nix-darwin": "nix-darwin",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
