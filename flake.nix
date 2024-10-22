@@ -7,7 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 		nix-darwin.url = "github:LnL7/nix-darwin";
-    masonpkgs.url = "git+file:.?dir=masonpkgs";
+    # masonpkgs.url = "git+file:.?dir=masonpkgs";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
