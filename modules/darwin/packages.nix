@@ -5,5 +5,6 @@
     # TODO: Migrate these to nix
     # raycast
     # arc
+		wireshark
   ];
 }

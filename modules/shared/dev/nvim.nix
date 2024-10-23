@@ -1,10 +1,9 @@
 {
   pkgs,
+	pkgs-unstable,
   root,
   ...
 }: {
-  programs.neovim.enable = true;
-
   home.sessionVariables = {
     EDITOR = "nvim";
   };
@@ -15,9 +14,10 @@
     recursive = true;
   };
 
-  home.packages = with pkgs; [
-    ripgrep # Fast grep
-    fd # Advanced find
+  home.packages = [
+		pkgs-unstable.neovim # Cracked text editor
+    pkgs.ripgrep # Fast grep
+    pkgs.fd # Advanced find
   ];
 
   # file system used in neovim

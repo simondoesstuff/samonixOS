@@ -1,6 +1,6 @@
 {inputs, ...}:
 let
-  inherit (inputs) nixpkgs nixos-wsl home-manager;
+  inherit (inputs) nixpkgs nixos-wsl home-manager nixpkgs-unstable;
 in
   nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
@@ -19,6 +19,7 @@ in
         home-manager.extraSpecialArgs = {
           username = "mason";
           root = ../..;
+					pkgs-unstable = import nixpkgs-unstable {system = "aarch64-darwin";};
         };
       }
     ];
