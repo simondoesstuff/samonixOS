@@ -3,7 +3,6 @@
   pkgs,
   root,
   config,
-  masonpkgs,
   ...
 }: {
   options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {default = true;};
@@ -34,8 +33,13 @@
     };
 
     home.packages = [
-      masonpkgs.jerry
-      masonpkgs.lobster
+      (pkgs.jerry {
+        withIINA = true;
+        imagePreviewSupport = true;
+      })
+      (pkgs.lobster {
+        withIINA = true;
+      })
     ];
 
     home.shellAliases = {

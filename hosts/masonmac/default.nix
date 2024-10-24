@@ -2,13 +2,13 @@
   inherit (inputs) nixpkgs home-manager nixpkgs-unstable;
 in
   home-manager.lib.homeManagerConfiguration {
-    pkgs = import nixpkgs {system = "aarch64-darwin";};
+    pkgs = import nixpkgs {
+      system = "aarch64-darwin";
+      overlays = [(import ../../overlays/masonpkgs)];
+    };
 
     extraSpecialArgs = {
       pkgs-unstable = import nixpkgs-unstable {system = "aarch64-darwin";};
-      masonpkgs = import ../../masonpkgs {
-        pkgs = import nixpkgs {system = "aarch64-darwin";};
-      };
       username = "mason";
       root = ../..; # root of flake
     };

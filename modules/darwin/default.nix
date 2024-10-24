@@ -17,7 +17,7 @@
     ]
     ++ [
       #INFO: Specified shared configs
-      ../shared/default.nix # In this case, take everything from shared
+      ../common/default.nix # In this case, take everything from shared
     ];
 
   config = {
