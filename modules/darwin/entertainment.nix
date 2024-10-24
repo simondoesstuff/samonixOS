@@ -23,12 +23,12 @@
     };
 
     xdg.configFile.jerry = {
-      source = root + /config/jerry;
+      source = root + /dotfiles/jerry;
       recursive = true;
     };
 
     xdg.configFile.lobster = {
-      source = root + /config/lobster;
+      source = root + /dotfiles/lobster;
       recursive = true;
     };
 

@@ -1,6 +1,6 @@
 {
   pkgs,
-	pkgs-unstable,
+  pkgs-unstable,
   root,
   ...
 }: {
@@ -10,12 +10,12 @@
 
   # Source neovim/wezterm custom (non-nix) config
   xdg.configFile.nvim = {
-    source = root + /config/neovim;
+    source = root + /dotfiles/neovim;
     recursive = true;
   };
 
   home.packages = [
-		pkgs-unstable.neovim # Cracked text editor
+    pkgs-unstable.neovim # Cracked text editor
     pkgs.ripgrep # Fast grep
     pkgs.fd # Advanced find
   ];
