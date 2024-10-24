@@ -1,12 +1,13 @@
 diff --git a/lobster.sh b/lobster.sh
-index fd134c0..09c16bc 100755
+index 77b78f9..c7882d2 100755
 --- a/lobster.sh
 +++ b/lobster.sh
-@@ -69,7 +69,7 @@ trap cleanup EXIT INT TERM
-     tmp_position="/tmp/lobster_position"
-     case "$(uname -s)" in
-         MINGW* | *Msys) separator=';' && path_thing='' && sed="sed" ;;
--        *arwin) separator=':' && path_thing="\\" && sed="gsed" ;;
-+        *arwin) separator=':' && path_thing="\\" && sed="sed" ;;
-         *) separator=':' && path_thing="\\" && sed="sed" ;;
-     esac
+@@ -46,7 +46,7 @@ sed='sed'       # default value
+ # shellcheck disable=SC2249
+ case "$(uname -s)" in
+     MINGW* | *Msys) separator=';' && path_thing='' ;;
+-    *arwin) sed="gsed" ;;
++    *arwin) sed="sed" ;;
+ esac
+ 
+ # Checks if any of the provided arguments are -e or --edit

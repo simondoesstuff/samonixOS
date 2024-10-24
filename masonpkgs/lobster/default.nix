@@ -28,9 +28,9 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-ch91LYKs6MswTC08Xi8VcIxooWvDprGuIn0B2Yo3ufo=";
   };
 
-  # info: to create this patch file, run a git diff after editing source code manually
+  # INFO: to create this patch file, run a git diff after editing source code manually
   patches = [
-    ./fix_macos2.patch
+    ./fix_macos.patch
   ];
 
   nativeBuildInputs = [

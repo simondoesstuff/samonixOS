@@ -15,6 +15,7 @@ in
 
     modules = [
       ./home.nix
+      ./config.nix
       ../../modules/darwin/default.nix
     ];
   }

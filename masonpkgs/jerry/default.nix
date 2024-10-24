@@ -34,6 +34,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     sha256 = "pjS2b2P15z9LqwoHqG02vtX/mVeKM4t5dmn5URiszeI=";
   };
 
+  # INFO: to create this patch file, run a git diff after editing source code manually
   patches = [
     ./fix_macos.patch
   ];
@@ -41,7 +42,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   nativeBuildInputs = [makeWrapper];
   runtimeInputs =
     [
-      coreutils # wc
+      coreutils
       curl
       ffmpeg
       fzf
@@ -54,7 +55,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ++ lib.optional withRofi rofi
     ++ lib.optional imagePreviewSupport chafa
     ++ lib.optional infoSupport jq
-    # ++ lib.optional withIINA iina
     ++ (
       if withIINA
       then [iina]
