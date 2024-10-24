@@ -1,9 +1,9 @@
 # Hosts
 | Host | Personal purpose |
 | --- | --- |
-| [xps](./xps/default.nix)  | Dell xps17 laptop running NixOS |
-| masonmac | MPB 14" M1 Pro on MacOS using home-manager[^1] |
-| [wsl](./wsl/default.nix)  | Generalized [NixOS-WSL](https://github.com/nix-community/NixOS-WSL) configuration |
+| [xps](./xps/default.nix)           | Dell xps17 laptop running NixOS |
+| [masonmac](./masonmac/default.nix) | MPB 14" M1 Pro on MacOS using home-manager[^1] |
+| [wsl](./wsl/default.nix)           | Generalized [NixOS-WSL](https://github.com/nix-community/NixOS-WSL) configuration |
 
 [^1]: Currently using `home-manager` without `nix-darwin` to manage mac. I don't think I personally need the system configuration settings and `nix-darwin` previously broke my nix setup so I decided to opt out of using it.
 
@@ -18,4 +18,3 @@ sudo nixos-rebuild switch --flake .#host@user
 ```
 nix run home-manager/<branch> -- init --switch
 ```
-

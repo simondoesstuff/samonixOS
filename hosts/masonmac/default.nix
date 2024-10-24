@@ -1,19 +1,20 @@
-{ inputs, ... }:
-with inputs;
-home-manager.lib.homeManagerConfiguration {
-	pkgs = import nixpkgs {system = "aarch64-darwin";};
+{inputs, ...}: let
+  inherit (inputs) nixpkgs home-manager nixpkgs-unstable;
+in
+  home-manager.lib.homeManagerConfiguration {
+    pkgs = import nixpkgs {system = "aarch64-darwin";};
 
-	extraSpecialArgs = {
-		pkgs-unstable = import nixpkgs-unstable {system = "aarch64-darwin";};
-		masonpkgs = import ../../masonpkgs {
-			pkgs = import nixpkgs {system = "aarch64-darwin";};
-		};
-		username = "mason";
-		root = ../..; # root of flake
-	};
+    extraSpecialArgs = {
+      pkgs-unstable = import nixpkgs-unstable {system = "aarch64-darwin";};
+      masonpkgs = import ../../masonpkgs {
+        pkgs = import nixpkgs {system = "aarch64-darwin";};
+      };
+      username = "mason";
+      root = ../..; # root of flake
+    };
 
-	modules = [
-		./home.nix 
-		../../modules/darwin/default.nix
-	];
-}
+    modules = [
+      ./home.nix
+      ../../modules/darwin/default.nix
+    ];
+  }
