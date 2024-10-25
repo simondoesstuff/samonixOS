@@ -33,18 +33,6 @@
       "mason@wsl" = nixosConfigurations."mason@wsl".config.home-manager.users."mason".home;
       "mason@xps" = nixosConfigurations."mason@xps".config.home-manager.users."mason".home;
 
-      # TODO: Remove when can debug on xps
-      mason = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-        extraSpecialArgs = {
-          username = "mason";
-          root = ./.;
-        };
-
-        modules = [./home.nix ./hosts/linux/default.nix];
-      };
-
       # Profile used for OS VM
       # TODO: Remove at end of semester
       user = home-manager.lib.homeManagerConfiguration {

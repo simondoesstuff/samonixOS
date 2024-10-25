@@ -1,12 +1,19 @@
 {inputs, ...}:
 let
-  inherit (inputs) nixpkgs nixos-wsl home-manager masonpkgs nixpkgs-unstable;
+  inherit (inputs) nixpkgs home-manager nixpkgs-unstable;
+
+	pkgs = import nixpkgs {
+    system = "x86_64-linux";
+    overlays = [(import ../../overlays/masonpkgs)];
+		config = {
+			allowUnfree = true;
+		};
+  };
 in
   nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    # specialArgs = {inherit nixos-wsl;};
+
     modules = [
-      nixos-wsl.nixosModules.wsl # nixos-wsl modules
       ./configuration.nix
       home-manager.nixosModules.home-manager
       {
@@ -17,10 +24,10 @@ in
         };
 
         home-manager.extraSpecialArgs = {
+					inherit pkgs;
           username = "mason";
           root = ../..;
-					masonpkgs = masonpkgs;
-					pkgs-unstable = import nixpkgs-unstable {system = "aarch64-darwin";};
+					pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
         };
       }
     ];

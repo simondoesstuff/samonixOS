@@ -23,7 +23,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "xps"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -98,8 +98,8 @@
     description = "mason";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      kate
+      # firefox
+      # kate
     #  thunderbird
     ];
   };
@@ -142,9 +142,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  programs.gnome-disks = {
-    enable = true;
-  };
-  services.udisks2.enable = true;
 }
