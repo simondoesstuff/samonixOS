@@ -12,10 +12,6 @@ in
   nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
-    config = {
-      personal.enable = true; # TODO: not sure if this is proper or if this needs to be at the home-manager level to apply in modules
-    };
-
     modules = [
       ./configuration.nix
       home-manager.nixosModules.home-manager
@@ -23,7 +19,13 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.mason = {...}: {
-          imports = [./temphome.nix ../../modules/linux/default.nix];
+          imports = [
+						./temphome.nix 
+						../../modules/linux/default.nix
+						{
+							personal.enable = true;
+						}
+					];
         };
 
         home-manager.extraSpecialArgs = {

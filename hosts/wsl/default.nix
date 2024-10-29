@@ -13,13 +13,20 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.mason = {...}: {
-          imports = [./temphome.nix ../../modules/linux/default.nix];
+          imports = [
+						./temphome.nix 
+						../../modules/linux/default.nix
+						{
+							personal.enable = false;
+							test.enable = true;
+						}
+					];
         };
 
         home-manager.extraSpecialArgs = {
           username = "mason";
           root = ../..;
-					pkgs-unstable = import nixpkgs-unstable {system = "aarch64-darwin";};
+					pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
         };
       }
     ];

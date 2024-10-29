@@ -3,8 +3,6 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 {
-  config,
-  lib,
   pkgs,
   ...
 }: {
@@ -18,11 +16,17 @@
   wsl.enable = true;
   wsl.defaultUser = "mason";
 
+	wsl.wslConf = {
+		# https://randombytes.substack.com/p/bridged-networking-under-wsl
+    ws12 = {
+      networkingMode = "bridged";
+      vmSwitch = "Bridge"; #TODO: hyper-v setup
+    };
+  };
+
   users.users.mason = {
-    packages = with pkgs; [
-      git
-      neovim
-    ];
+		ignoreShellProgramCheck = true; # shell is defined via home-manager
+		shell = pkgs.zsh;
   };
 
   # This value determines the NixOS release from which the default

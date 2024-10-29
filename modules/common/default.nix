@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     # All dev essentials
     ./dev/default.nix
@@ -9,4 +9,8 @@
     # Personal packages for random stuff
     ./personal/default.nix
   ];
+
+	home.shellAliases = {
+		la = "ls -a";
+	};
 }

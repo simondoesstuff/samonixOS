@@ -1,11 +1,12 @@
-# { pkgs, custompkgs, ... }:
 {
+	lib,
   pkgs,
+	config,
   ...
 }: {
-  home.packages = with pkgs; [
-    wl-clipboard # Clipboard manager
-    clang
-		firefox
-  ];
+  home.packages = [
+    pkgs.wl-clipboard # Clipboard manager
+    pkgs.clang
+		pkgs.firefox
+  ] ++ lib.optional config.test.enable pkgs.hello;
 }
