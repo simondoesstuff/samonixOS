@@ -20,7 +20,9 @@
 		# https://randombytes.substack.com/p/bridged-networking-under-wsl
     ws12 = {
       networkingMode = "bridged";
-      vmSwitch = "Bridge"; #TODO: hyper-v setup
+      vmSwitch = "WSLBridge"; #INFO: Name of hyper-v bridge in windows
+			dhcp = "false";
+			ipv6 = "true";
     };
   };
 
@@ -36,4 +38,10 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+
+	services.openssh = {
+		enable = true;
+		ports = [ 22 ];
+		settings.PasswordAuthentication = true;
+	};
 }
