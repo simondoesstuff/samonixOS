@@ -13,9 +13,17 @@ in
       root = ../..; # root of flake
     };
 
+    # TODO: In the future, I can consider including every module and just have them
+    # be conditionally configiured and included based on system rather than specifically
+    # importing the darwin folder or linux for other hosts
     modules = [
       ./home.nix
-      ./config.nix
       ../../modules/darwin/default.nix
+      {
+        # INFO: Set of implicit configuration attributes that determine
+        # what modules are included and other package settings and options
+        entertainment.enable = true;
+        personal.enable = true;
+      }
     ];
   }

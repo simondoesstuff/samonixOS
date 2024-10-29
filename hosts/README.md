@@ -18,3 +18,10 @@ sudo nixos-rebuild switch --flake .#host@user
 ```
 nix run home-manager/<branch> -- init --switch
 ```
+## Available options when creating new hosts
+Hosts can set config options such as `entertainment.enable = true;`. The following is a list of options available and what they do.
+
+| Option | Description | Default |
+| --- | --- | --- |
+| `entertainment.enable` | Enable entertainment packages related to media (currently darwin only) | `false` |
+| `personal.enable` | Enable personal [packages](../modules/common/personal/default.nix) including gaming and note-taking | `false` |

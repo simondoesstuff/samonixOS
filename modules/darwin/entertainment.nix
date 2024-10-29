@@ -5,7 +5,7 @@
   config,
   ...
 }: {
-  options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {default = true;};
+  options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {default = false;};
 
   config = lib.mkIf config.entertainment.enable {
     #INFO: Source 4k upscale shaders for anime.
