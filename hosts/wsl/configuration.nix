@@ -21,8 +21,8 @@
     ws12 = {
       networkingMode = "bridged";
       vmSwitch = "WSLBridge"; #INFO: Name of hyper-v bridge in windows
-			dhcp = "false";
-			ipv6 = "true";
+			dhcp = "true" ;
+			ipv6 = "false";
     };
   };
 
@@ -42,6 +42,5 @@
 	services.openssh = {
 		enable = true;
 		ports = [ 22 ];
-		settings.PasswordAuthentication = true;
 	};
 }
