@@ -6,12 +6,23 @@
   pkgs,
   ...
 }: {
+  # WARNING: Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "24.05"; # Did you read the comment?
+
   nix = {
     package = pkgs.nix;
     settings.experimental-features = ["nix-command" "flakes"];
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  users.users.mason = {
+		ignoreShellProgramCheck = true; # shell is defined via home-manager
+		shell = pkgs.zsh;
+  };
+
+	# INFO: WSL STUFF
 
   wsl.enable = true;
   wsl.defaultUser = "mason";
@@ -22,25 +33,26 @@
       networkingMode = "bridged";
       vmSwitch = "WSLBridge"; #INFO: Name of hyper-v bridge in windows
 			dhcp = "true" ;
-			ipv6 = "false";
+			# ipv6 = "false";
     };
+
+		network = {
+			generateResolveConf = false;
+		};
   };
 
-  users.users.mason = {
-		ignoreShellProgramCheck = true; # shell is defined via home-manager
-		shell = pkgs.zsh;
-  };
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It's perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+	# INFO: Networking stuff
+	networking = {
+		# networkmanager.enable = true;
+		nameservers = [ "8.8.8.8" "8.8.4.4" ];
+	};
 
 	services.openssh = {
 		enable = true;
 		ports = [ 22 ];
+		settings = {
+			PasswordAuthentication = false;
+		};
 	};
+
 }
