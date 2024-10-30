@@ -20,6 +20,11 @@
   users.users.mason = {
 		ignoreShellProgramCheck = true; # shell is defined via home-manager
 		shell = pkgs.zsh;
+		openssh.authorizedKeys = {
+			keys = [
+				"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZblT7Q/WxYTQnb3WL9lJMclp1DeQeYzdBKOBPAX0bD" # mbp14
+			];
+		};
   };
 
 	# INFO: WSL STUFF
@@ -37,14 +42,22 @@
     };
 
 		network = {
-			generateResolveConf = false;
+			hostname = "3080wsl";
+			generateResolvConf = false;
 		};
   };
 
 	# INFO: Networking stuff
 	networking = {
-		# networkmanager.enable = true;
+		networkmanager.enable = true;
+		enableIPv6 = true;
 		nameservers = [ "8.8.8.8" "8.8.4.4" ];
+
+		interfaces.eth0 = {
+			macAddress = "5e:bb:f6:9e:ee:fa"; # static mac address
+			ipv6.addresses = [ { address = "fd82:16a8:cf76:79c:3777:adee:a5d2:9eb0"; prefixLength = 64; } ]; # static ipv6
+			ipv4.addresses = [ { address = "192.168.68.69"; prefixLength = 22; } ]; # static ipv4
+		};
 	};
 
 	services.openssh = {
