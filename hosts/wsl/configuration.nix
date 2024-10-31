@@ -75,4 +75,10 @@
 			PasswordAuthentication = false;
 		};
 	};
+
+	# INFO: Other
+	services.openvscode-server = {
+		enable = true;
+		user = "mason";
+	};
 }
