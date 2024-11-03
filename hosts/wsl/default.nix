@@ -1,5 +1,4 @@
-{inputs, ...}:
-let
+{inputs, ...}: let
   inherit (inputs) nixpkgs nixos-wsl home-manager nixpkgs-unstable;
 in
   nixpkgs.lib.nixosSystem {
@@ -14,19 +13,19 @@ in
         home-manager.useUserPackages = true;
         home-manager.users.mason = {...}: {
           imports = [
-						./temphome.nix 
-						../../modules/linux/default.nix
-						{
-							personal.enable = false;
-							test.enable = true;
-						}
-					];
+            ./temphome.nix
+            ../../modules/linux/default.nix
+            {
+              personal.enable = false;
+              test.enable = true;
+            }
+          ];
         };
 
         home-manager.extraSpecialArgs = {
           username = "mason";
           root = ../..;
-					pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
+          pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
         };
       }
     ];

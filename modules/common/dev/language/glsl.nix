@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   version = "1.4.4";
   glslanalyzer = pkgs.stdenv.mkDerivation {
     pname = "glslanalyzer";
@@ -15,5 +20,7 @@
     '';
   };
 in {
-  home.packages = [glslanalyzer];
+  config = lib.mkIf config.language.glsl.enable {
+    home.packages = [glslanalyzer];
+  };
 }

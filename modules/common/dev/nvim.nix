@@ -1,6 +1,6 @@
 {
   pkgs-unstable,
-	config,
+  config,
   pkgs,
   root,
   ...
@@ -10,15 +10,16 @@
   };
 
   # Source neovim/wezterm custom (non-nix) config
-	xdg.configFile.nvim = {
-		source = config.lib.file.mkOutOfStoreSymlink (root + "/dotfiles/neovim");
-		recursive = true;
-	};
+  xdg.configFile.nvim = {
+    source = config.lib.file.mkOutOfStoreSymlink (root + "/dotfiles/neovim");
+    recursive = true;
+  };
 
   home.packages = [
     pkgs-unstable.neovim # Cracked text editor
     pkgs.ripgrep # Fast grep
     pkgs.fd # Advanced find
+    pkgs.tree-sitter # Syntax highlighting
   ];
 
   # file system used in neovim
