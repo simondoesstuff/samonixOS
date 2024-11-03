@@ -3,6 +3,7 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 {
+	config,
   pkgs,
   ...
 }: {
@@ -47,6 +48,13 @@
 		};
   };
 
+	# INFO: Link wsl library headers to path
+	environment.variables = {
+		# this includes things like libcuda and other GPU driver stuff
+		# that we don't nixify in a regular way within WSL
+		LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
+	};
+
 	# INFO: Networking stuff
 	networking = {
 		networkmanager.enable = true;
@@ -68,4 +76,9 @@
 		};
 	};
 
+	# INFO: Other
+	services.openvscode-server = {
+		enable = true;
+		user = "mason";
+	};
 }
