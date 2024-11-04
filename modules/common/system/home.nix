@@ -21,6 +21,9 @@ in {
 
   home.shellAliases = {
     la = "ls -a";
+    hm = "home-manager";
+    # used like "nrswitch mason@xps"
+    nrswitch = "function switch_config { sudo nixos-rebuild switch --flake .#$1; }; switch_config";
   };
 
   programs.home-manager.enable = true; # Let home manager manage itself

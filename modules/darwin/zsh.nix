@@ -18,6 +18,5 @@
     initExtra = "
 			eval \"$(zoxide init zsh --cmd cd)\"
 		";
-    shellAliases = {hm = "home-manager";};
   };
 }

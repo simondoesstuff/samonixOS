@@ -1,5 +1,4 @@
-{pkgs, ...}: {
-  # TODO: Why does this pollute the global PATH with clang?
+{...}: {
   programs = {
     direnv = {
       enable = true;
