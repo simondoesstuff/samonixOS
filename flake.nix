@@ -11,14 +11,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
   };
-  # TODO: Come up with a cleaner way to pass nixpkgs-unstable and other extraSpecialArgs to home-manager
-  # Probably a global config defined out here that gets inherited alongside inputs
 
-  outputs = {
-    nixpkgs, # TODO: Remove when home-manager confs below are isolated and pass inputs instead
-    home-manager, # TODO: Remove when home-manager confs below are isolated and pass inputs instead
-    ...
-  } @ inputs: rec {
+  outputs = {...} @ inputs: rec {
     # To load a nixos config with home-manager built into it run
     # sudo nixos-rebuild switch --flake .#user@hostname
     nixosConfigurations = {
@@ -32,19 +26,6 @@
       # TODO: Home-manager CLI is not available on nixos configs yet
       "mason@wsl" = nixosConfigurations."mason@wsl".config.home-manager.users."mason".home;
       "mason@xps" = nixosConfigurations."mason@xps".config.home-manager.users."mason".home;
-
-      # Profile used for OS VM
-      # TODO: Remove at end of semester
-      user = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-
-        extraSpecialArgs = {
-          username = "user";
-          root = ./.;
-        };
-
-        modules = [./home.nix ./hosts/linux/os_vm.nix];
-      };
     };
 
     # Config for aarch-darwin based home-manager configs used currently on macbook
