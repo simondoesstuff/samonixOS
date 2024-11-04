@@ -4,5 +4,6 @@
   imports = [
     ./gaming.nix
     ./productivity.nix
+    ./entertainment.nix
   ];
 }

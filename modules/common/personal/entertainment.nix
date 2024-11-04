@@ -34,11 +34,17 @@
 
     home.packages = [
       (pkgs.jerry {
-        withIINA = true;
+        withIINA =
+          if pkgs.stdenv.isDarwin
+          then true
+          else false;
         imagePreviewSupport = true;
       })
       (pkgs.lobster {
-        withIINA = true;
+        withIINA =
+          if pkgs.stdenv.isDarwin
+          then true
+          else false;
       })
     ];
 

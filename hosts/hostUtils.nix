@@ -19,6 +19,7 @@ in {
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users."${username}" = {...}: {
               imports = [
                 ../modules/linux/default.nix
@@ -31,6 +32,8 @@ in {
               username = username;
               root = ./..;
             };
+
+            nixpkgs.overlays = [(import ../overlays/masonpkgs)];
           }
         ]
         ++ extraModules;

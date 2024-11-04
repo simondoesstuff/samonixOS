@@ -10,6 +10,7 @@ in
     ];
     config = {
       personal.enable = true;
+      entertainment.enable = true;
       language = {
         python.enable = true;
       };

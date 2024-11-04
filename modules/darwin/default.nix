@@ -3,7 +3,6 @@
   imports =
     [
       #INFO: Darwin exclusive configs
-      ./entertainment.nix
       ./packages.nix
       ./zsh.nix
       ./spotify.nix

@@ -5,7 +5,7 @@
     [
       ./packages.nix
       ./zsh.nix
-      # ./rofi.nix
+      ./rofi.nix
     ]
     ++ [
       #INFO: Specified shared configs
