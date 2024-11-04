@@ -20,7 +20,7 @@
       "mason@xps" = import ./hosts/xps {inherit inputs;};
     };
 
-    # To load a home-manager config isolated from the system config, these can be used.
+    # To load a home-manager config isolated from the nixos config, these can be used.
     # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
       # TODO: Home-manager CLI is not available on nixos configs yet
@@ -29,6 +29,7 @@
     };
 
     # Config for aarch-darwin based home-manager configs used currently on macbook
+    # home-manager switch --flake .#user@hostname
     packages.aarch64-darwin.homeConfigurations = {
       mason = import ./hosts/masonmac {inherit inputs;};
     };

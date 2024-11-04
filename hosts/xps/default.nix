@@ -1,39 +1,17 @@
 {inputs, ...}: let
-  inherit (inputs) nixpkgs home-manager nixpkgs-unstable;
-
-  pkgs = import nixpkgs {
-    system = "x86_64-linux";
-    overlays = [(import ../../overlays/masonpkgs)];
-    config = {
-      allowUnfree = true;
-    };
-  };
+  utils = import ../hostUtils.nix {inherit inputs;};
 in
-  nixpkgs.lib.nixosSystem {
+  utils.nixosSetup {
     system = "x86_64-linux";
-
-    modules = [
+    username = "mason";
+    extraModules = [
       ./configuration.nix
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.mason = {...}: {
-          imports = [
-						./temphome.nix 
-						../../modules/linux/default.nix
-						{
-							personal.enable = true;
-						}
-					];
-        };
-
-        home-manager.extraSpecialArgs = {
-          inherit pkgs;
-          username = "mason";
-          root = ../..;
-          pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
-        };
-      }
+      ./hardware-configuration.nix
     ];
+    config = {
+      personal.enable = true;
+      language = {
+        python.enable = true;
+      };
+    };
   }

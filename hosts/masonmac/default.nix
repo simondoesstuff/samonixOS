@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  utils = import ../utils.nix {inherit inputs;};
+  utils = import ../hostUtils.nix {inherit inputs;};
 in
   utils.homeManagerSetup {
     system = "aarch64-darwin";

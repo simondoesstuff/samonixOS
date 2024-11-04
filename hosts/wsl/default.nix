@@ -1,18 +1,18 @@
 {inputs, ...}: let
   inherit (inputs) nixos-wsl;
-  utils = import ../utils.nix {inherit inputs;};
+  utils = import ../hostUtils.nix {inherit inputs;};
 in
-	utils.nixosSetup {
+  utils.nixosSetup {
     system = "x86_64-linux";
     username = "mason";
-		extraModules = [
+    extraModules = [
       nixos-wsl.nixosModules.wsl # nixos-wsl necessary modules
-			./configuration.nix
-		];
+      ./configuration.nix
+    ];
     config = {
       personal.enable = true;
       language = {
         python.enable = true;
       };
     };
-	}
+  }
