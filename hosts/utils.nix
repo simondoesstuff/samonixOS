@@ -1,24 +1,25 @@
 {inputs}: let
-  inherit (inputs) nixpkgs nixos-wsl home-manager nixpkgs-unstable;
+  inherit (inputs) nixpkgs nixpkgs-unstable home-manager;
 in {
   # General nixosSystem wrapper that takes in config system and username
   nixosSetup = {
     config,
     system,
     username,
+		extraModules ? []
   }:
+  # TODO: Look into using this pkgs instead of nixpkgs.lib.nixosSystem:
+  # pkgs = import nixpkgs{overlays=[flakeB.overlay];inherit system;};
+  # and then use pkgs.nixos instead of nixpkgs.lib.nixosSystem
     nixpkgs.lib.nixosSystem {
       inherit system;
       modules = [
-        nixos-wsl.nixosModules.wsl
-        ./configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users."${username}" = {...}: {
             imports = [
-              ./temphome.nix
               ../modules/linux/default.nix
               config
             ];
@@ -30,7 +31,7 @@ in {
             pkgs-unstable = import nixpkgs-unstable {inherit system;};
           };
         }
-      ];
+      ] ++ extraModules;
     };
 
   # General home-manager configuration wrapper that takes in config system and username
@@ -50,13 +51,13 @@ in {
         root = ./..;
       };
       modules = [
-        ./home.nix
         (
           if system == "aarch64-darwin" || system == "x86_64-darwin"
           then ../modules/darwin/default.nix
           else ../modules/linux/default.nix
         )
         config
+        {homeManagerIsolated = true;}
       ];
     };
 }

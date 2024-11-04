@@ -1,32 +1,18 @@
 {inputs, ...}: let
-  inherit (inputs) nixpkgs nixos-wsl home-manager nixpkgs-unstable;
+  inherit (inputs) nixos-wsl;
+  utils = import ../utils.nix {inherit inputs;};
 in
-  nixpkgs.lib.nixosSystem {
+	utils.nixosSetup {
     system = "x86_64-linux";
-    # specialArgs = {inherit nixos-wsl;};
-    modules = [
-      nixos-wsl.nixosModules.wsl # nixos-wsl modules
-      ./configuration.nix
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.mason = {...}: {
-          imports = [
-            ./temphome.nix
-            ../../modules/linux/default.nix
-            {
-              personal.enable = false;
-              test.enable = true;
-            }
-          ];
-        };
-
-        home-manager.extraSpecialArgs = {
-          username = "mason";
-          root = ../..;
-          pkgs-unstable = import nixpkgs-unstable {system = "x86_64-linux";};
-        };
-      }
-    ];
-  }
+    username = "mason";
+		extraModules = [
+      nixos-wsl.nixosModules.wsl # nixos-wsl necessary modules
+			./configuration.nix
+		];
+    config = {
+      personal.enable = true;
+      language = {
+        python.enable = true;
+      };
+    };
+	}
