@@ -14,10 +14,10 @@
 
   outputs = {...} @ inputs: rec {
     # To load a nixos config with home-manager built into it run
-    # sudo nixos-rebuild switch --flake .#user@hostname
+    # sudo nixos-rebuild switch --flake .#hostname
     nixosConfigurations = {
-      "wsl" = import ./hosts/wsl {inherit inputs;};
-      "xps" = import ./hosts/xps {inherit inputs;};
+      wsl = import ./hosts/wsl {inherit inputs;};
+      xps = import ./hosts/xps {inherit inputs;};
     };
 
     # To load a home-manager config isolated from the nixos config, these can be used.

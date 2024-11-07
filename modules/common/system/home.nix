@@ -27,8 +27,15 @@ in {
     nrswitch = "function switch_config { sudo nixos-rebuild switch --flake .#$1; }; switch_config";
   };
 
-  home.packages = [pkgs.home-manager];
   programs.home-manager.enable = true; # Let home manager manage itself
+
+  # INFO: If home-manager is not isolated then home-manager is not in the path,
+  # we need to add home-manager to the path by installing the package
+  home.packages = [
+    (lib.mkIf
+      (!config.homeManagerIsolated)
+      pkgs.home-manager)
+  ];
 
   # Add nix only on home-manager isolated systems since nixos has it in default module
   nix = lib.mkIf config.homeManagerIsolated {
