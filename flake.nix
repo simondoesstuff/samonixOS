@@ -16,14 +16,13 @@
     # To load a nixos config with home-manager built into it run
     # sudo nixos-rebuild switch --flake .#user@hostname
     nixosConfigurations = {
-      "mason@wsl" = import ./hosts/wsl {inherit inputs;};
-      "mason@xps" = import ./hosts/xps {inherit inputs;};
+      "wsl" = import ./hosts/wsl {inherit inputs;};
+      "xps" = import ./hosts/xps {inherit inputs;};
     };
 
     # To load a home-manager config isolated from the nixos config, these can be used.
     # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
-      # TODO: Home-manager CLI is not available on nixos configs yet
       "mason@wsl" = nixosConfigurations."mason@wsl".config.home-manager.users."mason".home;
       "mason@xps" = nixosConfigurations."mason@xps".config.home-manager.users."mason".home;
     };
