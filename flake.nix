@@ -23,8 +23,8 @@
     # To load a home-manager config isolated from the nixos config, these can be used.
     # home-manager switch --flake .#user@hostname
     packages.x86_64-linux.homeConfigurations = {
-      "mason@wsl" = nixosConfigurations."mason@wsl".config.home-manager.users."mason".home;
-      "mason@xps" = nixosConfigurations."mason@xps".config.home-manager.users."mason".home;
+      "mason@wsl" = nixosConfigurations.wsl.config.home-manager.users."mason".home;
+      "mason@xps" = nixosConfigurations.xps.config.home-manager.users."mason".home;
     };
 
     # Config for aarch-darwin based home-manager configs used currently on macbook

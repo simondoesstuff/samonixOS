@@ -25,3 +25,5 @@ Hosts can set config options such as `entertainment.enable = true;`. The followi
 | --- | --- | --- |
 | `entertainment.enable` | Enable entertainment packages related to media (currently darwin only) | `false` |
 | `personal.enable` | Enable personal [packages](../modules/common/personal/default.nix) including gaming and note-taking | `false` |
+| `language.XXXX.enable` | Enable specific language modules, list shown [here](../modules/common/dev/language/default.nix) | `varies by langauge` |
+| `flakePath` | Path for the flake used in alias commands like `nrswitch` defined [here](../modules/common/system/home.nix) | `"~/.config/masonixOS"` |
