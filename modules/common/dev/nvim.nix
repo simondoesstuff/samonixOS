@@ -17,9 +17,9 @@
 
   home.packages = [
     pkgs-unstable.neovim # Cracked text editor
+    pkgs.tree-sitter # Syntax highlighting
     pkgs.ripgrep # Fast grep
     pkgs.fd # Advanced find
-    pkgs.tree-sitter # Syntax highlighting
   ];
 
   # file system used in neovim

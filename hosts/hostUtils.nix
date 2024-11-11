@@ -20,7 +20,7 @@ in {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
-            home-manager.users."${username}" = {...}: {
+            home-manager.users.${username} = {...}: {
               imports = [
                 ../modules/linux/default.nix
                 config

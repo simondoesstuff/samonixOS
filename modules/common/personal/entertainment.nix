@@ -22,6 +22,7 @@
       recursive = true;
     };
 
+    # TODO: Fix jerry/lobster on linux. Not sure why not launching
     xdg.configFile.jerry = {
       source = root + /dotfiles/jerry;
       recursive = true;

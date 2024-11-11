@@ -22,6 +22,8 @@
 
     # To load a home-manager config isolated from the nixos config, these can be used.
     # home-manager switch --flake .#user@hostname
+    # TODO: error on home-manager news evoked when using these. Same as:
+    # https://discourse.nixos.org/t/news-json-output-and-home-activationpackage-in-home-manager-switch/54192
     packages.x86_64-linux.homeConfigurations = {
       "mason@wsl" = nixosConfigurations.wsl.config.home-manager.users."mason".home;
       "mason@xps" = nixosConfigurations.xps.config.home-manager.users."mason".home;

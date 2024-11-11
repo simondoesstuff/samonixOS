@@ -8,7 +8,8 @@
     sha256 = "sha256-xlcI9K6cXJetaphkMW5mVWDshqcXeTtxAAwtOK5fF6s=";
   };
 in {
-  # Note: rofi broken on wayland maybe look for alternatives
+  # NOTE: rofi broken on wayland maybe look for alternatives or figure out how to get it working
+  # I use raycast on mac so much that something like rofi is pretty much essential in a linux setup
   programs.rofi = {
     enable = true;
     # package = pkgs.rofi-wayland;

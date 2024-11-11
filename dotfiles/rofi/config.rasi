@@ -1,8 +1,0 @@
-@theme "/nix/store/8fj1640rajc4cvqg48limyjmid3a6kcy-rofi-1.7.5+wayland2/share/rofi/themes/Arc-Dark.rasi"
-
-element-icon { size: 10ch ; } 
-
-window {
-	width: 70%;
-	height: 70%;
-}
