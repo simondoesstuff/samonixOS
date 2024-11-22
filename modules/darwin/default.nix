@@ -4,7 +4,6 @@
     [
       #INFO: Darwin exclusive configs
       ./packages.nix
-      ./zsh.nix
       ./spotify.nix
     ]
     ++ [

@@ -1,4 +1,11 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  options.isDarwin = lib.mkEnableOption "is platform darwin?" // {default = pkgs.stdenv.hostPlatform.isDarwin;};
+  options.isLinux = lib.mkEnableOption "is platform darwin?" // {default = pkgs.stdenv.hostPlatform.isLinux;};
+
   imports = [
     # All dev essentials
     ./dev/default.nix

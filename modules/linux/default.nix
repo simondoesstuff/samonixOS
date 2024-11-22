@@ -4,7 +4,6 @@
   imports =
     [
       ./packages.nix
-      ./zsh.nix
       ./rofi.nix
     ]
     ++ [
