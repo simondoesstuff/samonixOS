@@ -3,7 +3,7 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    autosuggestion = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     # Added to (end) of .zprofile
     profileExtra =

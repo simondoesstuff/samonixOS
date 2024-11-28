@@ -2,10 +2,9 @@
   description = "doomsday nix configuration";
 
   inputs = {
-    # TODO: Upgrade to 24.11 and transition yazi when mac swift is fixed upstream
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
