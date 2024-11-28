@@ -1,5 +1,18 @@
-{config, ...}: {
-  # To set zsh as default shell must be set by system
+{
+  root,
+  config,
+  ...
+}: {
+  # INFO: Terminal stuff
+  programs.wezterm.enable = true;
+
+  # Source wezterm dotfile directly
+  xdg.configFile.wezterm = {
+    source = root + /dotfiles/wezterm;
+    recursive = true;
+  };
+
+  # INFO: Shell stuff
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
@@ -23,15 +36,15 @@
 		";
   };
 
+  # Shell prompt
+  programs.starship = {
+    enable = true;
+  };
+
   # Zoxide is a better form of 'cd' (chang dir)
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  # Shell prompt
-  programs.starship = {
-    enable = true;
   };
 
   # Better ls

@@ -1,8 +1,7 @@
 {
   imports = [
-    ./wezterm.nix
+    ./termshell.nix
     ./direnv.nix
-    ./shell.nix
     ./nvim.nix
     ./git.nix
 
