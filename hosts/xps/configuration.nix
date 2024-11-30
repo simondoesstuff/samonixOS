@@ -4,10 +4,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
-  imports = [
-    ./hardware-configuration.nix # results of hardware scan
-  ];
-
   nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nix;
@@ -48,7 +44,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -70,6 +66,7 @@
   # INFO: Networking
   networking.networkmanager.enable = true;
   networking.hostName = "xps";
+
   # services.openssh.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
