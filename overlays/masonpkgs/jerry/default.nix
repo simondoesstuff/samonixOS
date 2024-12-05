@@ -25,13 +25,13 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "jerry";
-  version = "989ec646f514387265a1f19550d24914ba67fcdf";
+  version = "f997596fc14fed328968f3ab27c777d001830efd";
 
   src = fetchFromGitHub {
     owner = "justchokingaround";
     repo = "jerry";
     rev = "${finalAttrs.version}";
-    sha256 = "pjS2b2P15z9LqwoHqG02vtX/mVeKM4t5dmn5URiszeI=";
+    sha256 = "IZ1+P7RrTO3NgKxZx62Cbjm7z/AWfz3MghnleHw98/4=";
   };
 
   # INFO: to create this patch file, run a git diff after editing source code manually
