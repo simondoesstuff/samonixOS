@@ -16,7 +16,7 @@
     # To load a nixos config with home-manager built into it run
     # sudo nixos-rebuild switch --flake .#hostname
     nixosConfigurations = {
-      wsl = import ./hosts/wsl {inherit inputs;};
+      wslonix = import ./hosts/wslonix {inherit inputs;};
       xps = import ./hosts/xps {inherit inputs;};
     };
 

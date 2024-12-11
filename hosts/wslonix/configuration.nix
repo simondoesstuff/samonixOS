@@ -33,16 +33,12 @@
   wsl.defaultUser = "mason";
 
 	wsl.wslConf = {
-		# https://randombytes.substack.com/p/bridged-networking-under-wsl
     ws12 = {
-      networkingMode = "bridged";
-      vmSwitch = "WSLBridge"; #INFO: Name of hyper-v bridge in windows
-			dhcp = "true" ;
-			# ipv6 = "false";
+      networkingMode = "mirrored";
     };
 
 		network = {
-			hostname = "3080wsl";
+			hostname = "wslonix"; # duped with nix, not sure if nix or wsl takes prio 
 			generateResolvConf = false;
 		};
   };
@@ -56,15 +52,9 @@
 
 	# INFO: Networking stuff
 	networking = {
+		hostName = "wslonix";
 		networkmanager.enable = true;
-		enableIPv6 = true;
 		nameservers = [ "8.8.8.8" "8.8.4.4" ];
-
-		interfaces.eth0 = {
-			macAddress = "5e:bb:f6:9e:ee:fa"; # static mac address
-			ipv6.addresses = [ { address = "fd82:16a8:cf76:79c:3777:adee:a5d2:9eb0"; prefixLength = 64; } ]; # static ipv6
-			ipv4.addresses = [ { address = "192.168.68.69"; prefixLength = 22; } ]; # static ipv4
-		};
 	};
 
 	services.openssh = {
