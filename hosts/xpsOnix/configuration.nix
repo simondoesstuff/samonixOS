@@ -65,7 +65,7 @@
 
   # INFO: Networking
   networking.networkmanager.enable = true;
-  networking.hostName = "xps";
+  networking.hostName = "xpsOnix";
 
   # services.openssh.enable = true;
   # Open ports in the firewall.
