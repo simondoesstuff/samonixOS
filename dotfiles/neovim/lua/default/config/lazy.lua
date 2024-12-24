@@ -10,7 +10,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
 	spec = {
 		{ import = "default.plugins" },
-		{ import = "default.plugins.lsp" },
+		{ import = "default.plugins.lang" },
 		{ import = "default.plugins.visual" },
 	},
 	defaults = {

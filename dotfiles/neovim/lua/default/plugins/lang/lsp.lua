@@ -1,53 +1,52 @@
 -- Controls the language servers for environments, and assists completion (cmp)
-
 return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "folke/neoconf.nvim", "folke/neodev.nvim", "hrsh7th/cmp-nvim-lsp", "aznhe21/actions-preview.nvim" },
-		config = function()
+		dependencies = { "folke/neoconf.nvim", "folke/neodev.nvim", "aznhe21/actions-preview.nvim", 'saghen/blink.cmp' },
+		opts = {
+			servers = {
+				-- Config
+				lua_ls = {},
+				nixd = {},
+				nil_ls = {},
+				-- Webdev
+				tailwindcss = {},
+				svelte = {},
+				ts_ls = {},
+				html = {},
+				cssls = {},
+				jsonls = {},
+				-- Graphics
+				glsl_analyzer = {
+					filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
+				},
+				-- Other
+				pylsp = {},
+				dartls = {},
+				clangd = {},
+			}
+		},
+		--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
+		config = function(_, opts)
 			local lspconfig = require('lspconfig')
+			for server, config in pairs(opts.servers) do
+				config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
 
-
-			lspconfig.lua_ls.setup {
-				settings = {
-					Lua = {
-						workspace = {
-							library = {
-								-- Computer craft library
-								"/Users/mason/dev/computercraft/ccls/library"
-							}
-						}
-					}
-				}
-			}
-
-			--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
-
-			lspconfig.nixd.setup {}
-			lspconfig.nil_ls.setup {}
-
-			lspconfig.glsl_analyzer.setup {
-				filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
-			}
-
-			-- Web langauge servers
-			lspconfig.tailwindcss.setup {}
-			lspconfig.svelte.setup {}
-			lspconfig.ts_ls.setup {}
-			-- lspconfig.pyright.setup {} -- Python type checking and LS
-			lspconfig.pylsp.setup {}
-			lspconfig.dartls.setup {}
-
-			lspconfig.clangd.setup {}
-
-
-			--INFO: JSON/HTML/CSS (vscode-language-servers-extracted)
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-			lspconfig.html.setup { capabilities = capabilities }
-			lspconfig.cssls.setup { capabilities = capabilities }
-			lspconfig.jsonls.setup { capabilities = capabilities }
+			-- lspconfig.lua_ls.setup {
+			-- 	settings = {
+			-- 		Lua = {
+			-- 			workspace = {
+			-- 				library = {
+			-- 					-- Computer craft library
+			-- 					"/Users/mason/dev/computercraft/ccls/library"
+			-- 				}
+			-- 			}
+			-- 		}
+			-- 	}
+			-- }
 
 			vim.diagnostic.config({
 				virtual_text = true,

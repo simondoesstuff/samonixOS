@@ -61,7 +61,7 @@ return {
 		})
 
 		local hm_switch   = Terminal:new({
-			cmd = "home-manager switch",
+			cmd = "hmswitch",
 			dir = "git_dir",
 			direction = "float",
 			start_in_insert = false,
