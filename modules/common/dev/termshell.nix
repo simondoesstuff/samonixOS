@@ -21,9 +21,9 @@
     # Added to (end) of .zprofile
     profileExtra =
       if config.isDarwin
-      # INFO:
       # 1st export: Add docker to path, docker desktop isn't on nix I think?
       # 2nd export: Add flutter to path, manually install because using nix on mac wouldn't work
+      # 3rd export: Setting chrome executable for flutter to read from to launch web apps
       then ''
         export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
         export PATH=$PATH:$HOME/dev/sdk/flutter/bin:$PATH
@@ -33,6 +33,9 @@
     # Added to (end) of .zshrc, init zoxide as per docs
     initExtra = "
 			eval \"$(zoxide init zsh --cmd cd)\"
+		";
+    completionInit = "
+			bindkey '^ ' autosuggest-accept
 		";
   };
 

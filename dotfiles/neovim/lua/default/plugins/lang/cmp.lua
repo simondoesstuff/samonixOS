@@ -1,4 +1,5 @@
 -- INFO: Includes plugins related to autocomplete, including LLM, snippets, etc
+-- TODO: Make cmp menu more integrated with copilot, currently they overlap in strange ways
 return {
 	{
 		'saghen/blink.cmp',
@@ -13,7 +14,10 @@ return {
 			-- 'default' for mappings similar to built-in completion
 			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-			keymap = { preset = 'super-tab' },
+			keymap = {
+				preset = 'super-tab',
+				['<C-space>'] = {}, -- disable so C-space is used for copilot
+			},
 
 			appearance = {
 				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -40,8 +44,19 @@ return {
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({})
-		end,
+		opts = {
+			suggestion = {
+				auto_trigger = true,
+				hide_during_completion = false,
+				keymap = {
+					accept = "<C-Space>",
+					accept_word = false,
+					accept_line = false,
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
+				},
+			},
+		},
 	},
 }
