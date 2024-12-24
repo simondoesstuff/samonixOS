@@ -61,7 +61,7 @@ return {
 		})
 
 		local hm_switch   = Terminal:new({
-			cmd = "hmswitch",
+			cmd = "home-manager switch --flake ~/.config/masonixOS",
 			dir = "git_dir",
 			direction = "float",
 			start_in_insert = false,
