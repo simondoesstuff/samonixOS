@@ -10,11 +10,3 @@ return {
 		{ "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
 	},
 }
--- "ggandor/leap.nvim",
--- event = { "BufReadPre", "BufNewFile" },
--- dependencies = {"tpope/vim-repeat" },
--- config = function ()
--- 	require('leap').add_default_mappings()
--- 	vim.api.nvim_del_keymap('v', 'x')
--- 	vim.api.nvim_del_keymap('v', 'X')
--- end
