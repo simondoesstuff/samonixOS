@@ -3,22 +3,13 @@
 return {
 	{
 		'saghen/blink.cmp',
-		-- optional: provides snippets for the snippet source
-		dependencies = { 'rafamadriz/friendly-snippets', 'giuxtaposition/blink-cmp-copilot' },
+		dependencies = { 'rafamadriz/friendly-snippets', 'giuxtaposition/blink-cmp-copilot', 'zbirenbaum/copilot.lua' },
 		event = { "BufReadPre", "BufNewFile" },
 		version = '*', -- release tag to download pre-built binaries
 		opts = {
-			-- 'default' for mappings similar to built-in completion
-			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			keymap = {
-				preset = 'super-tab',
-				['<C-space>'] = {}, -- disable so C-space is used for copilot
-				['<C-h>'] = {
-					function(cmp)
-						cmp.hide()
-					end
-				},
+				preset = 'super-tab', -- tab to accept
+				['<C-h>'] = { function(cmp) cmp.hide() end },
 			},
 
 			appearance = {
@@ -95,13 +86,24 @@ return {
 			},
 		},
 		opts_extend = { "sources.default" },
+		config = function(_, opts)
+			require('blink.cmp').setup(opts)
+			-- Hide copilot suggestions when the completion menu is opened
+			vim.api.nvim_create_autocmd('User', {
+				pattern = 'BlinkCmpCompletionMenuOpen',
+				callback = function()
+					require("copilot.suggestion").dismiss()
+				end,
+			})
+		end,
 	},
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
 		opts = {
-			suggestion = { enabled = false },
+			-- INFO: Use ctrl + space to access cmp menu and select copilot ghost text
+			suggestion = { enabled = true, auto_trigger = true, },
 			panel = { enabled = false },
 		},
 	},
