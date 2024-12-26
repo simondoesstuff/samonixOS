@@ -10,6 +10,7 @@ in
       language = {
         web.enable = true;
         python.enable = true;
+        glsl.enable = true;
       };
     };
   }

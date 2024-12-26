@@ -11,6 +11,10 @@
     source = root + /dotfiles/wezterm;
     recursive = true;
   };
+  xdg.configFile.ghostty = {
+    source = root + /dotfiles/ghostty;
+    recursive = true;
+  };
 
   # INFO: Shell stuff
   programs.zsh = {

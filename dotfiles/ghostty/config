@@ -1,0 +1,5 @@
+theme = catppuccin-mocha
+# custom-shader = ./shaders/ball.glsl
+# custom-shader = ./shaders/circle.glsl
+
+quit-after-last-window-closed = true

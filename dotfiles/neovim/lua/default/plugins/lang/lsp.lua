@@ -25,9 +25,9 @@ return {
 				pylsp = {},
 				dartls = {},
 				clangd = {},
+				--WARNING: rust_analyzer = {} --> unnecessary, configured in rust.lua
 			}
 		},
-		--WARNING: lspconfig.rust_analyzer.setup {} THIS IS CONFIGURED THROUGH rust.lua
 		config = function(_, opts)
 			local lspconfig = require('lspconfig')
 			for server, config in pairs(opts.servers) do

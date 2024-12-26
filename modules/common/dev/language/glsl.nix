@@ -4,14 +4,14 @@
   lib,
   ...
 }: let
-  version = "1.4.4";
+  version = "1.5.1";
   glslanalyzer = pkgs.stdenv.mkDerivation {
     pname = "glslanalyzer";
     version = version;
 
     src = pkgs.fetchzip {
       url = "https://github.com/nolanderc/glsl_analyzer/releases/download/v${version}/aarch64-macos.zip";
-      sha256 = "1p1crnfbfa9jl96p8m44mpa7fw2n0bdabp67vhmy74a3j26dnl3f";
+      sha256 = "5mb8C83PrvmyJNK0jKBzIf4yt+t+o5sxezG67//Txsk=";
     };
 
     installPhase = ''
