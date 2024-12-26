@@ -34,6 +34,7 @@
     };
 
     home.packages = [
+      pkgs.ffmpeg # Common dependency, used for stacher as well as general use
       (pkgs.jerry {
         withIINA =
           if pkgs.stdenv.isDarwin

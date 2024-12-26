@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    ollama
+    ollama # run local ml models
+    iina # sleek video player (MPV replacement)
 
     # TODO: Migrate these to nix
     # raycast
     # arc
-		wireshark
   ];
 }
