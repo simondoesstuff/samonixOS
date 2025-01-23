@@ -7,7 +7,17 @@ return {
 		opts = {
 			servers = {
 				-- Config
-				lua_ls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							workspace = {
+								library = {
+									"/Users/mason/dev/computercraft/ccls/library" -- Computercraft lib
+								}
+							}
+						}
+					}
+				},
 				nixd = {},
 				nil_ls = {},
 				-- Webdev
@@ -20,12 +30,16 @@ return {
 				-- Graphics
 				glsl_analyzer = {
 					filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp", "fsh", "vsh" },
+					on_attach = function(client, _)
+						client.cancel_request = function(_, _) end -- do nothing avoiding error message
+					end
 				},
 				-- Other
 				pylsp = {},
 				dartls = {},
 				clangd = {},
-				--WARNING: rust_analyzer = {} --> unnecessary, configured in rust.lua
+				sourcekit = {},
+				--WARNING: rust_analyzer = {} --> unnecessary, configured in rustaceanvim below
 			}
 		},
 		config = function(_, opts)
@@ -34,19 +48,6 @@ return {
 				config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
 				lspconfig[server].setup(config)
 			end
-
-			-- lspconfig.lua_ls.setup {
-			-- 	settings = {
-			-- 		Lua = {
-			-- 			workspace = {
-			-- 				library = {
-			-- 					-- Computer craft library
-			-- 					"/Users/mason/dev/computercraft/ccls/library"
-			-- 				}
-			-- 			}
-			-- 		}
-			-- 	}
-			-- }
 
 			vim.diagnostic.config({
 				virtual_text = true,
@@ -118,5 +119,46 @@ return {
 		config = function()
 			require("fidget").setup({})
 		end,
+	},
+	{
+		'mrcjkb/rustaceanvim',
+		version = '^4', -- Recommended
+		ft = { 'rust' },
+		config = function()
+			vim.g.rustaceanvim = {
+				-- Plugin configuration
+				tools = {
+				},
+				-- LSP configuration
+				server = {
+					on_attach = function(_, _) -- client, bufnr args
+						-- you can also put keymaps in here
+					end,
+					default_settings = {
+						-- rust-analyzer language server configuration
+						['rust-analyzer'] = {
+							files = {
+								excludeDirs = {
+									".direnv/*",
+									".direnv",
+									".git",
+									"target",
+								},
+								watcherExclude = {
+									".direnv/*",
+									".direnv",
+									".git",
+									"target",
+								}
+							}
+						},
+					},
+				},
+				-- DAP configuration
+				dap = {
+					autoload_configurations = true
+				},
+			}
+		end
 	}
 }

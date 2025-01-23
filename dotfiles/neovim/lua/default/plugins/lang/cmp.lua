@@ -103,7 +103,7 @@ return {
 		event = "InsertEnter",
 		opts = {
 			-- INFO: Use ctrl + space to access cmp menu and select copilot ghost text
-			suggestion = { enabled = true, auto_trigger = true, },
+			suggestion = { enabled = false, auto_trigger = true, },
 			panel = { enabled = false },
 		},
 	},
