@@ -24,6 +24,7 @@ local options = {
 	-- autochdir = true,
 	scroll = math.floor(vim.api.nvim_get_option("lines") / 2),
 	hidden = true, -- Allow hidden buffers for things like toggleterm
+	exrc = true,  -- Allow local vimrc, nvim.lua, .exrc in projects to apply to nvim conf
 }
 
 for option, value in pairs(options) do

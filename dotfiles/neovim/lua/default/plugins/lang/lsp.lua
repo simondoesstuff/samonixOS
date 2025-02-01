@@ -21,7 +21,16 @@ return {
 				nixd = {},
 				nil_ls = {},
 				-- Webdev
-				tailwindcss = {},
+				tailwindcss = {
+					-- bun add -D @tailwindcss/language-server
+					-- bun local install is preferred to nix b/c it accounts for the project deps
+					cmd = { 'bunx', 'tailwindcss-language-server' },
+					on_init = function(client)
+						client.config.settings.tailwindCSS = {
+							experimental = { classRegex = { "class:?\\s*'([^']*)'" } }
+						}
+					end,
+				},
 				svelte = {},
 				ts_ls = {},
 				html = {},
@@ -120,45 +129,4 @@ return {
 			require("fidget").setup({})
 		end,
 	},
-	{
-		'mrcjkb/rustaceanvim',
-		version = '^4', -- Recommended
-		ft = { 'rust' },
-		config = function()
-			vim.g.rustaceanvim = {
-				-- Plugin configuration
-				tools = {
-				},
-				-- LSP configuration
-				server = {
-					on_attach = function(_, _) -- client, bufnr args
-						-- you can also put keymaps in here
-					end,
-					default_settings = {
-						-- rust-analyzer language server configuration
-						['rust-analyzer'] = {
-							files = {
-								excludeDirs = {
-									".direnv/*",
-									".direnv",
-									".git",
-									"target",
-								},
-								watcherExclude = {
-									".direnv/*",
-									".direnv",
-									".git",
-									"target",
-								}
-							}
-						},
-					},
-				},
-				-- DAP configuration
-				dap = {
-					autoload_configurations = true
-				},
-			}
-		end
-	}
 }
