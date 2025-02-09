@@ -30,9 +30,9 @@
         # 1st export: Add docker to path, docker desktop isn't on nix I think?
         # 2nd export: Add flutter to path, manually install because using nix on mac wouldn't work
         # 3rd export: Setting chrome executable for flutter to read from to launch web apps
+        # export PATH=$PATH:$HOME/dev/sdk/flutter/bin:$PATH
         then ''
           export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
-          export PATH=$PATH:$HOME/dev/sdk/flutter/bin:$PATH
           export CHROME_EXECUTABLE="/Applications/Microsoft Edge Dev.app/Contents/MacOS/Microsoft Edge Dev"
         ''
         else "";
