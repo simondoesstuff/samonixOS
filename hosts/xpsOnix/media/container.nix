@@ -54,11 +54,6 @@
             via = "192.168.10.1";
           }
           {
-            address = "192.168.10.1";
-            prefixLength = 32;
-            via = "192.168.10.1";
-          }
-          {
             address = "192.168.68.0";
             prefixLength = 24;
             via = "192.168.10.1";
@@ -106,7 +101,6 @@
         config = builtins.readFile ./us9444.nordvpn.com.udp.ovpn.key;
       };
 
-      # Media stuff
       nixpkgs.config.permittedInsecurePackages = [
         "aspnetcore-runtime-wrapped-6.0.36"
         "aspnetcore-runtime-6.0.36"
@@ -114,39 +108,55 @@
         "dotnet-sdk-6.0.428"
       ];
 
-      # Encompassed daemons
+      # Media stuff
+      users.groups.media = {}; # Ensures the 'media' group is created
+      systemd.tmpfiles.rules = [
+        "d /srv/downloads 2775 root media -"
+        "d /var/lib/transmission/Downloads/tv-sonarr 2775 root media -"
+      ];
+
       services.jellyfin = {
         enable = true;
-        openFirewall = true; # opens port 8096
-        # user = "jellyfin";
+        openFirewall = true; # port 8096
+        group = "media";
       };
 
       services.jellyseerr = {
         enable = true;
-        openFirewall = true; # opens port 5055
+        openFirewall = true; # port 5055
       };
 
       services.sonarr = {
         enable = true;
-        openFirewall = true; # opens port 8989
-        # user = "sonaar"; # WARNING: breaks sonaar
+        openFirewall = true; # port 8989
+        group = "media";
+      };
+
+      services.radarr = {
+        enable = true;
+        openFirewall = true; # port ?
+        group = "media";
       };
 
       services.jackett = {
         enable = true;
-        openFirewall = true; # 9117
+        openFirewall = true; # port 9117
         package = pkgs-unstable.jackett;
-        # user = "jackett";
+        group = "media";
       };
 
       services.transmission = {
         enable = true; #Enable transmission daemon
-        openFirewall = true; # opens port 9091
+        openFirewall = true; # port 9091
         openRPCPort = true; # opens firewall for RPC
-        # user = "transmission";
+        package = pkgs.transmission_4-qt;
+        group = "media";
         settings = {
           rpc-bind-address = "0.0.0.0"; #Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
+          download-dir = "/srv/media";
+          ratio-limit-enabled = true;
+          ratio-limit = 0.1;
         };
       };
 

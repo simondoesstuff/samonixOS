@@ -73,4 +73,6 @@
     enableSSHSupport = true;
     pinentryPackage = pkgs.pinentry-qt; # qt for plasma5
   };
+
+  services.vnstat.enable = true;
 }
