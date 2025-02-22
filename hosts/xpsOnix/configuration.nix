@@ -67,10 +67,10 @@
   networking.networkmanager.enable = true;
   networking.hostName = "xpsOnix";
 
-  # services.openssh.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  services.pcscd.enable = true; # networking.firewall.enable = false;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-qt; # qt for plasma5
+  };
 }

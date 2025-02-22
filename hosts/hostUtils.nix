@@ -13,6 +13,9 @@ in {
   # and then use pkgs.nixos instead of nixpkgs.lib.nixosSystem
     nixpkgs.lib.nixosSystem {
       inherit system;
+      specialArgs = {
+        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+      };
       modules =
         [
           home-manager.nixosModules.home-manager

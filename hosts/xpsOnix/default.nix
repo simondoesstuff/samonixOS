@@ -6,6 +6,7 @@ in
     username = "mason";
     extraModules = [
       ./configuration.nix
+      ./media/container.nix
       ./hardware-configuration.nix
       inputs.nixos-hardware.nixosModules.dell-xps-15-7590-nvidia
     ];

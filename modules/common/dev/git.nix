@@ -1,4 +1,6 @@
-{
+{pkgs, ...}: {
+  home.packages = [pkgs.git-crypt];
+
   programs.lazygit = {
     enable = true;
   };
