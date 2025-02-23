@@ -22,13 +22,18 @@
 
     forwardPorts = [
       {
-        containerPort = 8096;
+        containerPort = 8096; # jellyfin
         hostPort = 8096;
         protocol = "tcp";
       }
       {
-        containerPort = 5055;
+        containerPort = 5055; # jellyseerr
         hostPort = 5055;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 8989; # sonarr
+        hostPort = 8989;
         protocol = "tcp";
       }
     ];
@@ -63,10 +68,10 @@
         firewall = {
           enable = false;
           allowedUDPPorts = [1194]; # Standard OpenVPN port
-          allowedTCPPorts = [8096 5055];
+          allowedTCPPorts = [8096 5055 8989];
           interfaces = {
-            "eth0".allowedTCPPorts = [8096 5055];
-            "tun".allowedTCPPorts = [8096 5055];
+            "eth0".allowedTCPPorts = [8096 5055 8989];
+            "tun".allowedTCPPorts = [8096 5055 8989];
           };
           # Reject all traffic not going through VPN
           extraCommands = ''
@@ -111,8 +116,8 @@
       # Media stuff
       users.groups.media = {}; # Ensures the 'media' group is created
       systemd.tmpfiles.rules = [
-        "d /srv/downloads 2775 root media -"
-        "d /var/lib/transmission/Downloads/tv-sonarr 2775 root media -"
+        "d /srv/media 2775 root media -"
+        "d /srv/media/tv-sonarr 2775 root media -"
       ];
 
       services.jellyfin = {
