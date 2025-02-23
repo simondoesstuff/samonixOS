@@ -117,7 +117,8 @@
       users.groups.media = {}; # Ensures the 'media' group is created
       systemd.tmpfiles.rules = [
         "d /srv/media 2775 root media -"
-        "d /srv/media/tv-sonarr 2775 root media -"
+        "d /srv/transmission 2775 root media -"
+        "d /srv/transmission/tv-sonarr 2775 root media -"
       ];
 
       services.jellyfin = {
@@ -139,15 +140,14 @@
 
       services.radarr = {
         enable = true;
-        openFirewall = true; # port ?
+        openFirewall = true; # port 7878
         group = "media";
       };
 
-      services.jackett = {
+      services.prowlarr = {
         enable = true;
-        openFirewall = true; # port 9117
-        package = pkgs-unstable.jackett;
-        group = "media";
+        openFirewall = true; # port 9696
+        package = pkgs-unstable.prowlarr;
       };
 
       services.transmission = {
@@ -159,8 +159,9 @@
         settings = {
           rpc-bind-address = "0.0.0.0"; #Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
-          download-dir = "/srv/media";
+          download-dir = "/srv/transmission";
           ratio-limit-enabled = true;
+          download-queue-size = 11;
           ratio-limit = 0.1;
         };
       };
