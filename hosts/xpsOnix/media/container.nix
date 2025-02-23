@@ -13,8 +13,10 @@
     externalInterface = "wlp59s0"; # host interface
   };
 
+  environment.systemPackages = [pkgs.ncdu];
+
   containers.media = {
-    autoStart = true;
+    autoStart = false; # autostart dangerous if low storage
     enableTun = true;
     privateNetwork = true;
     hostAddress = "192.168.10.1";

@@ -3,6 +3,20 @@
   config,
   ...
 }: {
+  # home.packages = with pkgs; [ghostty]; broken on mac currently
+
+  # INFO: Source dotfiles directly
+  xdg.configFile = {
+    wezterm = {
+      source = root + /dotfiles/wezterm;
+      recursive = true;
+    };
+    ghostty = {
+      source = root + /dotfiles/ghostty;
+      recursive = true;
+    };
+  };
+
   home.shellAliases = {
     cat = "bat";
   };
@@ -44,20 +58,6 @@
       completionInit = "
 			bindkey '^ ' autosuggest-accept
 		";
-    };
-  };
-
-  # home.packages = with pkgs; [ghostty]; broken on mac currently
-
-  # INFO: Source dotfiles directly
-  xdg.configFile = {
-    wezterm = {
-      source = root + /dotfiles/wezterm;
-      recursive = true;
-    };
-    ghostty = {
-      source = root + /dotfiles/ghostty;
-      recursive = true;
     };
   };
 }
