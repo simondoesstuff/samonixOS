@@ -119,8 +119,12 @@
       users.groups.media = {}; # Ensures the 'media' group is created
       systemd.tmpfiles.rules = [
         "d /srv/media 2775 root media -"
+        "d /srv/media/shows 2775 root media -"
+        "d /srv/media/anime 2775 root media -"
+        "d /srv/media/movies  2775 root media -"
         "d /srv/transmission 2775 root media -"
         "d /srv/transmission/tv-sonarr 2775 root media -"
+        "d /srv/anisyncache 2775 root media -"
       ];
 
       services.jellyfin = {
@@ -163,8 +167,8 @@
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
           download-dir = "/srv/transmission";
           ratio-limit-enabled = true;
-          download-queue-size = 11;
-          ratio-limit = 0.1;
+          download-queue-size = 13;
+          ratio-limit = 0.1; # set on show basis with sonarr
         };
       };
 
