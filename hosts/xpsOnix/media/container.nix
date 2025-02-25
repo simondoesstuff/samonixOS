@@ -41,7 +41,7 @@
     ];
 
     config = {
-      environment.systemPackages = with pkgs; [dnsutils jellyfin jellyfin-web jellyfin-ffmpeg openvpn tcpdump];
+      environment.systemPackages = with pkgs; [dnsutils jellyfin jellyfin-web jellyfin-ffmpeg openvpn tcpdump acl];
       system.stateVersion = "24.11";
 
       # Networking
@@ -115,8 +115,8 @@
         "dotnet-sdk-6.0.428"
       ];
 
-      # Media stuff
-      users.groups.media = {}; # Ensures the 'media' group is created
+      # Media group, dir perms, and file tree structure
+      users.groups.media.members = ["jellyfin" "sonarr" "radarr" "transmission"];
       systemd.tmpfiles.rules = [
         "d /srv/media 2775 root media -"
         "d /srv/media/shows 2775 root media -"
@@ -126,11 +126,22 @@
         "d /srv/transmission/tv-sonarr 2775 root media -"
         "d /srv/anisyncache 2775 root media -"
       ];
+      # Set up ACLs for inheritance
+      system.activationScripts.mediaPermissions = {
+        text = ''
+          echo "Setting up ACLs for media directories..."
+          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/media
+          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/transmission
+          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/anisyncache
+        '';
+        deps = [];
+      };
 
       services.jellyfin = {
         enable = true;
         openFirewall = true; # port 8096
         group = "media";
+        user = "jellyfin";
       };
 
       services.jellyseerr = {
@@ -142,12 +153,14 @@
         enable = true;
         openFirewall = true; # port 8989
         group = "media";
+        user = "sonarr";
       };
 
       services.radarr = {
         enable = true;
         openFirewall = true; # port 7878
         group = "media";
+        user = "radarr";
       };
 
       services.prowlarr = {
@@ -162,6 +175,7 @@
         openRPCPort = true; # opens firewall for RPC
         package = pkgs.transmission_4-qt;
         group = "media";
+        user = "transmission";
         settings = {
           rpc-bind-address = "0.0.0.0"; #Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
