@@ -41,7 +41,7 @@
     ];
 
     config = {
-      environment.systemPackages = with pkgs; [dnsutils jellyfin jellyfin-web jellyfin-ffmpeg openvpn tcpdump acl];
+      environment.systemPackages = with pkgs; [dnsutils jellyfin jellyfin-web jellyfin-ffmpeg tcpdump acl];
       system.stateVersion = "24.11";
 
       # Networking
@@ -105,7 +105,7 @@
         updateResolvConf = true;
         authUserPass.username = lib.removeSuffix "\n" (builtins.readFile ./nordUser.key);
         authUserPass.password = lib.removeSuffix "\n" (builtins.readFile ./nordPass.key);
-        config = builtins.readFile ./us9444.nordvpn.com.udp.ovpn.key;
+        config = builtins.readFile ./us5080.nordvpn.com.udp.ovpn.key;
       };
 
       nixpkgs.config.permittedInsecurePackages = [
@@ -124,6 +124,7 @@
         "d /srv/media/movies  2775 root media -"
         "d /srv/transmission 2775 root media -"
         "d /srv/transmission/tv-sonarr 2775 root media -"
+        "d /srv/transmission/.incomplete 2775 root media -"
         "d /srv/anisyncache 2775 root media -"
       ];
       # Set up ACLs for inheritance
@@ -183,6 +184,8 @@
           ratio-limit-enabled = true;
           download-queue-size = 13;
           ratio-limit = 0.1; # set on show basis with sonarr
+          incomplete-dir = "/srv/transmission/.incomplete";
+          incomplete-dir-enabled = true;
         };
       };
 
