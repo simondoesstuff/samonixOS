@@ -64,6 +64,7 @@ in {
           then ../modules/darwin/default.nix
           else ../modules/linux/default.nix
         )
+        inputs.nixvim.homeManagerModules.nixvim
         config
         {homeManagerIsolated = true;}
       ];

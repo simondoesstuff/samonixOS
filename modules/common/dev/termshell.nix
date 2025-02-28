@@ -1,9 +1,10 @@
 {
   root,
+  pkgs,
   config,
   ...
 }: {
-  # home.packages = with pkgs; [ghostty]; broken on mac currently
+  # home.packages = with pkgs; [ghostty]; #broken on mac currently
 
   # INFO: Source dotfiles directly
   xdg.configFile = {

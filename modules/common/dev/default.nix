@@ -2,8 +2,10 @@
   imports = [
     ./termshell.nix
     ./direnv.nix
-    ./nvim.nix
     ./git.nix
+
+    ./nvim.nix
+    # ./nixvim
 
     # languages + langauge servers
     ./language/default.nix
