@@ -2,10 +2,9 @@
   pkgs-unstable,
   config,
   pkgs,
-  root,
   ...
 }: {
-	imports = [ ./language ];
+  imports = [./language];
 
   home.sessionVariables = {
     EDITOR = "nvim";

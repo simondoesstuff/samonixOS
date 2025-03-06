@@ -4,10 +4,9 @@
     ./direnv.nix
     ./git.nix
 
-    # ./nixvim
-
-    # languages + langauge servers
-    ./nvim_old
+    ./languages
+    ./nixvim
+    # ./nvim_old
   ];
 
   # programs.nixvim = {
