@@ -1,0 +1,72 @@
+name: Test Nix Configurations
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  # Test NixOS configurations
+  test-nixos:
+    name: Test NixOS on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      
+      - name: Enable Flakes
+        run: |
+          mkdir -p ~/.config/nix
+          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+      
+      - name: Check flake
+        run: nix flake check
+      
+      - name: Build wslOnix configuration
+        run: nix build .#nixosConfigurations.wslOnix.config.system.build.toplevel --dry-run
+      
+      - name: Build xpsOnix configuration
+        run: nix build .#nixosConfigurations.xpsOnix.config.system.build.toplevel --dry-run
+
+  # Test Linux Home Manager configurations
+  test-home-linux:
+    name: Test Home Manager on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      
+      - name: Enable Flakes
+        run: |
+          mkdir -p ~/.config/nix
+          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+      
+      - name: Build mason@wsl configuration
+        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@wsl".activationPackage --dry-run
+      
+      - name: Build mason@xps configuration
+        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@xps".activationPackage --dry-run
+
+  # Test macOS Home Manager configuration
+  test-home-macos:
+    name: Test Home Manager on macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      
+      - name: Enable Flakes
+        run: |
+          mkdir -p ~/.config/nix
+          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+      
+      - name: Build mason macOS configuration
+        run: nix build .#packages.aarch64-darwin.homeConfigurations.mason.activationPackage --dry-run
