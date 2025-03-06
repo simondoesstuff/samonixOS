@@ -1,13 +1,21 @@
 return {
 	{
-		'mrcjkb/rustaceanvim',
-		version = '^4', -- Recommended
-		ft = { 'rust' },
+		"nvim-flutter/flutter-tools.nvim",
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim", -- optional for vim.ui.select
+		},
+		config = true,
+	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^4", -- Recommended
+		ft = { "rust" },
 		config = function()
 			vim.g.rustaceanvim = {
 				-- Plugin configuration
-				tools = {
-				},
+				tools = {},
 				-- LSP configuration
 				server = {
 					on_attach = function(_, _) -- client, bufnr args
@@ -15,7 +23,7 @@ return {
 					end,
 					default_settings = {
 						-- rust-analyzer language server configuration
-						['rust-analyzer'] = {
+						["rust-analyzer"] = {
 							files = {
 								excludeDirs = {
 									".direnv/*",
@@ -28,16 +36,16 @@ return {
 									".direnv",
 									".git",
 									"target",
-								}
-							}
+								},
+							},
 						},
 					},
 				},
 				-- DAP configuration
 				dap = {
-					autoload_configurations = true
+					autoload_configurations = true,
 				},
 			}
-		end
-	}
+		end,
+	},
 }

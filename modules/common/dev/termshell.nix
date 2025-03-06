@@ -1,6 +1,5 @@
 {
   root,
-  pkgs,
   config,
   ...
 }: {
@@ -30,6 +29,7 @@
     zoxide = {
       enable = true;
       enableZshIntegration = true;
+      options = ["--cmd cd"];
     };
     bat.enable = true;
     eza = {
@@ -52,13 +52,9 @@
           export CHROME_EXECUTABLE="/Applications/Microsoft Edge Dev.app/Contents/MacOS/Microsoft Edge Dev"
         ''
         else "";
-      # Added to (end) of .zshrc, init zoxide as per docs
-      initExtra = "
-			eval \"$(zoxide init zsh --cmd cd)\"
-		";
       completionInit = "
-			bindkey '^ ' autosuggest-accept
-		";
+				bindkey '^ ' autosuggest-accept
+			";
     };
   };
 }

@@ -2,14 +2,23 @@
 -- TODO: Make cmp menu more integrated with copilot, currently they overlap in strange ways
 return {
 	{
-		'saghen/blink.cmp',
-		dependencies = { 'rafamadriz/friendly-snippets', 'giuxtaposition/blink-cmp-copilot', 'zbirenbaum/copilot.lua' },
+		"saghen/blink.cmp",
+		dependencies = {
+			{ "L3MON4D3/LuaSnip", version = "v2.*" },
+			"giuxtaposition/blink-cmp-copilot",
+			"zbirenbaum/copilot.lua",
+		},
 		event = { "BufReadPre", "BufNewFile" },
-		version = '*', -- release tag to download pre-built binaries
+		version = "*", -- release tag to download pre-built binaries
 		opts = {
+			snippets = { preset = "luasnip" },
 			keymap = {
-				preset = 'super-tab', -- tab to accept
-				['<C-h>'] = { function(cmp) cmp.hide() end },
+				preset = "super-tab", -- tab to accept
+				["<C-h>"] = {
+					function(cmp)
+						cmp.hide()
+					end,
+				},
 			},
 
 			appearance = {
@@ -17,46 +26,46 @@ return {
 				-- Useful for when your theme doesn't support blink.cmp
 				-- Will be removed in a future release
 				use_nvim_cmp_as_default = true,
-				nerd_font_variant = 'mono', -- mono vs normal
+				nerd_font_variant = "mono", -- mono vs normal
 				kind_icons = {
 					Copilot = "",
-					Text = '󰉿',
-					Method = '󰊕',
-					Function = '󰊕',
-					Constructor = '󰒓',
+					Text = "󰉿",
+					Method = "󰊕",
+					Function = "󰊕",
+					Constructor = "󰒓",
 
-					Field = '󰜢',
-					Variable = '󰆦',
-					Property = '󰖷',
+					Field = "󰜢",
+					Variable = "󰆦",
+					Property = "󰖷",
 
-					Class = '󱡠',
-					Interface = '󱡠',
-					Struct = '󱡠',
-					Module = '󰅩',
+					Class = "󱡠",
+					Interface = "󱡠",
+					Struct = "󱡠",
+					Module = "󰅩",
 
-					Unit = '󰪚',
-					Value = '󰦨',
-					Enum = '󰦨',
-					EnumMember = '󰦨',
+					Unit = "󰪚",
+					Value = "󰦨",
+					Enum = "󰦨",
+					EnumMember = "󰦨",
 
-					Keyword = '󰻾',
-					Constant = '󰏿',
+					Keyword = "󰻾",
+					Constant = "󰏿",
 
-					Snippet = '󱄽',
-					Color = '󰏘',
-					File = '󰈔',
-					Reference = '󰬲',
-					Folder = '󰉋',
-					Event = '󱐋',
-					Operator = '󰪚',
-					TypeParameter = '󰬛',
+					Snippet = "󱄽",
+					Color = "󰏘",
+					File = "󰈔",
+					Reference = "󰬲",
+					Folder = "󰉋",
+					Event = "󱐋",
+					Operator = "󰪚",
+					TypeParameter = "󰬛",
 				},
 			},
 
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+				default = { "lsp", "path", "snippets", "buffer", "copilot" },
 				providers = {
 					copilot = {
 						name = "copilot",
@@ -77,20 +86,20 @@ return {
 			},
 
 			completion = {
-				keyword = { range = 'prefix' }, -- full looks ahead for fuzzy matching
+				keyword = { range = "prefix" }, -- full looks ahead for fuzzy matching
 				ghost_text = { enabled = true },
 				menu = {
-					border = 'single',
-					draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" } } }
+					border = "single",
+					draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", gap = 1, "kind" } } },
 				},
 			},
 		},
 		opts_extend = { "sources.default" },
 		config = function(_, opts)
-			require('blink.cmp').setup(opts)
+			require("blink.cmp").setup(opts)
 			-- Hide copilot suggestions when the completion menu is opened
-			vim.api.nvim_create_autocmd('User', {
-				pattern = 'BlinkCmpCompletionMenuOpen',
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "BlinkCmpCompletionMenuOpen",
 				callback = function()
 					require("copilot.suggestion").dismiss()
 				end,
@@ -103,7 +112,7 @@ return {
 		event = "InsertEnter",
 		opts = {
 			-- INFO: Use ctrl + space to access cmp menu and select copilot ghost text
-			suggestion = { enabled = false, auto_trigger = true, },
+			suggestion = { enabled = false, auto_trigger = true },
 			panel = { enabled = false },
 		},
 	},
