@@ -12,11 +12,7 @@
       })
     ];
 
-    extraConfigLua =
-      /*
-      lua
-      */
-      ''
+    extraConfigLua = ''
         require("colorful-winsep").setup({
         	-- Winsep color
         	highlight = {

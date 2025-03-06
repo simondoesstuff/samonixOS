@@ -74,7 +74,7 @@
         };
 
         pylsp.enable = true;
-        dartls.enable = true;
+        # dartls.enable = true; dont enable with flutter-tools
         clangd.enable = true;
         sourcekit.enable = true;
       };
