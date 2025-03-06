@@ -37,7 +37,7 @@
       }
       {
         mode = "n";
-        key = "<leader>p";
+        key = "<leader>fp";
         action = "<cmd>Telescope commands<cr>";
         options = {
           desc = "search commands";
