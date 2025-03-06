@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   pluginsDir = ./plugins;
   allFiles = lib.filesystem.listFilesRecursive pluginsDir;
   imports = builtins.filter (path: lib.hasSuffix ".nix" (toString path)) allFiles;
@@ -9,6 +13,8 @@
   ]);
 in {
   inherit imports;
+
+  # home.packages = with pkgs; [neovim];
 
   programs.nixvim = {
     enable = true;
