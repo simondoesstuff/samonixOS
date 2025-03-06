@@ -8,7 +8,7 @@ on:
 jobs:
   # Test NixOS configurations
   test-nixos:
-    name: Raw NixOS
+    name: Raw NixOS Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -41,7 +41,7 @@ jobs:
       
   # Test Linux Home Manager configurations
   test-home-linux:
-    name: Home Manager on Linux
+    name: Home Manager Linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
 
   # Test macOS Home Manager configuration
   test-home-macos:
-    name: Home Manager on macOS
+    name: Home Manager macOS
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
