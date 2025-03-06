@@ -4,10 +4,15 @@
     ./direnv.nix
     ./git.nix
 
-    ./nvim.nix
     # ./nixvim
 
     # languages + langauge servers
-    ./language/default.nix
+    ./nvim_old
   ];
+
+  # programs.nixvim = {
+  #   enable = true;
+  #   plugins.blink-cmp.enable = true;
+  #   plugins.lsp.enable = true;
+  # };
 }

@@ -5,13 +5,15 @@
   root,
   ...
 }: {
+	imports = [ ./language ];
+
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
   # Source neovim/wezterm custom (non-nix) config
   xdg.configFile.nvim = {
-    source = config.lib.file.mkOutOfStoreSymlink (root + "/dotfiles/neovim");
+    source = config.lib.file.mkOutOfStoreSymlink ./neovim;
     recursive = true;
   };
 

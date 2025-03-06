@@ -14,7 +14,7 @@
 in {
   inherit imports;
 
-  # home.packages = with pkgs; [neovim];
+  home.packages = with pkgs; [fd ripgrep tree-sitter];
 
   programs.nixvim = {
     enable = true;
