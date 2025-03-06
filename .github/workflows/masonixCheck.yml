@@ -1,19 +1,26 @@
-name: Test Nix Configurations
+name: Test the masonix flake 😳
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
   # Test NixOS configurations
   test-nixos:
-    name: Test NixOS on Linux
+    name: Test NixOS config
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup secrets
+        run: |
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
+          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
+          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          chmod 600 ./hosts/xpsOnix/media/nordUser.key
+          chmod 600 ./hosts/xpsOnix/media/nordPass.key
       
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
@@ -25,19 +32,28 @@ jobs:
       
       - name: Check flake
         run: nix flake check
+        
+      - name: Build xpsOnix configuration
+        run: nix build .#nixosConfigurations.xpsOnix.config.system.build.toplevel --dry-run
       
       - name: Build wslOnix configuration
         run: nix build .#nixosConfigurations.wslOnix.config.system.build.toplevel --dry-run
       
-      - name: Build xpsOnix configuration
-        run: nix build .#nixosConfigurations.xpsOnix.config.system.build.toplevel --dry-run
-
   # Test Linux Home Manager configurations
   test-home-linux:
     name: Test Home Manager on Linux
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup secrets
+        run: |
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
+          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
+          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          chmod 600 ./hosts/xpsOnix/media/nordUser.key
+          chmod 600 ./hosts/xpsOnix/media/nordPass.key
       
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
@@ -59,6 +75,15 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup secrets
+        run: |
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
+          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
+          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          chmod 600 ./hosts/xpsOnix/media/nordUser.key
+          chmod 600 ./hosts/xpsOnix/media/nordPass.key
       
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
