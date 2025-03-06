@@ -103,6 +103,56 @@
         action = "<cmd>lua require('smart-splits').resize_right()<cr>";
         options.desc = "resize window up";
       }
+
+      # Terminal mode mappings
+      {
+        mode = "t";
+        key = "<esc>";
+        action = "<C-\\><C-n>";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = "t";
+        key = "<C-h>";
+        action = "<Cmd>wincmd h<CR>";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = "t";
+        key = "<C-j>";
+        action = "<Cmd>wincmd j<CR>";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = "t";
+        key = "<C-k>";
+        action = "<Cmd>wincmd k<CR>";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = "t";
+        key = "<C-l>";
+        action = "<Cmd>wincmd l<CR>";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = "t";
+        key = "<C-w>";
+        action = "<C-\\><C-n><C-w>";
+        options = {
+          silent = true;
+        };
+      }
     ];
   };
 }

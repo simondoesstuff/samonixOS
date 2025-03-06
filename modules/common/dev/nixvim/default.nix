@@ -3,13 +3,12 @@
   pkgs,
   ...
 }: let
-  pluginsDir = ./plugins;
+  pluginsDir = ./config;
   allFiles = lib.filesystem.listFilesRecursive pluginsDir;
   imports = builtins.filter (path: lib.hasSuffix ".nix" (toString path)) allFiles;
 
   extraConfigLua = builtins.concatStringsSep "\n" (map builtins.readFile [
-    ./config/autocmds.lua
-    ./config/keymaps.lua
+    ./autocmds.lua
   ]);
 in {
   inherit imports;
@@ -18,7 +17,7 @@ in {
 
   programs.nixvim = {
     enable = true;
-    inherit extraConfigLua;
+    # inherit extraConfigLua;
 
     globals = {
       mapleader = " ";
@@ -30,6 +29,7 @@ in {
       number = true;
       numberwidth = 5;
       cursorline = true;
+      cursorlineopt = "both";
       clipboard = "unnamedplus"; #- Neovim and OS clipboard are friends now
       tabstop = 2; #- Tab length 4 spaces
       shiftwidth = 2; #- 4 spaces when indenting with '>'
