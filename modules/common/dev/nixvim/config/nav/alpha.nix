@@ -79,8 +79,9 @@
       	dashboard.button("e", "   New file", ":ene <BAR> startinsert <CR>"),
       	dashboard.button("f", "   Find file", ":cd ~/dev/ | Telescope find_files<CR>"),
       	dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
+      	dashboard.button("g", "   Grep repo", ":Telescope live_grep<CR>"),
       	dashboard.button("b", "   Projects", ":Telescope projects<CR>"),
-      	dashboard.button("q", "   Quit NVIM", ":qa<CR>"),
+      	dashboard.button("q", "   Quit neovim", ":qa<CR>"),
 
       	--dashboard.button("b", "  > Bookmarks", ":Telescope marks<CR>"),
       	-- dashboard.button("L", "󰧑  > Leetcode", ":Leet<CR>"),

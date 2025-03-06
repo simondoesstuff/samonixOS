@@ -13,7 +13,6 @@
           };
         };
       };
-      yazi.enable = true;
     };
 
     keymaps = [

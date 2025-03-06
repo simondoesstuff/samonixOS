@@ -2,6 +2,8 @@
   home.packages = with pkgs; [ripgrep];
   programs.nixvim = {
     plugins.telescope.enable = true;
+    plugins.project-nvim.enable = true;
+    plugins.project-nvim.enableTelescope = true;
     keymaps = [
       {
         mode = "n";
