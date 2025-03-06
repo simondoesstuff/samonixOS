@@ -76,19 +76,17 @@
 
       -- Set menu
       dashboard.section.buttons.val = {
-      	dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-      	dashboard.button("f", "  > Find file", ":cd ~/dev/ | Telescope find_files<CR>"),
-      	dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
+      	dashboard.button("e", "   New file", ":ene <BAR> startinsert <CR>"),
+      	dashboard.button("f", "   Find file", ":cd ~/dev/ | Telescope find_files<CR>"),
+      	dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
+      	dashboard.button("b", "   Projects", ":Telescope projects<CR>"),
+      	dashboard.button("q", "   Quit NVIM", ":qa<CR>"),
+
       	--dashboard.button("b", "  > Bookmarks", ":Telescope marks<CR>"),
-      	dashboard.button("b", "  > Projects", ":Telescope projects<CR>"),
       	-- dashboard.button("L", "󰧑  > Leetcode", ":Leet<CR>"),
-
-      	dashboard.button("t", "  > Themes", ":Telescope colorscheme<CR>"),
-
+      	-- dashboard.button("t", "  > Themes", ":Telescope colorscheme<CR>"),
       	-- dashboard.button("s", "  > System conf", ":e ~/.config/home-manager/flake.nix<CR>"),
       	-- dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
-
-      	dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
       }
 
       dashboard.section.footer.val = os.date("  %A, %Y-%m-%d")
@@ -100,16 +98,6 @@
       vim.cmd([[
         		autocmd FileType alpha setlocal nofoldenable
       ]])
-
-      vim.api.nvim_create_autocmd("User", {
-      	pattern = "LazyVimStarted",
-      	callback = function()
-      		local stats = require("lazy").stats()
-      		local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-      		dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
-      		pcall(vim.cmd.AlphaRedraw)
-      	end,
-      })
     '';
   };
 }

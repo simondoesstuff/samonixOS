@@ -7,14 +7,6 @@
         icons = {
           button = false;
           separator_at_end = false;
-          separator = {
-            left = "┃";
-            right = "";
-          };
-          inactive.separator = {
-            left = "┃";
-            right = "";
-          };
         };
 
         sidebar_filetypes = {
@@ -41,9 +33,9 @@
     ];
 
     extraConfigLua = ''
-          vim.g.barbar_auto_setup = false
-        require('slimline').setup ({
-      		style = 'fg';
+      vim.g.barbar_auto_setup = false
+      require('slimline').setup ({
+      	style = 'fg';
       })
     '';
 
