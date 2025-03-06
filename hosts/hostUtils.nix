@@ -27,6 +27,7 @@ in {
               imports = [
                 ../modules/linux/default.nix
                 config
+                inputs.nixvim.homeManagerModules.nixvim
               ];
             };
 
