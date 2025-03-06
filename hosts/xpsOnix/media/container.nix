@@ -123,8 +123,10 @@
         "d /srv/media/anime 2775 root media -"
         "d /srv/media/movies  2775 root media -"
         "d /srv/transmission 2775 root media -"
-        "d /srv/transmission/tv-sonarr 2775 root media -"
         "d /srv/transmission/.incomplete 2775 root media -"
+        "d /srv/transmission/downloaded 2775 root media -"
+        "d /srv/transmission/downloaded/sonarr 2775 root media -"
+        "d /srv/transmission/downloaded/radarr 2775 root media -"
         "d /srv/anisyncache 2775 root media -"
       ];
       # Set up ACLs for inheritance
@@ -180,12 +182,12 @@
         settings = {
           rpc-bind-address = "0.0.0.0"; #Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
-          download-dir = "/srv/transmission";
-          ratio-limit-enabled = true;
-          download-queue-size = 13;
-          ratio-limit = 0.1; # set on show basis with sonarr
+          download-dir = "/srv/transmission/downloaded";
           incomplete-dir = "/srv/transmission/.incomplete";
-          incomplete-dir-enabled = true;
+          # Seeding and download configs
+          ratio-limit-enabled = true;
+          download-queue-size = 8;
+          ratio-limit = 0.1; # set on show basis with sonarr
         };
       };
 
