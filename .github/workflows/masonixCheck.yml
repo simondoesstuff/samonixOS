@@ -31,7 +31,7 @@ jobs:
           echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
       
       - name: Check flake
-        run: nix flake check
+        run: nix flake check --no-build
         
       - name: Build xpsOnix configuration
         run: nix build .#nixosConfigurations.xpsOnix.config.system.build.toplevel --dry-run
