@@ -42,6 +42,10 @@
 			hostname = "wslonix"; # duped with nix, not sure if nix or wsl takes prio 
 			generateResolvConf = false;
 		};
+
+		experimental = {
+			hostAddressLoopback = true;
+		};
   };
 
 	# INFO: Link wsl library headers to path
