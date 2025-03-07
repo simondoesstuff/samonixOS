@@ -10,6 +10,17 @@
       mockDevIcons = true;
     };
 
+    plugins.colorizer = {
+      enable = true;
+      settings.user_default_options = {
+        tailwind = "both"; # lsp + normal
+        AARRGGBB = true;
+        RRGGBBAA = true;
+        names = false; # dont highlight "blue"
+        css = true;
+      };
+    };
+
     extraConfigLua = ''
       vim.api.nvim_set_hl(0, "WinSeparator", { fg = "bg", bg = "bg" })
       vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "bg" })
