@@ -1,6 +1,7 @@
 {
   programs.nixvim = {
     colorschemes.catppuccin.enable = true;
+    plugins.todo-comments.enable = true;
 
     # dependencies
     plugins.mini = {

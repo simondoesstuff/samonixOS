@@ -1,10 +1,4 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # tailwindcss-language-server
-    # svelte-language-server
-    # nodePackages.svelte-language-server
-  ];
-
+{
   programs.nixvim = {
     plugins.treesitter = {
       enable = true;
@@ -74,6 +68,15 @@
         };
 
         pylsp.enable = true;
+        pylsp.settings = {
+          plugins = {
+            jedi_completion = {enabled = true;};
+            pycodestyle = {enabled = true;};
+            pylsp_rope = {enabled = true;};
+            pylint = {enabled = true;};
+          };
+        };
+        # jedi_language_server.enable = true;
         # dartls.enable = true; dont enable with flutter-tools
         clangd.enable = true;
         sourcekit.enable = true;

@@ -46,10 +46,8 @@
       profileExtra =
         if config.isDarwin
         # 1st export: Add docker to path, docker desktop isn't on nix I think?
-        # 2nd export: Setting chrome executable for flutter to read from to launch web apps
         then ''
           export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
-          export CHROME_EXECUTABLE="/Applications/Microsoft Edge Dev.app/Contents/MacOS/Microsoft Edge Dev"
         ''
         else "";
       completionInit = "

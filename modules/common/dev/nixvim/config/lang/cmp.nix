@@ -1,31 +1,119 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [lolcat];
-  programs.nixvim.plugins = {
-    copilot-lua.enable = true;
-    cmp = {
-      enable = true;
-      autoEnableSources = true;
-      settings = {
-        sources = [
-          {name = "nvim_lsp";}
-          {name = "luasnip";}
-          {name = "path";}
-          {name = "buffer";}
-        ];
-        mapping = {
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<C-e>" = "cmp.mapping.abort()";
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
+  programs.nixvim = {
+    plugins = {
+      friendly-snippets.enable = true;
+      luasnip = {
+        enable = true;
+        settings = {
+          enable_autosnippets = true;
+          exit_roots = false;
+          keep_roots = true;
+          link_roots = true;
+          update_events = [
+            "TextChanged"
+            "TextChangedI"
+          ];
+        };
+      };
+      cmp_luasnip.enable = true;
+      copilot-lua.enable = true;
+      cmp = {
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          sources = [
+            {name = "ai";}
+            {name = "nvim_lsp";}
+            {name = "luasnip";}
+            {name = "path";}
+            {name = "buffer";}
+          ];
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<C-e>" = "cmp.mapping.abort()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
 
-          "<C-n>" = "cmp.mapping.select_next_item()";
-          "<C-p>" = "cmp.mapping.select_prev_item()";
+            "<C-n>" = "cmp.mapping.select_next_item()";
+            "<C-p>" = "cmp.mapping.select_prev_item()";
 
-          "<Tab>" = "cmp.mapping.confirm({ select = true })"; # Makes Tab confirm the selection
+            "<Tab>" =
+              # Lua
+              ''
+                cmp.mapping(function(fallback)
+                local luasnip = require('luasnip')
+                if luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+                elseif cmp.visible() then
+                cmp.confirm({ select = true })
+                else
+                fallback()
+                end
+                end, {'i', 's'})
+              '';
+
+            "<S-Tab>" =
+              # Lua
+              ''
+                cmp.mapping(function(fallback)
+                local luasnip = require('luasnip')
+                if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+                else
+                fallback()
+                end
+                end, {'i', 's'})
+              '';
+          };
         };
       };
     };
+
+    extraConfigLua = ''
+      require("luasnip.loaders.from_vscode").lazy_load()
+    '';
+
+    # keymaps = [
+    #   {
+    #     mode = ["i" "s"];
+    #     key = "<Tab>";
+    #     action.__raw = ''
+    #       function()
+    #         local luasnip = require("luasnip")
+    #         if luasnip.expand_or_jumpable() then
+    #           luasnip.expand_or_jump()
+    #         else
+    #           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+    #         end
+    #       end
+    #     '';
+    #     options = {
+    #       silent = true;
+    #       desc = "LuaSnip: Expand or jump forward";
+    #     };
+    #   }
+    #   {
+    #     mode = ["i" "s"];
+    #     key = "<S-Tab>";
+    #     action.__raw = ''
+    #       function()
+    #         local luasnip = require("luasnip")
+    #         if luasnip.jumpable(-1) then
+    #           luasnip.jump(-1)
+    #         else
+    #           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
+    #         end
+    #       end
+    #     '';
+    #     options = {
+    #       silent = true;
+    #       desc = "LuaSnip: Jump backward";
+    #     };
+    #   }
+    # ];
+
     # blink-cmp = {
     #   enable = true;
     #   autoLoad = true;
