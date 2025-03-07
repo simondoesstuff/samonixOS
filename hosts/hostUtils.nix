@@ -13,6 +13,9 @@ in {
   # and then use pkgs.nixos instead of nixpkgs.lib.nixosSystem
     nixpkgs.lib.nixosSystem {
       inherit system;
+      specialArgs = {
+        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+      };
       modules =
         [
           home-manager.nixosModules.home-manager
@@ -24,6 +27,7 @@ in {
               imports = [
                 ../modules/linux/default.nix
                 config
+                inputs.nixvim.homeManagerModules.nixvim
               ];
             };
 
@@ -61,6 +65,7 @@ in {
           then ../modules/darwin/default.nix
           else ../modules/linux/default.nix
         )
+        inputs.nixvim.homeManagerModules.nixvim
         config
         {homeManagerIsolated = true;}
       ];

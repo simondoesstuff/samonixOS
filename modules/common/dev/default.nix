@@ -2,10 +2,16 @@
   imports = [
     ./termshell.nix
     ./direnv.nix
-    ./nvim.nix
     ./git.nix
 
-    # languages + langauge servers
-    ./language/default.nix
+    ./languages
+    ./nixvim
+    # ./nvim_old
   ];
+
+  # programs.nixvim = {
+  #   enable = true;
+  #   plugins.blink-cmp.enable = true;
+  #   plugins.lsp.enable = true;
+  # };
 }

@@ -8,7 +8,6 @@ in
       entertainment.enable = true;
       personal.enable = true;
       language = {
-        web.enable = true;
         python.enable = true;
       };
     };

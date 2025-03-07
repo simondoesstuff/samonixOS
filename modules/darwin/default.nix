@@ -4,7 +4,6 @@
     [
       #INFO: Darwin exclusive configs
       ./packages.nix
-      ./spotify.nix
     ]
     ++ [
       #INFO: Specified shared configs
