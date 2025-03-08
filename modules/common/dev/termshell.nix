@@ -44,14 +44,14 @@
       enableCompletion = true;
       # Added to (end) of .zprofile
       profileExtra =
-        if config.isDarwin
         # 1st export: Add docker to path, docker desktop isn't on nix I think?
+        if config.isDarwin
         then ''
           export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
         ''
         else "";
       completionInit = "
-				bindkey '^ ' autosuggest-accept
+				bindkey '^[l' autosuggest-accept
 			";
     };
   };

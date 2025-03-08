@@ -1,5 +1,4 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [lolcat];
   programs.nixvim = {
     plugins = {
       friendly-snippets.enable = true;
@@ -18,6 +17,22 @@
       };
       cmp_luasnip.enable = true;
       copilot-lua.enable = true;
+      copilot-lua.settings = {
+        panel = {
+          auto_refresh = true;
+          enabled = true;
+        };
+        suggestion = {
+          auto_trigger = true;
+          debounce = 90;
+          enabled = true;
+          hide_during_completion = false;
+          keymap = {
+            accept_line = false;
+            accept_word = false;
+          };
+        };
+      };
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -44,13 +59,13 @@
               ''
                 cmp.mapping(function(fallback)
                 local luasnip = require('luasnip')
-                if luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-                elseif cmp.visible() then
-                cmp.confirm({ select = true })
-                else
-                fallback()
-                end
+									if luasnip.expand_or_jumpable() then
+										luasnip.expand_or_jump()
+									elseif cmp.visible() then
+										cmp.confirm({ select = true })
+									else
+										fallback()
+									end
                 end, {'i', 's'})
               '';
 
