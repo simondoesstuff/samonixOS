@@ -132,6 +132,16 @@
          		vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { buffer = bufnr, desc = "see implementation" })
          		vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "type definition" })
          		vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { buffer = bufnr, desc = "rename symbol" })
+						vim.keymap.set("n", "<leader>lF", function()
+								local context = { only = { "source.fixAll" } }
+								vim.lsp.buf.code_action({
+										context = context,
+										apply = true,
+										filter = function(action)
+												return action.title:find("Fix all") or action.kind == "source.fixAll"
+										end
+								})
+						end, { buffer = bufnr, desc = "fix all issues in file" })
          		vim.keymap.set("n", "<leader>la", require("actions-preview").code_actions,
          			{ buffer = bufnr, desc = "code action menu" })
 
