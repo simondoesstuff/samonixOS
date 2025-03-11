@@ -84,8 +84,6 @@
       	dashboard.button("t", "   Themes", "<cmd>lua Snacks.picker.colorschemes()<CR>"),
       	dashboard.button("q", "󰰲   Quit neovim", "<cmd>qa<CR>"),
 
-      	--dashboard.button("b", "  > Bookmarks", ":Telescope marks<CR>"),
-      	-- dashboard.button("L", "󰧑  > Leetcode", ":Leet<CR>"),
       	-- dashboard.button("t", "  > Themes", ":Telescope colorscheme<CR>"),
       	-- dashboard.button("s", "  > System conf", ":e ~/.config/home-manager/flake.nix<CR>"),
       	-- dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),

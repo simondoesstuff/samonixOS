@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ripgrep];
+  home.packages = with pkgs; [ripgrep imagemagick];
   programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
@@ -18,7 +18,7 @@
     '';
 
     keymaps = [
-      # Top Pickers & Explorer
+      # INFO: Snacks pickers
       {
         mode = "n";
         key = "<leader>ff";
@@ -41,13 +41,27 @@
         mode = "n";
         key = "<leader>f:";
         action = "<cmd>lua Snacks.picker.command_history()<cr>";
-        options.desc = "Command History";
+        options.desc = "commands";
       }
       {
         mode = "n";
         key = "<leader>fn";
         action = "<cmd>lua Snacks.picker.notifications()<cr>";
-        options.desc = "Notification History";
+        options.desc = "notificaitons";
+      }
+      {
+        mode = "n";
+        key = "<leader>fr";
+        action = "<cmd>lua Snacks.picker.recent()<cr>";
+        options.desc = "recent files";
+      }
+
+      # INFO: Rename using snacks
+      {
+        mode = "n";
+        key = "<leader>rn";
+        action = "<cmd>lua Snacks.rename.rename_file()<cr>";
+        options.desc = "rename file";
       }
     ];
   };
