@@ -28,17 +28,6 @@
         key = "<leader>e";
         options.desc = "explorer (neotree)";
       }
-      {
-        action = "<cmd>Yazi<cr>";
-        key = "<leader>E";
-        options.desc = "explorer (yazi)";
-      }
-      {
-        action = "<cmd>Yazi cwd<cr>";
-        key = "<leader>cw";
-        options.desc = "yazi in cwd";
-        # options.open_for_directories = true; doesn't exist on nixvim?
-      }
     ];
 
     extraPlugins = [
