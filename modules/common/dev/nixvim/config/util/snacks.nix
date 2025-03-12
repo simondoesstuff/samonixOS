@@ -1,6 +1,8 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [ripgrep imagemagick];
+  home.packages = with pkgs; [ripgrep imagemagick tectonic mermaid-cli ghostscript];
   programs.nixvim = {
+		plugins.neoscroll.enable = true;
+
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         name = "snacks";
@@ -14,7 +16,15 @@
     ];
 
     extraConfigLua = ''
-      require("snacks").setup({})
+      require("snacks").setup({
+        	quickfile = { enabled = true },
+					scroll = { enabled = false },
+					statuscolumn = { enabled = true },
+					notifier = { enabled = true },
+					picker = { enabled = true },
+					lazygit = { enabled = true },
+					input = { enabled = true },
+        })
     '';
 
     keymaps = [
@@ -54,6 +64,14 @@
         key = "<leader>fr";
         action = "<cmd>lua Snacks.picker.recent()<cr>";
         options.desc = "recent files";
+      }
+
+      # INFO: Lazygit terminal
+      {
+        mode = "n";
+        key = "<leader>tl";
+        action = "<cmd>lua Snacks.lazygit.open()<cr>";
+        options.desc = "lazygit term";
       }
 
       # INFO: Rename using snacks
