@@ -45,7 +45,7 @@
           })
 
           local hm_switch   = Terminal:new({
-          	cmd = "home-manager switch --flake ~/.config/masonixOS",
+          	cmd = "home-manager switch --flake ~/.config/samonixOS", -- TODO: flake path should be passed in
           	dir = "git_dir",
           	direction = "float",
           	start_in_insert = false,
