@@ -20,7 +20,6 @@ in {
     else unsupported;
 
   home.shellAliases = {
-    la = "ls -a";
     hm = "home-manager";
     hmswitch = "home-manager switch --flake ${config.flakePath}";
     nrswitch = "sudo nixos-rebuild switch --flake ${config.flakePath}";
@@ -39,6 +38,14 @@ in {
   # Add nix only on home-manager isolated systems since nixos has it in default module
   nix = lib.mkIf config.homeManagerIsolated {
     package = pkgs.nixVersions.latest;
-    settings.experimental-features = ["nix-command" "flakes"];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+    gc = {
+      automatic = true;
+      frequency = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
 }
