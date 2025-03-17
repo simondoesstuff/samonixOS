@@ -12,11 +12,10 @@ in {
   config = lib.mkIf (!config.legacyNvim.enable) {
     home.packages = with pkgs; [fd ripgrep tree-sitter];
 
-    home.sessionVariables.EDITOR = "nvim";
-
     programs.nixvim = {
       enable = true;
       luaLoader.enable = true;
+      defaultEditor = true;
 
       globals = {
         mapleader = " ";
