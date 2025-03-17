@@ -19,7 +19,6 @@
       */
       ''
         require("smart-splits").setup({
-        	cursor_follows_swapped_bufs = true, -- When swapping, follow with the swap window (default false)
         	default_amount = 6,
         })
       '';
