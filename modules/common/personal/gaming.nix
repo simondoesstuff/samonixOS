@@ -15,6 +15,7 @@
         # withOpenASAR = true;
         withVencord = true;
       })
+      pkgs.slack
     ];
   };
 }
