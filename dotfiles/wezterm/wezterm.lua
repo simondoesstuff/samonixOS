@@ -20,7 +20,6 @@ config.font = wezterm.font("FiraCode Nerd Font")
 
 -- Convenience
 config.warn_about_missing_glyphs = true
-config.window_close_confirmation = "NeverPrompt"
 config.native_macos_fullscreen_mode = true
 
 config.underline_position = -5
