@@ -51,6 +51,9 @@
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
+      initExtra = ''
+        set -o vi
+      '';
       completionInit = "
 				bindkey '^[l' autosuggest-accept
 			";

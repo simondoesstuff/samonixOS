@@ -107,14 +107,6 @@
       # Terminal mode mappings
       {
         mode = "t";
-        key = "<esc>";
-        action = "<C-\\><C-n>";
-        options = {
-          silent = true;
-        };
-      }
-      {
-        mode = "t";
         key = "<C-h>";
         action = "<Cmd>wincmd h<CR>";
         options = {
