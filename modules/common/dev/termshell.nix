@@ -42,7 +42,9 @@
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
-      # Added to (end) of .zprofile
+      initExtra = ''
+        set -o vi
+      '';
       profileExtra =
         # 1st export: Add docker to path, docker desktop isn't on nix I think?
         if config.isDarwin
