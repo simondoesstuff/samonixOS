@@ -9,6 +9,8 @@
     watch
     parallel
     ripgrep
+    # TODO: better place for this?
+    mitmproxy
   ];
 
   # INFO: Source dotfiles directly
