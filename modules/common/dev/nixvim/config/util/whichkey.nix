@@ -18,14 +18,6 @@
             group = "file";
           }
           {
-            __unkeyed = "<leader><leader>";
-            group = "swap windows";
-          }
-          {
-            __unkeyed = "<leader>c";
-            group = "change";
-          }
-          {
             __unkeyed = "<leader>l";
             group = "lsp";
           }

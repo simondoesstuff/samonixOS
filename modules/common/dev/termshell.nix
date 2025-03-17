@@ -55,7 +55,7 @@
         set -o vi
       '';
       completionInit = "
-				bindkey '^[l' autosuggest-accept
+				bindkey '^ ' autosuggest-accept
 			";
     };
   };

@@ -31,7 +31,7 @@
       # INFO: Snacks pickers
       {
         mode = "n";
-        key = "<leader>ff";
+        key = "<leader><leader>";
         action = "<cmd>lua Snacks.picker.smart()<cr>";
         options.desc = "find files";
       }
@@ -43,7 +43,7 @@
       }
       {
         mode = "n";
-        key = "<leader>fg";
+        key = "<leader>/";
         action = "<cmd>lua Snacks.picker.grep()<cr>";
         options.desc = "grep";
       }
@@ -69,7 +69,7 @@
       # INFO: Lazygit terminal
       {
         mode = "n";
-        key = "<leader>tl";
+        key = "<leader>tg";
         action = "<cmd>lua Snacks.lazygit.open()<cr>";
         options.desc = "lazygit term";
       }
