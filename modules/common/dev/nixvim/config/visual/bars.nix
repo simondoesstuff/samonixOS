@@ -56,13 +56,13 @@
       }
       {
         mode = "n";
-        key = ",";
+        key = "<S-h>";
         action = "<cmd>BufferPrevious<cr>";
         options.desc = "previous buffer";
       }
       {
         mode = "n";
-        key = ".";
+        key = "<S-l>";
         action = "<cmd>BufferNext<cr>";
         options.desc = "next buffer";
       }
