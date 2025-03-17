@@ -48,6 +48,7 @@
           then true
           else false;
       })
+      pkgs.spotify
       pkgs.spotifyd
     ];
 
