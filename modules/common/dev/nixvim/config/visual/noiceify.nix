@@ -1,6 +1,7 @@
 {
   programs.nixvim = {
-    plugins.notify.enable = true;
+    # INFO: use snacks instead
+    # plugins.notify.enable = true;
     plugins.noice = {
       enable = true;
       settings = {

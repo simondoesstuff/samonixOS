@@ -76,15 +76,14 @@
 
       -- Set menu
       dashboard.section.buttons.val = {
-      	dashboard.button("e", "   New file", ":ene <BAR> startinsert <CR>"),
-      	dashboard.button("f", "   Find file", ":cd ~/dev/ | Telescope find_files<CR>"),
-      	dashboard.button("r", "   Recent", ":Telescope oldfiles<CR>"),
-      	dashboard.button("g", "   Grep repo", ":Telescope live_grep<CR>"),
-      	dashboard.button("b", "   Projects", ":Telescope projects<CR>"),
-      	dashboard.button("q", "   Quit neovim", ":qa<CR>"),
+      	dashboard.button("e", "   New file", "<cmd>ene <BAR> startinsert <CR>"),
+      	dashboard.button("f", "   Find file", "<cmd>cd ~/dev/ | lua Snacks.picker.smart()<CR>"),
+      	dashboard.button("r", "   Recent", "<cmd>lua Snacks.picker.recent()<CR>"),
+      	dashboard.button("g", "   Grep repo", "<cmd>lua Snacks.picker.grep()<CR>"),
+      	dashboard.button("b", "   Projects", "<cmd>lua Snacks.picker.projects()<CR>"),
+      	dashboard.button("t", "   Themes", "<cmd>lua Snacks.picker.colorschemes()<CR>"),
+      	dashboard.button("q", "󰰲   Quit neovim", "<cmd>qa<CR>"),
 
-      	--dashboard.button("b", "  > Bookmarks", ":Telescope marks<CR>"),
-      	-- dashboard.button("L", "󰧑  > Leetcode", ":Leet<CR>"),
       	-- dashboard.button("t", "  > Themes", ":Telescope colorscheme<CR>"),
       	-- dashboard.button("s", "  > System conf", ":e ~/.config/home-manager/flake.nix<CR>"),
       	-- dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),

@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  # This repo is deprecated, but the plugin still works for now
+  # WARNING: This repo is deprecated, but the plugin still works for now
   programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
@@ -15,9 +15,11 @@
 
     extraConfigLua = ''
       require("tint").setup({
-      	tint = -7, -- Darken colors, use a positive value to brighten
-      	saturation = 0.6, -- Saturation to preserve
-      	transforms = require("tint").transforms.SATURATE_TINT, -- Showing default behavior, but value here can be predefined set of transforms
+				-- Try to tint by `-10`, but keep all colors at least `3` away from `#1E1E2E`
+				transforms = {
+					require("tint.transforms").tint_with_threshold(-10, "#1E1E2E", 5),
+					require("tint.transforms").saturate(0.5),
+				},
       	tint_background_colors = true, -- Tint background portions of highlight groups
       	highlight_ignore_patterns = { "WinSeparator", "Status.*" }, -- Highlight group patterns to ignore, see `string.find`
       	window_ignore_function = function(winid)
@@ -27,9 +29,23 @@
 
       		-- Do not tint `terminal` or floating windows, tint everything else
       		-- return buftype == "terminal" or floating
-      		return buftype == floating
+      		return floating
       	end,
       })
     '';
+
+    # INFO: Fixes an issue with tint not refreshing after closing snacks lazygit
+    autoCmd = [
+      {
+        event = ["TermClose"];
+        callback.__raw = ''
+          function()
+						vim.defer_fn(function()
+								require("tint").untint(vim.api.nvim_get_current_win())
+						end, 10)
+          end
+        '';
+      }
+    ];
   };
 }
