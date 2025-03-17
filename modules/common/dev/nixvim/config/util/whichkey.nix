@@ -57,15 +57,5 @@
         	}, { prefix = "<leader>" })
            end
       '';
-
-    keymaps = [
-      {
-        action = ''lua require("which-key").show({ global = false })'';
-        key = "<leader>?";
-        options = {
-          desc = "which";
-        };
-      }
-    ];
   };
 }
