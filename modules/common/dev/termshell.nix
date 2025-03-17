@@ -1,6 +1,7 @@
 {
   root,
   config,
+  pkgs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -50,14 +51,6 @@
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
-      # Added to (end) of .zprofile
-      profileExtra =
-        # 1st export: Add docker to path, docker desktop isn't on nix I think?
-        if config.isDarwin
-        then ''
-          export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
-        ''
-        else "";
       completionInit = "
 				bindkey '^[l' autosuggest-accept
 			";

@@ -9,7 +9,7 @@
   imports = builtins.filter (path: lib.hasSuffix ".nix" (toString path)) allFiles;
 in {
   inherit imports;
-  config = lib.mkIf (!config.legacyNvim.enable) {
+  config = {
     home.packages = with pkgs; [fd ripgrep tree-sitter];
 
     home.sessionVariables.EDITOR = "nvim";
