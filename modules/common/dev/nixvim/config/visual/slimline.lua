@@ -38,7 +38,9 @@ require("slimline").setup({
 			"path",
 			"git",
 		},
-		center = {},
+		center = {
+			"recording",
+		},
 		right = {
 			"diagnostics",
 			"filetype_lsp",
