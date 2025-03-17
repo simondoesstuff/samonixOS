@@ -3,7 +3,13 @@
   config,
   ...
 }: {
-  # home.packages = with pkgs; [ghostty]; #broken on mac currently
+  home.packages = with pkgs; [
+    # ghostty  #broken on mac currently
+    fswatch
+    watch
+    parallel
+    ripgrep
+  ];
 
   # INFO: Source dotfiles directly
   xdg.configFile = {
