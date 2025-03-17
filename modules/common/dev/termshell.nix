@@ -52,6 +52,9 @@
           export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
         ''
         else "";
+      initExtra = ''
+        set -o vi
+      '';
       completionInit = "
 				bindkey '^[l' autosuggest-accept
 			";

@@ -18,26 +18,17 @@
       cmp_luasnip.enable = true;
       copilot-lua.enable = true;
       copilot-lua.settings = {
-        panel = {
-          auto_refresh = true;
-          enabled = true;
-        };
-        suggestion = {
-          auto_trigger = true;
-          debounce = 90;
-          enabled = true;
-          hide_during_completion = false;
-          keymap = {
-            accept_line = false;
-            accept_word = false;
-          };
-        };
+        panel.enabled = false;
+        suggestion.enabled = false;
       };
+      copilot-cmp.enable = true;
+      copilot-cmp.settings.fix_pairs = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
           sources = [
+            {name = "copilot";}
             {name = "ai";}
             {name = "nvim_lsp";}
             {name = "luasnip";}
@@ -49,7 +40,20 @@
             "<C-d>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-e>" = "cmp.mapping.abort()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<CR>" =
+              #Lua
+              ''
+                cmp.mapping({
+                	 i = function(fallback)
+                		 if cmp.visible() and cmp.get_active_entry() then
+                			 cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                		 else
+                			 fallback()
+                		 end
+                	 end,
+                	 s = cmp.mapping.confirm({ select = true }),
+                	 c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                 })'';
 
             "<C-n>" = "cmp.mapping.select_next_item()";
             "<C-p>" = "cmp.mapping.select_prev_item()";
@@ -57,16 +61,16 @@
             "<Tab>" =
               # Lua
               ''
-                cmp.mapping(function(fallback)
-                local luasnip = require('luasnip')
-									if luasnip.expand_or_jumpable() then
-										luasnip.expand_or_jump()
-									elseif cmp.visible() then
-										cmp.confirm({ select = true })
-									else
-										fallback()
-									end
-                end, {'i', 's'})
+                       cmp.mapping(function(fallback)
+                       local luasnip = require('luasnip')
+                if luasnip.expand_or_jumpable() then
+                	luasnip.expand_or_jump()
+                elseif cmp.visible() then
+                	cmp.confirm({ select = true })
+                else
+                	fallback()
+                end
+                       end, {'i', 's'})
               '';
 
             "<S-Tab>" =

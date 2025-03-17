@@ -38,7 +38,7 @@
         mode = "n";
         action = ''<cmd>lua require("conform").format({ async = true, lsp_fallback = true })<cr>'';
         key = "<leader>F";
-        options.desc = "explorer (neotree)";
+        options.desc = "reformat";
       }
     ];
   };

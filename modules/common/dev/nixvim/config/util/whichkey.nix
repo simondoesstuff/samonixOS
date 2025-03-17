@@ -22,10 +22,6 @@
             group = "swap windows";
           }
           {
-            __unkeyed = "<leader>b";
-            group = "buffer";
-          }
-          {
             __unkeyed = "<leader>c";
             group = "change";
           }
@@ -57,15 +53,5 @@
         	}, { prefix = "<leader>" })
            end
       '';
-
-    keymaps = [
-      {
-        action = ''lua require("which-key").show({ global = false })'';
-        key = "<leader>?";
-        options = {
-          desc = "which";
-        };
-      }
-    ];
   };
 }
