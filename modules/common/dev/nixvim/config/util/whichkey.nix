@@ -22,10 +22,6 @@
             group = "swap windows";
           }
           {
-            __unkeyed = "<leader>b";
-            group = "buffer";
-          }
-          {
             __unkeyed = "<leader>c";
             group = "change";
           }
