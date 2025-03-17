@@ -13,23 +13,11 @@
     ];
 
     extraConfigLua = ''
-         require("actions-preview").setup({
-            telescope = require("telescope.themes").get_dropdown {
-            	sorting_strategy = "ascending",
-            	layout_strategy = "vertical",
-            	winblend = 10,
-            	layout_config = {
-            		-- anchor = "CENTER",  -- vertically and horizontally
-            		width = 0.8,
-            		height = 0.9,
-            		prompt_position = "top",
-            		preview_cutoff = 25,
-            		preview_height = function(_, _, max_lines)
-            			return max_lines - 25
-            		end,
-            	},
-            },
-      })
+			require("actions-preview").setup({
+				snacks = {
+					layout = { preset = "default" },
+				},
+			})
     '';
   };
 }

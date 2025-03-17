@@ -25,15 +25,6 @@
       }
       {
         mode = "n";
-        key = "<leader>fn";
-        action = "<cmd>enew<cr>";
-        options = {
-          silent = true;
-          desc = "New file";
-        };
-      }
-      {
-        mode = "n";
         key = "<leader>cd";
         action = "<cmd>cd %:h<cr>";
         options = {
