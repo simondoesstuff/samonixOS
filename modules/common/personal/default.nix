@@ -2,7 +2,7 @@
   options.personal.enable = lib.mkEnableOption "enable personal modules" // {default = false;};
 
   imports = [
-    ./gaming.nix
+    ./social.nix
     ./productivity.nix
     ./entertainment.nix
   ];
