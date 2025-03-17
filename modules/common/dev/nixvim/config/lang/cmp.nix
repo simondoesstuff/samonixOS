@@ -40,7 +40,20 @@
             "<C-d>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-e>" = "cmp.mapping.abort()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<CR>" =
+              #Lua
+              ''
+                cmp.mapping({
+                	 i = function(fallback)
+                		 if cmp.visible() and cmp.get_active_entry() then
+                			 cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                		 else
+                			 fallback()
+                		 end
+                	 end,
+                	 s = cmp.mapping.confirm({ select = true }),
+                	 c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                 })'';
 
             "<C-n>" = "cmp.mapping.select_next_item()";
             "<C-p>" = "cmp.mapping.select_prev_item()";
@@ -48,16 +61,16 @@
             "<Tab>" =
               # Lua
               ''
-                cmp.mapping(function(fallback)
-                local luasnip = require('luasnip')
-									if luasnip.expand_or_jumpable() then
-										luasnip.expand_or_jump()
-									elseif cmp.visible() then
-										cmp.confirm({ select = true })
-									else
-										fallback()
-									end
-                end, {'i', 's'})
+                       cmp.mapping(function(fallback)
+                       local luasnip = require('luasnip')
+                if luasnip.expand_or_jumpable() then
+                	luasnip.expand_or_jump()
+                elseif cmp.visible() then
+                	cmp.confirm({ select = true })
+                else
+                	fallback()
+                end
+                       end, {'i', 's'})
               '';
 
             "<S-Tab>" =
