@@ -17,6 +17,7 @@ in {
     programs.nixvim = {
       enable = true;
       luaLoader.enable = true;
+      defaultEditor = true;
 
       globals = {
         mapleader = " ";
