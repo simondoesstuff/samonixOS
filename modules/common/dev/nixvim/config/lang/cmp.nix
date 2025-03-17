@@ -18,26 +18,17 @@
       cmp_luasnip.enable = true;
       copilot-lua.enable = true;
       copilot-lua.settings = {
-        panel = {
-          auto_refresh = true;
-          enabled = true;
-        };
-        suggestion = {
-          auto_trigger = true;
-          debounce = 90;
-          enabled = true;
-          hide_during_completion = false;
-          keymap = {
-            accept_line = false;
-            accept_word = false;
-          };
-        };
+        panel.enabled = false;
+        suggestion.enabled = false;
       };
+      copilot-cmp.enable = true;
+      copilot-cmp.settings.fix_pairs = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
         settings = {
           sources = [
+            {name = "copilot";}
             {name = "ai";}
             {name = "nvim_lsp";}
             {name = "luasnip";}
