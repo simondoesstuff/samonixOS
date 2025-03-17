@@ -3,7 +3,7 @@
 in
   utils.homeManagerSetup {
     system = "aarch64-darwin";
-    username = "mason";
+    username = "simon";
     config = {
       entertainment.enable = true;
       personal.enable = true;

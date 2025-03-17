@@ -3,7 +3,7 @@
 
   options.flakePath = lib.mkOption {
     type = lib.types.str;
-    default = "~/.config/masonixOS";
+    default = "~/.config/samonixOS";
     description = "Path to the flake used by some alias commands";
   };
 

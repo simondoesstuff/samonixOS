@@ -7,24 +7,29 @@
 
   programs.git = {
     enable = true;
-    userName = "masoniis";
-    userEmail = "bott.m@comcast.net";
+    userName = "Simon Walker";
+    userEmail = "simon@simonwalker.tech";
     extraConfig = {
-      credential = {
-        helper = "store";
-      };
-      sendemail = {
-        smtpserver = "smtp.gmail.com";
-        smtpuser = "masonmbott@gmail.com";
-        smtpencryption = "tls";
-        smtpserverport = 587;
-      };
-      merge = {
-        tool = "nvimdiff2";
-      };
-      init = {
-        defaultBranch = "main";
-      };
+      # relevant for ssh auth
+      url."git@github.com:".insteadOf = "https://github.com/";
+      # TODO: configure email settings
+      #
+      # sendemail = {
+      #   smtpserver = "smtp.gmail.com";
+      #   smtpuser = "masonmbott@gmail.com";
+      #   smtpencryption = "tls";
+      #   smtpserverport = 587;
+      # };
+      merge.tool = "nvimdiff2";
+      pull.rebase = false;
+      init.defaultBranch = "main";
+    };
+  };
+
+  gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
     };
   };
 }
