@@ -19,6 +19,10 @@
         auto_hide = 1; # Hide if 1 or less buffers
       };
     };
+    plugins.barbecue = {
+      enable = true;
+      settings.show_dirname = false;
+    };
 
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
