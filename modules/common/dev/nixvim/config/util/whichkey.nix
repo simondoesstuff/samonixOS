@@ -18,6 +18,10 @@
             group = "file";
           }
           {
+            __unkeyed = "<leader>g";
+            group = "git";
+          }
+          {
             __unkeyed = "<leader>l";
             group = "lsp";
           }

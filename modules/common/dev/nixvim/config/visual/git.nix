@@ -12,6 +12,13 @@
         action = "<cmd>Gitsigns toggle_current_line_blame<cr>";
         options.desc = "toggle blame";
       }
+      {
+        # INFO: Lazygit terminal
+        mode = "n";
+        key = "<leader>gg";
+        action = "<cmd>lua Snacks.lazygit.open()<cr>";
+        options.desc = "lazygit term";
+      }
     ];
   };
 }

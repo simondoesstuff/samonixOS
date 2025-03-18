@@ -66,14 +66,6 @@
         options.desc = "recent files";
       }
 
-      # INFO: Lazygit terminal
-      {
-        mode = "n";
-        key = "<leader>tg";
-        action = "<cmd>lua Snacks.lazygit.open()<cr>";
-        options.desc = "lazygit term";
-      }
-
       # INFO: Rename using snacks
       {
         mode = "n";
