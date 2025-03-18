@@ -9,6 +9,7 @@
           show_start = false;
         };
       };
+      todo-comments.enable = true;
     };
   };
 }
