@@ -28,7 +28,6 @@
         term_colors = true;
       };
     };
-    plugins.todo-comments.enable = true;
 
     # dependencies
     plugins.mini = {
