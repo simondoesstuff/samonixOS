@@ -2,15 +2,6 @@
 {pkgs, ...}: {
   programs.nixvim = {
     plugins = {
-      indent-blankline = {
-        enable = true;
-        settings = {
-          scope = {
-            show_end = false;
-            show_start = false;
-          };
-        };
-      };
       illuminate.enable = true;
       todo-comments.enable = true;
       intellitab = {
@@ -26,6 +17,28 @@
           };
         };
       };
+      nvim-ufo.enable = true;
     };
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "zR";
+        action = "<lua>require('ufo').openAllFolds()<cr>";
+        options = {
+          silent = true;
+          desc = "Open all folds";
+        };
+      }
+      {
+        mode = "n";
+        key = "zM";
+        action = "<lua>require('ufo').closeAllFolds()<cr>";
+        options = {
+          silent = true;
+          desc = "Close all folds";
+        };
+      }
+    ];
   };
 }
