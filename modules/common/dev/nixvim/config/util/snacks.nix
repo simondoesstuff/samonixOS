@@ -24,6 +24,7 @@
 					picker = { enabled = true },
 					lazygit = { enabled = true },
 					input = { enabled = true },
+					image = { enabled = true },
         })
     '';
 
