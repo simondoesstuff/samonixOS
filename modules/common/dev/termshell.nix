@@ -1,8 +1,4 @@
-{
-  root,
-  config,
-  ...
-}: {
+{root, ...}: {
   # home.packages = with pkgs; [ghostty]; #broken on mac currently
 
   # INFO: Source dotfiles directly
@@ -31,7 +27,9 @@
       enableZshIntegration = true;
       options = ["--cmd cd"];
     };
+    # better cat command
     bat.enable = true;
+    # better ls command
     eza = {
       enable = true;
       enableZshIntegration = true;
@@ -45,14 +43,8 @@
       initExtra = ''
         set -o vi
       '';
-      profileExtra =
-        # 1st export: Add docker to path, docker desktop isn't on nix I think?
-        if config.isDarwin
-        then ''
-          export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
-        ''
-        else "";
       completionInit = "
+				bindkey '^ ' autosuggest-accept
 				bindkey '^[l' autosuggest-accept
 			";
     };
