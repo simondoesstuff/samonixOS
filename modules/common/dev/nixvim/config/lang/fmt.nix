@@ -24,10 +24,10 @@
           typescriptreact = [ "prettierd" ];
           html = [ "prettierd" ];
           rust = [ "rustfmt" ];
-          nix = [ "alejandra" ];
+          nix = [ "nixfmt" ];
         };
         formatters = {
-          alejandra.command = lib.getExe pkgs.alejandra;
+          nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
           stylua.command = lib.getExe pkgs.stylua;
           prettierd.command = lib.getExe pkgs.prettierd;
           rustfmt.command = lib.getExe pkgs.rustfmt;
