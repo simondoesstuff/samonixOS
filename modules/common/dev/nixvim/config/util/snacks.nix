@@ -1,7 +1,14 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [ripgrep imagemagick tectonic mermaid-cli ghostscript];
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    ripgrep
+    imagemagick
+    tectonic
+    mermaid-cli
+    ghostscript
+  ];
   programs.nixvim = {
-		plugins.neoscroll.enable = true;
+    plugins.neoscroll.enable = true;
 
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
@@ -16,17 +23,17 @@
     ];
 
     extraConfigLua = ''
-      require("snacks").setup({
-        	quickfile = { enabled = true },
-					scroll = { enabled = false },
-					statuscolumn = { enabled = true },
-					notifier = { enabled = true },
-					picker = { enabled = true },
-					lazygit = { enabled = true },
-					input = { enabled = true },
-					indent = { enabed = true },
-					image = { enabled = true },
-        })
+            require("snacks").setup({
+              	quickfile = { enabled = true },
+      					scroll = { enabled = false },
+      					statuscolumn = { enabled = true },
+      					notifier = { enabled = true },
+      					picker = { enabled = true },
+      					lazygit = { enabled = true },
+      					input = { enabled = true },
+      					indent = { enabled = true },
+      					image = { enabled = true },
+              })
     '';
 
     keymaps = [
@@ -59,7 +66,7 @@
         mode = "n";
         key = "<leader>fn";
         action = "<cmd>lua Snacks.picker.notifications()<cr>";
-        options.desc = "notificaitons";
+        options.desc = "notifications";
       }
       {
         mode = "n";

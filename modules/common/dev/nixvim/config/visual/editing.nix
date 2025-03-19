@@ -1,5 +1,6 @@
 # related to the visual editting experience!
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     plugins = {
       illuminate.enable = true;

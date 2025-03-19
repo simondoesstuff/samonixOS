@@ -37,24 +37,18 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper
   ];
 
-  runtimeInputs =
-    [
-      coreutils
-      curl
-      ffmpeg
-      fzf
-      gnugrep
-      gnupatch
-      gnused
-      html-xml-utils
-      mpv
-      openssl
-    ]
-    ++ (
-      if withIINA
-      then [iina]
-      else [mpv]
-    );
+  runtimeInputs = [
+    coreutils
+    curl
+    ffmpeg
+    fzf
+    gnugrep
+    gnupatch
+    gnused
+    html-xml-utils
+    mpv
+    openssl
+  ] ++ (if withIINA then [ iina ] else [ mpv ]);
 
   installPhase = ''
     mkdir -p $out/bin
@@ -71,7 +65,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "CLI to watch Movies/TV Shows from the terminal";
     homepage = "https://github.com/justchokingaround/lobster";
     license = licenses.gpl3;
-    maintainers = with maintainers; [benediktbroich];
+    maintainers = with maintainers; [ benediktbroich ];
     platforms = platforms.unix;
   };
 })

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.nixvim = {
     plugins.which-key = {
       enable = true;
@@ -8,7 +9,10 @@
           no_overlap = true;
           border = "single";
           wo.winblend = 10;
-          padding = [0 2];
+          padding = [
+            0
+            2
+          ];
           title = true;
           title_pos = "center";
         };
@@ -52,18 +56,5 @@
         ];
       };
     };
-
-    extraConfigLua =
-      /*
-      lua
-      */
-      ''
-        vim.cmd("autocmd FileType rust lua WhichKeyRust()")
-        function WhichKeyRust()
-        	wk.register({
-        		C = { name = "cargo" },
-        	}, { prefix = "<leader>" })
-           end
-      '';
   };
 }

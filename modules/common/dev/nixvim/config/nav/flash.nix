@@ -3,13 +3,21 @@
   programs.nixvim.keymaps = [
     {
       key = "s";
-      mode = ["n" "x" "o"];
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
       action.__raw = "function() require('flash').jump() end";
       options.desc = "flash";
     }
     {
       key = "S";
-      mode = ["n" "x" "o"];
+      mode = [
+        "n"
+        "x"
+        "o"
+      ];
       action.__raw = "function() require('flash').treesitter() end";
       options.desc = "flash treesitter";
     }
@@ -21,13 +29,16 @@
     }
     {
       key = "R";
-      mode = ["o" "x"];
+      mode = [
+        "o"
+        "x"
+      ];
       action.__raw = "function() require('flash').treesitter_search() end";
       options.desc = "treesitter search";
     }
     {
       key = "<c-s>";
-      mode = ["c"];
+      mode = [ "c" ];
       action.__raw = "function() require('flash').toggle() end";
       options.desc = "toggle flash search";
     }
