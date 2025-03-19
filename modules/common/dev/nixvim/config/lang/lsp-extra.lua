@@ -1,7 +1,7 @@
 require("inc_rename").setup()
 
 vim.diagnostic.config({
-virtual_text = true,
+	virtual_text = true,
 	signs = true,
 	underline = false,
 	severity_sort = true,
