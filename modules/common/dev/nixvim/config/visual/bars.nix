@@ -50,7 +50,7 @@
       })
     ];
 
-    extraConfigLua = builtins.readFile ./slimline.lua;
+    extraConfigLua = builtins.readFile ./editing.lua;
 
     keymaps = [
       {

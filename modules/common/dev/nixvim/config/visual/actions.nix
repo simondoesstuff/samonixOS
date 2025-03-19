@@ -14,11 +14,11 @@
     ];
 
     extraConfigLua = ''
-      			require("actions-preview").setup({
-      				snacks = {
-      					layout = { preset = "default" },
-      				},
-      			})
+      require("actions-preview").setup({
+        snacks = {
+          layout = { preset = "default" },
+        },
+      })
     '';
   };
 }

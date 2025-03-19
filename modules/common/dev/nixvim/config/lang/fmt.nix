@@ -25,6 +25,8 @@
           html = [ "prettierd" ];
           rust = [ "rustfmt" ];
           nix = [ "nixfmt" ];
+          "*" = [ "codespell" ];
+          "_" = [ "trim_whitespace" ];
         };
         formatters = {
           nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
@@ -33,6 +35,7 @@
           rustfmt.command = lib.getExe pkgs.rustfmt;
           black.command = lib.getExe pkgs.black;
           isort.command = lib.getExe pkgs.isort;
+          codespell.command = lib.getExe pkgs.codespell;
         };
       };
     };

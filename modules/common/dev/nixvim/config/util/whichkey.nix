@@ -44,16 +44,5 @@
         ];
       };
     };
-
-    extraConfigLua =
-      # lua
-      ''
-        vim.cmd("autocmd FileType rust lua WhichKeyRust()")
-        function WhichKeyRust()
-        	wk.register({
-        		C = { name = "cargo" },
-        	}, { prefix = "<leader>" })
-           end
-      '';
   };
 }

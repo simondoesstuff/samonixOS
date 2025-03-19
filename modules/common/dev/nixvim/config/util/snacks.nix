@@ -31,7 +31,7 @@
       					picker = { enabled = true },
       					lazygit = { enabled = true },
       					input = { enabled = true },
-      					indent = { enabed = true },
+      					indent = { enabled = true },
       					image = { enabled = true },
               })
     '';
@@ -66,7 +66,7 @@
         mode = "n";
         key = "<leader>fn";
         action = "<cmd>lua Snacks.picker.notifications()<cr>";
-        options.desc = "notificaitons";
+        options.desc = "notifications";
       }
       {
         mode = "n";

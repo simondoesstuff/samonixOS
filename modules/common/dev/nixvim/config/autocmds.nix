@@ -31,12 +31,5 @@
       event = [ "TermOpen" ];
       command = "setlocal nonumber norelativenumber";
     }
-    # {
-    #   event = ["VimResized"];
-    #   callback = ''
-    #     local half_screen = math.floor(vim.api.nvim_get_option("lines") / 2)
-    #     vim.opt.scroll = half_screen
-    #   '';
-    # }
   ];
 }
