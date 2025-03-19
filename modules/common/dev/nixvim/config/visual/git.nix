@@ -15,7 +15,7 @@
       {
         # INFO: Lazygit terminal
         mode = "n";
-        key = "<leader>gg";
+        key = "<leader>tl";
         action = "<cmd>lua Snacks.lazygit.open()<cr>";
         options.desc = "lazygit term";
       }
