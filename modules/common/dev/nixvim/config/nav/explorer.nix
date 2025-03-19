@@ -52,7 +52,7 @@
         action = "<cmd>Neotree toggle source=filesystem reveal=true position=left<cr>";
         mode = "n";
         key = "<leader>e";
-        options.desc = "explorer (neotree)";
+        options.desc = "explorer";
       }
     ];
 

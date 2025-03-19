@@ -37,6 +37,18 @@
             __unkeyed = "<leader>t";
             group = "terminal";
           }
+          {
+            __unkeyed = "<leader>s";
+            group = "system";
+          }
+          {
+            __unkeyed = "<leader>u";
+            group = "un";
+          }
+          {
+            __unkeyed = "<leader>r";
+            group = "re";
+          }
         ];
       };
     };
