@@ -1,29 +1,13 @@
 {pkgs, ...}: {
   # This repo is deprecated, but the plugin still works for now
   programs.nixvim = {
-    extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "smart-splits";
-        src = pkgs.fetchFromGitHub {
-          owner = "mrjones2014";
-          repo = "smart-splits.nvim";
-          rev = "baff41c382020e8b31037ca97a3339b310c23772";
-          sha256 = "xRXaizj7QMEtj+XCajeBmI/DrQ9xp0B5tX+TpIUhiyA=";
-        };
-      })
-    ];
-
-    extraConfigLua =
-      /*
-      lua
-      */
-      ''
-        require("smart-splits").setup({
-        	cursor_follows_swapped_bufs = true, -- When swapping, follow with the swap window (default false)
-        	default_amount = 1,              -- set default resize interval to 1 instead of 3
-        })
-        vim.keymap.set("n", "<leader><leader>", " ", { desc = "swap splits" })
-      '';
+    plugins.smart-splits = {
+      enable = true;
+      settings = {
+        default_amount = 1;
+        cursor_follows_swapped_bufs = true;
+      };
+    };
 
     keymaps = [
       # Swapping buffers between windows
