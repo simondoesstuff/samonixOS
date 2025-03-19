@@ -1,5 +1,4 @@
-{lib, ...}:
-{
+{...}: {
   imports = [
     ./termshell.nix
     ./direnv.nix

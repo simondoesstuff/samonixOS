@@ -40,7 +40,9 @@
       enableZshIntegration = true;
       options = ["--cmd cd"];
     };
+    # better cat command
     bat.enable = true;
+    # better ls command
     eza = {
       enable = true;
       enableZshIntegration = true;

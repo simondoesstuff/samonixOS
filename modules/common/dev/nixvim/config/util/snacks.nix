@@ -25,6 +25,7 @@
 					lazygit = { enabled = true },
 					input = { enabled = true },
 					indent = { enabed = true },
+					image = { enabled = true },
         })
     '';
 

@@ -5,7 +5,7 @@
   ...
 }: {
   config = lib.mkIf config.personal.enable {
-    nixpkgs.config.allowUnfree = true; # Allow unfree licensed packages, like discord
+    nixpkgs.config.allowUnfree = true; # discord = unfree
 
     home.packages = [
       #INFO: On mac, since this modifies signed discord, it now has to be allowed in security settings.
