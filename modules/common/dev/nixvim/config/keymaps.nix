@@ -46,6 +46,17 @@
         desc = "quit";
       };
     }
+    {
+      mode = "n";
+      key = "<esc>";
+      action = "<cmd>nohlsearch<cr><esc>";
+      options = {
+        silent = true;
+        noremap = true;
+        nowait = true;
+        desc = "clear search highlight";
+      };
+    }
     # Swap gj & j and gk & k to allow for easier navigation in wrapped lines
     {
       mode = "n";
@@ -93,21 +104,13 @@
     # INFO: Terminal mode mappings
     {
       mode = "t";
-      key = "<esc>";
-      action = "<esc>";
-      options = {
-        silent = true;
-        noremap = true;
-      };
-    }
-    {
-      mode = "t";
       key = "<esc><esc>";
       # exit term mode -> go to norm mode
       action = "<C-\\><C-n>";
       options = {
         silent = true;
         noremap = true;
+        nowait = true;
       };
     }
   ];
