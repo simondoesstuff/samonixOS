@@ -17,6 +17,28 @@
           };
         };
       };
+      nvim-ufo.enable = true;
     };
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "zR";
+        action = "<lua>require('ufo').openAllFolds()<cr>";
+        options = {
+          silent = true;
+          desc = "Open all folds";
+        };
+      }
+      {
+        mode = "n";
+        key = "zM";
+        action = "<lua>require('ufo').closeAllFolds()<cr>";
+        options = {
+          silent = true;
+          desc = "Close all folds";
+        };
+      }
+    ];
   };
 }
