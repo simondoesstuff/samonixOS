@@ -24,7 +24,7 @@
       {
         mode = "n";
         key = "zR";
-        action = "<lua>require('ufo').openAllFolds()<cr>";
+        action.__raw = "function() require('ufo').openAllFolds() end";
         options = {
           silent = true;
           desc = "Open all folds";
@@ -33,7 +33,7 @@
       {
         mode = "n";
         key = "zM";
-        action = "<lua>require('ufo').closeAllFolds()<cr>";
+        action.__raw = "function() require('ufo').closeAllFolds() end";
         options = {
           silent = true;
           desc = "Close all folds";
