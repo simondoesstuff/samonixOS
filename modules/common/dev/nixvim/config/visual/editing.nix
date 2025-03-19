@@ -27,7 +27,7 @@
         action.__raw = "function() require('ufo').openAllFolds() end";
         options = {
           silent = true;
-          desc = "Open all folds";
+          desc = "open all folds";
         };
       }
       {
@@ -36,7 +36,7 @@
         action.__raw = "function() require('ufo').closeAllFolds() end";
         options = {
           silent = true;
-          desc = "Close all folds";
+          desc = "close all folds";
         };
       }
     ];
