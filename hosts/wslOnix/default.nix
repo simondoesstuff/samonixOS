@@ -14,6 +14,5 @@ in
       language = {
         python.enable = true;
       };
-			legacyNvim.enable = true;
     };
   }
