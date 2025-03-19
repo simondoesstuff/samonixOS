@@ -1,5 +1,8 @@
-{lib, ...}: {
-  options.test.enable = lib.mkEnableOption "enable test hello module" // {default = false;};
+{ lib, ... }:
+{
+  options.test.enable = lib.mkEnableOption "enable test hello module" // {
+    default = false;
+  };
 
   imports =
     [

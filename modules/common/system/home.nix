@@ -4,20 +4,23 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   isLinux = pkgs.stdenv.hostPlatform.isLinux;
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
   unsupported = builtins.abort "Unsupported platform";
-in {
+in
+{
   home.username = username;
   home.stateVersion = "23.11"; # WARNING: read docs before updating
 
   home.homeDirectory =
-    if isLinux
-    then "/home/${username}"
-    else if isDarwin
-    then "/Users/${username}"
-    else unsupported;
+    if isLinux then
+      "/home/${username}"
+    else if isDarwin then
+      "/Users/${username}"
+    else
+      unsupported;
 
   home.shellAliases = {
     hm = "home-manager";
@@ -30,16 +33,17 @@ in {
   # INFO: If home-manager is not isolated then home-manager is not in the path,
   # we need to add home-manager to the path by installing the package
   home.packages = [
-    (lib.mkIf
-      (!config.homeManagerIsolated)
-      pkgs.home-manager)
+    (lib.mkIf (!config.homeManagerIsolated) pkgs.home-manager)
   ];
 
   # Add nix only on home-manager isolated systems since nixos has it in default module
   nix = lib.mkIf config.homeManagerIsolated {
     package = pkgs.nixVersions.latest;
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
     };
     gc = {

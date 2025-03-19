@@ -1,5 +1,6 @@
 # "bars": tabs, status line, commands
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     plugins.barbar = {
       enable = true;

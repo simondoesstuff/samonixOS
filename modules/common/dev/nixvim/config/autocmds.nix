@@ -6,29 +6,29 @@
   programs.nixvim.autoCmd = [
     {
       # Highlight on yank
-      event = ["TextYankPost"];
+      event = [ "TextYankPost" ];
       command = "lua vim.highlight.on_yank()";
       group = "yankGrp";
     }
     {
       # Check if any buffers were changed while unfocused
-      event = ["FocusGained"];
+      event = [ "FocusGained" ];
       command = "checktime";
     }
     {
       # Stop neovim from creating new comment lines
       # automatically when pressing enter or o/O
-      event = ["BufEnter"];
+      event = [ "BufEnter" ];
       command = "set formatoptions-=cro";
     }
     {
       # Insert mode when opening new terminals
-      event = ["TermOpen"];
+      event = [ "TermOpen" ];
       command = "startinsert";
     }
     {
       # Remove gutter line numbers in terminal
-      event = ["TermOpen"];
+      event = [ "TermOpen" ];
       command = "setlocal nonumber norelativenumber";
     }
     # {

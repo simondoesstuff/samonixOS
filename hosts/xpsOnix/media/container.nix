@@ -3,17 +3,18 @@
   pkgs,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   # INFO: Forward host interface to containers or something
   # Source: https://nixos.org/manual/nixos/stable/#sec-container-networking
-  networking.networkmanager.unmanaged = ["interface-name:ve-*"];
+  networking.networkmanager.unmanaged = [ "interface-name:ve-*" ];
   networking.nat = {
     enable = true;
-    internalInterfaces = ["ve-+"]; # wildcard for all container interfaces
+    internalInterfaces = [ "ve-+" ]; # wildcard for all container interfaces
     externalInterface = "wlp59s0"; # host interface
   };
 
-  environment.systemPackages = [pkgs.ncdu];
+  environment.systemPackages = [ pkgs.ncdu ];
 
   containers.media = {
     autoStart = false; # autostart dangerous if low storage
@@ -41,18 +42,28 @@
     ];
 
     config = {
-      environment.systemPackages = with pkgs; [dnsutils jellyfin jellyfin-web jellyfin-ffmpeg tcpdump acl];
+      environment.systemPackages = with pkgs; [
+        dnsutils
+        jellyfin
+        jellyfin-web
+        jellyfin-ffmpeg
+        tcpdump
+        acl
+      ];
       system.stateVersion = "24.11";
 
       # Networking
       networking = {
-        nameservers = ["1.1.1.1" "8.8.8.8"];
+        nameservers = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
         dhcpcd.enable = false;
         useHostResolvConf = false;
         nat = {
           enable = true;
           externalInterface = "wlp59s0";
-          internalInterfaces = ["tun0"];
+          internalInterfaces = [ "tun0" ];
         };
         interfaces."eth0".ipv4.routes = [
           {
@@ -69,11 +80,23 @@
         # Firewall to prevent leaks outside of vpn by only accepting marked traffic
         firewall = {
           enable = false;
-          allowedUDPPorts = [1194]; # Standard OpenVPN port
-          allowedTCPPorts = [8096 5055 8989];
+          allowedUDPPorts = [ 1194 ]; # Standard OpenVPN port
+          allowedTCPPorts = [
+            8096
+            5055
+            8989
+          ];
           interfaces = {
-            "eth0".allowedTCPPorts = [8096 5055 8989];
-            "tun".allowedTCPPorts = [8096 5055 8989];
+            "eth0".allowedTCPPorts = [
+              8096
+              5055
+              8989
+            ];
+            "tun".allowedTCPPorts = [
+              8096
+              5055
+              8989
+            ];
           };
           # Reject all traffic not going through VPN
           extraCommands = ''
@@ -116,7 +139,12 @@
       ];
 
       # Media group, dir perms, and file tree structure
-      users.groups.media.members = ["jellyfin" "sonarr" "radarr" "transmission"];
+      users.groups.media.members = [
+        "jellyfin"
+        "sonarr"
+        "radarr"
+        "transmission"
+      ];
       systemd.tmpfiles.rules = [
         "d /srv/media 2775 root media -"
         "d /srv/media/shows 2775 root media -"
@@ -137,7 +165,7 @@
           ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/transmission
           ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/anisyncache
         '';
-        deps = [];
+        deps = [ ];
       };
 
       services.jellyfin = {
@@ -173,14 +201,14 @@
       };
 
       services.transmission = {
-        enable = true; #Enable transmission daemon
+        enable = true; # Enable transmission daemon
         openFirewall = true; # port 9091
         openRPCPort = true; # opens firewall for RPC
         package = pkgs.transmission_4-qt;
         group = "media";
         user = "transmission";
         settings = {
-          rpc-bind-address = "0.0.0.0"; #Bind to own IP
+          rpc-bind-address = "0.0.0.0"; # Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
           download-dir = "/srv/transmission/downloaded";
           incomplete-dir = "/srv/transmission/.incomplete";

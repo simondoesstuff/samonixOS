@@ -1,4 +1,5 @@
-{root, ...}: {
+{ root, ... }:
+{
   # home.packages = with pkgs; [ghostty]; #broken on mac currently
 
   # INFO: Source dotfiles directly
@@ -25,7 +26,7 @@
     zoxide = {
       enable = true;
       enableZshIntegration = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
     };
     # better cat command
     bat.enable = true;

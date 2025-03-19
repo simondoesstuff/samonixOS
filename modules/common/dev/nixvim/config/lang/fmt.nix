@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
@@ -13,14 +14,17 @@
         };
         default_format_opts.lsp_format = "fallback";
         formatters_by_ft = {
-          lua = ["stylua"];
-          python = ["isort" "black"];
-          javascript = ["prettierd"];
-          typescript = ["prettierd"];
-          typescriptreact = ["prettierd"];
-          html = ["prettierd"];
-          rust = ["rustfmt"];
-          nix = ["alejandra"];
+          lua = [ "stylua" ];
+          python = [
+            "isort"
+            "black"
+          ];
+          javascript = [ "prettierd" ];
+          typescript = [ "prettierd" ];
+          typescriptreact = [ "prettierd" ];
+          html = [ "prettierd" ];
+          rust = [ "rustfmt" ];
+          nix = [ "alejandra" ];
         };
         formatters = {
           alejandra.command = lib.getExe pkgs.alejandra;

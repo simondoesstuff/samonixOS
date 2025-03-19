@@ -39,7 +39,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ./fix_macos.patch
   ];
 
-  nativeBuildInputs = [makeWrapper];
+  nativeBuildInputs = [ makeWrapper ];
   runtimeInputs =
     [
       coreutils
@@ -55,11 +55,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ++ lib.optional withRofi rofi
     ++ lib.optional imagePreviewSupport chafa
     ++ lib.optional infoSupport jq
-    ++ (
-      if withIINA
-      then [iina]
-      else [mpv]
-    );
+    ++ (if withIINA then [ iina ] else [ mpv ]);
 
   installPhase = ''
     runHook preInstall
@@ -79,7 +75,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     description = "Watch anime with automatic anilist syncing and other cool stuff";
     homepage = "https://github.com/justchokingaround/jerry";
     license = licenses.gpl3;
-    maintainers = with maintainers; [justchokingaround diniamo];
+    maintainers = with maintainers; [
+      justchokingaround
+      diniamo
+    ];
     platforms = platforms.unix;
     mainProgram = "jerry";
   };
