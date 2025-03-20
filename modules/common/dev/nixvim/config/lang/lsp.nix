@@ -18,10 +18,17 @@
     plugins.lsp = {
       enable = true;
       servers = {
-        lua_ls.enable = true;
-        lua_ls.settings.Lua.workspace.library = [
-          "/Users/mason/dev/computercraft/ccls/library"
-        ];
+        lua_ls = {
+          enable = true;
+          settings = {
+            Lua = {
+              workspace = {
+                # TODO: Fetch this using fetchgit
+                library = [ "/Users/mason/dev/computercraft/ccls/library" ];
+              };
+            };
+          };
+        };
 
         # TODO: drip out nix language server setup
         # nixd.enable = true;

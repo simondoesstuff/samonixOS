@@ -15,10 +15,10 @@
           nesting_rules.__raw = ''
             (function()
               local rules = require("neotree-file-nesting-config").nesting_rules
-              -- Any NAME.nix file with a corresponding NAME.lua gets collapsed
-              rules["%.nix"] = {
-                pattern = "(.*)%.nix$",
-                files = { "%1%.lua" }
+              -- Any NAME.nix file with corresponding NAME.lua or NAME-any.lua gets collapsed
+              rules["nixvim_lua"] = {
+                pattern = "(.*).nix$",
+                files = { "%1%.lua", "%1-*%.lua" }
               }
               return rules
             end)()
