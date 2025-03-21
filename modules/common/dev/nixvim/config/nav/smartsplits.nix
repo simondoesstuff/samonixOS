@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # This repo is deprecated, but the plugin still works for now
   programs.nixvim = {
     plugins.smart-splits = {

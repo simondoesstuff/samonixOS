@@ -1,5 +1,8 @@
-{lib, ...}: {
-  options.homeManagerIsolated = lib.mkEnableOption "is home manager without nixOS?" // {default = false;};
+{ lib, ... }:
+{
+  options.homeManagerIsolated = lib.mkEnableOption "is home manager without nixOS?" // {
+    default = false;
+  };
 
   options.flakePath = lib.mkOption {
     type = lib.types.str;

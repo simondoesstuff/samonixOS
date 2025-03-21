@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
@@ -13,11 +14,11 @@
     ];
 
     extraConfigLua = ''
-			require("actions-preview").setup({
-				snacks = {
-					layout = { preset = "default" },
-				},
-			})
+      require("actions-preview").setup({
+        snacks = {
+          layout = { preset = "default" },
+        },
+      })
     '';
   };
 }

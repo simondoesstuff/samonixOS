@@ -4,8 +4,11 @@
   root,
   config,
   ...
-}: {
-  options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {default = false;};
+}:
+{
+  options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {
+    default = false;
+  };
 
   config = lib.mkIf config.entertainment.enable {
     #INFO: Source 4k upscale shaders for anime.
@@ -36,17 +39,11 @@
     home.packages = [
       pkgs.ffmpeg # Common dependency, used for stacher as well as general use
       (pkgs.jerry {
-        withIINA =
-          if pkgs.stdenv.isDarwin
-          then true
-          else false;
+        withIINA = if pkgs.stdenv.isDarwin then true else false;
         imagePreviewSupport = true;
       })
       (pkgs.lobster {
-        withIINA =
-          if pkgs.stdenv.isDarwin
-          then true
-          else false;
+        withIINA = if pkgs.stdenv.isDarwin then true else false;
       })
       pkgs.spotify
       pkgs.spotifyd

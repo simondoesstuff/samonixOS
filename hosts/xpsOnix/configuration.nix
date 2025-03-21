@@ -1,5 +1,6 @@
 # nixos-help to open nixos manual for information on options
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # WARNING: Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
@@ -7,7 +8,10 @@
   nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nix;
-    settings.experimental-features = ["nix-command" "flakes"];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     gc = {
       automatic = true;
       dates = "weekly";
@@ -59,7 +63,10 @@
   users.users.mason = {
     isNormalUser = true;
     description = "mason";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
   programs.zsh.enable = true;
 

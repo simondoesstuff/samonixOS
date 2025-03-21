@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
@@ -13,22 +14,28 @@
         };
         default_format_opts.lsp_format = "fallback";
         formatters_by_ft = {
-          lua = ["stylua"];
-          python = ["isort" "black"];
-          javascript = ["prettierd"];
-          typescript = ["prettierd"];
-          typescriptreact = ["prettierd"];
-          html = ["prettierd"];
-          rust = ["rustfmt"];
-          nix = ["alejandra"];
+          lua = [ "stylua" ];
+          python = [
+            "isort"
+            "black"
+          ];
+          javascript = [ "prettierd" ];
+          typescript = [ "prettierd" ];
+          typescriptreact = [ "prettierd" ];
+          html = [ "prettierd" ];
+          rust = [ "rustfmt" ];
+          nix = [ "nixfmt" ];
+          "*" = [ "codespell" ];
+          "_" = [ "trim_whitespace" ];
         };
         formatters = {
-          alejandra.command = lib.getExe pkgs.alejandra;
+          nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
           stylua.command = lib.getExe pkgs.stylua;
           prettierd.command = lib.getExe pkgs.prettierd;
           rustfmt.command = lib.getExe pkgs.rustfmt;
           black.command = lib.getExe pkgs.black;
           isort.command = lib.getExe pkgs.isort;
+          codespell.command = lib.getExe pkgs.codespell;
         };
       };
     };

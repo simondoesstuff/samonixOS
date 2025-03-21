@@ -8,19 +8,24 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:nix-community/nixvim/main";
+    systems.url = "github:nix-systems/default";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
 
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
-  outputs = {...} @ inputs: rec {
-    # To load a nixos config with home-manager built into it run
-    # sudo nixos-rebuild switch --flake .#hostname
-    nixosConfigurations = {
-      wslOnix = import ./hosts/wslOnix {inherit inputs;};
-      xpsOnix = import ./hosts/xpsOnix {inherit inputs;};
-    };
+  outputs =
+    { ... }@inputs:
+    rec {
+      # To load a nixos config with home-manager built into it run
+      # sudo nixos-rebuild switch --flake .#hostname
+      nixosConfigurations = {
+        wslOnix = import ./hosts/wslOnix { inherit inputs; };
+        xpsOnix = import ./hosts/xpsOnix { inherit inputs; };
+      };
 
     # To load a home-manager config isolated from the nixos config, these can be used.
     # home-manager switch --flake .#user@hostname

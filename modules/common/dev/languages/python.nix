@@ -3,11 +3,12 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   config = lib.mkIf config.language.python.enable {
     home.packages = with pkgs; [
-      (python3.withPackages (ps:
-        with ps; [
+      (python3.withPackages (
+        ps: with ps; [
           black # formatter
           isort # import sorter
           pyright # lang server for type checking
@@ -15,7 +16,8 @@
           matplotlib
           numpy
           bandit
-        ]))
+        ]
+      ))
     ];
 
     programs.poetry = {

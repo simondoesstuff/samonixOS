@@ -1,5 +1,6 @@
 # This config is just a general darwin config
-{...}: {
+{ ... }:
+{
   imports =
     [
       #INFO: Darwin exclusive configs

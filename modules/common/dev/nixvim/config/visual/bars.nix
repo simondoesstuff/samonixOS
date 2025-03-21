@@ -1,5 +1,6 @@
 # "bars": tabs, status line, commands
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     plugins.barbar = {
       enable = true;
@@ -49,7 +50,7 @@
       })
     ];
 
-    extraConfigLua = builtins.readFile ./slimline.lua;
+    extraConfigLua = builtins.readFile ./editing.lua;
 
     keymaps = [
       {

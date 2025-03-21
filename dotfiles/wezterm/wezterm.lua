@@ -33,7 +33,7 @@ config.window_padding = {
 }
 
 config.window_frame = {
-	font = wezterm.font('Roboto', { weight = 'Bold' }),
+	font = wezterm.font("Roboto", { weight = "Bold" }),
 	font_size = 12.0,
 	-- tab bar BG color based on window focused/unfocused
 	active_titlebar_bg = "#000000",
@@ -42,7 +42,7 @@ config.window_frame = {
 
 config.colors = {
 	tab_bar = {
-		active_tab = {               -- Tab with current focus
+		active_tab = { -- Tab with current focus
 			bg_color = scheme.background,
 			fg_color = scheme.brights[3], -- green
 		},
@@ -73,7 +73,7 @@ config.colors = {
 			fg_color = scheme.brights[3], -- green
 		},
 	},
-	compose_cursor = 'orange',
+	compose_cursor = "orange",
 }
 
 -- INFO: Keybinds
