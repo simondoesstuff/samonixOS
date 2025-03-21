@@ -22,7 +22,7 @@
     {
       mode = "n";
       key = "<leader>-";
-      action = "<cmd>split<cr>";
+      action = "<cmd>split<cr><C-w>j";
       options = {
         silent = true;
         desc = "horizontal split";
@@ -31,7 +31,7 @@
     {
       mode = "n";
       key = "<leader>|";
-      action = "<cmd>vsplit<cr>";
+      action = "<cmd>vsplit<cr><C-w>l";
       options = {
         silent = true;
         desc = "vertical split";
