@@ -1,4 +1,4 @@
-# related to the visual editting experience!
+# related to the visual editing experience!
 { pkgs, ... }:
 {
   programs.nixvim = {
@@ -19,6 +19,13 @@
         };
       };
       nvim-ufo.enable = true;
+      nvim-ufo.settings.provider-selector =
+        #lua
+        ''
+          provider_selector = function(bufnr, filetype, buftype)
+          	return {'treesitter', 'indent'}
+          end
+          				'';
     };
 
     keymaps = [
