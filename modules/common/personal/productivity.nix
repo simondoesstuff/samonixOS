@@ -11,6 +11,7 @@
     ];
     home.packages = with pkgs; [
       obsidian
+      (timetrack { obsidianVaultPath = "/Users/mason/obsidian/obsidian"; }) # masonpkgs
     ];
   };
 }
