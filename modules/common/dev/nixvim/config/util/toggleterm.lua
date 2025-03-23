@@ -160,3 +160,6 @@ vim.api.nvim_set_keymap(
 	"<cmd>lua _FlutterRun()<CR>",
 	{ noremap = true, silent = true, desc = "flutter run term" }
 )
+
+vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>close<CR>", { noremap = true, silent = true, desc = "close" })
+vim.api.nvim_set_keymap("t", "<C-q>", "<cmd>close<CR>", { noremap = true, silent = true, desc = "close" })
