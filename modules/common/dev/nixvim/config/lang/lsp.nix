@@ -38,10 +38,10 @@
           enable = true;
           # TODO: Need to create a cmd selection function.
           # If bunx exist, use that, otherwise node, etc
-          cmd = [
-            "bunx"
-            "tailwindcss-language-server"
-          ];
+          # cmd = [
+          #   "bunx"
+          #   "tailwindcss-language-server"
+          # ];
           extraOptions = {
             on_init = {
               __raw = ''
