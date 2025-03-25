@@ -8,8 +8,8 @@
 
   programs.git = {
     enable = true;
-    userName = "masoniis";
-    userEmail = "bott.m@comcast.net";
+    userName = "mason";
+    userEmail = "58895787+masoniis@users.noreply.github.com";
     extraConfig = {
       sendemail = {
         smtpserver = "smtp.gmail.com";
