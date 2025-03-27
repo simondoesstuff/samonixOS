@@ -51,6 +51,9 @@ in
       foldenable = false;
       #- timeoutlen = 100; -- Controls how fast whichkey appears among other things
       relativenumber = true;
+      fillchars = {
+        diff = "╱";
+      };
       #- autochdir = true;
       # scroll = math.floor (vim.api.nvim_get_option "lines" / 2);
       hidden = true; # - Allow hidden buffers for things like toggleterm
