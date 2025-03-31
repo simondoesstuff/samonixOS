@@ -31,9 +31,11 @@ in
       termguicolors = true;
       number = true;
       numberwidth = 5;
+      textwidth = 100;
       cursorline = true;
       cursorlineopt = "both";
       clipboard = "unnamedplus"; # - Neovim and OS clipboard are friends now
+      expandtab = true;
       tabstop = 2; # - Tab length 4 spaces
       shiftwidth = 2; # - 4 spaces when indenting with '>'
       smartcase = false; # - Ignore case if pattern is all lowercase
@@ -44,6 +46,7 @@ in
       sidescrolloff = 8; # - Handled in VSCode settings
       laststatus = 3;
       #- Folding options
+      smartindent = true;
       foldmethod = "indent";
       foldlevel = 99; # - Fold this many indentations (essentially inf)
       #- foldmethod = "expr";
