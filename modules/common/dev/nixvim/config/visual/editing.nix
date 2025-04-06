@@ -3,6 +3,7 @@
 {
   programs.nixvim = {
     plugins = {
+      # usage highlighting & goto usages
       illuminate.enable = true;
       todo-comments.enable = true;
       intellitab = {
@@ -29,6 +30,26 @@
     };
 
     keymaps = [
+      # vim illuminate: goto usages
+      {
+        mode = "n";
+        key = "]]";
+        action.__raw = "function() require('illuminate').goto_next_reference(false) end";
+        options = {
+          silent = true;
+          desc = "goto next reference";
+        };
+      }
+      {
+        mode = "n";
+        key = "[[";
+        action.__raw = "function() require('illuminate').goto_prev_reference(false) end";
+        options = {
+          silent = true;
+          desc = "goto previous reference";
+        };
+      }
+      # folds
       {
         mode = "n";
         key = "zR";
