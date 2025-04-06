@@ -1,5 +1,12 @@
 require("inc_rename").setup()
 
+-- Fix issues with nvim assuming frag, vert, etc files are .conf files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.vsh", "*.fsh", "*.frag", "*.vert" },
+	command = "set filetype=glsl",
+	group = vim.api.nvim_create_augroup("vsh_filetype", { clear = true }),
+})
+
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,
