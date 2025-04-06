@@ -156,14 +156,23 @@
         "d /srv/transmission/downloaded/sonarr 2775 root media -"
         "d /srv/transmission/downloaded/radarr 2775 root media -"
         "d /srv/anisyncache 2775 root media -"
+        "z /srv/media 2775 root media -"
+        "z /srv/media/shows 2775 root media -"
+        "z /srv/media/anime 2775 root media -"
+        "z /srv/media/movies  2775 root media -"
+        "z /srv/transmission 2775 root media -"
+        "z /srv/transmission/.incomplete 2775 root media -"
+        "z /srv/transmission/downloaded 2775 root media -"
+        "z /srv/transmission/downloaded/sonarr 2775 root media -"
+        "z /srv/transmission/downloaded/radarr 2775 root media -"
+        "z /srv/anisyncache 2775 root media -"
       ];
       # Set up ACLs for inheritance
       system.activationScripts.mediaPermissions = {
         text = ''
-          echo "Setting up ACLs for media directories..."
-          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/media
-          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/transmission
-          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/anisyncache
+           echo "Setting up ACLs for media directories..."
+           ${pkgs.acl}/bin/setfacl -R -m g:media:rwx /srv/media /srv/transmission /srv/anisyncache
+          ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/media /srv/transmission /srv/anisyncache
         '';
         deps = [ ];
       };
@@ -200,6 +209,7 @@
         package = pkgs-unstable.prowlarr;
       };
 
+      # Settings available at https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
       services.transmission = {
         enable = true; # Enable transmission daemon
         openFirewall = true; # port 9091
@@ -208,6 +218,7 @@
         group = "media";
         user = "transmission";
         settings = {
+          unmask = 2; # write perms for others
           rpc-bind-address = "0.0.0.0"; # Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
           download-dir = "/srv/transmission/downloaded";

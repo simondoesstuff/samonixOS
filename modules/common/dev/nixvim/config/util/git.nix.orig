@@ -6,6 +6,11 @@
       settings.current_line_blame_opts.delay = 0;
     };
 
+    plugins.diffview = {
+      enable = true;
+      enhancedDiffHl = true;
+    };
+
     keymaps = [
       {
         mode = "n";
@@ -14,11 +19,18 @@
         options.desc = "toggle blame";
       }
       {
+<<<<<<< HEAD:modules/common/dev/nixvim/config/visual/git.nix
         # INFO: Lazygit terminal
         mode = "n";
         key = "<leader>tl";
         action = "<cmd>lua Snacks.lazygit.open()<cr>";
         options.desc = "lazygit term";
+=======
+        mode = "n";
+        key = "<leader>gd";
+        action = "<cmd>DiffviewOpen<cr>";
+        options.desc = "open diffview";
+>>>>>>> common:modules/common/dev/nixvim/config/util/git.nix
       }
     ];
   };

@@ -57,6 +57,15 @@
         desc = "clear search highlight";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>uh";
+      action = "<cmd>noh<cr>";
+      options = {
+        silent = true;
+        desc = "";
+      };
+    }
     # Swap gj & j and gk & k to allow for easier navigation in wrapped lines
     {
       mode = "n";

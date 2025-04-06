@@ -62,6 +62,14 @@
           command = "None"; # Disable q for nvim toggleterm, so that we can leave terminal without closing player
           key_sequence = "q";
         }
+        {
+          command = "FocusNextWindow";
+          key_sequence = "C-l";
+        }
+        {
+          command = "FocusPreviousWindow";
+          key_sequence = "C-h";
+        }
       ];
     };
 

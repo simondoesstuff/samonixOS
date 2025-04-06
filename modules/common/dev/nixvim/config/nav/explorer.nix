@@ -12,6 +12,7 @@
               current = "window"; # current is when position = current
             };
           };
+          # NOTE: The pattern for a rule uses neovim regex, but the files pattern uses glob style patterns
           nesting_rules.__raw = ''
             (function()
               local rules = require("neotree-file-nesting-config").nesting_rules
@@ -19,6 +20,10 @@
               rules["nixvim_lua"] = {
                 pattern = "(.*).nix$",
                 files = { "%1%.lua", "%1-*%.lua" }
+              }
+              rules["protobuf"] = {
+                pattern = "(.*).proto",
+                files = { "%1%.pb.dart", "%1%.pbenum.dart", "%1%.pbjson.dart", "%1%.pbserver.dart" }
               }
               return rules
             end)()
