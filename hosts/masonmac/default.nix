@@ -9,7 +9,7 @@ utils.homeManagerSetup {
     entertainment.enable = true;
     personal.enable = true;
     language = {
-      python.enable = true;
+      python.enable = false;
     };
   };
 }
