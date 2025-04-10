@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -44,7 +43,7 @@ in
       laststatus = 3;
       # Folding options
       foldmethod = "indent";
-      foldlevel = 99; # - Fold this many indentations (essentially inf)
+      foldlevel = 99; # Fold this many indentations (essentially inf)
       # foldmethod = "expr";
       # foldexpr = "nvim_treesitter#foldexpr()"; # nvim-treesitter folding
       foldenable = false;
@@ -53,8 +52,9 @@ in
       fillchars = {
         diff = "╱";
       };
+      completeopt = "popup,menu,menuone,noselect"; # Completion options
       splitright = true; # Split windows to the right instead of left
-      #- autochdir = true;
+      # autochdir = true;
       hidden = true; # Allow hidden buffers for things like toggleterm
       exrc = true; # Allow local vimrc, nvim.lua, .exrc in projects to apply to nvim conf
     };

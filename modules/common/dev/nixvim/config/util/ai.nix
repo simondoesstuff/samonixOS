@@ -3,12 +3,17 @@
 
 {
   programs.nixvim = {
+    # TODO: Copilot chat completion is not working for adding files, buffers, etc
     plugins.copilot-chat = {
       enable = true;
-      settings.mappings = {
-        reset = {
-          normal = "<leader>ar";
-          insert = "<leader>ar";
+      settings = {
+        model = "claude-3.7-sonnet-thought";
+        window.width = 0.4;
+        mappings = {
+          reset = {
+            normal = "<leader>ar";
+            insert = "<leader>ar";
+          };
         };
       };
     };
@@ -17,9 +22,9 @@
       enable = true;
       settings = {
         panel.enabled = false;
-        # TODO: Get ghost text working again, and use the binds below to navigate
+        # TODO: Ghost text is very useful but cmp doesn't like it, integrate into cmp (or switch to blink)
         suggestion = {
-          enabled = false;
+          enabled = true;
           auto_trigger = true;
           hide_during_completion = false;
         };
@@ -40,6 +45,18 @@
         key = "<leader>ac";
         action = "<cmd>CopilotChat<cr>";
         options.desc = "open copilot chat";
+      }
+      {
+        mode = "n";
+        key = "<leader>al";
+        action = "<cmd>CopilotChatModels<cr>";
+        options.desc = "view chat model list";
+      }
+      {
+        mode = "n";
+        key = "<leader>ar";
+        action = "<cmd>CopilotChatReset<cr>";
+        options.desc = "reset copilot chat";
       }
       # Copilot lua
       {
