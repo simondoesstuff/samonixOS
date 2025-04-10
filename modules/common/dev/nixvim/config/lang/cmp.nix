@@ -17,13 +17,8 @@
         };
       };
       cmp_luasnip.enable = true;
-      copilot-lua.enable = true;
-      copilot-lua.settings = {
-        panel.enabled = false;
-        suggestion.enabled = false;
-      };
-      copilot-cmp.enable = true;
-      copilot-cmp.settings.fix_pairs = true;
+      # copilot-cmp.enable = true;
+      # copilot-cmp.settings.fix_pairs = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -37,7 +32,7 @@
             { name = "buffer"; }
           ];
           mapping = {
-            "<C-Space>" = "cmp.mapping.complete()";
+            # "<C-Space>" = "cmp.mapping.complete()";
             "<C-d>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-e>" = "cmp.mapping.abort()";
@@ -96,45 +91,7 @@
       require("luasnip.loaders.from_vscode").lazy_load()
     '';
 
-    # keymaps = [
-    #   {
-    #     mode = ["i" "s"];
-    #     key = "<Tab>";
-    #     action.__raw = ''
-    #       function()
-    #         local luasnip = require("luasnip")
-    #         if luasnip.expand_or_jumpable() then
-    #           luasnip.expand_or_jump()
-    #         else
-    #           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-    #         end
-    #       end
-    #     '';
-    #     options = {
-    #       silent = true;
-    #       desc = "LuaSnip: Expand or jump forward";
-    #     };
-    #   }
-    #   {
-    #     mode = ["i" "s"];
-    #     key = "<S-Tab>";
-    #     action.__raw = ''
-    #       function()
-    #         local luasnip = require("luasnip")
-    #         if luasnip.jumpable(-1) then
-    #           luasnip.jump(-1)
-    #         else
-    #           vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, false, true), "n", false)
-    #         end
-    #       end
-    #     '';
-    #     options = {
-    #       silent = true;
-    #       desc = "LuaSnip: Jump backward";
-    #     };
-    #   }
-    # ];
-
+    # TODO: Blink is better than cmp.nvim
     # blink-cmp = {
     #   enable = true;
     #   autoLoad = true;
