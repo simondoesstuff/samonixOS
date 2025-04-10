@@ -28,10 +28,12 @@
               return rules
             end)()
           '';
-          window.mappings = {
-            "<space>" = false; # disable space for toggle node, interferes leader
-            "<S-CR>" = {
-              command = "toggle_node";
+          window = {
+            mappings = {
+              "<space>" = false; # disable space for toggle node, interferes leader
+              "<S-CR>" = {
+                command = "toggle_node";
+              };
             };
           };
         };
