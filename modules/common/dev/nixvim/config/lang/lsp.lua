@@ -1,4 +1,5 @@
-require("inc_rename").setup()
+---@diagnostic disable: undefined-global
+-- require("inc_rename").setup()
 
 vim.diagnostic.config({
 	virtual_text = true,
@@ -15,14 +16,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("vsh_filetype", { clear = true }),
 })
 
--- vim.o.updatetime = 250
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-	group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false })
-	end,
-})
-
+-- Setup all binds on lsp attach attach
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf
