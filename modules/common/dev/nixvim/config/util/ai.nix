@@ -1,9 +1,9 @@
-# https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file
 { ... }:
 
 {
   programs.nixvim = {
-    # TODO: Copilot chat completion is not working for adding files, buffers, etc
+    # TODO: Copilot chat completion competes with blink-cmp completion.
+    # Causes both menus to appear at times and is trash. Need fix
     plugins.copilot-chat = {
       enable = true;
       settings = {
@@ -64,24 +64,24 @@
         options.desc = "reset copilot chat";
       }
       # Copilot lua
-      {
-        mode = "i";
-        key = "<C-l>";
-        action.__raw = ''function() require("copilot.suggestion").accept() end'';
-        options.desc = "accept copilot suggestion";
-      }
-      {
-        mode = "i";
-        key = "<C-k>";
-        action.__raw = ''function() require("copilot.suggestion").prev() end'';
-        options.desc = "next copilot suggestion";
-      }
-      {
-        mode = "i";
-        key = "<C-j>";
-        action.__raw = ''function() require("copilot.suggestion").next() end'';
-        options.desc = "prev copilot suggestion";
-      }
+      # {
+      #   mode = "i";
+      #   key = "<C-l>";
+      #   action.__raw = ''function() require("copilot.suggestion").accept() end'';
+      #   options.desc = "accept copilot suggestion";
+      # }
+      # {
+      #   mode = "i";
+      #   key = "<C-k>";
+      #   action.__raw = ''function() require("copilot.suggestion").prev() end'';
+      #   options.desc = "next copilot suggestion";
+      # }
+      # {
+      #   mode = "i";
+      #   key = "<C-j>";
+      #   action.__raw = ''function() require("copilot.suggestion").next() end'';
+      #   options.desc = "prev copilot suggestion";
+      # }
     ];
   };
 }
