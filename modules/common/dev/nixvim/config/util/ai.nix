@@ -12,7 +12,11 @@
         mappings = {
           reset = {
             normal = "<leader>ar";
-            insert = "<leader>ar";
+            insert = "";
+          };
+          close = {
+            normal = "q";
+            insert = "<C-q>"; # use ctrl-c to exit insert mode, don't want to close
           };
         };
       };
