@@ -22,18 +22,19 @@
       };
     };
 
-    plugins.copilot-lua = {
-      enable = true;
-      settings = {
-        panel.enabled = false;
-        # TODO: Ghost text is very useful but cmp doesn't like it, integrate into cmp (or switch to blink)
-        suggestion = {
-          enabled = true;
-          auto_trigger = true;
-          hide_during_completion = false;
-        };
-      };
-    };
+    # Pretty sure there is no use for this plugin with blink-cmp
+    # but could be useful to cycle ghost texts maybe
+    # plugins.copilot-lua = {
+    #   enable = true;
+    #   settings = {
+    #     panel.enabled = false;
+    #     suggestion = {
+    #       enabled = true;
+    #       auto_trigger = true;
+    #       hide_during_completion = false;
+    #     };
+    #   };
+    # };
 
     keymaps = [
       # Copilot chat
