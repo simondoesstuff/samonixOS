@@ -63,7 +63,7 @@
       action = "<cmd>noh<cr>";
       options = {
         silent = true;
-        desc = "";
+        desc = "unhighlight search matches";
       };
     }
     # Swap gj & j and gk & k to allow for easier navigation in wrapped lines

@@ -7,18 +7,19 @@
       enable = true;
       settings = {
         ensure_installed = "all";
-        ignore_install = [ "norg" ];
         highlight = {
           enable = true;
           additional_vim_regex_highlighting = true;
         };
         incremental_selection.enable = true;
         indent.enable = true;
+        foldexpr.enable = true;
       };
     };
 
     lsp = {
       enable = true;
+      inlayHints = true;
       servers = {
         lua_ls = {
           enable = true;
