@@ -1,9 +1,10 @@
 ---@diagnostic disable: undefined-global
--- require("inc_rename").setup()
 
 vim.diagnostic.config({
-	-- virtual_text = true, adds virtual text at end of line
-	virtual_lines = true,
+	virtual_text = true,
+	virtual_lines = {
+		current_line = true,
+	},
 	signs = true,
 	underline = false,
 	severity_sort = true,

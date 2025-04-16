@@ -1,4 +1,4 @@
-# related to the visual editting experience!
+# related to the visual editing experience!
 { pkgs, ... }:
 {
   programs.nixvim = {
