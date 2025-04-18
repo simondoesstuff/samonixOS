@@ -8,6 +8,7 @@
     [
       ./packages.nix
       ./rofi.nix
+      ./test.nix
     ]
     ++ [
       #INFO: Specified shared configs

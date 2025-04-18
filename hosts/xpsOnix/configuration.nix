@@ -37,6 +37,8 @@
     sddm.wayland.enable = true;
     defaultSession = "plasmawayland";
   };
+  programs.hyprland.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   services.xserver = {
