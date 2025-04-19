@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     # ghostty  #broken on mac currently
     fswatch
@@ -32,7 +33,7 @@
 
   # INFO: Programs
   programs = {
-    wezterm.enable = true; # terminal emulator
+    wezterm.enable = false; # terminal emulator
     starship.enable = true; # shell prompts
     # better cd command
     zoxide = {
