@@ -54,12 +54,32 @@
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
-      initExtra = ''
-        set -o vi
-      '';
       completionInit = "
 				bindkey '^ ' autosuggest-accept
 			";
+      initExtra = ''
+        set -o vi
+
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$('/Users/simon/app/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
+        else
+            if [ -f "/Users/simon/app/miniforge3/etc/profile.d/conda.sh" ]; then
+                . "/Users/simon/app/miniforge3/etc/profile.d/conda.sh"
+            else
+                export PATH="/Users/simon/app/miniforge3/bin:$PATH"
+            fi
+        fi
+        unset __conda_setup
+
+        if [ -f "/Users/simon/app/miniforge3/etc/profile.d/mamba.sh" ]; then
+            . "/Users/simon/app/miniforge3/etc/profile.d/mamba.sh"
+        fi
+        # <<< conda initialize <<<
+
+      '';
     };
   };
 }
