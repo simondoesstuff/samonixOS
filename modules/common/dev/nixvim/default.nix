@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  config,
   ...
 }:
 let
@@ -48,19 +47,20 @@ in
       #- Folding options
       smartindent = true;
       foldmethod = "indent";
-      foldlevel = 99; # - Fold this many indentations (essentially inf)
-      #- foldmethod = "expr";
-      #- foldexpr = "nvim_treesitter#foldexpr()"; -- nvim-treesitter folding
+      foldlevel = 99; # Fold this many indentations (essentially inf)
+      # foldmethod = "expr";
+      # foldexpr = "nvim_treesitter#foldexpr()"; # nvim-treesitter folding
       foldenable = false;
-      #- timeoutlen = 100; -- Controls how fast whichkey appears among other things
+      timeoutlen = 100; # Controls how fast whichkey appears among other things
       relativenumber = true;
       fillchars = {
         diff = "╱";
       };
-      #- autochdir = true;
-      # scroll = math.floor (vim.api.nvim_get_option "lines" / 2);
-      hidden = true; # - Allow hidden buffers for things like toggleterm
-      exrc = true; # - Allow local vimrc, nvim.lua, .exrc in projects to apply to nvim conf
+      completeopt = "popup,menu,menuone,noselect"; # Completion options
+      splitright = true; # Split windows to the right instead of left
+      # autochdir = true;
+      hidden = true; # Allow hidden buffers for things like toggleterm
+      exrc = true; # Allow local vimrc, nvim.lua, .exrc in projects to apply to nvim conf
     };
   };
 }

@@ -1,6 +1,12 @@
-{ root, ... }:
 {
-  # home.packages = with pkgs; [ghostty]; #broken on mac currently
+  config,
+  root,
+  pkgs,
+  ...
+}:
+{
+  # ghostty only available on linux in nixpkgs at the moment
+  home.packages = if config.isLinux then [ pkgs.ghostty ] else [ ];
 
   # INFO: Source dotfiles directly
   xdg.configFile = {
@@ -20,7 +26,7 @@
 
   # INFO: Programs
   programs = {
-    wezterm.enable = true; # terminal emulator
+    wezterm.enable = config.isDarwin; # terminal emulator
     starship.enable = true; # shell prompts
     # better cd command
     zoxide = {
@@ -46,7 +52,7 @@
       '';
       completionInit = "
 				bindkey '^ ' autosuggest-accept
-				bindkey '^[l' autosuggest-accept
+				bindkey '^l' autosuggest-accept
 			";
     };
   };

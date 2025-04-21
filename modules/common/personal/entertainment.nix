@@ -3,6 +3,7 @@
   pkgs,
   root,
   config,
+  pkgs-unstable,
   ...
 }:
 {
@@ -50,15 +51,17 @@
 
     programs.spotify-player = {
       enable = true;
+      package = pkgs-unstable.spotify-player; # TODO: move off unstable when lyric sync is on stable
       settings = {
         enable_notify = false;
+        enable_media_control = true; # allow media control buttons, only works on macos when focused
         device = {
-          volume = 100; # make initial volume 70 -> 100 so that laptop has full control
+          volume = 100; # make initial volume 70 -> 100 so that device has full control
         };
       };
       keymaps = [
         {
-          command = "None"; # Disable q for nvim toggleterm, so that we can leave terminal without closing player
+          command = "None"; # disable q for nvim toggleterm, so that we can leave terminal without closing player
           key_sequence = "q";
         }
         {
