@@ -10,31 +10,21 @@
   programs.nixvim = {
     plugins.neoscroll.enable = true;
 
-    extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "snacks";
-        src = pkgs.fetchFromGitHub {
-          owner = "folke";
-          repo = "snacks.nvim";
-          rev = "bc0630e43be5699bb94dadc302c0d21615421d93";
-          sha256 = "Gw0Bp2YeoESiBLs3NPnqke3xwEjuiQDDU1CPofrhtig=";
-        };
-      })
-    ];
-
-    extraConfigLua = ''
-            require("snacks").setup({
-              	quickfile = { enabled = true },
-      					scroll = { enabled = false },
-      					statuscolumn = { enabled = true },
-      					notifier = { enabled = true },
-      					picker = { enabled = true },
-      					lazygit = { enabled = true },
-      					input = { enabled = true },
-      					indent = { enabled = true },
-      					image = { enabled = true },
-              })
-    '';
+    # TODO: Re-enabel snacks
+    plugins.snacks = {
+      enable = true;
+      settings = {
+        quickfile.enabled = true;
+        scroll.enabled = false;
+        statuscolumn.enabled = true;
+        notifier.enabled = true;
+        picker.enabled = true;
+        lazygit.enabled = true;
+        input.enabled = true;
+        indent.enabled = true;
+        image.enabled = true;
+      };
+    };
 
     keymaps = [
       # INFO: Snacks pickers

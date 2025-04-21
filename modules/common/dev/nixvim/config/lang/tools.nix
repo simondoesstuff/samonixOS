@@ -1,5 +1,6 @@
 {
   programs.nixvim = {
+    dependencies.flutter.enable = false;
     plugins.flutter-tools = {
       enable = true;
       settings = {
@@ -18,7 +19,6 @@
           };
         };
       };
-      flutterPackage = null; # use devshell
     };
   };
 }

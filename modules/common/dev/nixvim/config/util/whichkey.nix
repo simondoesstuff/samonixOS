@@ -43,11 +43,15 @@
           }
           {
             __unkeyed = "<leader>u";
-            group = "un";
+            group = "un-";
           }
           {
             __unkeyed = "<leader>r";
-            group = "re";
+            group = "re-";
+          }
+          {
+            __unkeyed = "<leader>a";
+            group = "ai tools";
           }
         ];
       };

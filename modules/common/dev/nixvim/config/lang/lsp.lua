@@ -1,4 +1,15 @@
-require("inc_rename").setup()
+---@diagnostic disable: undefined-global
+
+vim.diagnostic.config({
+	virtual_text = true,
+	virtual_lines = {
+		current_line = true,
+	},
+	signs = true,
+	underline = false,
+	severity_sort = true,
+	update_in_insert = false,
+})
 
 -- Fix issues with nvim assuming frag, vert, etc files are .conf files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
@@ -7,22 +18,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("vsh_filetype", { clear = true }),
 })
 
-vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = false,
-	severity_sort = true,
-	update_in_insert = false,
-})
-
--- vim.o.updatetime = 250
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-	group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false })
-	end,
-})
-
+-- Setup all binds on lsp attach attach
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf

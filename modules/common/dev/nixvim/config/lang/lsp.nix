@@ -1,22 +1,25 @@
-{ pkgs, ... }:
 {
-  programs.nixvim = {
-    plugins.treesitter = {
+  programs.nixvim.extraConfigLua = builtins.readFile ./lsp.lua;
+  programs.nixvim.plugins = {
+    inc-rename.enable = true;
+
+    treesitter = {
       enable = true;
       settings = {
         ensure_installed = "all";
-        ignore_install = [ "norg" ];
         highlight = {
           enable = true;
           additional_vim_regex_highlighting = true;
         };
         incremental_selection.enable = true;
         indent.enable = true;
+        foldexpr.enable = true;
       };
     };
 
-    plugins.lsp = {
+    lsp = {
       enable = true;
+      inlayHints = true;
       servers = {
         lua_ls = {
           enable = true;
@@ -92,6 +95,7 @@
         pylsp.enable = true;
         pylsp.settings = {
           plugins = {
+            # TODO: jedi be doing nothing sadly
             jedi_completion = {
               enabled = true;
             };
@@ -112,20 +116,5 @@
         sourcekit.enable = true;
       };
     };
-
-    extraPlugins = [
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "inc_rename";
-        src = pkgs.fetchFromGitHub {
-          owner = "smjonas";
-          repo = "inc-rename.nvim";
-          rev = "f9b9e5b9a75074810f40881b7e254b5bbeaf122e";
-          sha256 = "7XaYG2UUzFuvtmRALftDv2xlmR4xHF/OjhoGTz0mnl4=";
-        };
-      })
-    ];
-
-    # Also add the autocommand for floating diagnostics
-    extraConfigLua = builtins.readFile ./lsp.lua;
   };
 }

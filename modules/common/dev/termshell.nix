@@ -1,6 +1,6 @@
 {
-  root,
   config,
+  root,
   pkgs,
   ...
 }:
@@ -56,6 +56,7 @@
       enableCompletion = true;
       completionInit = "
 				bindkey '^ ' autosuggest-accept
+				bindkey '^l' autosuggest-accept
 			";
       initExtra = ''
         set -o vi
