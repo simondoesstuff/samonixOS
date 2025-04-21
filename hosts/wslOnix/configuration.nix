@@ -30,7 +30,6 @@
   };
 
   # INFO: WSL STUFF
-
   wsl.enable = true;
   wsl.defaultUser = "mason";
 
@@ -44,6 +43,15 @@
       generateResolvConf = false;
     };
   };
+
+  # open up remote desktop to connect from windows
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
 
   # INFO: Link wsl library headers to path
   environment.variables = {
