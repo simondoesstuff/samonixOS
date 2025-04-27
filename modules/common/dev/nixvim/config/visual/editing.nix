@@ -8,7 +8,8 @@
       todo-comments.enable = true;
       intellitab = {
         enable = true;
-        # TODO: remove custom intellitab package once upstream accepts pr
+        # TODO: remove custom intellitab package once upstream accepts pr & into
+        # nixpkgs
         package = pkgs.vimUtils.buildVimPlugin {
           name = "intellitab";
           src = pkgs.fetchFromGitHub {
@@ -26,10 +27,23 @@
           provider_selector = function(bufnr, filetype, buftype)
           	return {'treesitter', 'indent'}
           end
-          				'';
+        '';
     };
 
     keymaps = [
+      # integration details for intellitab.
+      #   does not interfere with blink-cmp by stealing <Tab> because blink-cmp
+      #   is just that cracked
+      {
+        mode = "i";
+        key = "<Tab>";
+        action.__raw = # lua
+          ''
+            function()
+              require("intellitab").indent()
+            end
+          '';
+      }
       # vim illuminate: goto usages
       {
         mode = "n";
