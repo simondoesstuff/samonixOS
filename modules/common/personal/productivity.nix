@@ -1,3 +1,4 @@
+# packages and config for productive activities
 {
   lib,
   pkgs,
@@ -11,6 +12,7 @@
     ];
     home.packages = with pkgs; [
       obsidian
+      zotero
       (timetrack { obsidianVaultPath = "/Users/mason/obsidian/obsidian"; }) # masonpkgs
     ];
   };

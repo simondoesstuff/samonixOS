@@ -1,3 +1,4 @@
+# packages and config for media and gaming
 {
   lib,
   pkgs,
@@ -38,7 +39,7 @@
     };
 
     home.packages = [
-      pkgs.ffmpeg # Common dependency, used for stacher as well as general use
+      pkgs.ffmpeg # common dependency, used for stacher as well as general use
       (pkgs.jerry {
         withIINA = if pkgs.stdenv.isDarwin then true else false;
         imagePreviewSupport = true;
@@ -47,6 +48,9 @@
         withIINA = if pkgs.stdenv.isDarwin then true else false;
       })
       pkgs.spotifyd
+
+      # games
+      pkgs.prismlauncher
     ];
 
     programs.spotify-player = {

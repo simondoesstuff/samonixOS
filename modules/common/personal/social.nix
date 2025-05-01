@@ -16,6 +16,7 @@
         # withOpenASAR = true;
         withVencord = true;
       })
+
       pkgs.signal-desktop
     ];
   };
