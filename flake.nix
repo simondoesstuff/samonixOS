@@ -2,15 +2,20 @@
   description = "doomsday nix configuration";
 
   inputs = {
+    # Stable branch flakes
     home-manager.url = "github:nix-community/home-manager/release-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    spicetify.url = "github:Gerg-L/spicetify-nix/24.11";
+
+    # Other flakes
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     nixvim.url = "github:nix-community/nixvim/main";
     systems.url = "github:nix-systems/default";
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
+    # Following
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";

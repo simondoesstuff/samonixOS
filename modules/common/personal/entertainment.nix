@@ -4,6 +4,7 @@
   pkgs,
   root,
   config,
+  pkgs-spice,
   pkgs-unstable,
   ...
 }:
@@ -76,6 +77,21 @@
           command = "FocusPreviousWindow";
           key_sequence = "C-h";
         }
+      ];
+    };
+
+    programs.spicetify = {
+      enable = true;
+      theme = pkgs-spice.themes.default;
+      # theme = pkgs-spice.themes.catppuccin;
+      # colorScheme = "mocha";
+      enabledExtensions = with pkgs-spice.extensions; [
+        shuffle # fischer-yates lets go (ballotery)
+        hidePodcasts
+        adblockify
+      ];
+      enabledCustomApps = with pkgs-spice.apps; [
+        lyricsPlus
       ];
     };
 
