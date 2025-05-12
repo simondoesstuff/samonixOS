@@ -79,7 +79,7 @@
         ];
         # Firewall to prevent leaks outside of vpn by only accepting marked traffic
         firewall = {
-          enable = false;
+          enable = true;
           allowedUDPPorts = [ 1194 ]; # Standard OpenVPN port
           allowedTCPPorts = [
             8096
@@ -128,7 +128,8 @@
         updateResolvConf = true;
         authUserPass.username = lib.removeSuffix "\n" (builtins.readFile ./nordUser.key);
         authUserPass.password = lib.removeSuffix "\n" (builtins.readFile ./nordPass.key);
-        config = builtins.readFile ./us5080.nordvpn.com.udp.ovpn.key;
+        # udp config from https://my.nordaccount.com/dashboard/nordvpn/manual-configuration/openvpn/
+        config = builtins.readFile ./nordvpn.com.udp.ovpn.key;
       };
 
       nixpkgs.config.permittedInsecurePackages = [
