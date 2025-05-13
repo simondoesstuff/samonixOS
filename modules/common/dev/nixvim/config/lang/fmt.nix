@@ -25,7 +25,7 @@
           html = [ "prettierd" ];
           rust = [ "rustfmt" ];
           nix = [ "nixfmt" ];
-          "*" = [ "codespell" ];
+          "*" = [ "codespell -L crate" ];
           "_" = [ "trim_whitespace" ];
         };
         formatters = {
