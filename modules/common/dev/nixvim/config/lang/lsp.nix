@@ -17,6 +17,9 @@
       };
     };
 
+    # general rust tooling & lsp
+    rustaceanvim.enable = true;
+
     lsp = {
       enable = true;
       inlayHints = true;
@@ -92,25 +95,8 @@
           };
         };
 
-        pylsp.enable = true;
-        pylsp.settings = {
-          plugins = {
-            # TODO: jedi be doing nothing sadly
-            jedi_completion = {
-              enabled = true;
-            };
-            pycodestyle = {
-              enabled = true;
-            };
-            pylsp_rope = {
-              enabled = true;
-            };
-            pylint = {
-              enabled = true;
-            };
-          };
-        };
-        # jedi_language_server.enable = true;
+        basedpyright.enable = true;
+
         # dartls.enable = true; dont enable with flutter-tools
         clangd.enable = true;
         sourcekit.enable = true;
