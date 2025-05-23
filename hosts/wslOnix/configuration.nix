@@ -79,8 +79,9 @@
   };
 
   # INFO: Other
-  services.openvscode-server = {
-    enable = true;
-    user = "mason";
-  };
+  # TODO: Failed to build after 25.05 migration, fix?
+  # services.openvscode-server = {
+  #   enable = true;
+  #   user = "mason";
+  # };
 }
