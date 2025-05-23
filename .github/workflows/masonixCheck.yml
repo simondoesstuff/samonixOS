@@ -17,30 +17,30 @@ jobs:
 
       - name: Setup secrets
         run: |
-          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/nordvpn.com.udp.ovpn.key
           echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
           echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
-          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          chmod 600 ./hosts/xpsOnix/media/nordvpn.com.udp.ovpn.key
           chmod 600 ./hosts/xpsOnix/media/nordUser.key
           chmod 600 ./hosts/xpsOnix/media/nordPass.key
-      
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      
+
       - name: Enable Flakes
         run: |
           mkdir -p ~/.config/nix
           echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-      
+
       # - name: Check flake
       #   run: nix flake check --no-build
-        
+
       - name: Build xpsOnix configuration
         run: nix build .#nixosConfigurations.xpsOnix.config.system.build.toplevel --dry-run
-      
+
       - name: Build wslOnix configuration
         run: nix build .#nixosConfigurations.wslOnix.config.system.build.toplevel --dry-run
-      
+
   # Test Linux Home Manager configurations
   test-home-linux:
     name: Home Manager Linux
@@ -56,10 +56,10 @@ jobs:
           chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
           chmod 600 ./hosts/xpsOnix/media/nordUser.key
           chmod 600 ./hosts/xpsOnix/media/nordPass.key
-      
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      
+
       - name: Enable Flakes
         run: |
           mkdir -p ~/.config/nix
@@ -67,7 +67,7 @@ jobs:
 
       - name: Build mason@xps configuration
         run: nix build .#packages.x86_64-linux.homeConfigurations."mason@xps".activationPackage --dry-run
-      
+
       - name: Build mason@wsl configuration
         run: nix build .#packages.x86_64-linux.homeConfigurations."mason@wsl".activationPackage --dry-run
 
@@ -86,14 +86,14 @@ jobs:
           chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
           chmod 600 ./hosts/xpsOnix/media/nordUser.key
           chmod 600 ./hosts/xpsOnix/media/nordPass.key
-      
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      
+
       - name: Enable Flakes
         run: |
           mkdir -p ~/.config/nix
           echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-      
+
       - name: Build mason macOS configuration
         run: nix build .#packages.aarch64-darwin.homeConfigurations.mason.activationPackage --dry-run
