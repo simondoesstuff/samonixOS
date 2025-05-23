@@ -60,7 +60,6 @@
         action = "<cmd>BufferClose!<cr>";
         options.desc = "close buffer";
       }
-      # HJKL is 4 dimensional, makes more sense to sacrifice a 2-dimensional bind on buffer nav
       {
         mode = "n";
         key = "<C-,>";

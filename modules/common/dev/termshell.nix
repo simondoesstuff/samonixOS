@@ -6,7 +6,7 @@
 }:
 {
   # ghostty only available on linux in nixpkgs at the moment
-  home.packages = if config.isLinux then [ pkgs.ghostty ] else [ ];
+  home.packages = if config.isLinux then [ pkgs.ghostty ] else [ pkgs.wezterm ];
 
   # INFO: Source dotfiles directly
   xdg.configFile = {
@@ -26,7 +26,6 @@
 
   # INFO: Programs
   programs = {
-    wezterm.enable = config.isDarwin; # terminal emulator
     starship.enable = true; # shell prompts
     # better cd command
     zoxide = {

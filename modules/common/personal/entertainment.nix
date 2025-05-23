@@ -1,11 +1,10 @@
 # packages and config for media and gaming
 {
-  lib,
-  pkgs,
-  root,
-  config,
   pkgs-spice,
-  pkgs-unstable,
+  config,
+  root,
+  pkgs,
+  lib,
   ...
 }:
 {
@@ -40,7 +39,7 @@
     };
 
     home.packages = [
-      pkgs.ffmpeg # common dependency, used for stacher as well as general use
+      pkgs.ffmpeg # useful for stacher and other general things
       (pkgs.jerry {
         withIINA = if pkgs.stdenv.isDarwin then true else false;
         imagePreviewSupport = true;
@@ -59,14 +58,14 @@
       package = pkgs.spotify-player;
       settings = {
         enable_notify = false;
-        enable_media_control = true; # allow media control buttons, only works on macos when focused
+        enable_media_control = true; # only works on macos when focused, apparently
         device = {
-          volume = 100; # make initial volume 70 -> 100 so that device has full control
+          volume = 100;
         };
       };
       keymaps = [
         {
-          command = "None"; # disable q for nvim toggleterm, so that we can leave terminal without closing player
+          command = "None"; # disable q so that we can leave neovim toggleterm without closing player
           key_sequence = "q";
         }
         {
@@ -80,6 +79,7 @@
       ];
     };
 
+    # TODO: Not sure if worth keeping tbh, don't use spotify app a ton anyway
     programs.spicetify = {
       enable = true;
       theme = pkgs-spice.themes.default;
