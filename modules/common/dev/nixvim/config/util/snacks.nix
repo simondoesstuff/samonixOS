@@ -8,9 +8,7 @@
     ghostscript
   ];
   programs.nixvim = {
-    plugins.neoscroll.enable = true;
-
-    # TODO: Re-enabel snacks
+    plugins.neoscroll.enable = true; # better than snacks scroll imo
     plugins.snacks = {
       enable = true;
       settings = {

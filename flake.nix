@@ -3,9 +3,9 @@
 
   inputs = {
     # Stable branch flakes
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    spicetify.url = "github:Gerg-L/spicetify-nix/24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    spicetify.url = "github:Gerg-L/spicetify-nix/24.11"; # TODO: 25.05
 
     # Other flakes
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";

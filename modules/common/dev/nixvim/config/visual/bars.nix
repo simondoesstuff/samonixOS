@@ -38,16 +38,17 @@
 
       pkgs.vimPlugins.plenary-nvim
       pkgs.vimPlugins.nvim-web-devicons
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "battery";
-        src = pkgs.fetchFromGitHub {
-          owner = "justinhj";
-          repo = "battery.nvim";
-          # 3/17/2025
-          rev = "e215ff0351c1c80730bb3f7d6edc612b9502d719";
-          sha256 = "sha256-GSVrbS15qm1FmCt1qwv5ETCWRM/jc3CtEw7F5UrzbAY=";
-        };
-      })
+      # TODO: Fix build error that came with updating to 25.05
+      # (pkgs.vimUtils.buildVimPlugin {
+      #   name = "battery";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "justinhj";
+      #     repo = "battery.nvim";
+      #     # 3/30/2025
+      #     rev = "1dd2a2bd6958166d3b9ace93cff76251ad4c09b8";
+      #     sha256 = "sha256-GSVrbS15qm1FmCt1qwv5ETCWRM/jc3CtEw7F5UrzbAY=";
+      #   };
+      # })
     ];
 
     extraConfigLua = builtins.readFile ./editing.lua;

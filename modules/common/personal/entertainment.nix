@@ -56,7 +56,7 @@
 
     programs.spotify-player = {
       enable = true;
-      package = pkgs-unstable.spotify-player; # TODO: move off unstable when lyric sync is on stable
+      package = pkgs.spotify-player;
       settings = {
         enable_notify = false;
         enable_media_control = true; # allow media control buttons, only works on macos when focused

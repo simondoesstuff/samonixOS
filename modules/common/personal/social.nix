@@ -14,10 +14,11 @@
       # TLDR: Open regular discord once to get openASAR to work, and then enable openASAR if you desire it
       (pkgs.discord.override {
         # withOpenASAR = true;
-        withVencord = true;
+        # withVencord = true;
       })
 
-      pkgs.signal-desktop
+      # TODO: re-enable once mac signal is back on 25.05
+      # pkgs.signal-desktop
     ];
   };
 }

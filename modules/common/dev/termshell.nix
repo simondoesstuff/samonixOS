@@ -47,7 +47,7 @@
       syntaxHighlighting.enable = true;
       autosuggestion.enable = true;
       enableCompletion = true;
-      initExtra = ''
+      initContent = ''
         set -o vi
       '';
       completionInit = "

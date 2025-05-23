@@ -13,6 +13,7 @@
     home.packages = with pkgs; [
       obsidian
       zotero
+      anki-bin
       (timetrack { obsidianVaultPath = "/Users/mason/obsidian/obsidian"; }) # masonpkgs
     ];
   };

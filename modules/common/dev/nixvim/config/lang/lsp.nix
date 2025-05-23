@@ -60,7 +60,11 @@
 
         svelte = {
           enable = true;
-          # cmd = ["svelteserver" "--stdio"];
+          # cmd = [
+          #   "bunx"
+          #   "svelteserver"
+          #   "--stdio"
+          # ];
         };
 
         ts_ls.enable = true;
