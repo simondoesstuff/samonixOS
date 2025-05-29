@@ -7,22 +7,13 @@
 {
   config = lib.mkIf config.language.python.enable {
     home.packages = with pkgs; [
-      uv
+      uv # package manager (pip, pipx, ..., replacement)
       (python3.withPackages (
         ps: with ps; [
-          black # formatter
-          isort # import sorter
-          pyright # lang server for type checking
-          python-lsp-server # other lang server
-          matplotlib
-          numpy
-          bandit
+          numpy # number shi
+          matplotlib # graphs
         ]
       ))
     ];
-
-    programs.poetry = {
-      enable = true;
-    };
   };
 }

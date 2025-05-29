@@ -11,6 +11,7 @@
       obsidian
       zotero
       anki-bin
+      # clockify on linux? time tracker
       (timetrack { obsidianVaultPath = "/Users/mason/obsidian/obsidian"; }) # masonpkgs
     ];
   };
