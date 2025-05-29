@@ -171,6 +171,50 @@
     }
     {
       mode = "n";
+      key = "<leader>sb";
+      action.__raw = ''
+        function()
+          local file = vim.fn.expand('%:p')
+          if file == "" then
+            vim.notify("No file to open in browser")
+            return
+          end
+
+          -- Convert file path to URL (file:// protocol)
+          local url = "file://" .. file:gsub(" ", "%%20")
+
+          local sysname = vim.loop.os_uname().sysname
+          local open_cmd
+
+          if sysname == "Darwin" then
+            open_cmd = 'open "' .. url .. '"'
+          elseif sysname == "Windows_NT" then
+            open_cmd = 'start "" "' .. url .. '"'
+          else
+            -- Linux: use xdg-open
+            if vim.fn.executable("xdg-open") == 1 then
+              open_cmd = 'xdg-open "' .. url .. '"'
+            else
+              vim.notify("No browser opener (xdg-open) found")
+              return
+            end
+          end
+
+          local success, _, code = os.execute(open_cmd)
+          if success then
+            vim.notify("Opened in browser: " .. file)
+          else
+            vim.notify("Failed to open in browser (exit code: " .. code .. ")")
+          end
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "open in webbrowser";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>sc";
       action.__raw = ''
         function()
