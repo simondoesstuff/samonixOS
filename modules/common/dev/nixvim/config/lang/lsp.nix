@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.nixvim.extraConfigLua = builtins.readFile ./lsp.lua;
   programs.nixvim.plugins = {
@@ -24,11 +25,19 @@
         lua_ls = {
           enable = true;
           settings = {
-            Lua = {
-              workspace = {
-                # TODO: Fetch this using fetchgit
-                library = [ "/Users/mason/dev/computercraft/ccls/library" ];
-              };
+            workspace = {
+              library = [
+                # Computercraft-cc lua ls library
+                "${
+                  (pkgs.fetchgit {
+                    url = "https://github.com/nvim-computercraft/lua-ls-cc-tweaked";
+                    rev = "b23f104f55b5b3bee19d8fe647a04d9bd9943603"; # 3/14/25
+                    sha256 = "sha256-tEePK0ilz57oiW0nsnUDB/hbcJqTYrY1FzQhfnc9694=";
+                  })
+                }/library"
+                # nvim api for shi like vim.g being a valid global
+                "${pkgs.neovim}/share/nvim/runtime/lua"
+              ];
             };
           };
         };
