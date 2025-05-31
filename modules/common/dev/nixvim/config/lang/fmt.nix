@@ -16,8 +16,9 @@
         formatters_by_ft = {
           lua = [ "stylua" ];
           python = [
-            "isort"
-            "black"
+            "ruff_organize_imports"
+            "ruff_format"
+            "ruff_fix"
           ];
           javascript = [ "prettierd" ];
           typescript = [ "prettierd" ];

@@ -96,25 +96,10 @@
           };
         };
 
-        pylsp.enable = true;
-        pylsp.settings = {
-          plugins = {
-            # TODO: jedi be doing nothing sadly
-            jedi_completion = {
-              enabled = true;
-            };
-            pycodestyle = {
-              enabled = true;
-            };
-            pylsp_rope = {
-              enabled = true;
-            };
-            pylint = {
-              enabled = true;
-            };
-          };
-        };
-        # jedi_language_server.enable = true;
+        basedpyright.enable = true;
+        basedpyright.settings.typeCheckingMode = "basic";
+        ruff.enable = true; # formatter and linter for python
+
         # dartls.enable = true; dont enable with flutter-tools
         clangd.enable = true;
         sourcekit.enable = true;
