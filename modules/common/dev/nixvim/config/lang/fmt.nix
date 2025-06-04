@@ -23,6 +23,7 @@
           javascript = [ "prettierd" ];
           typescript = [ "prettierd" ];
           typescriptreact = [ "prettierd" ];
+          svelte = [ "prettierd" ]; # for svelte to work set up https://github.com/sveltejs/prettier-plugin-svelte
           html = [ "prettierd" ];
           rust = [ "rustfmt" ];
           nix = [ "nixfmt" ];

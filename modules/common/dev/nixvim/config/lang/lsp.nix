@@ -67,19 +67,14 @@
           };
         };
 
-        svelte = {
-          enable = true;
-          # cmd = [
-          #   "bunx"
-          #   "svelteserver"
-          #   "--stdio"
-          # ];
-        };
-
+        # Javascript/html/css servers
         ts_ls.enable = true;
         html.enable = true;
         cssls.enable = true;
         jsonls.enable = true;
+
+        # Web frameworks
+        svelte.enable = true;
 
         glsl_analyzer = {
           enable = true;
