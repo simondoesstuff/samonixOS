@@ -49,6 +49,15 @@
       initContent = ''
         set -o vi
       '';
+      profileExtra =
+        # adds docker desktop to path for macos
+        # TODO: better solution?
+        if config.isDarwin then
+          ''
+            export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+          ''
+        else
+          "";
       completionInit = "
 				bindkey '^ ' autosuggest-accept
 				bindkey '^l' autosuggest-accept
