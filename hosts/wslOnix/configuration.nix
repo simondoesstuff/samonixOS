@@ -3,6 +3,9 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 { pkgs, ... }:
+let
+  hostname = "dclass";
+in
 {
   # WARNING: Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
@@ -18,20 +21,20 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  users.users.mason = {
+  users.users.simon = {
     ignoreShellProgramCheck = true; # shell is defined via home-manager
     shell = pkgs.zsh;
     openssh.authorizedKeys = {
       keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZblT7Q/WxYTQnb3WL9lJMclp1DeQeYzdBKOBPAX0bD" # mbp14
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqYhMkfTYA7biVs4xp0OxhcV0Zk4yxvMTLn7u6S0PWc" # windows 3080pc
+        # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZblT7Q/WxYTQnb3WL9lJMclp1DeQeYzdBKOBPAX0bD" # mbp14
+        # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqYhMkfTYA7biVs4xp0OxhcV0Zk4yxvMTLn7u6S0PWc" # windows 3080pc
       ];
     };
   };
 
   # INFO: WSL STUFF
   wsl.enable = true;
-  wsl.defaultUser = "mason";
+  wsl.defaultUser = "simon";
 
   wsl.wslConf = {
     ws12 = {
@@ -39,19 +42,19 @@
     };
 
     network = {
-      hostname = "wslOnix"; # duped with nix, not sure if nix or wsl takes prio
+      hostname = hostname;
       generateResolvConf = false;
     };
   };
 
   # open up remote desktop to connect from windows
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
-  services.xrdp.openFirewall = true;
+  # services.xserver.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  #
+  # services.xrdp.enable = true;
+  # services.xrdp.defaultWindowManager = "startplasma-x11";
+  # services.xrdp.openFirewall = true;
 
   # INFO: Link wsl library headers to path
   environment.variables = {
@@ -61,14 +64,14 @@
   };
 
   # INFO: Networking stuff
-  networking = {
-    hostName = "wslOnix";
-    networkmanager.enable = true;
-    nameservers = [
-      "8.8.8.8"
-      "8.8.4.4"
-    ];
-  };
+  # networking = {
+  #   hostName = hostname;
+  #   networkmanager.enable = true;
+  #   nameservers = [
+  #     "8.8.8.8"
+  #     "8.8.4.4"
+  #   ];
+  # };
 
   services.openssh = {
     enable = true;
@@ -81,6 +84,6 @@
   # INFO: Other
   services.openvscode-server = {
     enable = true;
-    user = "mason";
+    user = "simon";
   };
 }

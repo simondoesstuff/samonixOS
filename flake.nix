@@ -26,19 +26,19 @@
         xpsOnix = import ./hosts/xpsOnix { inherit inputs; };
       };
 
-    # To load a home-manager config isolated from the nixos config, these can be used.
-    # home-manager switch --flake .#user@hostname
-    # TODO: error on home-manager news evoked when using these. Same as:
-    # https://discourse.nixos.org/t/news-json-output-and-home-activationpackage-in-home-manager-switch/54192
-    packages.x86_64-linux.homeConfigurations = {
-      "simon@wsl" = nixosConfigurations.wslOnix.config.home-manager.users."simon".home;
-      "simon@xps" = nixosConfigurations.xpsOnix.config.home-manager.users."simon".home;
-    };
+      # To load a home-manager config isolated from the nixos config, these can be used.
+      # home-manager switch --flake .#user@hostname
+      # TODO: error on home-manager news evoked when using these. Same as:
+      # https://discourse.nixos.org/t/news-json-output-and-home-activationpackage-in-home-manager-switch/54192
+      packages.x86_64-linux.homeConfigurations = {
+        "simon@wsl" = nixosConfigurations.wslOnix.config.home-manager.users."simon".home;
+        # "simon@xps" = nixosConfigurations.xpsOnix.config.home-manager.users."simon".home;
+      };
 
-    # Config for aarch-darwin based home-manager configs used currently on macbook
-    # home-manager switch --flake .#user@hostname
-    packages.aarch64-darwin.homeConfigurations = {
-      simon = import ./hosts/masonmac {inherit inputs;};
+      # Config for aarch-darwin based home-manager configs used currently on macbook
+      # home-manager switch --flake .#user@hostname
+      packages.aarch64-darwin.homeConfigurations = {
+        simon = import ./hosts/masonmac { inherit inputs; };
+      };
     };
-  };
 }
