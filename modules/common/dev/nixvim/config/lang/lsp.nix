@@ -100,8 +100,15 @@
           };
         };
 
-        basedpyright.enable = true;
-        basedpyright.settings.typeCheckingMode = "basic";
+        basedpyright = {
+          enable = true;
+          settings.basedpyright.analysis = {
+            typeCheckingMode = "basic";
+            # useful if you want to try strict out
+            # reportUnknownParameterType = false;
+            # reportUnknownArgumentType = false;
+          };
+        };
         ruff.enable = true; # formatter and linter for python
 
         # dartls.enable = true; dont enable with flutter-tools
