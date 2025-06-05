@@ -72,6 +72,18 @@
         action = "<cmd>BufferNext<cr>";
         options.desc = "next buffer";
       }
+      {
+        mode = "n";
+        key = "<C-S-.>";
+        action = "<cmd>BufferMoveNext<cr>";
+        options.desc = "move buffer to next";
+      }
+      {
+        mode = "n";
+        key = "<C-S-,>";
+        action = "<cmd>BufferMovePrevious<cr>";
+        options.desc = "move buffer to previous";
+      }
     ];
   };
 }
