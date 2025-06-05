@@ -30,6 +30,7 @@ in
         # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqYhMkfTYA7biVs4xp0OxhcV0Zk4yxvMTLn7u6S0PWc" # windows 3080pc
       ];
     };
+    home = "/mnt/c/home"; # let ~/ be easily accessible for both systems
   };
 
   # INFO: WSL STUFF
