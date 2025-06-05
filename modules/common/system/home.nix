@@ -29,6 +29,24 @@ in
     # enabling the ssh-agent informs some software of active keys
     enable = true;
     addKeysToAgent = "yes";
+    extraConfig = ''
+      Host lakehouse
+        HostName 71.237.31.35
+        User simon
+        Port 22565
+
+      Host fijicluster
+        HostName fiji.colorado.edu
+        User siwa3657
+
+      Host github.com
+        IdentityFile ~/.ssh/github
+        IdentitiesOnly yes
+
+      Host dclass
+        HostName 192.168.68.76
+        port 22565
+    '';
   };
 
   # INFO: If home-manager is not isolated then home-manager is not in the path,
