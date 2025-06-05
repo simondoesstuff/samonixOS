@@ -5,15 +5,20 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    # ghostty  #broken on mac currently
-    fswatch
-    watch
-    parallel
-    ripgrep
-    # TODO: better place for this?
-    mitmproxy
-  ];
+  # ghostty only available on linux in nixpkgs at the moment
+  home.packages =
+    with pkgs;
+    [
+      # ghostty  #broken on mac currently
+      fswatch
+      watch
+      parallel
+      ripgrep
+      # TODO: better place for this?
+      mitmproxy
+      wget
+    ]
+    ++ (if config.isLinux then [ pkgs.ghostty ] else [ ]);
 
   # INFO: Source dotfiles directly
   xdg.configFile = {
