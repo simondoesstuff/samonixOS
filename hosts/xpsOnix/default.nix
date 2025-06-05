@@ -11,6 +11,7 @@ utils.nixosSetup {
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.dell-xps-15-7590-nvidia
   ];
+  hmExtra.home.homeDirectory = "/home/mason";
   config = {
     personal.enable = true;
     entertainment.enable = true;

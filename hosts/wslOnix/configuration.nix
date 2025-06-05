@@ -34,9 +34,8 @@
   wsl.defaultUser = "mason";
 
   wsl.wslConf = {
-    ws12 = {
-      networkingMode = "mirrored";
-    };
+    # not supported in wsl.conf, only in .wslconfig, which is windows-global
+    # wsl2.networkingMode = "mirrored";
 
     network = {
       hostname = "wslOnix"; # duped with nix, not sure if nix or wsl takes prio
