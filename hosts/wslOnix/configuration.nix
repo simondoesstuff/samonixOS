@@ -43,13 +43,13 @@ in
   };
 
   # open up remote desktop to connect from windows
-  # services.xserver.enable = true;
-  # services.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  #
-  # services.xrdp.enable = true;
-  # services.xrdp.defaultWindowManager = "startplasma-x11";
-  # services.xrdp.openFirewall = true;
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
 
   # INFO: Networking stuff
   networking = {
