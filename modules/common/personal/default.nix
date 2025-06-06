@@ -5,8 +5,8 @@
   };
 
   imports = [
-    ./social.nix
-    ./productivity.nix
     ./entertainment.nix
+    ./productivity.nix
+    ./social.nix
   ];
 }

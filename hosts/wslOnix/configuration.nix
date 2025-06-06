@@ -32,8 +32,9 @@ in
   wsl.defaultUser = "simon";
 
   wsl.wslConf = {
-    # not supported in wsl.conf, only in .wslconfig, which is windows-global
-    # wsl2.networkingMode = "mirrored";
+    ws12 = {
+      networkingMode = "mirrored";
+    };
 
     network = {
       hostname = hostname;
@@ -82,8 +83,9 @@ in
   ];
 
   # INFO: Other
-  services.openvscode-server = {
-    enable = true;
-    user = "simon";
-  };
+  # TODO: Failed to build after 25.05 migration, fix?
+  # services.openvscode-server = {
+  #   enable = true;
+  #   user = "mason";
+  # };
 }

@@ -5,7 +5,6 @@ in
 utils.homeManagerSetup {
   system = "aarch64-darwin";
   username = "simon";
-  hmExtra.home.homeDirectory = "/Users/simon";
   config = {
     entertainment.enable = true;
     personal.enable = true;
