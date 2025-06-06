@@ -14,6 +14,14 @@ in
   home.username = username;
   home.stateVersion = "23.11"; # WARNING: read docs before updating
 
+  home.homeDirectory =
+    if isLinux then
+      "/home/${username}"
+    else if isDarwin then
+      "/Users/${username}"
+    else
+      unsupported;
+
   home.shellAliases = {
     hm = "home-manager";
     hmswitch = "home-manager switch --flake ${config.flakePath}";

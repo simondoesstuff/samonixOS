@@ -7,7 +7,6 @@ in
   nixosSetup =
     {
       config,
-      hmExtra,
       system,
       username,
       extraModules ? [ ],
@@ -33,8 +32,6 @@ in
                 ../modules/linux/default.nix
                 config
                 inputs.nixvim.homeManagerModules.nixvim
-                hmExtra
-                inputs.spicetify.homeManagerModules.spicetify
               ];
             };
 
@@ -54,7 +51,6 @@ in
   homeManagerSetup =
     {
       config,
-      hmExtra,
       system,
       username,
     }:
@@ -79,7 +75,6 @@ in
         inputs.nixvim.homeManagerModules.nixvim
         inputs.spicetify.homeManagerModules.spicetify
         config
-        hmExtra
         { homeManagerIsolated = true; }
       ];
     };

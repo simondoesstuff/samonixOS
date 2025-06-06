@@ -10,7 +10,6 @@ utils.nixosSetup {
     nixos-wsl.nixosModules.wsl # nixos-wsl necessary modules
     ./configuration.nix
   ];
-  hmExtra.home.homeDirectory = "/home/mason";
   config = {
     personal.enable = true;
     language = {
