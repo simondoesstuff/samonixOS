@@ -31,9 +31,10 @@ in
   wsl.defaultUser = "simon";
 
   wsl.wslConf = {
-    ws12 = {
-      networkingMode = "mirrored";
-    };
+    # not supported in wsl.conf, only the global .wslconfig which nix cannot provide 6/6/2025
+    # wsl2 = {
+    #   networkingMode = "mirrored";
+    # };
 
     network = {
       hostname = hostname;
@@ -49,13 +50,6 @@ in
   # services.xrdp.enable = true;
   # services.xrdp.defaultWindowManager = "startplasma-x11";
   # services.xrdp.openFirewall = true;
-
-  # INFO: Link wsl library headers to path
-  environment.variables = {
-    # this includes things like libcuda and other GPU driver stuff
-    # that we don't nixify in a regular way within WSL
-    LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
-  };
 
   # INFO: Networking stuff
   networking = {
