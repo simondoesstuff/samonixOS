@@ -80,21 +80,21 @@
       ];
     };
 
-    # TODO: Not sure if worth keeping tbh, don't use spotify app a ton anyway
-    programs.spicetify = {
-      enable = true;
-      theme = pkgs-spice.themes.default;
-      # theme = pkgs-spice.themes.catppuccin;
-      # colorScheme = "mocha";
-      enabledExtensions = with pkgs-spice.extensions; [
-        shuffle # fischer-yates lets go (ballotery)
-        hidePodcasts
-        adblockify
-      ];
-      enabledCustomApps = with pkgs-spice.apps; [
-        lyricsPlus
-      ];
-    };
+    # TODO: programs.spicetify not found, dclass 6/6/2025
+    # programs.spicetify = {
+    #   enable = true;
+    #   theme = pkgs-spice.themes.default;
+    #   # theme = pkgs-spice.themes.catppuccin;
+    #   # colorScheme = "mocha";
+    #   enabledExtensions = with pkgs-spice.extensions; [
+    #     shuffle # fischer-yates lets go (ballotery)
+    #     hidePodcasts
+    #     adblockify
+    #   ];
+    #   enabledCustomApps = with pkgs-spice.apps; [
+    #     lyricsPlus
+    #   ];
+    # };
 
     home.shellAliases = {
       jerry = "command jerry --dub";
