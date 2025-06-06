@@ -22,6 +22,33 @@
       nvim-ufo.enable = true;
     };
 
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "undo-glow";
+        src = pkgs.fetchFromGitHub {
+          owner = "y3owk1n";
+          repo = "undo-glow.nvim";
+          rev = "d2a489fd0549c1a8e39f04c460621d4535fdc033"; # 6/6/25
+          sha256 = "sha256-+WyALFOR55uwr4hDINz59M+B41T2WnRCD1kDVD2h6UA=";
+        };
+      })
+    ];
+
+    extraConfigLua = ''
+      require("undo-glow").setup({
+      	animation = { enabled = true, duration = 300 },
+      })
+    '';
+
+    autoCmd = [
+      {
+        # Highlight on yank
+        event = [ "TextYankPost" ];
+        command = "lua require('undo-glow').yank()";
+        group = "yankGrp";
+      }
+    ];
+
     keymaps = [
       {
         mode = "n";
@@ -39,6 +66,24 @@
         options = {
           silent = true;
           desc = "close all folds";
+        };
+      }
+      {
+        mode = "n";
+        key = "p";
+        action.__raw = "require('undo-glow').paste_below";
+        options = {
+          noremap = true;
+          desc = "Paste below with highlight";
+        };
+      }
+      {
+        mode = "n";
+        key = "P";
+        action.__raw = "require('undo-glow').paste_above";
+        options = {
+          noremap = true;
+          desc = "Paste above with highlight";
         };
       }
     ];
