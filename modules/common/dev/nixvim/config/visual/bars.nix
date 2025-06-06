@@ -38,16 +38,17 @@
 
       pkgs.vimPlugins.plenary-nvim
       pkgs.vimPlugins.nvim-web-devicons
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "battery";
-        src = pkgs.fetchFromGitHub {
-          owner = "justinhj";
-          repo = "battery.nvim";
-          # 3/17/2025
-          rev = "e215ff0351c1c80730bb3f7d6edc612b9502d719";
-          sha256 = "sha256-GSVrbS15qm1FmCt1qwv5ETCWRM/jc3CtEw7F5UrzbAY=";
-        };
-      })
+      # TODO: Fix build error that came with updating to 25.05
+      # (pkgs.vimUtils.buildVimPlugin {
+      #   name = "battery";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "justinhj";
+      #     repo = "battery.nvim";
+      #     # 3/30/2025
+      #     rev = "1dd2a2bd6958166d3b9ace93cff76251ad4c09b8";
+      #     sha256 = "sha256-GSVrbS15qm1FmCt1qwv5ETCWRM/jc3CtEw7F5UrzbAY=";
+      #   };
+      # })
     ];
 
     extraConfigLua = builtins.readFile ./editing.lua;
@@ -59,7 +60,6 @@
         action = "<cmd>BufferClose!<cr>";
         options.desc = "close buffer";
       }
-      # HJKL is 4 dimensional, makes more sense to sacrifice a 2-dimensional bind on buffer nav
       {
         mode = "n";
         key = "<C-,>";
@@ -71,6 +71,18 @@
         key = "<C-.>";
         action = "<cmd>BufferNext<cr>";
         options.desc = "next buffer";
+      }
+      {
+        mode = "n";
+        key = "<C-S-.>";
+        action = "<cmd>BufferMoveNext<cr>";
+        options.desc = "move buffer to next";
+      }
+      {
+        mode = "n";
+        key = "<C-S-,>";
+        action = "<cmd>BufferMovePrevious<cr>";
+        options.desc = "move buffer to previous";
       }
     ];
   };

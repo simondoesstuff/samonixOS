@@ -34,11 +34,13 @@ in
                 config
                 inputs.nixvim.homeManagerModules.nixvim
                 hmExtra
+                inputs.spicetify.homeManagerModules.spicetify
               ];
             };
 
           home-manager.extraSpecialArgs = {
             pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+            pkgs-spice = inputs.spicetify.legacyPackages.${system};
             username = username;
             root = ./..;
           };
@@ -63,6 +65,7 @@ in
       };
       extraSpecialArgs = {
         pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        pkgs-spice = inputs.spicetify.legacyPackages.${system};
         username = username;
         root = ./..;
       };
@@ -74,6 +77,7 @@ in
             ../modules/linux/default.nix
         )
         inputs.nixvim.homeManagerModules.nixvim
+        inputs.spicetify.homeManagerModules.spicetify
         config
         hmExtra
         { homeManagerIsolated = true; }

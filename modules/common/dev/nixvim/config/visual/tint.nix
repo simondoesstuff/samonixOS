@@ -16,7 +16,7 @@
 
     extraConfigLua = ''
       require("tint").setup({
-        -- Try to tint by `-10`, but keep all colors at least `3` away from `#1E1E2E`
+        -- Try to tint by `-10`, but keep all colors at least `5` away from `#1E1E2E`
         transforms = {
           require("tint.transforms").tint_with_threshold(-10, "#1E1E2E", 5),
           require("tint.transforms").saturate(0.5),
