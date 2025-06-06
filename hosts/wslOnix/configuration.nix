@@ -42,6 +42,9 @@ in
     };
   };
 
+  # important on WSL so that nvidia-smi & drivers in /usr/lib/wsl/lib can link properly
+  programs.nix-ld.enable = true;
+
   # open up remote desktop to connect from windows
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
