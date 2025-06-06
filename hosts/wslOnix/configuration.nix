@@ -24,7 +24,6 @@ in
   users.users.simon = {
     ignoreShellProgramCheck = true; # shell is defined via home-manager
     shell = pkgs.zsh;
-    home = "/mnt/c/home"; # let ~/ be easily accessible for both systems
   };
 
   # INFO: WSL STUFF
