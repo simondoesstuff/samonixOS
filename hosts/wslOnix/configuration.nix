@@ -54,13 +54,6 @@
   services.xrdp.defaultWindowManager = "startplasma-x11";
   services.xrdp.openFirewall = true;
 
-  # INFO: Link wsl library headers to path
-  environment.variables = {
-    # this includes things like libcuda and other GPU driver stuff
-    # that we don't nixify in a regular way within WSL
-    LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
-  };
-
   # INFO: Networking stuff
   networking = {
     hostName = "wslOnix";
