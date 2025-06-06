@@ -34,9 +34,10 @@
   wsl.defaultUser = "mason";
 
   wsl.wslConf = {
-    ws12 = {
-      networkingMode = "mirrored";
-    };
+    # not supported in wsl.conf, only the global .wslconfig which nix cannot provide 6/6/2025
+    # wsl2 = {
+    #   networkingMode = "mirrored";
+    # };
 
     network = {
       hostname = "wslOnix"; # duped with nix, not sure if nix or wsl takes prio
