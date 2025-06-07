@@ -22,12 +22,12 @@ in
       modules = [
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+          # home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
           home-manager.users.${username} =
             { ... }:
             {
+              nixpkgs.overlays = [ (import ../overlays/masonpkgs) ];
               imports = [
                 ../modules/linux/default.nix
                 config
@@ -42,8 +42,6 @@ in
             username = username;
             root = ./..;
           };
-
-          nixpkgs.overlays = [ (import ../overlays/masonpkgs) ];
         }
       ] ++ extraModules;
     };
