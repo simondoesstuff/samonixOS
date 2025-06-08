@@ -25,6 +25,10 @@
                 pattern = "(.*).proto",
                 files = { "%1%.pb.dart", "%1%.pbenum.dart", "%1%.pbjson.dart", "%1%.pbserver.dart" }
               }
+              rules["flake"] = {
+                pattern = "flake%.nix$",
+                files = { "flake%.lock", "treefmt%.nix" }
+              }
               return rules
             end)()
           '';
