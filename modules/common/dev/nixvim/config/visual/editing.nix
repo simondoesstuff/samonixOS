@@ -36,7 +36,12 @@
 
     extraConfigLua = ''
       require("undo-glow").setup({
-      	animation = { enabled = true, duration = 300 },
+      	animation = { 
+      		enabled = true, 
+      		duration = 300, 
+      		animtion_type = "zoom",
+      		window_scoped = true,
+      	},
       })
     '';
 
@@ -45,7 +50,23 @@
         # Highlight on yank
         event = [ "TextYankPost" ];
         command = "lua require('undo-glow').yank()";
-        group = "yankGrp";
+      }
+      {
+        event = [ "CmdLineLeave" ];
+        pattern = [
+          "/"
+          "?"
+        ];
+        desc = "Highlight when search cmdline leave";
+        callback.__raw = ''
+          function()
+            require("undo-glow").search_cmd({
+              animation = {
+                animation_type = "fade",
+              },
+            })
+          end
+        '';
       }
     ];
 
@@ -71,7 +92,7 @@
       {
         mode = "n";
         key = "p";
-        action.__raw = "require('undo-glow').paste_below";
+        action.__raw = "function() require('undo-glow').paste_below() end";
         options = {
           noremap = true;
           desc = "Paste below with highlight";
@@ -80,12 +101,127 @@
       {
         mode = "n";
         key = "P";
-        action.__raw = "require('undo-glow').paste_above";
+        action.__raw = "function() require('undo-glow').paste_above() end";
         options = {
           noremap = true;
           desc = "Paste above with highlight";
         };
       }
+      {
+        mode = "n";
+        key = "u";
+        action.__raw = "function() require('undo-glow').undo() end";
+        options = {
+          noremap = true;
+          desc = "Undo with highlight";
+        };
+      }
+      {
+        mode = "n";
+        key = "<C-r>";
+        action.__raw = "function() require('undo-glow').redo() end";
+        options = {
+          noremap = true;
+          desc = "Redo with highlight";
+        };
+      }
+      {
+        mode = "n";
+        key = "n";
+        action.__raw = ''
+          function() 
+          	require('undo-glow').search_next({
+          		animation = {
+          			animation_type = "strobe",
+          		},
+            })
+          end'';
+        options = {
+          noremap = true;
+          desc = "Search next with highlight";
+        };
+      }
+      {
+        mode = "n";
+        key = "N";
+        action.__raw = ''
+          function() 
+          	require('undo-glow').search_prev({
+          		animation = {
+          			animation_type = "strobe",
+          		},
+            })
+          end'';
+        options = {
+          noremap = true;
+          desc = "Search previous with highlight";
+        };
+      }
+      {
+        mode = "n";
+        key = "*";
+        action.__raw = ''
+          function() 
+          	require('undo-glow').search_star({
+          		animation = {
+          			animation_type = "strobe",
+          		},
+            })
+          end'';
+        options = {
+          noremap = true;
+          desc = "Search * with highlight";
+        };
+      }
+      {
+        mode = "n";
+        key = "#";
+        action.__raw = ''
+          function() 
+          	require('undo-glow').search_hash({
+          		animation = {
+          			animation_type = "strobe",
+          		},
+            })
+          end'';
+        options = {
+          noremap = true;
+          desc = "Search # with highlight";
+        };
+      }
+      # TODO: didn't work idk why
+      # {
+      #   mode = [
+      #     "n"
+      #     "x"
+      #   ];
+      #   key = "gc";
+      #   action.__raw = "function() require('undo-glow').comment() end";
+      #   options = {
+      #     expr = true;
+      #     noremap = true;
+      #     desc = "Toggle comment with highlight";
+      #   };
+      # }
+      # {
+      #   mode = "o";
+      #   key = "gc";
+      #   action.__raw = "function() require('undo-glow').comment_text_object() end";
+      #   options = {
+      #     noremap = true;
+      #     desc = "Comment textobject with highlight";
+      #   };
+      # }
+      # {
+      #   mode = "n";
+      #   key = "gcc";
+      #   action.__raw = "function() require('undo-glow').comment_line() end";
+      #   options = {
+      #     expr = true;
+      #     noremap = true;
+      #     desc = "Toggle comment line with highlight";
+      #   };
+      # }
     ];
   };
 }

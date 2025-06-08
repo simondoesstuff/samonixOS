@@ -1,7 +1,5 @@
 {
-  programs.nixvim.autoGroups = {
-    yankGrp.clear = true;
-  };
+  programs.nixvim.autoGroups = { };
 
   programs.nixvim.autoCmd = [
     {
