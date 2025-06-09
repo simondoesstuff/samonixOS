@@ -7,6 +7,9 @@
   lib,
   ...
 }:
+let
+  enableSpice = true; # toggle between spicetify and regular spotify desktop
+in
 {
   options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {
     default = false;
@@ -27,7 +30,6 @@
       recursive = true;
     };
 
-    # TODO: Fix jerry/lobster on linux. Not sure why not launching
     xdg.configFile.jerry = {
       source = root + /dotfiles/jerry;
       recursive = true;
@@ -39,6 +41,7 @@
     };
 
     home.packages = [
+      # video
       pkgs.ffmpeg # useful for stacher and other general things
       (pkgs.jerry {
         withIINA = if pkgs.stdenv.isDarwin then true else false;
@@ -47,7 +50,10 @@
       (pkgs.lobster {
         withIINA = if pkgs.stdenv.isDarwin then true else false;
       })
+
+      # music
       pkgs.spotifyd
+      (lib.mkIf (!enableSpice) pkgs.spotify)
 
       # games
       pkgs.prismlauncher
@@ -79,19 +85,45 @@
       ];
     };
 
-    # TODO: Not sure if worth keeping tbh, don't use spotify app a ton anyway
+    # WARNING: On MacOS, spotify will ask you to "update" and it will remove all
+    # the spicetify modifications if you say yes. Not sure if there is a good way
+    # to stop the update request from appearing yet, haven't experimented much
     programs.spicetify = {
-      enable = true;
-      theme = pkgs-spice.themes.default;
-      # theme = pkgs-spice.themes.catppuccin;
+      enable = enableSpice;
+      alwaysEnableDevTools = true; # doesn't work on mac I dont think
+      theme =
+        let
+          baseTheme = pkgs-spice.themes.default;
+        in
+        baseTheme
+        // {
+          injectCss = true;
+          # TODO: Sadly doesn't hide the OG lyric button i tried
+          additionalCss = lib.strings.concatStrings [
+            (baseTheme.additionalCss or "")
+            ''
+              /* Hide lyrics button */
+              [data-testid="lyrics-button"] {
+                display: none !important;
+              }
+            ''
+          ];
+        }; # theme = pkgs-spice.themes.catppuccin;
       # colorScheme = "mocha";
       enabledExtensions = with pkgs-spice.extensions; [
+        # INFO: nice-to-haves
         shuffle # fischer-yates lets go (ballotery)
-        hidePodcasts
         adblockify
-      ];
-      enabledCustomApps = with pkgs-spice.apps; [
-        lyricsPlus
+        beautifulLyrics # adds epic lyrics with cool fullscreen mode
+        # INFO: stats
+        skipStats # tracks ur skips for fun
+        songStats # shows key and other which is fire
+        # INFO: opinionated
+        hidePodcasts # note you can also go to settings and toggle it back and forth
+
+        # lowkey this fullscreen mode looks epic but it kinda overlaps with
+        # simpleBeautiful lyrics fullscreen and it feels weird to have two
+        # fullScreen
       ];
     };
 
