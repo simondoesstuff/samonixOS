@@ -103,6 +103,7 @@
           };
         };
 
+        # python
         basedpyright = {
           enable = true;
           settings.basedpyright.analysis = {
@@ -117,6 +118,7 @@
         # dartls.enable = true; dont enable with flutter-tools
         clangd.enable = true;
         sourcekit.enable = true;
+        jdtls.enable = true;
       };
     };
   };
