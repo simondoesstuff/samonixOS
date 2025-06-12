@@ -10,7 +10,6 @@ utils.nixosSetup {
     nixos-wsl.nixosModules.wsl # nixos-wsl necessary modules
     ./configuration.nix
   ];
-  hmExtra.home.homeDirectory = "/mnt/c/home";
   config = {
     personal.enable = true;
     language = {

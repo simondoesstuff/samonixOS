@@ -6,20 +6,20 @@
       # usage highlighting & goto usages
       illuminate.enable = true;
       todo-comments.enable = true;
-      intellitab = {
-        enable = true;
-        # TODO: remove custom intellitab package once upstream accepts pr & into
-        # nixpkgs
-        package = pkgs.vimUtils.buildVimPlugin {
-          name = "intellitab";
-          src = pkgs.fetchFromGitHub {
-            owner = "simondoesstuff";
-            repo = "intellitab.nvim";
-            rev = "fad06f80b44186767eba348283c3b88827a969b1";
-            sha256 = "sha256-ShMECcqFQS607ZWRKHEh1cSLT/XChx5JpNOHSP3h/7I=";
-          };
-        };
-      };
+      # TODO: Fix
+      # intellitab = {
+      #   enable = true;
+      #   # TODO: remove custom intellitab package once upstream accepts pr
+      #   package = pkgs.vimUtils.buildVimPlugin {
+      #     name = "intellitab";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "simondoesstuff";
+      #       repo = "intellitab.nvim";
+      #       rev = "fad06f80b44186767eba348283c3b88827a969b1";
+      #       sha256 = "sha256-ShMECcqFQS607ZWRKHEh1cSLT/XChx5JpNOHSP3h/7I=";
+      #     };
+      #   };
+      # };
       nvim-ufo.enable = true;
       nvim-ufo.settings.provider-selector =
         #lua

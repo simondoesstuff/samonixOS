@@ -1,9 +1,10 @@
+# packages and config for media and gaming
 {
-  lib,
-  pkgs,
-  root,
+  pkgs-spice,
   config,
-  pkgs-unstable,
+  root,
+  pkgs,
+  lib,
   ...
 }:
 {
@@ -38,7 +39,7 @@
     };
 
     home.packages = [
-      pkgs.ffmpeg # Common dependency, used for stacher as well as general use
+      pkgs.ffmpeg # useful for stacher and other general things
       (pkgs.jerry {
         withIINA = if pkgs.stdenv.isDarwin then true else false;
         imagePreviewSupport = true;
@@ -48,21 +49,24 @@
       })
       pkgs.spotify
       pkgs.spotifyd
+
+      # games
+      pkgs.prismlauncher
     ];
 
     programs.spotify-player = {
       enable = true;
-      package = pkgs-unstable.spotify-player; # TODO: move off unstable when lyric sync is on stable
+      package = pkgs.spotify-player;
       settings = {
         enable_notify = false;
-        enable_media_control = true; # allow media control buttons, only works on macos when focused
+        enable_media_control = true; # only works on macos when focused, apparently
         device = {
-          volume = 100; # make initial volume 70 -> 100 so that device has full control
+          volume = 100;
         };
       };
       keymaps = [
         {
-          command = "None"; # disable q for nvim toggleterm, so that we can leave terminal without closing player
+          command = "None"; # disable q so that we can leave neovim toggleterm without closing player
           key_sequence = "q";
         }
         {
@@ -75,6 +79,22 @@
         }
       ];
     };
+
+    # TODO: programs.spicetify not found, dclass 6/6/2025
+    # programs.spicetify = {
+    #   enable = true;
+    #   theme = pkgs-spice.themes.default;
+    #   # theme = pkgs-spice.themes.catppuccin;
+    #   # colorScheme = "mocha";
+    #   enabledExtensions = with pkgs-spice.extensions; [
+    #     shuffle # fischer-yates lets go (ballotery)
+    #     hidePodcasts
+    #     adblockify
+    #   ];
+    #   enabledCustomApps = with pkgs-spice.apps; [
+    #     lyricsPlus
+    #   ];
+    # };
 
     home.shellAliases = {
       jerry = "command jerry --dub";

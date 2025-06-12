@@ -113,14 +113,15 @@
           silent = true;
         };
       }
-      {
-        mode = "t";
-        key = "<C-l>";
-        action = "<Cmd>wincmd l<CR>";
-        options = {
-          silent = true;
-        };
-      }
+      # Disabled due to overlap with using <C-l> for completion in terminal
+      # {
+      #   mode = "t";
+      #   key = "<C-l>";
+      #   action = "<Cmd>wincmd l<CR>";
+      #   options = {
+      #     silent = true;
+      #   };
+      # }
       {
         mode = "t";
         key = "<C-w>";

@@ -7,7 +7,6 @@ in
   nixosSetup =
     {
       config,
-      hmExtra,
       system,
       username,
       extraModules ? [ ],
@@ -33,12 +32,12 @@ in
                 ../modules/linux/default.nix
                 config
                 inputs.nixvim.homeManagerModules.nixvim
-                hmExtra
               ];
             };
 
           home-manager.extraSpecialArgs = {
             pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+            pkgs-spice = inputs.spicetify.legacyPackages.${system};
             username = username;
             root = ./..;
           };
@@ -52,7 +51,6 @@ in
   homeManagerSetup =
     {
       config,
-      hmExtra,
       system,
       username,
     }:
@@ -63,6 +61,7 @@ in
       };
       extraSpecialArgs = {
         pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        pkgs-spice = inputs.spicetify.legacyPackages.${system};
         username = username;
         root = ./..;
       };
@@ -74,8 +73,8 @@ in
             ../modules/linux/default.nix
         )
         inputs.nixvim.homeManagerModules.nixvim
+        inputs.spicetify.homeManagerModules.spicetify
         config
-        hmExtra
         { homeManagerIsolated = true; }
       ];
     };

@@ -24,7 +24,6 @@ in
   users.users.simon = {
     ignoreShellProgramCheck = true; # shell is defined via home-manager
     shell = pkgs.zsh;
-    home = "/mnt/c/home"; # let ~/ be easily accessible for both systems
   };
 
   # INFO: WSL STUFF
@@ -32,8 +31,10 @@ in
   wsl.defaultUser = "simon";
 
   wsl.wslConf = {
-    # not supported in wsl.conf, only in .wslconfig, which is windows-global
-    # wsl2.networkingMode = "mirrored";
+    # not supported in wsl.conf, only the global .wslconfig which nix cannot provide 6/6/2025
+    # wsl2 = {
+    #   networkingMode = "mirrored";
+    # };
 
     network = {
       hostname = hostname;
@@ -41,21 +42,17 @@ in
     };
   };
 
-  # open up remote desktop to connect from windows
-  # services.xserver.enable = true;
-  # services.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  #
-  # services.xrdp.enable = true;
-  # services.xrdp.defaultWindowManager = "startplasma-x11";
-  # services.xrdp.openFirewall = true;
+  # important on WSL so that nvidia-smi & drivers in /usr/lib/wsl/lib can link properly
+  programs.nix-ld.enable = true;
 
-  # INFO: Link wsl library headers to path
-  environment.variables = {
-    # this includes things like libcuda and other GPU driver stuff
-    # that we don't nixify in a regular way within WSL
-    LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
-  };
+  # open up remote desktop to connect from windows
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
 
   # INFO: Networking stuff
   networking = {
@@ -82,8 +79,9 @@ in
   ];
 
   # INFO: Other
-  services.openvscode-server = {
-    enable = true;
-    user = "simon";
-  };
+  # TODO: Failed to build after 25.05 migration, fix?
+  # services.openvscode-server = {
+  #   enable = true;
+  #   user = "mason";
+  # };
 }
