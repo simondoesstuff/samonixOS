@@ -27,7 +27,21 @@ in
           home-manager.users.${username} =
             { ... }:
             {
-              nixpkgs.overlays = [ (import ../overlays/masonpkgs) ];
+              nixpkgs.overlays = [
+                (import ../overlays/masonpkgs)
+                (self: super: {
+                  # Custom ffmpeg with libopus and libaom
+                  ffmpeg-with-opus-and-aom = super.ffmpeg-full.override {
+                    libopus = self.libopus;
+                    libaom = self.libaom;
+                  };
+
+                  # Override the default mpv-unwrapped to use our custom ffmpeg
+                  mpv-unwrapped = super.mpv-unwrapped.override {
+                    ffmpeg = self.ffmpeg-with-opus-and-aom;
+                  };
+                })
+              ];
               imports = [
                 ../modules/linux/default.nix
                 config

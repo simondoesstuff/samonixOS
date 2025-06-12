@@ -9,6 +9,20 @@
 }:
 let
   enableSpice = true; # toggle between spicetify and regular spotify desktop
+
+  # Note for IINA: must import the input.conf as
+  # keybindings manually. Found in dotfiles directory
+  anime4k-files = pkgs.fetchzip {
+    url = "https://github.com/Tama47/Anime4K/releases/download/v4.0.1/GLSL_Mac_Linux_Low-end.zip";
+    sha256 = "1v4cxx6lay3vzwm5d9ns8k3crg4zd9p9kylpzbi789pymqkaz1ng";
+    stripRoot = false;
+  };
+
+  # anime4k-highend = pkgs.fetchzip {
+  #   url = "https://github.com/Tama47/Anime4K/releases/download/v4.0.1/GLSL_Mac_Linux_High-end.zip";
+  #   sha256 = "1d50zzqwyh264rbqj3dr9hdylcjs4xbji95hrna5icl3a2fmy7q2"; # nix-preferch-url --unpack hash
+  #   stripRoot = false; # Assume multiple files, which requires --unpack hash
+  # };
 in
 {
   options.entertainment.enable = lib.mkEnableOption "enable entertainment modules" // {
@@ -16,20 +30,6 @@ in
   };
 
   config = lib.mkIf config.entertainment.enable {
-    #INFO: Source 4k upscale shaders for anime.
-    # Note for IINA: must import the input.conf as keybindings manually
-    xdg.configFile.mpv = {
-      source = pkgs.fetchzip {
-        url = "https://github.com/Tama47/Anime4K/releases/download/v4.0.1/GLSL_Mac_Linux_Low-end.zip";
-        sha256 = "1v4cxx6lay3vzwm5d9ns8k3crg4zd9p9kylpzbi789pymqkaz1ng"; # nix-preferch-url --unpack hash
-        # HIGH END ALTERNATIVE
-        # 	url = "https://github.com/Tama47/Anime4K/releases/download/v4.0.1/GLSL_Mac_Linux_High-end.zip";
-        # 	sha256 = "1d50zzqwyh264rbqj3dr9hdylcjs4xbji95hrna5icl3a2fmy7q2"; # nix-preferch-url --unpack hash
-        stripRoot = false; # Assume multiple files, which requires --unpack hash
-      };
-      recursive = true;
-    };
-
     xdg.configFile.jerry = {
       source = root + /dotfiles/jerry;
       recursive = true;
@@ -40,31 +40,83 @@ in
       recursive = true;
     };
 
-    home.packages = [
-      # video
-      pkgs.ffmpeg # useful for stacher and other general things
-      (pkgs.jerry {
-        withIINA = if pkgs.stdenv.isDarwin then true else false;
-        imagePreviewSupport = true;
-      })
-      (pkgs.lobster {
-        withIINA = if pkgs.stdenv.isDarwin then true else false;
-      })
+    home.packages =
+      [
+        # video players and other
+        pkgs.ffmpeg-full # just useful for a lot of things
+        # pkgs.jellyfin-mpv-shim
 
-      # music
-      pkgs.spotifyd
-      (lib.mkIf (!enableSpice) pkgs.spotify)
+        (pkgs.jerry {
+          withIINA = if config.isDarwin then true else false;
+          imagePreviewSupport = true;
+        })
+        (pkgs.lobster {
+          withIINA = if config.isDarwin then true else false;
+        })
 
-      # games
-      pkgs.prismlauncher
-    ];
+        # music
+        pkgs.spotifyd
+        (lib.mkIf (!enableSpice) pkgs.spotify)
+
+        # games
+        pkgs.prismlauncher
+      ]
+      ++ lib.optionals config.isDarwin [
+        pkgs.iina
+      ];
+
+    # INFO: MPV stuff
+    xdg.configFile = {
+      "mpv/mpv.conf".source = root + /dotfiles/mpv/mpv.conf;
+      "mpv/input.conf".source = root + /dotfiles/mpv/input.conf;
+      # Only take the /shaders folder because I don't want the shaders
+      # to be activated by default which happens if we use their mpv.conf
+      "mpv/shaders" = {
+        source = "${anime4k-files}/shaders";
+      };
+      # necessary font for the modernz script's ui
+      "mpv/fonts" = {
+        source = "${pkgs.mpvScripts.modernz}/share/fonts";
+        recursive = true;
+      };
+    };
+
+    programs.mpv = {
+      enable = true;
+
+      scripts = with pkgs.mpvScripts; [
+        modernz
+        mpvacious
+        smartskip # skip openings of shows
+        eisa01.smart-copy-paste-2
+      ];
+
+      scriptOpts = {
+        subs2srs = {
+          use_ffmpeg = false;
+          audio_format = "mp3"; # opus is default
+          audio_bitrate = "96k"; # raised from 24k because mp3
+          opus_container = "m4a";
+          audio_field = "SentenceAudio";
+          # image_field = "DefinitionPicture";
+          image_field = "Picture";
+          deck_name = "daily decks::mining";
+          model_name = "Lapis";
+          snapshot_quality = 100;
+          snapshot_height = 640;
+          animated_snapshot_enabled = true;
+          animated_snapshot_quality = 100;
+          animated_snapshot_height = 640;
+        };
+      };
+    };
 
     programs.spotify-player = {
       enable = true;
       package = pkgs.spotify-player;
       settings = {
         enable_notify = false;
-        enable_media_control = true; # only works on macos when focused, apparently
+        enable_media_control = true; # physical keyboard media buttons
         device = {
           volume = 100;
         };
