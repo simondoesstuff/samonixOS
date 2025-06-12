@@ -44,7 +44,7 @@ in
         IdentitiesOnly yes
 
       Host dclass
-        HostName 192.168.68.76
+        HostName 192.168.68.63
         port 22565
     '';
   };
