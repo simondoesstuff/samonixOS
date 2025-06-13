@@ -40,30 +40,23 @@ in
       recursive = true;
     };
 
-    home.packages =
-      [
-        # video players and other
-        pkgs.ffmpeg-full # just useful for a lot of things
-        # pkgs.jellyfin-mpv-shim
+    home.packages = [
+      # video players and other
+      pkgs.ffmpeg-full # just useful for a lot of things
+      # pkgs.jellyfin-mpv-shim
 
-        (pkgs.jerry {
-          withIINA = if config.isDarwin then true else false;
-          imagePreviewSupport = true;
-        })
-        (pkgs.lobster {
-          withIINA = if config.isDarwin then true else false;
-        })
+      (pkgs.jerry {
+        imagePreviewSupport = true;
+      })
+      (pkgs.lobster { })
 
-        # music
-        pkgs.spotifyd
-        (lib.mkIf (!enableSpice) pkgs.spotify)
+      # music
+      pkgs.spotifyd
+      (lib.mkIf (!enableSpice) pkgs.spotify)
 
-        # games
-        pkgs.prismlauncher
-      ]
-      ++ lib.optionals config.isDarwin [
-        pkgs.iina
-      ];
+      # games
+      pkgs.prismlauncher
+    ];
 
     # INFO: MPV stuff
     xdg.configFile = {
