@@ -43,6 +43,7 @@ in
     home.packages = [
       # video players and other
       pkgs.ffmpeg-full # just useful for a lot of things
+      # pkgs.yt-dlp # yt downloading util
       # pkgs.jellyfin-mpv-shim
 
       (pkgs.jerry {
@@ -78,28 +79,35 @@ in
       enable = true;
 
       scripts = with pkgs.mpvScripts; [
-        modernz
+        modernz # epic ui
         mpvacious
+        sponsorblock
         smartskip # skip openings of shows
         eisa01.smart-copy-paste-2
       ];
 
       scriptOpts = {
+        modernz = {
+          seekbarfg_color = "#FF0032";
+          seekbarbg_color = "#555A61";
+          hover_effect_color = "#FF0032";
+          keeponpause = false; # hide controls when paused on a timer
+          window_top_bar = false;
+        };
         subs2srs = {
-          use_ffmpeg = false;
+          use_ffmpeg = true;
           audio_format = "mp3"; # opus is default
           audio_bitrate = "96k"; # raised from 24k because mp3
           opus_container = "m4a";
           audio_field = "SentenceAudio";
-          # image_field = "DefinitionPicture";
           image_field = "Picture";
           deck_name = "daily decks::mining";
           model_name = "Lapis";
           snapshot_quality = 100;
-          snapshot_height = 640;
+          snapshot_height = 480;
           animated_snapshot_enabled = true;
           animated_snapshot_quality = 100;
-          animated_snapshot_height = 640;
+          animated_snapshot_height = 480;
         };
       };
     };
