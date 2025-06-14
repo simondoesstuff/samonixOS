@@ -81,6 +81,7 @@ in
       scripts = with pkgs.mpvScripts; [
         modernz # epic ui
         mpvacious
+        autoload # auto load playlist entries for sequential files
         sponsorblock
         smartskip # skip openings of shows
         eisa01.smart-copy-paste-2
