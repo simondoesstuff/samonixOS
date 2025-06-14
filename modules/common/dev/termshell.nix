@@ -6,7 +6,8 @@
 }:
 {
   # ghostty only available on linux in nixpkgs at the moment
-  home.packages = if config.isLinux then [ pkgs.ghostty ] else [ pkgs.wezterm ];
+  # install it on macos manually bruv or use regular terminal
+  home.packages = if config.isLinux then [ pkgs.ghostty ] else [ ];
 
   # INFO: Source dotfiles directly
   xdg.configFile = {
