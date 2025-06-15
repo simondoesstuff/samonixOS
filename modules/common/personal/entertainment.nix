@@ -80,10 +80,10 @@ in
 
       scripts = with pkgs.mpvScripts; [
         modernz # epic ui
+        smartskip # skip openings of shows
         mpvacious
         autoload # auto load playlist entries for sequential files
         sponsorblock
-        smartskip # skip openings of shows
         eisa01.smart-copy-paste-2
       ];
 
@@ -94,6 +94,12 @@ in
           hover_effect_color = "#FF0032";
           keeponpause = false; # hide controls when paused on a timer
           window_top_bar = false;
+          jump_buttons = false; # dont show "jump 10 seconds" buttons
+          nibbles_style = "single-bar";
+        };
+        SmartSkip = {
+          silence_skip_to_end = "pause"; # pause if silent skip reaches the end
+          skip = "opening;ending"; # only skip opening/ending (other options: preview, prologue)
         };
         subs2srs = {
           use_ffmpeg = true;
