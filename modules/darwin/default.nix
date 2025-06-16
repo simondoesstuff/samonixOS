@@ -5,6 +5,7 @@
     [
       #INFO: Darwin exclusive configs
       ./packages.nix
+      ./maclinker.nix
     ]
     ++ [
       #INFO: Specified shared configs
