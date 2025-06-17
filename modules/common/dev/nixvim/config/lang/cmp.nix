@@ -21,7 +21,7 @@ in
         };
       };
 
-      blink-copilot.enable = true;
+      # blink-copilot.enable = true;
       blink-cmp = {
         enable = true;
         autoLoad = true;
@@ -34,29 +34,29 @@ in
           };
           sources = {
             default = [
-              "copilot"
+              # "copilot"
               "snippets"
               "lsp"
               "path"
               "buffer"
             ];
             providers = {
-              copilot = {
-                async = true;
-                module = "blink-copilot";
-                name = "copilot";
-                score_offset = 100;
-                opts = {
-                  max_completions = 4;
-                  max_attempts = 4;
-                  kind = "Copilot";
-                  debounce = 750;
-                  auto_refresh = {
-                    backward = true;
-                    forward = true;
-                  };
-                };
-              };
+              # copilot = {
+              #   async = true;
+              #   module = "blink-copilot";
+              #   name = "copilot";
+              #   score_offset = 100;
+              #   opts = {
+              #     max_completions = 4;
+              #     max_attempts = 4;
+              #     kind = "Copilot";
+              #     debounce = 750;
+              #     auto_refresh = {
+              #       backward = true;
+              #       forward = true;
+              #     };
+              #   };
+              # };
             };
           };
           appearance = {
