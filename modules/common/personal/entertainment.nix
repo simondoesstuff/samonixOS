@@ -95,6 +95,7 @@ in
         sponsorblock
         eisa01.smart-copy-paste-2 # paste files into mpv player (subtitles, video)
         eisa01.undoredo # undo/redo time skips
+        eisa01.simplehistory
       ];
 
       scriptOpts = {
