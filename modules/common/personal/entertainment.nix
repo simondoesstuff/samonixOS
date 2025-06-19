@@ -88,7 +88,6 @@ in
 
       scripts = with pkgs.mpvScripts; [
         modernz # epic ui
-        smartskip # skip openings of shows
         mpvacious
         thumbfast # thumbnailer preview when hovering progress bar
         autoload # auto load playlist entries for sequential files
@@ -113,10 +112,6 @@ in
           thumbnail_border_outline = "#000000";
           thumbnail_border_radius = 0;
           thumbnail_border = 0;
-        };
-        SmartSkip = {
-          silence_skip_to_end = "pause"; # pause if silent skip reaches the end
-          skip = "opening;ending"; # only skip opening/ending (other options: preview, prologue)
         };
         subs2srs = {
           use_ffmpeg = true;
@@ -208,6 +203,7 @@ in
       jerry = "command jerry --dub";
       jerrysub = "command jerry";
       spt = "spotify_player";
+      mpv = "mpv --idle --force-window";
     };
   };
 }
