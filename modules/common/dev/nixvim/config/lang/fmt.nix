@@ -20,6 +20,8 @@
             "ruff_organize_imports"
             "ruff_format"
             "ruff_fix"
+            # "black"
+            # "isort"
           ];
           javascript = [ "prettierd" ];
           typescript = [ "prettierd" ];
@@ -36,8 +38,8 @@
           stylua.command = lib.getExe pkgs.stylua;
           prettierd.command = lib.getExe pkgs.prettierd;
           rustfmt.command = lib.getExe pkgs.rustfmt;
-          black.command = lib.getExe pkgs.black;
-          isort.command = lib.getExe pkgs.isort;
+          # black.command = lib.getExe pkgs.black;
+          # isort.command = lib.getExe pkgs.isort;
           codespell.command = lib.getExe pkgs.codespell;
         };
       };
