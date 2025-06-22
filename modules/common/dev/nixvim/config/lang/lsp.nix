@@ -20,6 +20,7 @@
 
     # general rust tooling & lsp
     rustaceanvim.enable = true;
+    plantuml-syntax.enable = true;
 
     lsp = {
       enable = true;
