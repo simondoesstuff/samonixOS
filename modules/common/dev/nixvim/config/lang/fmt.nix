@@ -26,7 +26,15 @@
           svelte = [ "prettierd" ]; # for svelte to work set up https://github.com/sveltejs/prettier-plugin-svelte
           html = [ "prettierd" ];
           rust = [ "rustfmt" ];
-          nix = [ "nixfmt" ];
+          markdown = [ "prettierd" ];
+          sh = [
+            "shellcheck"
+            "shfmt"
+          ];
+          bash = [
+            "shellcheck"
+            "shfmt"
+          ];
           "*" = [ "codespell" ];
           "_" = [ "trim_whitespace" ];
         };
@@ -35,9 +43,9 @@
           stylua.command = lib.getExe pkgs.stylua;
           prettierd.command = lib.getExe pkgs.prettierd;
           rustfmt.command = lib.getExe pkgs.rustfmt;
-          black.command = lib.getExe pkgs.black;
-          isort.command = lib.getExe pkgs.isort;
           codespell.command = lib.getExe pkgs.codespell;
+          shfmt.command = lib.getExe pkgs.shfmt;
+          shellcheck.command = lib.getExe pkgs.shellcheck;
         };
       };
     };
