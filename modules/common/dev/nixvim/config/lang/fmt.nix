@@ -25,6 +25,7 @@
           typescriptreact = [ "prettierd" ];
           svelte = [ "prettierd" ]; # for svelte to work set up https://github.com/sveltejs/prettier-plugin-svelte
           html = [ "prettierd" ];
+          css = [ "prettierd" ];
           rust = [ "rustfmt" ];
           markdown = [ "prettierd" ];
           sh = [
