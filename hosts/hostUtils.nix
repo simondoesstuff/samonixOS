@@ -1,6 +1,14 @@
 { inputs }:
 let
   inherit (inputs) nixpkgs home-manager;
+
+	# lil helper to allow unfree in all the unstables
+  mkPkgsUnstable =
+    system:
+    import inputs.nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
 in
 {
   # General nixosSystem wrapper that takes in config system and username
@@ -17,7 +25,7 @@ in
     nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        pkgs-unstable = mkPkgsUnstable system;
       };
       modules = [
         home-manager.nixosModules.home-manager
@@ -29,18 +37,6 @@ in
             {
               nixpkgs.overlays = [
                 (import ../overlays/masonpkgs)
-                (self: super: {
-                  # Custom ffmpeg with libopus and libaom
-                  ffmpeg-with-opus-and-aom = super.ffmpeg-full.override {
-                    libopus = self.libopus;
-                    libaom = self.libaom;
-                  };
-
-                  # Override the default mpv-unwrapped to use our custom ffmpeg
-                  mpv-unwrapped = super.mpv-unwrapped.override {
-                    ffmpeg = self.ffmpeg-with-opus-and-aom;
-                  };
-                })
               ];
               imports = [
                 ../modules/linux/default.nix
@@ -51,7 +47,7 @@ in
             };
 
           home-manager.extraSpecialArgs = {
-            pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+            pkgs-unstable = mkPkgsUnstable system;
             pkgs-spice = inputs.spicetify.legacyPackages.${system};
             username = username;
             root = ./..;
@@ -73,7 +69,7 @@ in
         overlays = [ (import ../overlays/masonpkgs) ];
       };
       extraSpecialArgs = {
-        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        pkgs-unstable = mkPkgsUnstable system;
         pkgs-spice = inputs.spicetify.legacyPackages.${system};
         username = username;
         root = ./..;
