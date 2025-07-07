@@ -13,6 +13,7 @@
     extraConfig = {
       merge.tool = "nvimdiff2";
       init.defaultBranch = "main";
+      pull.rebase = false; # default to merging
     };
   };
 
