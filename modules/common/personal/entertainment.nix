@@ -91,6 +91,7 @@ in
         mpvacious
         thumbfast # thumbnailer preview when hovering progress bar
         autoload # auto load playlist entries for sequential files
+        autosubsync-mpv # auto sync mistimed subtitles
         sponsorblock
         eisa01.smart-copy-paste-2 # paste files into mpv player (subtitles, video)
         eisa01.undoredo # undo/redo time skips

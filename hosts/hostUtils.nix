@@ -2,7 +2,7 @@
 let
   inherit (inputs) nixpkgs home-manager;
 
-	# lil helper to allow unfree in all the unstables
+  # lil helper to allow unfree in all the unstables
   mkPkgsUnstable =
     system:
     import inputs.nixpkgs-unstable {
