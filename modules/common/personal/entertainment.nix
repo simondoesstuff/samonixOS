@@ -73,6 +73,8 @@ in
         source = "${pkgs.mpvScripts.modernz}/share/fonts";
         recursive = true;
       };
+			# Loading config files
+			"mpv/script-opts/SimpleHistory.conf".source = root + /dotfiles/mpv/script-opts/SimpleHistory.conf;
       # Example loading external script
       # "mpv/scripts/progressbar.lua" = {
       #   # cooler progress bar
@@ -92,10 +94,10 @@ in
         thumbfast # thumbnailer preview when hovering progress bar
         autoload # auto load playlist entries for sequential files
         autosubsync-mpv # auto sync mistimed subtitles
-        sponsorblock
         eisa01.smart-copy-paste-2 # paste files into mpv player (subtitles, video)
         eisa01.undoredo # undo/redo time skips
         eisa01.simplehistory
+        sponsorblock
       ];
 
       scriptOpts = {
