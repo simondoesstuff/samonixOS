@@ -61,25 +61,37 @@
         options.desc = "close buffer";
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+        ];
         key = "<C-,>";
         action = "<cmd>BufferPrevious<cr>";
         options.desc = "previous buffer";
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+        ];
         key = "<C-.>";
         action = "<cmd>BufferNext<cr>";
         options.desc = "next buffer";
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+        ];
         key = "<C-S-.>";
         action = "<cmd>BufferMoveNext<cr>";
         options.desc = "move buffer to next";
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+        ];
         key = "<C-S-,>";
         action = "<cmd>BufferMovePrevious<cr>";
         options.desc = "move buffer to previous";

@@ -73,8 +73,8 @@ in
         source = "${pkgs.mpvScripts.modernz}/share/fonts";
         recursive = true;
       };
-			# Loading config files
-			"mpv/script-opts/SimpleHistory.conf".source = root + /dotfiles/mpv/script-opts/SimpleHistory.conf;
+      # Loading config files
+      "mpv/script-opts/SimpleHistory.conf".source = root + /dotfiles/mpv/script-opts/SimpleHistory.conf;
       # Example loading external script
       # "mpv/scripts/progressbar.lua" = {
       #   # cooler progress bar
@@ -107,7 +107,8 @@ in
           hover_effect_color = "#FF0032";
           keeponpause = false; # hide controls when paused on a timer
           window_top_bar = false;
-          jump_buttons = false; # dont show "jump 10 seconds" buttons
+          jump_amount = 3;
+          jump_softrepeat = false;
           nibbles_style = "single-bar";
           fade_alpha = 185; # ensures covering the default OSD bar when paused
           fade_blur_strength = 100;
