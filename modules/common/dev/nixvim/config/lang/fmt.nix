@@ -28,6 +28,10 @@
           css = [ "prettierd" ];
           rust = [ "rustfmt" ];
           markdown = [ "prettierd" ];
+          # markup
+          toml = [ "taplo" ];
+          yaml = [ "prettierd" ];
+          # shell
           sh = [
             "shellcheck"
             "shfmt"
@@ -47,6 +51,7 @@
           codespell.command = lib.getExe pkgs.codespell;
           shfmt.command = lib.getExe pkgs.shfmt;
           shellcheck.command = lib.getExe pkgs.shellcheck;
+          taplo.command = lib.getExe pkgs.taplo;
         };
       };
     };
