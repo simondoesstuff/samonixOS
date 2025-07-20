@@ -44,7 +44,6 @@
         action = "<cmd>CopilotChat<cr>";
         options.desc = "open chat";
       }
-      # TODO: Open copilot chat with selection as an input
       {
         mode = "v";
         key = "<leader>ac";

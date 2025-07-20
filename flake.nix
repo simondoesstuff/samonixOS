@@ -5,7 +5,7 @@
     # Stable branch flakes
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    spicetify.url = "github:Gerg-L/spicetify-nix/24.11"; # TODO: 25.05
+    spicetify.url = "github:Gerg-L/spicetify-nix";
 
     # Other flakes
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -18,6 +18,7 @@
     # Following
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify.inputs.nixpkgs.follows = "nixpkgs";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
@@ -36,8 +37,8 @@
       # TODO: error on home-manager news evoked when using these. Same as:
       # https://discourse.nixos.org/t/news-json-output-and-home-activationpackage-in-home-manager-switch/54192
       packages.x86_64-linux.homeConfigurations = {
-        "mason@wsl" = nixosConfigurations.wslOnix.config.home-manager.users."mason".home;
-        "mason@xps" = nixosConfigurations.xpsOnix.config.home-manager.users."mason".home;
+        "mason@wslOnix" = nixosConfigurations.wslOnix.config.home-manager.users."mason".home;
+        "mason@xpsOnix" = nixosConfigurations.xpsOnix.config.home-manager.users."mason".home;
       };
 
       # Config for aarch-darwin based home-manager configs used currently on macbook

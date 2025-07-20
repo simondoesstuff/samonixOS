@@ -1,7 +1,5 @@
-# This is an example configuration file for lobster. This configuration includes all of the defaults, which you can change to you likings. The script will behave the exact same if you remove all of the values present here.
-
 lobster_editor=${VISUAL:-${EDITOR:-vim}}
-player="iina"
+player="mpv"
 download_dir="$PWD"
 provider="UpCloud"
 history=0

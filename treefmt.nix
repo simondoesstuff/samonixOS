@@ -1,6 +1,9 @@
 { ... }:
 {
   projectRootFile = "flake.nix";
-  programs.nixfmt.enable = true;
-  programs.stylua.enable = true;
+  programs = {
+    nixfmt.enable = true;
+    stylua.enable = true;
+    prettier.enable = true;
+  };
 }

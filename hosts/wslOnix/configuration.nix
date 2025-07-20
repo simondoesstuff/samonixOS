@@ -51,11 +51,15 @@
   # open up remote desktop to connect from windows
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
-  services.xrdp.openFirewall = true;
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "startplasma-x11";
+    openFirewall = true;
+    port = 3390; # windows likes to use the default port 3389 for rdp stuff in their apps (ie windows app)
+    # if on networking mirrored, can simply use windows rdp to connect to localhost:3390
+  };
 
   # INFO: Networking stuff
   networking = {
@@ -76,9 +80,10 @@
   };
 
   # INFO: Other
-  # TODO: Failed to build after 25.05 migration, fix?
-  # services.openvscode-server = {
-  #   enable = true;
-  #   user = "mason";
-  # };
+  services.code-server = {
+    enable = true;
+    user = "mason";
+    # hint: the password is `1234` 😈
+    hashedPassword = "$argon2i$v=19$m=4096,t=3,p=1$c1hXbkhFNG8rUlg3aVBnOHVEZENXVmk1WlVzPQ$D1rr2WNl75cnpti+q/PkpTHNXGD+ENSktp2m+nMr2Vw";
+  };
 }

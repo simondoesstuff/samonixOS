@@ -13,6 +13,7 @@ in
 {
   home.username = username;
   home.stateVersion = "23.11"; # WARNING: read docs before updating
+  news.display = "silent";
 
   home.homeDirectory =
     if isLinux then

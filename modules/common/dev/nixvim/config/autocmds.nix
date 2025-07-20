@@ -1,15 +1,7 @@
 {
-  programs.nixvim.autoGroups = {
-    yankGrp.clear = true;
-  };
+  programs.nixvim.autoGroups = { };
 
   programs.nixvim.autoCmd = [
-    {
-      # Highlight on yank
-      event = [ "TextYankPost" ];
-      command = "lua vim.highlight.on_yank()";
-      group = "yankGrp";
-    }
     {
       # Check if any buffers were changed while unfocused
       event = [ "FocusGained" ];
