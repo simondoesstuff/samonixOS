@@ -16,7 +16,24 @@
 
   environment.systemPackages = [ pkgs.ncdu ];
 
+  # Create media dir for container to bind to
+  systemd.tmpfiles.rules = [
+    "d /srv/media_downloads 0755 root root -"
+    "d /srv/media_torrents 0775 root root -"
+  ];
+
   containers.media = {
+    bindMounts = {
+      "/srv/media" = {
+        hostPath = "/srv/media_downloads"; # bind media to host for ez access
+        isReadOnly = false;
+      };
+      "/srv/transmission" = {
+        hostPath = "/srv/media_torrents"; # bind transmission dir to host
+        isReadOnly = false;
+      };
+    };
+
     autoStart = false; # autostart dangerous if low storage
     enableTun = true;
     privateNetwork = true;
@@ -39,6 +56,16 @@
         hostPort = 8989;
         protocol = "tcp";
       }
+      {
+        containerPort = 51413; # transmission peer port
+        hostPort = 51413;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 51413; # transmission peer port
+        hostPort = 51413;
+        protocol = "udp";
+      }
     ];
 
     config = {
@@ -54,17 +81,8 @@
 
       # Networking
       networking = {
-        nameservers = [
-          "1.1.1.1"
-          "8.8.8.8"
-        ];
         dhcpcd.enable = false;
         useHostResolvConf = false;
-        nat = {
-          enable = true;
-          externalInterface = "wlp59s0";
-          internalInterfaces = [ "tun0" ];
-        };
         interfaces."eth0".ipv4.routes = [
           {
             address = "192.168.1.0";
@@ -80,22 +98,28 @@
         # Firewall to prevent leaks outside of vpn by only accepting marked traffic
         firewall = {
           enable = true;
-          allowedUDPPorts = [ 1194 ]; # Standard OpenVPN port
+          allowedUDPPorts = [
+            1194
+            51413
+          ]; # Standard OpenVPN port
           allowedTCPPorts = [
             8096
             5055
             8989
+            51413
           ];
           interfaces = {
             "eth0".allowedTCPPorts = [
               8096
               5055
               8989
+              51413
             ];
             "tun".allowedTCPPorts = [
               8096
               5055
               8989
+              51413
             ];
           };
           # Reject all traffic not going through VPN
@@ -171,8 +195,8 @@
       # Set up ACLs for inheritance
       system.activationScripts.mediaPermissions = {
         text = ''
-           echo "Setting up ACLs for media directories..."
-           ${pkgs.acl}/bin/setfacl -R -m g:media:rwx /srv/media /srv/transmission /srv/anisyncache
+          echo "Setting up ACLs for media directories..."
+          ${pkgs.acl}/bin/setfacl -R -m g:media:rwx /srv/media /srv/transmission /srv/anisyncache
           ${pkgs.acl}/bin/setfacl -R -d -m g:media:rwx /srv/media /srv/transmission /srv/anisyncache
         '';
         deps = [ ];
@@ -219,6 +243,7 @@
         group = "media";
         user = "transmission";
         settings = {
+          peer-port = 51413;
           unmask = 2; # write perms for others
           rpc-bind-address = "0.0.0.0"; # Bind to own IP
           rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1

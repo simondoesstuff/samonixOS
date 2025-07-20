@@ -1,6 +1,14 @@
 { inputs }:
 let
   inherit (inputs) nixpkgs home-manager;
+
+  # lil helper to allow unfree in all the unstables
+  mkPkgsUnstable =
+    system:
+    import inputs.nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
 in
 {
   # General nixosSystem wrapper that takes in config system and username
@@ -17,17 +25,19 @@ in
     nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        pkgs-unstable = mkPkgsUnstable system;
       };
       modules = [
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+          # home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
           home-manager.users.${username} =
             { ... }:
             {
+              nixpkgs.overlays = [
+                (import ../overlays/masonpkgs)
+              ];
               imports = [
                 ../modules/linux/default.nix
                 config
@@ -36,13 +46,11 @@ in
             };
 
           home-manager.extraSpecialArgs = {
-            pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+            pkgs-unstable = mkPkgsUnstable system;
             pkgs-spice = inputs.spicetify.legacyPackages.${system};
             username = username;
             root = ./..;
           };
-
-          nixpkgs.overlays = [ (import ../overlays/masonpkgs) ];
         }
       ] ++ extraModules;
     };
@@ -60,7 +68,7 @@ in
         overlays = [ (import ../overlays/masonpkgs) ];
       };
       extraSpecialArgs = {
-        pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+        pkgs-unstable = mkPkgsUnstable system;
         pkgs-spice = inputs.spicetify.legacyPackages.${system};
         username = username;
         root = ./..;

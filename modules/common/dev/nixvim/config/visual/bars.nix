@@ -73,13 +73,19 @@
         options.desc = "next buffer";
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+        ];
         key = "<C-S-.>";
         action = "<cmd>BufferMoveNext<cr>";
         options.desc = "move buffer to next";
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "t"
+        ];
         key = "<C-S-,>";
         action = "<cmd>BufferMovePrevious<cr>";
         options.desc = "move buffer to previous";

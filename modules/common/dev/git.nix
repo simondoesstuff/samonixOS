@@ -12,8 +12,8 @@
     userEmail = "simon@simonwalker.tech";
     extraConfig = {
       merge.tool = "nvimdiff2";
-      pull.rebase = false;
       init.defaultBranch = "main";
+      pull.rebase = false; # default to merging
     };
   };
 

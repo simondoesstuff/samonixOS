@@ -7,6 +7,7 @@
     mermaid-cli
     ghostscript
   ];
+
   programs.nixvim = {
     plugins.neoscroll.enable = true; # better than snacks scroll imo
     plugins.snacks = {

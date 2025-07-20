@@ -2,9 +2,9 @@ name: Test the masonix flake 😳
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -65,11 +65,11 @@ jobs:
           mkdir -p ~/.config/nix
           echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
-      - name: Build mason@xps configuration
-        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@xps".activationPackage --dry-run
+      - name: Build mason@xpsOnix configuration
+        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@xpsOnix".activationPackage --dry-run
 
-      - name: Build mason@wsl configuration
-        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@wsl".activationPackage --dry-run
+      - name: Build mason@wslOnix configuration
+        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@wslOnix".activationPackage --dry-run
 
   # Test macOS Home Manager configuration
   test-home-macos:
