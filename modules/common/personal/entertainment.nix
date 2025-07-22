@@ -166,40 +166,23 @@ in
     # to stop the update request from appearing yet, haven't experimented much
     programs.spicetify = {
       enable = enableSpice;
+      theme = pkgs-spice.themes.lucid; # best theme there is trust
       alwaysEnableDevTools = true; # doesn't work on mac I dont think
-      theme =
-        let
-          baseTheme = pkgs-spice.themes.default;
-        in
-        baseTheme
-        // {
-          injectCss = true;
-          # TODO: Sadly doesn't hide the OG lyric button i tried
-          additionalCss = lib.strings.concatStrings [
-            (baseTheme.additionalCss or "")
-            ''
-              /* Hide lyrics button */
-              [data-testid="lyrics-button"] {
-                display: none !important;
-              }
-            ''
-          ];
-        }; # theme = pkgs-spice.themes.catppuccin;
-      # colorScheme = "mocha";
       enabledExtensions = with pkgs-spice.extensions; [
         # INFO: nice-to-haves
         shuffle # fischer-yates lets go (ballotery)
         adblockify
         beautifulLyrics # adds epic lyrics with cool fullscreen mode
         # INFO: stats
-        skipStats # tracks ur skips for fun
-        songStats # shows key and other which is fire
+        songStats # shows song key and other
         # INFO: opinionated
         hidePodcasts # note you can also go to settings and toggle it back and forth
 
         # lowkey this fullscreen mode looks epic but it kinda overlaps with
         # simpleBeautiful lyrics fullscreen and it feels weird to have two
         # fullScreen
+
+				# actually im not sure if that full screen was the issue, I still have 2 after removing
       ];
     };
 
