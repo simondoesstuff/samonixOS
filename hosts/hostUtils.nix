@@ -53,7 +53,8 @@ in
             root = ./..;
           };
         }
-      ] ++ extraModules;
+      ]
+      ++ extraModules;
     };
 
   # General home-manager configuration wrapper that takes in config system and username

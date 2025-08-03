@@ -123,6 +123,7 @@ in
           audio_bitrate = "96k"; # raised from 24k because mp3
           opus_container = "m4a";
           audio_field = "SentenceAudio";
+          secondary_field = "SentenceEnglish";
           image_field = "Picture";
           deck_name = "daily decks::mining";
           model_name = "Lapis";
@@ -182,7 +183,7 @@ in
         # simpleBeautiful lyrics fullscreen and it feels weird to have two
         # fullScreen
 
-				# actually im not sure if that full screen was the issue, I still have 2 after removing
+        # actually im not sure if that full screen was the issue, I still have 2 after removing
       ];
     };
 
