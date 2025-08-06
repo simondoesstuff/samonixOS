@@ -28,6 +28,7 @@
           css = [ "prettierd" ];
           rust = [ "rustfmt" ];
           markdown = [ "prettierd" ];
+          hbs = [ "prettierd" ];
           # markup
           toml = [ "taplo" ];
           yaml = [ "prettierd" ];
