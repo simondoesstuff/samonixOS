@@ -41,8 +41,8 @@ in
               imports = [
                 ../modules/linux/default.nix
                 config
-                inputs.nixvim.homeManagerModules.nixvim
-                inputs.spicetify.homeManagerModules.spicetify
+                inputs.nixvim.homeModules.nixvim
+                inputs.spicetify.homeModules.spicetify
               ];
             };
 

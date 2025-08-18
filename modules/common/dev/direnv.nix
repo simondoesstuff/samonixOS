@@ -12,4 +12,9 @@
       };
     };
   };
+
+  home.shellAliases = {
+    dr = "direnv reload";
+    da = "direnv allow";
+  };
 }
