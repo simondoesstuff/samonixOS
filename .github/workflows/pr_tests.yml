@@ -37,7 +37,6 @@ jobs:
             });
             core.setOutput("sha", pr.data.head.sha);
 
-
   # Test NixOS configurations
   test-nixos:
     name: Raw NixOS Build
@@ -79,7 +78,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.trigger-tests.outputs.pr_sha }}
-          
+
       - name: Setup secrets
         run: |
           echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
@@ -113,7 +112,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.trigger-tests.outputs.pr_sha }}
-    
+
       - name: Setup secrets
         run: |
           echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
@@ -122,15 +121,15 @@ jobs:
           chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
           chmod 600 ./hosts/xpsOnix/media/nordUser.key
           chmod 600 ./hosts/xpsOnix/media/nordPass.key
-    
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-    
+
       - name: Enable Flakes
         run: |
           mkdir -p ~/.config/nix
           echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-    
+
       - name: Build mason macOS configuration
         run: nix build .#packages.aarch64-darwin.homeConfigurations.mason.activationPackage --dry-run
 
@@ -141,8 +140,8 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && needs.trigger-tests.result == 'success'
     env:
-      PR_SHA:          ${{ needs.trigger-tests.outputs.pr_sha }}
-      TEST_NIXOS:      ${{ needs.test-nixos.result }}
+      PR_SHA: ${{ needs.trigger-tests.outputs.pr_sha }}
+      TEST_NIXOS: ${{ needs.test-nixos.result }}
       TEST_HOME_LINUX: ${{ needs.test-home-linux.result }}
       TEST_HOME_MACOS: ${{ needs.test-home-macos.result }}
     steps:

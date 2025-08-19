@@ -19,6 +19,7 @@
 
       # TODO: re-enable once mac signal is back on 25.05
       # pkgs.signal-desktop
+      # or use signal-desktop-bin
     ];
   };
 }
