@@ -43,6 +43,16 @@
 
     forwardPorts = [
       {
+        containerPort = 51413; # transmission peer port
+        hostPort = 51413;
+        protocol = "udp";
+      }
+      {
+        containerPort = 9091; # transmission (web client)
+        hostPort = 9091;
+        protocol = "tcp";
+      }
+      {
         containerPort = 8096; # jellyfin
         hostPort = 8096;
         protocol = "tcp";
@@ -58,14 +68,19 @@
         protocol = "tcp";
       }
       {
-        containerPort = 51413; # transmission peer port
-        hostPort = 51413;
+        containerPort = 7878; # radarr
+        hostPort = 7878;
         protocol = "tcp";
       }
       {
-        containerPort = 51413; # transmission peer port
-        hostPort = 51413;
-        protocol = "udp";
+        containerPort = 6767; # bazarr
+        hostPort = 6767;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 9696; # prowlarr
+        hostPort = 9696;
+        protocol = "tcp";
       }
     ];
 
@@ -100,29 +115,33 @@
         firewall = {
           enable = true;
           allowedUDPPorts = [
-            1194
-            51413
-          ]; # Standard OpenVPN port
-          allowedTCPPorts = [
-            8096
-            5055
-            8989
-            51413
+            1194 # OVPN standard port
+            51413 # Transmission peer port, do i need?
           ];
-          interfaces = {
-            "eth0".allowedTCPPorts = [
-              8096
-              5055
-              8989
-              51413
-            ];
-            "tun".allowedTCPPorts = [
-              8096
-              5055
-              8989
-              51413
-            ];
-          };
+          allowedTCPPorts = [
+            # Don't think I need any of this
+            # 8096 # jellyfin
+            # 5055 # jellyseerr
+            # 8989 # sonarr
+            # 7878 # radarr
+            # 6767 # bazarr
+            # 9696 # prowlarr
+            # 51413
+          ];
+          # interfaces = {
+          #   "eth0".allowedTCPPorts = [
+          #     8096
+          #     5055
+          #     8989
+          #     51413
+          #   ];
+          #   "tun".allowedTCPPorts = [
+          #     8096
+          #     5055
+          #     8989
+          #     51413
+          #   ];
+          # };
           # Reject all traffic not going through VPN
           extraCommands = ''
             # Allow loopback and initial VPN connection
