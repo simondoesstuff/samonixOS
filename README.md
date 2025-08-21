@@ -28,3 +28,11 @@ The `flake.nix` defines all of the configurations and what modules they call.
 ### Secrets
 
 Some parts of the flake assume access to files that are suffixed with `.key`. These assume you have been given access via `git-crypt`.
+
+To add a new device
+
+1. Generate a gpg key
+2. Give the public key to the device
+3. git-crypt add-gpg-user YOUR_GPG_KEY_ID
+
+Then on new device, close and `git-crypt unlock`
