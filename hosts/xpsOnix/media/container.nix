@@ -18,8 +18,8 @@
 
   # Create media dir for container to bind to
   systemd.tmpfiles.rules = [
-    "d /srv/media_downloads 0755 root root -"
-    "d /srv/media_torrents 0775 root root -"
+    "d /srv/media_downloads 0777 root root -"
+    "d /srv/media_torrents 0777 root root -"
   ];
 
   containers.media = {
@@ -35,6 +35,7 @@
     };
 
     autoStart = false; # autostart dangerous if low storage
+
     enableTun = true;
     privateNetwork = true;
     hostAddress = "192.168.10.1";
@@ -226,6 +227,12 @@
         openFirewall = true; # port 7878
         group = "media";
         user = "radarr";
+      };
+
+      services.bazarr = {
+        enable = true;
+        group = "media";
+        openFirewall = true; # port 6767
       };
 
       services.prowlarr = {
