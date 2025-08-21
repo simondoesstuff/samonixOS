@@ -252,12 +252,16 @@
         user = "transmission";
         settings = {
           peer-port = 51413;
-          unmask = 2; # write perms for others
+          unmask = 2; # set write perms for other groups
           rpc-bind-address = "0.0.0.0"; # bind to own ip
 
           # Below only lets host access transmission
-          # rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
-          rpc-authentication-required = true; # allow any with password to access
+          rpc-host-whitelist-enabled = false; # allow any hostname to access
+          rpc-whitelist-enabled = false; # allow any ip to access
+
+          rpc-authentication-required = false; # require user/pass (might be useful in future)
+          rpc-username = "N/A";
+          rpc-password = "N/A";
 
           download-dir = "/srv/transmission/downloaded";
           incomplete-dir = "/srv/transmission/.incomplete";
