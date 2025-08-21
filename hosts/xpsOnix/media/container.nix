@@ -111,37 +111,16 @@
             via = "192.168.10.1";
           }
         ];
-        # Firewall to prevent leaks outside of vpn by only accepting marked traffic
+        # firewall to prevent leaks outside of vpn by only accepting marked traffic
         firewall = {
           enable = true;
           allowedUDPPorts = [
-            1194 # OVPN standard port
-            51413 # Transmission peer port, do i need?
+            1194 # ovpn standard port
+            51413 # transmission peer port, do i need?
           ];
-          allowedTCPPorts = [
-            # Don't think I need any of this
-            # 8096 # jellyfin
-            # 5055 # jellyseerr
-            # 8989 # sonarr
-            # 7878 # radarr
-            # 6767 # bazarr
-            # 9696 # prowlarr
-            # 51413
-          ];
-          # interfaces = {
-          #   "eth0".allowedTCPPorts = [
-          #     8096
-          #     5055
-          #     8989
-          #     51413
-          #   ];
-          #   "tun".allowedTCPPorts = [
-          #     8096
-          #     5055
-          #     8989
-          #     51413
-          #   ];
-          # };
+          # tcp ports for *arr serviecs are already implicitly
+          # allowed due to settings 'openFirewall = true'
+
           # Reject all traffic not going through VPN
           extraCommands = ''
             # Allow loopback and initial VPN connection
@@ -189,6 +168,7 @@
         "sonarr"
         "radarr"
         "transmission"
+        "bazarr"
       ];
       systemd.tmpfiles.rules = [
         "d /srv/media 2775 root media -"
@@ -232,6 +212,7 @@
       services.jellyseerr = {
         enable = true;
         openFirewall = true; # port 5055
+        # jellyseer has no group/user option
       };
 
       services.sonarr = {
@@ -250,8 +231,9 @@
 
       services.bazarr = {
         enable = true;
-        group = "media";
         openFirewall = true; # port 6767
+        group = "media";
+        user = "bazarr";
       };
 
       services.prowlarr = {
@@ -271,8 +253,12 @@
         settings = {
           peer-port = 51413;
           unmask = 2; # write perms for others
-          rpc-bind-address = "0.0.0.0"; # Bind to own IP
-          rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
+          rpc-bind-address = "0.0.0.0"; # bind to own ip
+
+          # Below only lets host access transmission
+          # rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
+          rpc-authentication-required = true; # allow any with password to access
+
           download-dir = "/srv/transmission/downloaded";
           incomplete-dir = "/srv/transmission/.incomplete";
           # Seeding and download configs
