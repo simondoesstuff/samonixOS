@@ -41,48 +41,32 @@
     hostAddress = "192.168.10.1";
     localAddress = "192.168.10.2";
 
-    forwardPorts = [
-      {
-        containerPort = 51413; # transmission peer port
-        hostPort = 51413;
-        protocol = "udp";
-      }
-      {
-        containerPort = 9091; # transmission (web client)
-        hostPort = 9091;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 8096; # jellyfin
-        hostPort = 8096;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 5055; # jellyseerr
-        hostPort = 5055;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 8989; # sonarr
-        hostPort = 8989;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 7878; # radarr
-        hostPort = 7878;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 6767; # bazarr
-        hostPort = 6767;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 9696; # prowlarr
-        hostPort = 9696;
-        protocol = "tcp";
-      }
-    ];
+    forwardPorts =
+      let
+        tcpPorts = [
+          9091 # Transmission (Web UI)
+          8096 # Jellyfin
+          5055 # Jellyseerr
+          8989 # Sonarr
+          7878 # Radarr
+          6767 # Bazarr
+          9696 # Prowlarr
+        ];
+
+        udpPorts = [
+          51413 # Transmission (Peer Port)
+        ];
+
+        # Helper function that creates the port mapping structure
+        mkPort = proto: port: {
+          containerPort = port;
+          hostPort = port;
+          protocol = proto;
+        };
+
+      in
+      # Generates the port config using vars above
+      (lib.map (mkPort "tcp") tcpPorts) ++ (lib.map (mkPort "udp") udpPorts);
 
     config = {
       environment.systemPackages = with pkgs; [
