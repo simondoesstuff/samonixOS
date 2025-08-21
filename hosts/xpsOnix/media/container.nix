@@ -57,7 +57,8 @@
           51413 # Transmission (Peer Port)
         ];
 
-        # Helper function that creates the port mapping structure
+        # Helper function that creates the port mapping structure from
+        # container port to the corresponding identical host port
         mkPort = proto: port: {
           containerPort = port;
           hostPort = port;
@@ -83,6 +84,9 @@
       networking = {
         dhcpcd.enable = false;
         useHostResolvConf = false;
+        # Container needs to send traffic through the host
+        # when communicating with local network devices...
+        # That's what this does ->
         interfaces."eth0".ipv4.routes = [
           {
             address = "192.168.1.0";
