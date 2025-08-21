@@ -7,7 +7,7 @@ A flake that is expanding to encompass all dotfiles and system configs across li
 The ultimate goal is to manage the entire system with a flake, but also have the flake be agnostic to the system type. In other words, the flake should work on NixOS, MacOS/darwin, regular linux distros, and WSL (whether nixos or other).
 
 - For NixOS based and nix-darwin, we will use the `nixos` module system to configure the system as well as home-manager for packages
-- For non-nixos or nix-darwin, we will use only the `home-manager` modules to configure the system pacakges
+- For non-nixos or nix-darwin, we will use only the `home-manager` modules to configure the system packages
 
 ## Sections information
 
@@ -24,3 +24,7 @@ You can build a specific host with
 - `home-manager switch --flake .#user@hostname` for just home-manager packages
 
 The `flake.nix` defines all of the configurations and what modules they call.
+
+### Secrets
+
+Some parts of the flake assume access to files that are suffixed with `.key`. These assume you have been given access via `git-crypt`.
