@@ -43,7 +43,7 @@ in
     home.packages = [
       # video players and other
       pkgs.ffmpeg-full # just useful for a lot of things
-      # pkgs.yt-dlp # yt downloading util
+      pkgs.yt-dlp # yt downloading util
       # pkgs.jellyfin-mpv-shim
 
       (pkgs.jerry {
@@ -63,6 +63,7 @@ in
     xdg.configFile = {
       "mpv/mpv.conf".source = root + /dotfiles/mpv/mpv.conf;
       "mpv/input.conf".source = root + /dotfiles/mpv/input.conf;
+      "mpv/scripts/jellydownloader.lua".source = root + /dotfiles/mpv/scripts/jellydownloader.lua;
       # Only take the /shaders folder because I don't want the shaders
       # to be activated by default which happens if we use their mpv.conf
       "mpv/shaders" = {
@@ -124,6 +125,7 @@ in
           opus_container = "m4a";
           audio_field = "SentenceAudio";
           secondary_field = "SentenceEnglish";
+          miscinfo_field = "MiscInfo";
           image_field = "Picture";
           deck_name = "daily decks::mining";
           model_name = "Lapis";
