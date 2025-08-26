@@ -14,37 +14,40 @@
         };
         default_format_opts.lsp_format = "fallback";
         formatters_by_ft = {
+          bash = [
+            "shellcheck"
+            "shfmt"
+          ];
+          css = [ "prettierd" ];
+          hbs = [ "prettierd" ];
+          html = [ "prettierd" ];
+          java = [ "google-java-format" ];
+          javascript = [ "prettierd" ];
+          markdown = [ "prettierd" ];
           lua = [ "stylua" ];
           python = [
             "ruff_organize_imports"
             "ruff_format"
             "ruff_fix"
           ];
-          javascript = [ "prettierd" ];
-          typescript = [ "prettierd" ];
-          typescriptreact = [ "prettierd" ];
-          svelte = [ "prettierd" ]; # for svelte to work set up https://github.com/sveltejs/prettier-plugin-svelte
-          html = [ "prettierd" ];
-          css = [ "prettierd" ];
-          rust = [ "rustfmt" ];
-          markdown = [ "prettierd" ];
-          hbs = [ "prettierd" ];
-          # markup
-          toml = [ "taplo" ];
-          yaml = [ "prettierd" ];
-          # shell
           sh = [
             "shellcheck"
             "shfmt"
           ];
-          bash = [
-            "shellcheck"
-            "shfmt"
-          ];
+          svelte = [ "prettierd" ]; # set up https://github.com/sveltejs/prettier-plugin-svelte for formatting to work
+          typescript = [ "prettierd" ];
+          typescriptreact = [ "prettierd" ];
+          rust = [ "rustfmt" ];
+          toml = [ "taplo" ];
+          yaml = [ "prettierd" ];
+
+					# Applies to all files
           "*" = [ "codespell" ];
+					# Applies to files with no preset formatter
           "_" = [ "trim_whitespace" ];
         };
         formatters = {
+          google-java-format.command = lib.getExe pkgs.google-java-format;
           nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
           stylua.command = lib.getExe pkgs.stylua;
           prettierd.command = lib.getExe pkgs.prettierd;
