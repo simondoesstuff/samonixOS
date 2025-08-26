@@ -112,8 +112,10 @@
         ruff.enable = true; # formatter and linter for python
 
         # dartls.enable = true; dont enable with flutter-tools
+        zls.enable = true; # zig langserver
         clangd.enable = true;
         sourcekit.enable = true;
+        jdtls.enable = true; # java langserver
       };
     };
   };
