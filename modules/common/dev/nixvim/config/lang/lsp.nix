@@ -115,7 +115,7 @@
         zls.enable = true; # zig langserver
         clangd.enable = true;
         sourcekit.enable = true;
-        jdtls.enable = true; # java langserver
+        jdtls.enable = true; # java
       };
     };
   };

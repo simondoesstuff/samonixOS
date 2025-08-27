@@ -41,9 +41,9 @@
           toml = [ "taplo" ];
           yaml = [ "prettierd" ];
 
-					# Applies to all files
+          # Applies to all files
           "*" = [ "codespell" ];
-					# Applies to files with no preset formatter
+          # Applies to files with no preset formatter
           "_" = [ "trim_whitespace" ];
         };
         formatters = {
