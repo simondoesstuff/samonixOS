@@ -1,14 +1,25 @@
 { pkgs, lib, ... }:
 {
   home.packages = [
-    pkgs.jdk17
-    pkgs.jdt-language-server
     pkgs.vscode-extensions.vscjava.vscode-java-test
+		pkgs.vscode-extensions.vscjava.vscode-java-debug
   ];
 
   programs.nixvim = {
     plugins.dap = {
       enable = true;
+
+      signs.dapBreakpoint.text = "B";
+
+      configurations = {
+        java = [
+          {
+            type = "java";
+            request = "launch";
+            name = "java debug";
+          }
+        ];
+      };
     };
 
     plugins.dap-ui = {
@@ -16,7 +27,7 @@
     };
 
     # plugins.lsp.servers.jdtls = {
-    #   enable = true;
+    # enable = true;
     # package = pkgs.jdt-language-server;
     # cmd = [ "${pkgs.jdt-language-server}/bin/jdtls" ];
     # settings.java.configuration.runtimes = [

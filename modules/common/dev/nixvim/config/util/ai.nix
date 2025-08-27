@@ -7,7 +7,6 @@
     plugins.copilot-chat = {
       enable = true;
       settings = {
-        model = "claude-sonnet-4";
         window.width = 0.4;
         mappings = {
           reset = {
