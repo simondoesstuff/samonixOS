@@ -82,8 +82,9 @@ return {
 		{ "<leader>ff", ":lua Snacks.picker.smart()<cr>", desc = "find files" },
 		{ "<leader>fr", ":lua Snacks.picker.recent()<cr>", desc = "find recent" },
 		{ "<leader>fn", ":lua Snacks.picker.notifications()<cr>", desc = "find notifications" },
-		{ "<leader>fg", ":lua Snacks.picker.git_files()<cr>", desc = "find git files" },
-		{ "<leader>fG", ":lua Snacks.picker.git_files()<cr>", desc = "find grep open buffers" },
+		{ "<leader>fg", ":lua Snacks.picker.git_grep()<cr>", desc = "find grep git repo" },
+		{ "<leader>fG", ":lua Snacks.picker.git_files()<cr>", desc = "find git files" },
+		{ "<leader>fp", ":lua Snacks.picker.pickers()<cr>", desc = "find all pickers" },
 		{
 			"<leader>e",
 			"<cmd>lua Snacks.explorer()<cr>",

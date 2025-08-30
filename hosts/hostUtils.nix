@@ -41,7 +41,7 @@ in
               imports = [
                 ../modules/linux/default.nix
                 config
-                inputs.nixCats.homeManagerModules.nixcats
+                inputs.nixCats.homeModule
                 inputs.spicetify.homeManagerModules.spicetify
               ];
             };
