@@ -33,7 +33,7 @@ return {
 		dependencies = { "mfussenegger/nvim-dap" },
 		ft = "python", -- Load only for python files
 		config = function()
-			-- Note: This requires debugpy to be installed with uv: `uv add debugpy`
+			-- NOTE: This requires debugpy to be installed with uv: `uv add debugpy`
 			require("dap-python").setup("uv")
 		end,
 	},
