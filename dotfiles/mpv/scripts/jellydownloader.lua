@@ -15,7 +15,7 @@ local msg = require("mp.msg")
 local utils = require("mp.utils")
 
 -- ### CONFIGURATION ###
-local save_directory = mp.command_native({ "expand-path", "~/.config/mpv/tmp_downloads" })
+local save_directory = mp.command_native({ "expand-path", "/tmp/jellydownloader" })
 -- ---------------------
 
 local current_network_sub_url = nil
