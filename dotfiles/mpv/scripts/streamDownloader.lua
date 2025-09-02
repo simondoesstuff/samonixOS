@@ -1,5 +1,5 @@
 -- =======================================================================================
--- MPV LUA SCRIPT: Unified Jellyfin Downloader (v4 - save side-by-side, open prompt)
+-- MPV LUA SCRIPT: Unified Jellyfin Stream Downloader
 -- =======================================================================================
 -- DESCRIPTION:
 -- 1. Auto-detects network subtitles during playback and stores their URL.

@@ -63,7 +63,8 @@ in
     xdg.configFile = {
       "mpv/mpv.conf".source = root + /dotfiles/mpv/mpv.conf;
       "mpv/input.conf".source = root + /dotfiles/mpv/input.conf;
-      "mpv/scripts/jellydownloader.lua".source = root + /dotfiles/mpv/scripts/jellydownloader.lua;
+      "mpv/scripts/streamDownloader.lua".source = root + /dotfiles/mpv/scripts/streamDownloader.lua;
+      "mpv/scripts/secondarySubs.lua".source = root + /dotfiles/mpv/scripts/secondarySubs.lua;
       # Only take the /shaders folder because I don't want the shaders
       # to be activated by default which happens if we use their mpv.conf
       "mpv/shaders" = {
