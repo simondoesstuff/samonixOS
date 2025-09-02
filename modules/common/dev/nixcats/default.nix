@@ -110,6 +110,7 @@
 
           nix = [
             nixfmt-rfc-style
+            nixd
           ];
 
           python = [
