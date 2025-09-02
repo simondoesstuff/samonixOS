@@ -14,8 +14,19 @@ return {
 				update_in_insert = false,
 			})
 
+			-- INFO: ------------------------------
+			--        Default config servers
+			-- ------------------------------------
+			vim.lsp.enable("basedpyright")
+			vim.lsp.enable("clangd")
+			vim.lsp.enable("jdtls") -- java
 			vim.lsp.enable("lua_ls")
+			vim.lsp.enable("nixd")
+			vim.lsp.enable("zls") -- zig
 
+			-- INFO: -------------------------------
+			--         Tweaked config servers
+			-- -------------------------------------
 			vim.lsp.config("glsl_analyzer", {
 				filetypes = {
 					"glsl",
@@ -31,12 +42,9 @@ return {
 			})
 			vim.lsp.enable("glsl_analyzer")
 
-			vim.lsp.enable("zls")
-			vim.lsp.enable("clangd")
-			vim.lsp.enable("basedpyright")
-			vim.lsp.enable("jdtls") -- java
-
-			-- LSP keybinds
+			-- INFO: ----------------
+			--         Keymaps
+			-- ----------------------
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
@@ -101,8 +109,8 @@ return {
 		options = {},
 	},
 	{
-		"folke/lazydev.nvim", -- better lua nvim conf support
-		ft = "lua", -- only load on lua files
+		"folke/lazydev.nvim", -- better lua library support for language server
+		ft = "lua",
 		opts = {
 			library = {
 				-- Load luvit types when the `vim.uv` word is found
