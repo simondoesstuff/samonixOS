@@ -120,6 +120,7 @@
 
           rust = [
             rustfmt
+            rust-analyzer
           ];
 
           shell = [
