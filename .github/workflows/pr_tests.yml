@@ -1,0 +1,181 @@
+name: PR Build Tests
+
+permissions:
+  statuses: write
+  pull-requests: read
+
+on:
+  # Trigger on comments created on pull requests
+  issue_comment:
+    types: [created]
+
+jobs:
+  # This job checks if the trigger comment is valid
+  trigger-tests:
+    runs-on: ubuntu-latest
+    outputs:
+      pr_sha: ${{ steps.get-sha.outputs.sha }}
+      is_authorized: ${{ steps.auth.outputs.authorized }}
+    steps:
+      - id: auth
+        run: |
+          # set authorized=true only for your GitHub user
+          if [[ "${GITHUB_ACTOR}" == "masoniis" ]]; then
+            echo "authorized=true" >> $GITHUB_OUTPUT
+          else
+            echo "authorized=false" >> $GITHUB_OUTPUT
+          fi
+
+      - id: get-sha
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              pull_number: context.payload.issue.number
+            });
+            core.setOutput("sha", pr.data.head.sha);
+
+  # Test NixOS configurations
+  test-nixos:
+    name: Raw NixOS Build
+    needs: trigger-tests # This job depends on the trigger job
+    if: needs.trigger-tests.outputs.is_authorized == 'true' # Run only if authorized
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.trigger-tests.outputs.pr_sha }}
+
+      - name: Setup secrets 🔐
+        run: |
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
+          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
+          chmod 600 ./hosts/xpsOnix/media/nordvpn.com.udp.ovpn.key ./hosts/xpsOnix/media/nordUser.key ./hosts/xpsOnix/media/nordPass.key
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Enable Flakes
+        run: |
+          mkdir -p ~/.config/nix
+          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+
+      - name: Build NixOS configurations
+        run: |
+          nix build .#nixosConfigurations.xpsOnix.config.system.build.toplevel --dry-run
+          nix build .#nixosConfigurations.wslOnix.config.system.build.toplevel --dry-run
+
+  # Test Linux Home Manager configurations
+  test-home-linux:
+    name: Home Manager Linux
+    needs: trigger-tests
+    if: needs.trigger-tests.outputs.is_authorized == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.trigger-tests.outputs.pr_sha }}
+
+      - name: Setup secrets
+        run: |
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
+          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
+          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          chmod 600 ./hosts/xpsOnix/media/nordUser.key
+          chmod 600 ./hosts/xpsOnix/media/nordPass.key
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Enable Flakes
+        run: |
+          mkdir -p ~/.config/nix
+          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+
+      - name: Build mason@xpsOnix configuration
+        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@xpsOnix".activationPackage --dry-run
+
+      - name: Build mason@wslOnix configuration
+        run: nix build .#packages.x86_64-linux.homeConfigurations."mason@wslOnix".activationPackage --dry-run
+
+  # Test macOS Home Manager configuration
+  test-home-macos:
+    name: Home Manager macOS
+    needs: trigger-tests
+    if: needs.trigger-tests.outputs.is_authorized == 'true'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.trigger-tests.outputs.pr_sha }}
+
+      - name: Setup secrets
+        run: |
+          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
+          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
+          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
+          chmod 600 ./hosts/xpsOnix/media/nordUser.key
+          chmod 600 ./hosts/xpsOnix/media/nordPass.key
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Enable Flakes
+        run: |
+          mkdir -p ~/.config/nix
+          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+
+      - name: Build mason macOS configuration
+        run: nix build .#packages.aarch64-darwin.homeConfigurations.mason.activationPackage --dry-run
+
+  # Reports results back to PR
+  report-final-status:
+    name: Report Final Status
+    needs: [trigger-tests, test-nixos, test-home-linux, test-home-macos]
+    runs-on: ubuntu-latest
+    if: always() && needs.trigger-tests.result == 'success'
+    env:
+      PR_SHA: ${{ needs.trigger-tests.outputs.pr_sha }}
+      TEST_NIXOS: ${{ needs.test-nixos.result }}
+      TEST_HOME_LINUX: ${{ needs.test-home-linux.result }}
+      TEST_HOME_MACOS: ${{ needs.test-home-macos.result }}
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            // Gather results from env vars
+            const results = [
+              process.env.TEST_NIXOS,
+              process.env.TEST_HOME_LINUX,
+              process.env.TEST_HOME_MACOS
+            ];
+
+            // Decide overall state
+            const finalState = results.includes('failure') || results.includes('cancelled')
+              ? 'failure'
+              : 'success';
+
+            const description = finalState === 'success'
+              ? 'All tests passed!'
+              : 'One or more tests failed.';
+
+            // Skip posting if every test was skipped
+            if (results.every(r => r === 'skipped')) {
+              console.log('All jobs were skipped; skipping status post.');
+              return;
+            }
+
+            // Create the commit status on the PR’s head SHA
+            await github.rest.repos.createCommitStatus({
+              owner:      context.repo.owner,
+              repo:       context.repo.repo,
+              sha:        process.env.PR_SHA,
+              state:      finalState,
+              context:    'PR Tests (via `/test` comment)',
+              description
+            });

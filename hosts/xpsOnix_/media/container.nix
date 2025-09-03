@@ -18,8 +18,8 @@
 
   # Create media dir for container to bind to
   systemd.tmpfiles.rules = [
-    "d /srv/media_downloads 0755 root root -"
-    "d /srv/media_torrents 0775 root root -"
+    "d /srv/media_downloads 0777 root root -"
+    "d /srv/media_torrents 0777 root root -"
   ];
 
   containers.media = {
@@ -35,38 +35,39 @@
     };
 
     autoStart = false; # autostart dangerous if low storage
+
     enableTun = true;
     privateNetwork = true;
     hostAddress = "192.168.10.1";
     localAddress = "192.168.10.2";
 
-    forwardPorts = [
-      {
-        containerPort = 8096; # jellyfin
-        hostPort = 8096;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 5055; # jellyseerr
-        hostPort = 5055;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 8989; # sonarr
-        hostPort = 8989;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 51413; # transmission peer port
-        hostPort = 51413;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 51413; # transmission peer port
-        hostPort = 51413;
-        protocol = "udp";
-      }
-    ];
+    forwardPorts =
+      let
+        tcpPorts = [
+          9091 # Transmission (Web UI)
+          8096 # Jellyfin
+          5055 # Jellyseerr
+          8989 # Sonarr
+          7878 # Radarr
+          6767 # Bazarr
+          9696 # Prowlarr
+        ];
+
+        udpPorts = [
+          51413 # Transmission (Peer Port)
+        ];
+
+        # Helper function that creates the port mapping structure from
+        # container port to the corresponding identical host port
+        mkPort = proto: port: {
+          containerPort = port;
+          hostPort = port;
+          protocol = proto;
+        };
+
+      in
+      # Generates the port config using vars above
+      (lib.map (mkPort "tcp") tcpPorts) ++ (lib.map (mkPort "udp") udpPorts);
 
     config = {
       environment.systemPackages = with pkgs; [
@@ -83,6 +84,9 @@
       networking = {
         dhcpcd.enable = false;
         useHostResolvConf = false;
+        # Container needs to send traffic through the host
+        # when communicating with local network devices...
+        # That's what this does ->
         interfaces."eth0".ipv4.routes = [
           {
             address = "192.168.1.0";
@@ -95,33 +99,16 @@
             via = "192.168.10.1";
           }
         ];
-        # Firewall to prevent leaks outside of vpn by only accepting marked traffic
+        # firewall to prevent leaks outside of vpn by only accepting marked traffic
         firewall = {
           enable = true;
           allowedUDPPorts = [
-            1194
-            51413
-          ]; # Standard OpenVPN port
-          allowedTCPPorts = [
-            8096
-            5055
-            8989
-            51413
+            1194 # ovpn standard port
+            51413 # transmission peer port, do i need?
           ];
-          interfaces = {
-            "eth0".allowedTCPPorts = [
-              8096
-              5055
-              8989
-              51413
-            ];
-            "tun".allowedTCPPorts = [
-              8096
-              5055
-              8989
-              51413
-            ];
-          };
+          # tcp ports for *arr serviecs are already implicitly
+          # allowed due to settings 'openFirewall = true'
+
           # Reject all traffic not going through VPN
           extraCommands = ''
             # Allow loopback and initial VPN connection
@@ -169,6 +156,7 @@
         "sonarr"
         "radarr"
         "transmission"
+        "bazarr"
       ];
       systemd.tmpfiles.rules = [
         "d /srv/media 2775 root media -"
@@ -212,6 +200,7 @@
       services.jellyseerr = {
         enable = true;
         openFirewall = true; # port 5055
+        # jellyseer has no group/user option
       };
 
       services.sonarr = {
@@ -226,6 +215,13 @@
         openFirewall = true; # port 7878
         group = "media";
         user = "radarr";
+      };
+
+      services.bazarr = {
+        enable = true;
+        openFirewall = true; # port 6767
+        group = "media";
+        user = "bazarr";
       };
 
       services.prowlarr = {
@@ -244,9 +240,17 @@
         user = "transmission";
         settings = {
           peer-port = 51413;
-          unmask = 2; # write perms for others
-          rpc-bind-address = "0.0.0.0"; # Bind to own IP
-          rpc-whitelist = "127.0.0.1,192.168.10.1"; # Whitelist container host 192.168.1.1
+          unmask = 2; # set write perms for other groups
+          rpc-bind-address = "0.0.0.0"; # bind to own ip
+
+          # Below only lets host access transmission
+          rpc-host-whitelist-enabled = false; # allow any hostname to access
+          rpc-whitelist-enabled = false; # allow any ip to access
+
+          rpc-authentication-required = false; # require user/pass (might be useful in future)
+          rpc-username = "N/A";
+          rpc-password = "N/A";
+
           download-dir = "/srv/transmission/downloaded";
           incomplete-dir = "/srv/transmission/.incomplete";
           # Seeding and download configs
