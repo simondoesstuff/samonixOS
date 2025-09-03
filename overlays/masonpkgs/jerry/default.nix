@@ -40,22 +40,21 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   ];
 
   nativeBuildInputs = [ makeWrapper ];
-  runtimeInputs =
-    [
-      coreutils
-      curl
-      ffmpeg
-      fzf
-      gnugrep
-      gnupatch
-      gnused
-      html-xml-utils
-      openssl
-    ]
-    ++ lib.optional withRofi rofi
-    ++ lib.optional imagePreviewSupport chafa
-    ++ lib.optional infoSupport jq
-    ++ (if withIINA then [ iina ] else [ mpv ]);
+  runtimeInputs = [
+    coreutils
+    curl
+    ffmpeg
+    fzf
+    gnugrep
+    gnupatch
+    gnused
+    html-xml-utils
+    openssl
+  ]
+  ++ lib.optional withRofi rofi
+  ++ lib.optional imagePreviewSupport chafa
+  ++ lib.optional infoSupport jq
+  ++ (if withIINA then [ iina ] else [ mpv ]);
 
   installPhase = ''
     runHook preInstall

@@ -7,17 +7,28 @@
 }:
 {
   # ghostty only available on linux in nixpkgs at the moment
+<<<<<<< HEAD
+  home.packages =
+    with pkgs;
+    [
+      # ghostty  #broken on mac currently
+      fswatch
+      watch
+      parallel
+      ripgrep
+      # TODO: better place for this?
+      mitmproxy
+      wget
+    ]
+    ++ (if config.isLinux then [ pkgs.ghostty ] else [ ]);
+=======
   # install it on macos manually bruv or use regular terminal
   home.packages = [
     pkgs.ripgrep
     pkgs.fd
-    pkgs.fswatch
-    pkgs.watch
-    pkgs.parallel
-    pkgs.mitmproxy
-    pkgs.wget
   ]
   ++ lib.optional config.isLinux pkgs.ghostty;
+>>>>>>> upstream/main
 
   # INFO: Source dotfiles directly
   xdg.configFile = {
