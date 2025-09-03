@@ -2,6 +2,7 @@
   config,
   root,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -14,9 +15,9 @@
       watch
       parallel
       ripgrep
-      # TODO: better place for this?
-      mitmproxy
+      mitmproxy # TODO: better place for this?
       wget
+      pkgs-unstable.claude-code
     ]
     ++ (if config.isLinux then [ pkgs.ghostty ] else [ ]);
 
