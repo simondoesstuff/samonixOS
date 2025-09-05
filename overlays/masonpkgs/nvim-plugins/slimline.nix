@@ -1,7 +1,7 @@
 { fetchFromGitHub, vimUtils }:
 
 vimUtils.buildVimPlugin {
-  pname = "slimline-nvim";
+  pname = "slimline.nvim";
   version = "3c052f4a16ed7112466c3e30409a4d0bf7b5c4d5";
   src = fetchFromGitHub {
     owner = "sschleemilch";
@@ -14,7 +14,7 @@ vimUtils.buildVimPlugin {
   doCheck = false;
 
   meta = {
-    description = "A slim statusline for neovim";
     homepage = "https://github.com/sschleemilch/slimline.nvim";
+    description = "A slim statusline for neovim";
   };
 }

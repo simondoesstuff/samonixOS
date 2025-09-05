@@ -149,17 +149,18 @@
             colorful-menu-nvim
             copilot-lua
             fidget-nvim
+            floaterm-masonpkgs
             gitsigns-nvim
             inc-rename-nvim
             neo-tree-nvim
-            neotree-nesting-config-nvim
+            neotree-nesting-config-masonpkgs
             noice-nvim
             pkgs-unstable.vimPlugins.nui-nvim # unstable fixes an annoying deprecation warning 8/28/25
             tint-nvim
             todo-comments-nvim
             nvim-dap-ui
             nvim-treesitter.withAllGrammars
-            slimline-nvim
+            slimline-masonpkgs
             smart-splits-nvim
             snacks-nvim
             render-markdown-nvim

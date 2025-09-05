@@ -7,7 +7,7 @@ return {
 			"MunifTanjim/nui.nvim",
 			"nvim-tree/nvim-web-devicons",
 			"folke/snacks.nvim",
-			{ "saifulapm/neotree-file-nesting-config", name = "neotree-nesting-config-nvim" },
+			"saifulapm/neotree-file-nesting-config",
 		},
 		lazy = false, -- neo-tree will lazily load itself
 		---@module 'neo-tree'
