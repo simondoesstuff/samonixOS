@@ -11,6 +11,7 @@
   home.packages = [
     pkgs.ripgrep
     pkgs.fd
+    pkgs.onefetch
   ]
   ++ lib.optional config.isLinux pkgs.ghostty;
 
