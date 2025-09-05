@@ -3,7 +3,7 @@ return {
 		"nvzone/floaterm",
 		dependencies = "nvzone/volt",
 		opts = {
-			size = { h = 70, w = 80 },
+			size = { h = 80, w = 90 },
 			terminals = {
 				{ name = "Terminal", cmd = "onefetch" },
 			},
