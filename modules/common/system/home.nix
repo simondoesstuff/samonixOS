@@ -72,7 +72,7 @@ in
         "nix-command"
         "flakes"
       ];
-      auto-optimise-store = true; # will cause errors on mac sadly
+      auto-optimise-store = false; # will cause errors on mac sadly
     };
     gc = {
       automatic = true;
