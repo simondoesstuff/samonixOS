@@ -3,16 +3,30 @@ return {
 		"nvzone/floaterm",
 		dependencies = "nvzone/volt",
 		opts = {
-			size = { h = 80, w = 90 },
+			size = { h = 85, w = 90 },
 			terminals = {
-				{ name = "Terminal", cmd = "onefetch" },
+				{ name = "Term 0" },
+				{ name = "G Term", cmd = "onefetch" },
+				{ name = "Terminull", cmd = "neofetch" },
 			},
 			mappings = {
 				sidebar = function(buf)
 					vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>FloatermToggle<CR>", { buffer = buf })
+					vim.keymap.set({ "n", "t" }, "<C-a>", function()
+						require("floaterm.api").new_term()
+					end, { buffer = buf })
+					vim.keymap.set({ "n", "t" }, "<C-h>", function()
+						require("floaterm.api").switch_wins()
+					end, { buffer = buf })
+					vim.keymap.set({ "n", "t" }, "<C-l>", function()
+						require("floaterm.api").switch_wins()
+					end, { buffer = buf })
 				end,
 				term = function(buf)
 					vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>FloatermToggle<CR>", { buffer = buf })
+					vim.keymap.set({ "n", "t" }, "<C-a>", function()
+						require("floaterm.api").new_term()
+					end, { buffer = buf })
 				end,
 			},
 		},
