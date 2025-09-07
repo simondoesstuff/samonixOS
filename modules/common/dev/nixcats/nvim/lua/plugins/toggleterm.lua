@@ -20,10 +20,10 @@ return {
 					vim.keymap.set({ "n", "t" }, nixCats("binds.terminals.floaterm_new"), function()
 						require("floaterm.api").new_term()
 					end, { buffer = buf })
-					vim.keymap.set({ "n", "t" }, nixCats("binds.navigation.move_left"), function()
+					vim.keymap.set({ "n", "t" }, nixCats("binds.splits.move_left"), function()
 						require("floaterm.api").switch_wins()
 					end, { buffer = buf })
-					vim.keymap.set({ "n", "t" }, nixCats("binds.navigation.move_right"), function()
+					vim.keymap.set({ "n", "t" }, nixCats("binds.splits.move_right"), function()
 						require("floaterm.api").switch_wins()
 					end, { buffer = buf })
 				end,
