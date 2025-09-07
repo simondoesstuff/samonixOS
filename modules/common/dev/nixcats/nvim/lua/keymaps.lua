@@ -21,6 +21,8 @@ vim.g.maplocalleader = " "
 -----------------
 map("n", "j", "gj") -- Move through visual lines instead of logical lines
 map("n", "k", "gk")
+map("n", "gj", "j") -- Map inverse
+map("n", "gk", "k")
 
 map("n", "<leader>fn", "<cmd>new<cr>", "New file") -- Make new file
 map("n", "<leader>cd", "<cmd>cd %:h<cr>", "Change to file directory") -- Change directory
