@@ -29,8 +29,8 @@ return {
 	{
 		"levouh/tint.nvim",
 		opts = {
-			tint = -15,
-			saturation = 0.1,
+			tint = -10,
+			saturation = 0.5,
 			tint_background_colors = true, -- Tint background portions of highlight groups
 			-- highlight_ignore_patterns = { "WinSeparator" }, -- Highlight group patterns to ignore, see `string.find`
 			window_ignore_function = function(winid)
