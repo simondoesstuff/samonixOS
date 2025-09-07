@@ -146,6 +146,7 @@ in
           # ----------------------
           general = with pkgs.vimPlugins; [
             barbar-nvim
+            battery-nvim-masonpkgs
             blink-cmp
             blink-copilot
             catppuccin-nvim
