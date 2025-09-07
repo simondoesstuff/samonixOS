@@ -15,15 +15,15 @@
   };
   find = rec {
     group = "<leader>f";
-    find_files = "${group}f";
+    find_files = "<leader><leader>";
     find_recent = "${group}r";
     find_notifications = "${group}n";
-    find_grep_git = "${group}g";
+    find_grep_git = "<leader>/";
     find_git_files = "${group}G";
     find_pickers = "${group}p";
   };
   snacks = {
-    dashboard = "<leader><leader><leader>";
+    dashboard = "<leader>\\";
     git_blame_line = "<leader>gb";
   };
   terminals = rec {
@@ -43,10 +43,10 @@
   splits = {
     # related to window management
     close = "<leader>q";
-    swap_left = "<leader><leader>h";
-    swap_down = "<leader><leader>j";
-    swap_up = "<leader><leader>k";
-    swap_right = "<leader><leader>l";
+    swap_left = "<C-S-h>";
+    swap_down = "<C-S-j>";
+    swap_up = "<C-S-k>";
+    swap_right = "<C-S-l>";
     move_left = "<C-h>";
     move_down = "<C-j>";
     move_up = "<C-k>";
@@ -61,10 +61,10 @@
   editing = {
     rename = "<leader>rn";
     buffer_close = "-";
-    buffer_previous = "<C-,>";
-    buffer_next = "<C-.>";
-    buffer_move_next = "<C-S-.>";
-    buffer_move_previous = "<C-S-,>";
+    buffer_previous = "H";
+    buffer_next = "L";
+    buffer_move_next = "<C-.>";
+    buffer_move_previous = "<C-,>";
   };
   debug = rec {
     group = "<leader>d";
