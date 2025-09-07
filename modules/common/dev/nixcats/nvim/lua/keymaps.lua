@@ -25,6 +25,15 @@ map("n", "gj", "j") -- Map inverse
 map("n", "gk", "k")
 
 
+
+-- clear highlights
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr><esc>", {
+	silent = true,
+	noremap = true,
+	nowait = true,
+	desc = "Clear search highlight",
+})
+
 map("n", nixCats("binds.new_file"), "<cmd>new<cr>", "New file") -- Make new file
 map("n", nixCats("binds.change_dir"), "<cmd>cd %:h<cr>", "Change to file directory") -- Change directory
 map("n", nixCats("binds.close_window"), "<cmd>close<cr>", "close window")
