@@ -18,6 +18,7 @@
     pkgs.mitmproxy
     pkgs.wget
     pkgs-unstable.claude-code
+    pkgs.onefetch
   ]
   ++ lib.optional config.isLinux pkgs.ghostty;
 
@@ -39,10 +40,16 @@
 
   # INFO: Programs
   programs = {
-    starship.enable = true; # shell prompts
+    starship = {
+      enable = true; # shell prompts
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      enableTransience = true;
+    };
     # better cd command
     zoxide = {
       enable = true;
+      enableFishIntegration = true;
       enableZshIntegration = true;
       options = [ "--cmd cd" ];
     };
@@ -51,9 +58,17 @@
     # better ls command
     eza = {
       enable = true;
+      enableFishIntegration = true;
       enableZshIntegration = true;
     };
-    # shell
+    # shell(s)
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        bind \cl 'commandline -f accept-autosuggestion'
+        set -g fish_key_bindings fish_vi_key_bindings
+      '';
+    };
     zsh = {
       enable = true;
       syntaxHighlighting.enable = true;
@@ -64,18 +79,14 @@
         bindkey '^l' autosuggest-accept
       '';
       profileExtra =
-        # adds docker desktop to path for macos
-        # TODO: better solution?
-        if config.isDarwin then
-          ''
-            export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
-          ''
-        else
-          "";
+        ''''
+        + lib.optionalString config.isDarwin ''
+          export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+        '';
       completionInit = "
-				bindkey '^ ' autosuggest-accept
-				bindkey '^l' autosuggest-accept
-			";
+    	bindkey '^ ' autosuggest-accept
+    	bindkey '^l' autosuggest-accept
+    ";
     };
   };
 }

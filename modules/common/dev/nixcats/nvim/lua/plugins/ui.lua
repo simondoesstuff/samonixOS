@@ -1,7 +1,6 @@
 return {
 	{
 		"sschleemilch/slimline.nvim",
-		name = "slimline-nvim", -- required for nixcats to recognize
 		init = function()
 			vim.cmd("highlight Slimline guifg=#101012 guibg=#101012")
 		end,
@@ -30,18 +29,21 @@ return {
 	{
 		"levouh/tint.nvim",
 		opts = {
-			tint = -15, -- Darken colors, use a positive value to brighten
-			saturation = 0.1, -- Saturation to preserve
-			transforms = require("tint").transforms.SATURATE_TINT, -- Showing default behavior, but value here can be predefined set of transforms
+			tint = -15,
+			saturation = 0.1,
 			tint_background_colors = true, -- Tint background portions of highlight groups
 			-- highlight_ignore_patterns = { "WinSeparator" }, -- Highlight group patterns to ignore, see `string.find`
 			window_ignore_function = function(winid)
-				local bufid = vim.api.nvim_win_get_buf(winid)
-				local buftype = vim.bo[bufid].buftype
-				local floating = vim.api.nvim_win_get_config(winid).relative ~= ""
+				local is_floating = vim.api.nvim_win_get_config(winid).relative ~= ""
 
-				-- Do not tint floating windows, tint everything else
-				return buftype == floating
+				-- Next, get the buffer name associated with the window
+				local bufid = vim.api.nvim_win_get_buf(winid)
+				local bufname = vim.api.nvim_buf_get_name(bufid)
+
+				-- Check if the buffer name contains "FloatermSidebar"
+				local is_floaterm_sidebar = string.find(bufname, "FloatermSidebar", 1, true)
+
+				return is_floating or is_floaterm_sidebar
 			end,
 		},
 		init = function()
