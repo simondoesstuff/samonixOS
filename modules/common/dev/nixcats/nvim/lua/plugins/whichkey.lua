@@ -26,7 +26,7 @@ return {
 	end,
 	keys = {
 		{
-			nixCats("binds.which-key"),
+			nixCats("binds.which_key"),
 			function()
 				require("which-key").show({ global = false })
 			end,
