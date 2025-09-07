@@ -159,6 +159,7 @@
             todo-comments-nvim
             nvim-dap-ui
             nvim-treesitter.withAllGrammars
+            persistence-nvim
             slimline-nvim
             smart-splits-nvim
             snacks-nvim
