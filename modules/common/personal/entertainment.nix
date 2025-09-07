@@ -43,7 +43,7 @@ in
     home.packages = [
       # video players and other
       pkgs.ffmpeg-full # just useful for a lot of things
-      # pkgs.yt-dlp # yt downloading util
+      pkgs.yt-dlp # yt downloading util
       # pkgs.jellyfin-mpv-shim
 
       (pkgs.jerry {
@@ -63,6 +63,8 @@ in
     xdg.configFile = {
       "mpv/mpv.conf".source = root + /dotfiles/mpv/mpv.conf;
       "mpv/input.conf".source = root + /dotfiles/mpv/input.conf;
+      "mpv/scripts/streamDownloader.lua".source = root + /dotfiles/mpv/scripts/streamDownloader.lua;
+      "mpv/scripts/secondarySubs.lua".source = root + /dotfiles/mpv/scripts/secondarySubs.lua;
       # Only take the /shaders folder because I don't want the shaders
       # to be activated by default which happens if we use their mpv.conf
       "mpv/shaders" = {
@@ -119,10 +121,13 @@ in
         };
         subs2srs = {
           use_ffmpeg = true;
+          preview_audio = true;
           audio_format = "mp3"; # opus is default
           audio_bitrate = "96k"; # raised from 24k because mp3
           opus_container = "m4a";
           audio_field = "SentenceAudio";
+          secondary_field = "SentenceEnglish";
+          miscinfo_field = "MiscInfo";
           image_field = "Picture";
           deck_name = "daily decks::mining";
           model_name = "Lapis";
@@ -166,40 +171,23 @@ in
     # to stop the update request from appearing yet, haven't experimented much
     programs.spicetify = {
       enable = enableSpice;
+      theme = pkgs-spice.themes.lucid; # best theme there is trust
       alwaysEnableDevTools = true; # doesn't work on mac I dont think
-      theme =
-        let
-          baseTheme = pkgs-spice.themes.default;
-        in
-        baseTheme
-        // {
-          injectCss = true;
-          # TODO: Sadly doesn't hide the OG lyric button i tried
-          additionalCss = lib.strings.concatStrings [
-            (baseTheme.additionalCss or "")
-            ''
-              /* Hide lyrics button */
-              [data-testid="lyrics-button"] {
-                display: none !important;
-              }
-            ''
-          ];
-        }; # theme = pkgs-spice.themes.catppuccin;
-      # colorScheme = "mocha";
       enabledExtensions = with pkgs-spice.extensions; [
         # INFO: nice-to-haves
         shuffle # fischer-yates lets go (ballotery)
         adblockify
         beautifulLyrics # adds epic lyrics with cool fullscreen mode
         # INFO: stats
-        skipStats # tracks ur skips for fun
-        songStats # shows key and other which is fire
+        songStats # shows song key and other
         # INFO: opinionated
         hidePodcasts # note you can also go to settings and toggle it back and forth
 
         # lowkey this fullscreen mode looks epic but it kinda overlaps with
         # simpleBeautiful lyrics fullscreen and it feels weird to have two
         # fullScreen
+
+        # actually im not sure if that full screen was the issue, I still have 2 after removing
       ];
     };
 

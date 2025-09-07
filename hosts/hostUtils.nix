@@ -41,7 +41,8 @@ in
               imports = [
                 ../modules/linux/default.nix
                 config
-                inputs.nixvim.homeManagerModules.nixvim
+                inputs.nixCats.homeModule
+                inputs.spicetify.homeManagerModules.spicetify
               ];
             };
 
@@ -52,7 +53,8 @@ in
             root = ./..;
           };
         }
-      ] ++ extraModules;
+      ]
+      ++ extraModules;
     };
 
   # General home-manager configuration wrapper that takes in config system and username
@@ -80,7 +82,7 @@ in
           else
             ../modules/linux/default.nix
         )
-        inputs.nixvim.homeManagerModules.nixvim
+        inputs.nixCats.homeModule
         inputs.spicetify.homeManagerModules.spicetify
         config
         { homeManagerIsolated = true; }

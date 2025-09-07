@@ -48,7 +48,8 @@ stdenv.mkDerivation (finalAttrs: {
     html-xml-utils
     mpv
     openssl
-  ] ++ (if withIINA then [ iina ] else [ mpv ]);
+  ]
+  ++ (if withIINA then [ iina ] else [ mpv ]);
 
   installPhase = ''
     mkdir -p $out/bin
