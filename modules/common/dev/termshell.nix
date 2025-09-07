@@ -2,6 +2,7 @@
   config,
   root,
   pkgs,
+  pkgs-unstable,
   lib,
   ...
 }:
@@ -16,6 +17,7 @@
     pkgs.parallel
     pkgs.mitmproxy
     pkgs.wget
+    pkgs-unstable.claude-code
   ]
   ++ lib.optional config.isLinux pkgs.ghostty;
 
