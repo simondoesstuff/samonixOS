@@ -24,7 +24,6 @@
   };
   snacks = {
     dashboard = "<leader><leader><leader>";
-    explorer = "<leader>e";
     git_blame_line = "<leader>gb";
   };
   terminals = rec {
