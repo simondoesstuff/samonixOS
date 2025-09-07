@@ -85,7 +85,7 @@ return {
 		-- Dashboard
 		{ nixCats("binds.snacks.dashboard"), "<cmd>lua Snacks.dashboard()<cr>", desc = "snacks dashboard" },
 		-- Terminals
-		{ nixCats("binds.snacks.lazygit"), "<cmd>lua Snacks.lazygit()<cr>", desc = "lazygit" },
+		{ nixCats("binds.terminals.lazygit"), "<cmd>lua Snacks.lazygit()<cr>", desc = "lazygit" },
 		-- Pickers
 		{ nixCats("binds.find.find_files"), ":lua Snacks.picker.smart()<cr>", desc = "find files" },
 		{ nixCats("binds.find.find_recent"), ":lua Snacks.picker.recent()<cr>", desc = "find recent" },

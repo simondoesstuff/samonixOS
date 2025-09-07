@@ -24,12 +24,12 @@
   };
   snacks = {
     dashboard = "<leader><leader><leader>";
-    lazygit = "<leader>tl";
     explorer = "<leader>e";
     git_blame_line = "<leader>gb";
   };
   terminals = rec {
     group = "<leader>t";
+    lazygit = "${group}l";
     floaterm_toggle = "${group}t";
     floaterm_new = "<C-a>";
     ollama = "${group}o";
