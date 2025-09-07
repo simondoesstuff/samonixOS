@@ -13,18 +13,20 @@ return {
 		wk.setup(opts)
 
 		wk.add({
+			-- TODO: remove unused groups?
 			{ "<leader>a", group = "ai" },
 			{ "<leader>b", group = "buffer" },
-			{ "<leader>f", group = "file" },
-			{ "<leader>l", group = "lang" },
-			{ "<leader>s", group = "system" },
-			{ "<leader>t", group = "terminal" },
-			{ "<leader>d", group = "debug" },
+
+			{ nixCats("binds.find.group"), group = "find" },
+			{ nixCats("binds.lsp.group"), group = "lang" },
+			{ nixCats("binds.system.group"), group = "system" },
+			{ nixCats("binds.terminals.group"), group = "terminal" },
+			{ nixCats("binds.debug.group"), group = "debug" },
 		})
 	end,
 	keys = {
 		{
-			"<leader>?",
+			nixCats("binds.which-key"),
 			function()
 				require("which-key").show({ global = false })
 			end,
