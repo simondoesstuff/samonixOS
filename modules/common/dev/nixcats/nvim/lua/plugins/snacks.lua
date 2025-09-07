@@ -30,6 +30,7 @@ return {
 					padding = 1,
 				},
 				{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+				-- TODO: sessions pane
 				{
 					pane = 2,
 					icon = " ",
@@ -48,6 +49,13 @@ return {
 			},
 			preset = {
 				keys = {
+					{
+						icon = " ",
+						key = "s",
+						desc = "Restore Session",
+						section = "session",
+						action = "Snacks.dashboard.sections.session(item)",
+					},
 					{ icon = " ", key = "f", desc = "Find file", action = ":lua Snacks.dashboard.pick('files')" },
 					{
 						icon = " ",
