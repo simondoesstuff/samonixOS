@@ -3,6 +3,7 @@
   new_file = "<leader>fn";  # FIXME: conflicts with ...
   change_dir = "<leader>cd";
   close_window = "<C-q";
+  save_buffer = "<C-s";
   which_key = "<leader>?";
   system = rec { # relating to files and the system
     group = "<leader>s";
@@ -42,6 +43,7 @@
   };
   splits = {
     # related to window management
+    close = "<leader>q";
     swap_left = "<leader><leader>h";
     swap_down = "<leader><leader>j";
     swap_up = "<leader><leader>k";
@@ -54,6 +56,8 @@
     resize_down = "<A-j>";
     resize_up = "<A-k>";
     resize_right = "<A-l>";
+    vertical_split = "<leader>|";
+    horizontal_split = "<leader>-";
   };
   editing = {
     rename = "<leader>rn";
