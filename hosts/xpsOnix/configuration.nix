@@ -60,17 +60,32 @@
     pulse.enable = true;
   };
 
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.defaultUserShell = pkgs.zsh;
   users.users.mason = {
     isNormalUser = true;
     description = "mason";
+    openssh.authorizedKeys = {
+      keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZblT7Q/WxYTQnb3WL9lJMclp1DeQeYzdBKOBPAX0bD" # mbp14
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqYhMkfTYA7biVs4xp0OxhcV0Zk4yxvMTLn7u6S0PWc" # windows 3080pc
+      ];
+    };
     extraGroups = [
       "networkmanager"
       "wheel"
     ];
   };
-  programs.zsh.enable = true;
+
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = false;
+    };
+  };
 
   # INFO: Networking
   networking.networkmanager.enable = true;
