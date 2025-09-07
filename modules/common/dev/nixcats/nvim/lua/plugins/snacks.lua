@@ -83,24 +83,32 @@ return {
 	},
 	keys = {
 		-- Dashboard
-		{ "<leader><leader><leader>", "<cmd>lua Snacks.dashboard()<cr>", desc = "snacks dashboard" },
+		{ nixCats("binds.snacks.dashboard"), "<cmd>lua Snacks.dashboard()<cr>", desc = "snacks dashboard" },
 		-- Terminals
-		{ "<leader>tl", "<cmd>lua Snacks.lazygit()<cr>", desc = "lazygit" },
+		{ nixCats("binds.snacks.lazygit"), "<cmd>lua Snacks.lazygit()<cr>", desc = "lazygit" },
 		-- Pickers
-		{ "<leader>ff", ":lua Snacks.picker.smart()<cr>", desc = "find files" },
-		{ "<leader>fr", ":lua Snacks.picker.recent()<cr>", desc = "find recent" },
-		{ "<leader>fn", ":lua Snacks.picker.notifications()<cr>", desc = "find notifications" },
-		{ "<leader>fg", ":lua Snacks.picker.git_grep()<cr>", desc = "find grep git repo" },
-		{ "<leader>fG", ":lua Snacks.picker.git_files()<cr>", desc = "find git files" },
-		{ "<leader>fp", ":lua Snacks.picker.pickers()<cr>", desc = "find all pickers" },
+		{ nixCats("binds.find.find_files"), ":lua Snacks.picker.smart()<cr>", desc = "find files" },
+		{ nixCats("binds.find.find_recent"), ":lua Snacks.picker.recent()<cr>", desc = "find recent" },
 		{
-			"<leader>e",
+			nixCats("binds.find.find_notifications"),
+			":lua Snacks.picker.notifications()<cr>",
+			desc = "find notifications",
+		},
+		{ nixCats("binds.find.find_grep_git"), ":lua Snacks.picker.git_grep()<cr>", desc = "find grep git repo" },
+		{ nixCats("binds.find.find_git_files"), ":lua Snacks.picker.git_files()<cr>", desc = "find git files" },
+		{ nixCats("binds.find.find_pickers"), ":lua Snacks.picker.pickers()<cr>", desc = "find all pickers" },
+		{
+			nixCats("binds.files.explorer"),
 			"<cmd>lua Snacks.explorer()<cr>",
 			desc = "Snacks explorer",
 		},
 		-- System mapping
-		{ "<leader>sg", ":lua Snacks.gitbrowse.open()<cr>", desc = "open local repo in github" },
+		{
+			nixCats("binds.system.open_in_github"),
+			":lua Snacks.gitbrowse.open()<cr>",
+			desc = "open local repo in github",
+		},
 		-- Misc
-		{ "<leader>gb", ":lua Snacks.git.blame_line()<cr>", desc = "git blame line" },
+		{ nixCats("binds.snacks.git_blame_line"), ":lua Snacks.git.blame_line()<cr>", desc = "git blame line" },
 	},
 }

@@ -51,12 +51,12 @@ return {
 		end,
 		keys = {
 			{
-				"<leader>e",
+				nixCats("binds.files.explorer"),
 				"<cmd>Neotree toggle filesystem left<cr>",
 				desc = "neotree explorer",
 			},
 			{
-				"<leader>E",
+				nixCats("binds.files.float"),
 				"<cmd>Neotree toggle float<cr>",
 				desc = "neotree float",
 			},
@@ -70,28 +70,28 @@ return {
 		},
 		keys = {
 			{
-				"<leader><leader>h",
+				nixCats("binds.splits.swap_left"),
 				function()
 					require("smart-splits").swap_buf_left()
 				end,
 				desc = "swap buffer leftward",
 			},
 			{
-				"<leader><leader>j",
+				nixCats("binds.splits.swap_down"),
 				function()
 					require("smart-splits").swap_buf_down()
 				end,
 				desc = "swap buffer downward",
 			},
 			{
-				"<leader><leader>k",
+				nixCats("binds.splits.swap_up"),
 				function()
 					require("smart-splits").swap_buf_up()
 				end,
 				desc = "swap buffer upward",
 			},
 			{
-				"<leader><leader>l",
+				nixCats("binds.splits.swap_right"),
 				function()
 					require("smart-splits").swap_buf_right()
 				end,
@@ -100,28 +100,28 @@ return {
 
 			-- moving between splits
 			{
-				"<C-h>",
+				nixCats("binds.splits.move_left"),
 				function()
 					require("smart-splits").move_cursor_left()
 				end,
 				desc = "move cursor a window left",
 			},
 			{
-				"<C-j>",
+				nixCats("binds.splits.move_down"),
 				function()
 					require("smart-splits").move_cursor_down()
 				end,
 				desc = "move cursor a window down",
 			},
 			{
-				"<C-k>",
+				nixCats("binds.splits.move_up"),
 				function()
 					require("smart-splits").move_cursor_up()
 				end,
 				desc = "move cursor a window up",
 			},
 			{
-				"<C-l>",
+				nixCats("binds.splits.move_right"),
 				function()
 					require("smart-splits").move_cursor_right()
 				end,
@@ -130,28 +130,28 @@ return {
 
 			-- resizing splits, `10<A-h>` will resize by `(10 * config.default_amount)
 			{
-				"<A-h>",
+				nixCats("binds.splits.resize_left"),
 				function()
 					require("smart-splits").resize_left()
 				end,
 				desc = "resize window right",
 			},
 			{
-				"<A-j>",
+				nixCats("binds.splits.resize_down"),
 				function()
 					require("smart-splits").resize_down()
 				end,
 				desc = "resize window down",
 			},
 			{
-				"<A-k>",
+				nixCats("binds.splits.resize_up"),
 				function()
 					require("smart-splits").resize_up()
 				end,
 				desc = "resize window up",
 			},
 			{
-				"<A-l>",
+				nixCats("binds.splits.resize_right"),
 				function()
 					require("smart-splits").resize_right()
 				end,

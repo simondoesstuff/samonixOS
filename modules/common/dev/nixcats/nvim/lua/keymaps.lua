@@ -3,10 +3,10 @@ local function map(m, k, v, d)
 	vim.keymap.set(m, k, v, { silent = true, desc = d ~= "" and d or nil })
 end
 
--- Map leader to space
-map("", "<Space>", "<Nop>")
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local leader = nixCats("binds.leader")
+map("", leader, "<Nop>")
+vim.g.mapleader = leader
+vim.g.maplocalleader = leader
 
 -- Modes
 --   normal_mode = "n",
@@ -24,12 +24,13 @@ map("n", "k", "gk")
 map("n", "gj", "j") -- Map inverse
 map("n", "gk", "k")
 
-map("n", "<leader>fn", "<cmd>new<cr>", "New file") -- Make new file
-map("n", "<leader>cd", "<cmd>cd %:h<cr>", "Change to file directory") -- Change directory
-map("n", "<C-q>", "<cmd>close<cr>", "close buffer")
+
+map("n", nixCats("binds.new_file"), "<cmd>new<cr>", "New file") -- Make new file
+map("n", nixCats("binds.change_dir"), "<cmd>cd %:h<cr>", "Change to file directory") -- Change directory
+map("n", nixCats("binds.close_window"), "<cmd>close<cr>", "close window")
 
 -- System interaction keymaps
-map("n", "<leader>sr", function()
+map("n", nixCats("binds.system.reveal_file"), function()
 	local file = vim.fn.expand("%:p")
 	if vim.fn.filereadable(file) ~= 1 then
 		vim.notify("No file to reveal", vim.log.levels.WARN)
@@ -51,7 +52,7 @@ map("n", "<leader>sr", function()
 	os.execute(cmd)
 end, "Reveal in system explorer")
 
-map("n", "<leader>sf", function()
+map("n", nixCats("binds.system.copy_file_path"), function()
 	local file = vim.fn.expand("%:p")
 	if file == "" or vim.fn.filereadable(file) ~= 1 then
 		vim.notify("No file path to copy", vim.log.levels.WARN)
@@ -80,10 +81,10 @@ map("n", "<leader>sf", function()
 	vim.notify("Copied: " .. file)
 end, "Copy system file path")
 
-map("n", "<leader>sb", function()
+map("n", nixCats("binds.system.open_file"), function()
 	local file = vim.fn.expand("%:p")
 	if file == "" then
-		vim.notify("No file to open in browser", vim.log.levels.WARN)
+		vim.notify("No file to open", vim.log.levels.WARN)
 		return
 	end
 
@@ -107,13 +108,13 @@ map("n", "<leader>sb", function()
 
 	local ok, _, code = vim.fn.system(open_cmd)
 	if ok == 0 then
-		vim.notify("Opened in browser: " .. file)
+		vim.notify("Opened: " .. file)
 	else
-		vim.notify("Failed to open in browser (exit code: " .. code .. ")", vim.log.levels.ERROR)
+		vim.notify("Failed to open (exit code: " .. code .. ")", vim.log.levels.ERROR)
 	end
-end, "Open in web browser")
+end, "Open with system")
 
-map("n", "<leader>sc", function()
+map("n", nixCats("binds.system.copy_file"), function()
 	local file = vim.fn.expand("%:p")
 	if file == "" or vim.fn.filereadable(file) ~= 1 then
 		vim.notify("No valid file to copy", vim.log.levels.WARN)
@@ -159,4 +160,4 @@ map("v", ">", ">gv") -- Dedent selection and stay in visual mode
 -------------------
 map("t", "<esc>", [[<C-\><C-n>]]) -- Exit terminal mode
 map("t", "<C-w>", [[<C-\><C-n><C-w>]], "terminal window command")
-map("t", "<C-q>", "<cmd>close<cr>", "close buffer")
+map("t", nixCats("binds.close_window"), "<cmd>close<cr>", "close window")
