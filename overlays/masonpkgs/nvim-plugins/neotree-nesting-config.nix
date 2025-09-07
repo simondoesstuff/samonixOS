@@ -1,7 +1,7 @@
 { fetchFromGitHub, vimUtils }:
 
 vimUtils.buildVimPlugin {
-  pname = "neotree-nesting-config-nvim";
+  pname = "neotree-file-nesting-config";
   version = "089adb6d3e478771f4485be96128796fb01a20c4";
   src = fetchFromGitHub {
     owner = "saifulapm";
@@ -11,7 +11,7 @@ vimUtils.buildVimPlugin {
   };
 
   meta = {
-    description = "Nesting rule table for neotree.";
     homepage = "https://github.com/saifulapm/neotree-file-nesting-config";
+    description = "Nesting rule table for neotree.";
   };
 }
