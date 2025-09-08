@@ -97,6 +97,23 @@ return {
 				end,
 				desc = "swap buffer rightward",
 			},
+			-- split
+			{
+				nixCats("binds.splits.vertical_split"),
+				function()
+					vim.cmd.vsplit()
+					require("smart-splits").move_cursor_right() -- move to split
+				end,
+				desc = "vertical split",
+			},
+			{
+				nixCats("binds.splits.horizontal_split"),
+				function()
+					vim.cmd.split()
+					require("smart-splits").move_cursor_down() -- move to split
+				end,
+				desc = "horizontal split",
+			},
 
 			-- moving between splits
 			{
