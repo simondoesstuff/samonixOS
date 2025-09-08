@@ -98,8 +98,7 @@ return {
 			})
 
 			local hm_switch = Terminal:new({
-				-- TODO: Pass in path using require("nixcats.PATH") from nixcats default.nix
-				cmd = "home-manager switch --flake /Users/mason/.config/masonixOS",
+				cmd = "home-manager switch --flake " .. nixCats("flake_path"),
 				dir = "git_dir",
 				direction = "float",
 				start_in_insert = false,

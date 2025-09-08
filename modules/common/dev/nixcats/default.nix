@@ -1,4 +1,8 @@
-{ pkgs-unstable, ... }:
+{
+  config,
+  pkgs-unstable,
+  ...
+}:
 let
   binds = import ./binds.nix;
 in
@@ -50,6 +54,7 @@ in
             #    Config variables
             # ----------------------
             binds = binds;
+            flake_path = config.flakePath;
             javaPaths = {
               java_debug_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
               java_test_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
