@@ -29,8 +29,6 @@ map("n", "gk", "k")
 -- miscellaneous
 map("n", nixCats("binds.save_buffer"), "<cmd>w<cr>")
 map("n", nixCats("binds.splits.close"), "<cmd>q<cr>")
-map("n", nixCats("binds.splits.vertical_split"), "<cmd>vsp<cr>")
-map("n", nixCats("binds.splits.horizontal_split"), "<cmd>sp<cr>")
 
 -- clear highlights
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr><esc>", {
