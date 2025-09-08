@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   options.test.enable = lib.mkEnableOption "enable test hello module" // {
     default = false;

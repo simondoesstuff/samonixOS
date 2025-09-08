@@ -11,20 +11,30 @@ return {
 			},
 			mappings = {
 				sidebar = function(buf)
-					vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>FloatermToggle<CR>", { buffer = buf })
-					vim.keymap.set({ "n", "t" }, "<C-a>", function()
+					vim.keymap.set(
+						{ "n", "t" },
+						nixCats("binds.close_window"),
+						"<cmd>FloatermToggle<CR>",
+						{ buffer = buf }
+					)
+					vim.keymap.set({ "n", "t" }, nixCats("binds.terminals.floaterm_new"), function()
 						require("floaterm.api").new_term()
 					end, { buffer = buf })
-					vim.keymap.set({ "n", "t" }, "<C-h>", function()
+					vim.keymap.set({ "n", "t" }, nixCats("binds.splits.move_left"), function()
 						require("floaterm.api").switch_wins()
 					end, { buffer = buf })
-					vim.keymap.set({ "n", "t" }, "<C-l>", function()
+					vim.keymap.set({ "n", "t" }, nixCats("binds.splits.move_right"), function()
 						require("floaterm.api").switch_wins()
 					end, { buffer = buf })
 				end,
 				term = function(buf)
-					vim.keymap.set({ "n", "t" }, "<C-q>", "<cmd>FloatermToggle<CR>", { buffer = buf })
-					vim.keymap.set({ "n", "t" }, "<C-a>", function()
+					vim.keymap.set(
+						{ "n", "t" },
+						nixCats("binds.close_window"),
+						"<cmd>FloatermToggle<CR>",
+						{ buffer = buf }
+					)
+					vim.keymap.set({ "n", "t" }, nixCats("binds.terminals.floaterm_new"), function()
 						require("floaterm.api").new_term()
 					end, { buffer = buf })
 				end,
@@ -32,7 +42,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>tt",
+				nixCats("binds.terminals.floaterm_toggle"),
 				"<cmd>FloatermToggle<CR>",
 				desc = "toggle floaterm",
 			},
@@ -241,28 +251,28 @@ return {
 		keys = {
 			-- INFO: Toggle keymaps
 			{
-				"<leader>to",
+				nixCats("binds.terminals.ollama"),
 				function()
 					_Ollama_Toggle()
 				end,
 				desc = "ollama serve term",
 			},
 			{
-				"<leader>th",
+				nixCats("binds.terminals.home_manager"),
 				function()
 					_HomeManagerSwitch()
 				end,
 				desc = "hm switch term",
 			},
 			{
-				"<leader>ts",
+				nixCats("binds.terminals.spotify"),
 				function()
 					_Spotify_Toggle()
 				end,
 				desc = "spotify term",
 			},
 			{
-				"<leader>tf",
+				nixCats("binds.terminals.flutter"),
 				function()
 					_FlutterRun()
 				end,

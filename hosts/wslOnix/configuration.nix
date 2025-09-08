@@ -34,7 +34,7 @@
   wsl.defaultUser = "mason";
 
   wsl.wslConf = {
-    # Currently only supported in global .wslconfig
+    # not supported in wsl.conf, only the global .wslconfig which nix cannot provide 6/6/2025
     # wsl2 = {
     #   networkingMode = "mirrored";
     # };
@@ -44,6 +44,9 @@
       generateResolvConf = false;
     };
   };
+
+  # important on WSL so that nvidia-smi & drivers in /usr/lib/wsl/lib can link properly
+  programs.nix-ld.enable = true;
 
   # open up remote desktop to connect from windows
   services.xserver.enable = true;
@@ -56,13 +59,6 @@
     openFirewall = true;
     port = 3390; # windows likes to use the default port 3389 for rdp stuff in their apps (ie windows app)
     # if on networking mirrored, can simply use windows rdp to connect to localhost:3390
-  };
-
-  # INFO: Link wsl library headers to path
-  environment.variables = {
-    # this includes things like libcuda and other GPU driver stuff
-    # that we don't nixify in a regular way within WSL
-    LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
   };
 
   # INFO: Networking stuff

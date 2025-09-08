@@ -31,6 +31,15 @@ in
 
   programs.home-manager.enable = true; # Let home manager manage itself
 
+  # INFO: ssh
+  services.ssh-agent.enable = !isDarwin;
+  programs.ssh = {
+    # ssh-add -l to see loaded keys
+    # enabling the ssh-agent informs some software of active keys
+    enable = true;
+    addKeysToAgent = "yes";
+  };
+
   # INFO: If home-manager is not isolated then home-manager is not in the path,
   # we need to add home-manager to the path by installing the package
   home.packages = [

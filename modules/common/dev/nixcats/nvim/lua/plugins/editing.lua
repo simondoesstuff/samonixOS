@@ -5,7 +5,7 @@ return {
 		opts = {},
 		keys = {
 			{
-				"<leader>rn",
+				nixCats('binds.editing.rename'),
 				":IncRename ",
 				desc = "inc rename [cword]",
 			},
@@ -31,30 +31,30 @@ return {
 		},
 		keys = {
 			{
-				"-",
+				nixCats('binds.editing.buffer_close'),
 				"<cmd>BufferClose!<cr>",
 				desc = "close buffer",
 			},
 			{
-				"<C-,>",
+				nixCats('binds.editing.buffer_previous'),
 				"<cmd>BufferPrevious<cr>",
 				mode = { "n", "t" },
 				desc = "previous buffer",
 			},
 			{
-				"<C-.>",
+				nixCats('binds.editing.buffer_next'),
 				"<cmd>BufferNext<cr>",
 				mode = { "n", "t" },
 				desc = "next buffer",
 			},
 			{
-				"<C-S-.>",
+				nixCats('binds.editing.buffer_move_next'),
 				"<cmd>BufferMoveNext<cr>",
 				mode = { "n", "t" },
 				desc = "move buffer to next",
 			},
 			{
-				"<C-S-,>",
+				nixCats('binds.editing.buffer_move_previous'),
 				"<cmd>BufferMovePrevious<cr>",
 				mode = { "n", "t" },
 				desc = "move buffer to previous",

@@ -1,4 +1,7 @@
 { pkgs-unstable, ... }:
+let
+  binds = import ./binds.nix;
+in
 {
   nixCats = {
     enable = true;
@@ -46,6 +49,7 @@
             # INFO: ----------------
             #    Config variables
             # ----------------------
+            binds = binds;
             javaPaths = {
               java_debug_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
               java_test_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
@@ -142,6 +146,7 @@
           # ----------------------
           general = with pkgs.vimPlugins; [
             barbar-nvim
+            battery-nvim-masonpkgs
             blink-cmp
             blink-copilot
             catppuccin-nvim
@@ -160,6 +165,7 @@
             todo-comments-nvim
             nvim-dap-ui
             nvim-treesitter.withAllGrammars
+            persistence-nvim
             slimline-masonpkgs
             smart-splits-nvim
             snacks-nvim

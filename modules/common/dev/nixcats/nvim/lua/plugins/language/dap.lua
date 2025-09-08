@@ -3,17 +3,17 @@ return {
 		"mfussenegger/nvim-dap",
 		keys = {
 			{
-				"<leader>db",
+				nixCats('binds.debug.toggle_breakpoint'),
 				"<cmd>lua require'dap'.toggle_breakpoint()<cr>",
 				desc = "toggle breakpoint",
 			},
 
-			{ "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", desc = "start/continue" },
-			{ "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", desc = "step over" },
-			{ "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", desc = "step into" },
+			{ nixCats('binds.debug.continue'), "<cmd>lua require'dap'.continue()<cr>", desc = "start/continue" },
+			{ nixCats('binds.debug.step_over'), "<cmd>lua require'dap'.step_over()<cr>", desc = "step over" },
+			{ nixCats('binds.debug.step_into'), "<cmd>lua require'dap'.step_into()<cr>", desc = "step into" },
 			-- Arrow keys for the above keybinds instead
-			{ "<Left>", "<cmd>lua require'dap'.step_out()<cr>", desc = "step out" },
-			{ "<Right>", "<cmd>lua require'dap'.step_into()<cr>", desc = "step into" },
+			{ nixCats('binds.debug.step_out'), "<cmd>lua require'dap'.step_out()<cr>", desc = "step out" },
+			{ nixCats('binds.debug.step_into_alt'), "<cmd>lua require'dap'.step_into()<cr>", desc = "step into" },
 		},
 	},
 	{
@@ -21,7 +21,7 @@ return {
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		opts = {},
 		keys = {
-			{ "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", desc = "toggle dap ui" },
+			{ nixCats('binds.debug.toggle_ui'), "<cmd>lua require'dapui'.toggle()<cr>", desc = "toggle dap ui" },
 		},
 	},
 
