@@ -84,10 +84,10 @@ in
   ];
 
   # INFO: Other
-  services.code-server = {
-    enable = true;
-    user = "mason";
-    # hint: the password is `1234` 😈
-    hashedPassword = "$argon2i$v=19$m=4096,t=3,p=1$c1hXbkhFNG8rUlg3aVBnOHVEZENXVmk1WlVzPQ$D1rr2WNl75cnpti+q/PkpTHNXGD+ENSktp2m+nMr2Vw";
-  };
+  # services.code-server = {
+  #   enable = true;
+  #   user = "mason";
+  #   # hint: the password is `1234` 😈
+  #   hashedPassword = "$argon2i$v=19$m=4096,t=3,p=1$c1hXbkhFNG8rUlg3aVBnOHVEZENXVmk1WlVzPQ$D1rr2WNl75cnpti+q/PkpTHNXGD+ENSktp2m+nMr2Vw";
+  # };
 }
