@@ -49,6 +49,7 @@ in
             rust.enable = true;
             shell.enable = true;
             zig.enable = true;
+            svelte.enable = true;
 
             # INFO: ----------------
             #    Config variables
@@ -139,6 +140,10 @@ in
 
           zig = [
             zls # zig langserver
+          ];
+
+          svelte = [
+            svelte-language-server
           ];
 
         };
