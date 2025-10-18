@@ -50,6 +50,7 @@ in
             shell.enable = true;
             zig.enable = true;
             svelte.enable = true;
+            ts.enable = true;
 
             # INFO: ----------------
             #    Config variables
@@ -144,6 +145,10 @@ in
 
           svelte = [
             svelte-language-server
+          ];
+
+          ts = [
+            typescript-language-server
           ];
 
         };
