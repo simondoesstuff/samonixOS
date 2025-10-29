@@ -40,21 +40,26 @@ in
     addKeysToAgent = "yes";
     extraConfig = ''
       Host lakehouse
-        HostName 71.237.31.35
-        User simon
-        Port 22565
+      	HostName 71.237.31.35
+      	User simon
+      	Port 22565
 
       Host fijicluster
-        HostName fiji.colorado.edu
-        User siwa3657
+      	HostName fiji.colorado.edu
+      	User siwa3657
 
       Host github.com
-        IdentityFile ~/.ssh/github
-        IdentitiesOnly yes
+      	IdentityFile ~/.ssh/github
+      	IdentitiesOnly yes
 
       Host dclass
-        HostName 192.168.68.63
-        port 22565
+      	HostName 192.168.68.63
+      	port 22565
+
+      # "Anton's" A5000s workstation
+      Host layerlab
+      	HostName 172.21.21.122
+      	User simon
     '';
   };
 
