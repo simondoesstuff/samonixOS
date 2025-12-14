@@ -56,6 +56,10 @@ in
       	HostName 192.168.68.63
       	port 22565
 
+      Host worldgov
+      	HostName 192.168.68.69
+				User simon
+
       # "Anton's" A5000s workstation
       Host layerlab
       	HostName 172.21.21.122
