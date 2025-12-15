@@ -37,6 +37,7 @@
       # TODO: error on home-manager news evoked when using these. Same as:
       # https://discourse.nixos.org/t/news-json-output-and-home-activationpackage-in-home-manager-switch/54192
       packages.x86_64-linux.homeConfigurations = {
+        "simon@worldgov" = import ./hosts/worldgov { inherit inputs; };
         "simon@wsl" = nixosConfigurations.wslOnix.config.home-manager.users."simon".home;
         # "simon@xps" = nixosConfigurations.xpsOnix.config.home-manager.users."simon".home;
       };
