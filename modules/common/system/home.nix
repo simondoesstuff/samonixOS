@@ -34,39 +34,51 @@ in
   # INFO: ssh
   services.ssh-agent.enable = !isDarwin;
   programs.ssh = {
-    # ssh-add -l to see loaded keys
-    # enabling the ssh-agent informs some software of active keys
     enable = true;
     addKeysToAgent = "yes";
-    extraConfig = ''
-      Host lakehouse
-      	HostName 71.237.31.35
-      	User simon
-      	Port 22565
 
-      Host fijicluster
-      	HostName fiji.colorado.edu
-      	User siwa3657
-
-      Host github.com
-      	IdentityFile ~/.ssh/github
-      	IdentitiesOnly yes
-
-      Host dclass
-      	HostName 192.168.68.63
-      	port 22565
-
-      Host worldgov
-      	HostName 192.168.68.69
-				User simon
-
+    matchBlocks = {
+      "lakehouse" = {
+        hostname = "71.237.31.35";
+        user = "simon";
+        port = 22565;
+      };
+      "fijicluster" = {
+        hostname = "fiji.colorado.edu";
+        user = "siwa3657";
+      };
+      "github.com" = {
+        identityFile = "~/.ssh/github";
+        identitiesOnly = true;
+      };
+      "dclass" = {
+        hostname = "192.168.68.63";
+        port = 22565;
+      };
+      "worldgov" = {
+        # WARN: disabled netcat match because failed connections cause stall and it
+        # checks every time you ssh to anything
+        # match = "exec \"nc -z -w 1 192.168.68.69 22\"";
+        hostname = "192.168.68.69";
+        user = "simon";
+        # INFO: world gov mac address:   a0:36:9f:ae:c4:cb
+      };
+      # worldgov: FALLBACK, remote connection
+      "worldgov2" = {
+        hostname = "bop.tplinkdns.com";
+        port = 23;
+        user = "simon";
+      };
       # "Anton's" A5000s workstation
-      Host layerlab
-      	HostName 172.21.21.122
-      	User simon
-    '';
+      "layerlab" = {
+        # INFO: mac addresses
+        #   enp209s0  a8:a1:59:ef:5e:8e
+        #   enp210s0  a8:a1:59:ef:5e:8c
+        hostname = "172.21.21.122";
+        user = "simon";
+      };
+    };
   };
-
   # INFO: If home-manager is not isolated then home-manager is not in the path,
   # we need to add home-manager to the path by installing the package
   home.packages = [
