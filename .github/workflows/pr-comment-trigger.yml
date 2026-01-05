@@ -1,4 +1,4 @@
-name: PR Build Tests
+name: Test all platform builds via PR comment trigger
 
 permissions:
   statuses: write
@@ -40,28 +40,20 @@ jobs:
   # Test NixOS configurations
   test-nixos:
     name: Raw NixOS Build
-    needs: trigger-tests # This job depends on the trigger job
-    if: needs.trigger-tests.outputs.is_authorized == 'true' # Run only if authorized
+    needs: trigger-tests
+    if: needs.trigger-tests.outputs.is_authorized == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.trigger-tests.outputs.pr_sha }}
 
-      - name: Setup secrets 🔐
-        run: |
-          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/nordvpn.com.udp.ovpn.key
-          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
-          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
-          chmod 600 ./hosts/xpsOnix/media/nordvpn.com.udp.ovpn.key ./hosts/xpsOnix/media/nordUser.key ./hosts/xpsOnix/media/nordPass.key
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-
-      - name: Enable Flakes
-        run: |
-          mkdir -p ~/.config/nix
-          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
+        with:
+          ovpn-file: ${{ secrets.ovpnFile }}
+          nord-user: ${{ secrets.nordUser }}
+          nord-pass: ${{ secrets.nordPass }}
 
       - name: Build NixOS configurations
         run: |
@@ -79,22 +71,8 @@ jobs:
         with:
           ref: ${{ needs.trigger-tests.outputs.pr_sha }}
 
-      - name: Setup secrets
-        run: |
-          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
-          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
-          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
-          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
-          chmod 600 ./hosts/xpsOnix/media/nordUser.key
-          chmod 600 ./hosts/xpsOnix/media/nordPass.key
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-
-      - name: Enable Flakes
-        run: |
-          mkdir -p ~/.config/nix
-          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
 
       - name: Build mason@xpsOnix configuration
         run: nix build .#packages.x86_64-linux.homeConfigurations."mason@xpsOnix".activationPackage --dry-run
@@ -113,22 +91,8 @@ jobs:
         with:
           ref: ${{ needs.trigger-tests.outputs.pr_sha }}
 
-      - name: Setup secrets
-        run: |
-          echo "${{ secrets.ovpnFile }}" > ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
-          echo "${{ secrets.nordUser }}" > ./hosts/xpsOnix/media/nordUser.key
-          echo "${{ secrets.nordPass }}" > ./hosts/xpsOnix/media/nordPass.key
-          chmod 600 ./hosts/xpsOnix/media/us5080.nordvpn.com.udp.ovpn.key
-          chmod 600 ./hosts/xpsOnix/media/nordUser.key
-          chmod 600 ./hosts/xpsOnix/media/nordPass.key
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-
-      - name: Enable Flakes
-        run: |
-          mkdir -p ~/.config/nix
-          echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+      - name: Setup Nix
+        uses: ./.github/actions/setup-nix
 
       - name: Build mason macOS configuration
         run: nix build .#packages.aarch64-darwin.homeConfigurations.mason.activationPackage --dry-run

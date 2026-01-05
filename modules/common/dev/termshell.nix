@@ -25,11 +25,11 @@
   # INFO: Source dotfiles directly
   xdg.configFile = {
     wezterm = {
-      source = root + /dotfiles/wezterm;
+      source = "${root}/dotfiles/wezterm";
       recursive = true;
     };
     ghostty = {
-      source = root + /dotfiles/ghostty;
+      source = "${root}/dotfiles/ghostty";
       recursive = true;
     };
   };
@@ -77,16 +77,17 @@
       initContent = ''
         set -o vi
         bindkey '^l' autosuggest-accept
+        export EDITOR=nvim
       '';
       profileExtra =
-        ''''
+        ""
         + lib.optionalString config.isDarwin ''
           export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
         '';
       completionInit = "
-    	bindkey '^ ' autosuggest-accept
-    	bindkey '^l' autosuggest-accept
-    ";
+    	  bindkey '^ ' autosuggest-accept
+    	  bindkey '^l' autosuggest-accept
+			";
     };
   };
 }

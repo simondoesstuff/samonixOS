@@ -8,6 +8,8 @@ return {
 		},
 		formatters_by_ft = {
 			bash = { "shfmt", "shellcheck", stop_after_first = true },
+			c = { "clang_format" },
+			cpp = { "clang_format" },
 			css = { "prettierd" },
 			hbs = { "prettierd" },
 			html = { "prettierd" },
@@ -24,11 +26,21 @@ return {
 			rust = { "rustfmt" },
 			toml = { "taplo" },
 			java = { "google-java-format" },
+			wgsl = { "wgslfmt" },
 			zig = { "zigfmt" },
 
 			["*"] = { "codespell" }, -- Applies to all files
 			["_"] = {
 				"trim_whitespace", -- Applies to files with no preset formatter
+			},
+		},
+
+		-- INFO: Custom defined formatters below
+		formatters = {
+			wgslfmt = {
+				command = "wgslfmt",
+				args = { "$FILENAME" },
+				stdin = false,
 			},
 		},
 	},

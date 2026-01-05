@@ -18,11 +18,12 @@ return {
 			--        Default config servers
 			-- ------------------------------------
 			vim.lsp.enable("basedpyright")
-			vim.lsp.enable("clangd") -- c
-			vim.lsp.enable("jdtls") -- java
+			vim.lsp.enable("tailwindcss")
+			vim.lsp.enable("clangd")
+			-- vim.lsp.enable("jdtls") -- java is handeld in dap.lua
 			vim.lsp.enable("lua_ls")
+			vim.lsp.enable("ts_ls")
 			vim.lsp.enable("nixd")
-			vim.lsp.enable("rust_analyzer")
 			vim.lsp.enable("zls") -- zig
 			vim.lsp.enable("svelte")
 			vim.lsp.enable("ts_ls")
@@ -30,6 +31,41 @@ return {
 			-- INFO: -------------------------------
 			--         Tweaked config servers
 			-- -------------------------------------
+
+			vim.lsp.config("svelte", {
+				cmd = {
+					"bunx",
+					"svelte-language-server",
+					"--stdio",
+				},
+				settings = {},
+			})
+			vim.lsp.enable("svelte")
+
+			vim.lsp.config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							build_scripts = {
+								enable = true,
+							},
+						},
+						procMacro = {
+							enable = true,
+						},
+					},
+				},
+			})
+			vim.lsp.enable("rust_analyzer")
+
+			vim.lsp.config("wgsl_analyzer", {
+				filetypes = {
+					"wgsl",
+					-- "wesl" wesl support is still WIP
+				},
+			})
+			vim.lsp.enable("wgsl_analyzer") -- webgpu shader lang
+
 			vim.lsp.config("glsl_analyzer", {
 				filetypes = {
 					"glsl",

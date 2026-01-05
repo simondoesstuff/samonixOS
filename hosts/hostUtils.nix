@@ -1,6 +1,6 @@
 { inputs }:
 let
-  inherit (inputs) nixpkgs home-manager;
+  inherit (inputs) nixpkgs home-manager sops-nix;
 
   # lil helper to allow unfree in all the unstables
   mkPkgsUnstable =
@@ -9,25 +9,52 @@ let
       inherit system;
       config.allowUnfree = true;
     };
+
+  # general special args for nixos systems
+  mkSpecialArgs = system: {
+    pkgs-unstable = mkPkgsUnstable system;
+    inherit (inputs) self;
+  };
+
+  # general special args for home manager
+  mkHomeManagerSpecialArgs = system: username: {
+    pkgs-unstable = mkPkgsUnstable system;
+    pkgs-spice = inputs.spicetify.legacyPackages.${system};
+    root = inputs.self;
+    inherit username;
+  };
 in
 {
-  # General nixosSystem wrapper that takes in config system and username
-  nixosSetup =
+  # NixOS isolated setup with no assumptions on default user
+  nixosSystem =
+    {
+      config,
+      system,
+      extraModules ? [ ],
+    }:
+    nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = mkSpecialArgs system;
+      modules = [
+        sops-nix.nixosModules.sops
+        config
+      ]
+      ++ extraModules;
+    };
+
+  # NixOS + Homemanager personal PC setup
+  nixosHomeManagerSystem =
     {
       config,
       system,
       username,
       extraModules ? [ ],
     }:
-    # TODO: Look into using this pkgs instead of nixpkgs.lib.nixosSystem:
-    # pkgs = import nixpkgs{overlays=[flakeB.overlay];inherit system;};
-    # and then use pkgs.nixos instead of nixpkgs.lib.nixosSystem
     nixpkgs.lib.nixosSystem {
       inherit system;
-      specialArgs = {
-        pkgs-unstable = mkPkgsUnstable system;
-      };
+      specialArgs = mkSpecialArgs system;
       modules = [
+        sops-nix.nixosModules.sops
         home-manager.nixosModules.home-manager
         {
           # home-manager.useUserPackages = true;
@@ -46,12 +73,7 @@ in
               ];
             };
 
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = mkPkgsUnstable system;
-            pkgs-spice = inputs.spicetify.legacyPackages.${system};
-            username = username;
-            root = ./..;
-          };
+          home-manager.extraSpecialArgs = mkHomeManagerSpecialArgs system username;
         }
       ]
       ++ extraModules;
@@ -69,12 +91,7 @@ in
         inherit system;
         overlays = [ (import ../overlays/masonpkgs) ];
       };
-      extraSpecialArgs = {
-        pkgs-unstable = mkPkgsUnstable system;
-        pkgs-spice = inputs.spicetify.legacyPackages.${system};
-        username = username;
-        root = ./..;
-      };
+      extraSpecialArgs = mkHomeManagerSpecialArgs system username;
       modules = [
         (
           if system == "aarch64-darwin" || system == "x86_64-darwin" then

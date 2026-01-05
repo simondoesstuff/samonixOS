@@ -48,6 +48,7 @@ in
             python.enable = true;
             rust.enable = true;
             shell.enable = true;
+            web.enable = true;
             zig.enable = true;
             svelte.enable = true;
             ts.enable = true;
@@ -60,6 +61,7 @@ in
             javaPaths = {
               java_debug_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
               java_test_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
+              jdtls_executable = "${pkgs.jdt-language-server}/bin/jdtls";
             };
           };
         };
@@ -130,13 +132,21 @@ in
           ];
 
           rust = [
-            rustfmt
-            rust-analyzer
+            pkgs-unstable.rustfmt
+            pkgs-unstable.cargo
+            pkgs-unstable.rust-analyzer
+            pkgs-unstable.rustc # rustc is needed for some rust-analyzer features (*cough* procmacro)
+            pkgs-unstable.wgsl-analyzer # provides wgslfmt
           ];
 
           shell = [
             shfmt
             shellcheck
+          ];
+
+          web = [
+            typescript-language-server
+            tailwindcss-language-server
           ];
 
           zig = [
@@ -180,10 +190,12 @@ in
             todo-comments-nvim
             nvim-dap-ui
             nvim-treesitter.withAllGrammars
+            nvzone-minty
             persistence-nvim
             slimline-masonpkgs
             smart-splits-nvim
             snacks-nvim
+            oil-nvim
             render-markdown-nvim
             todo-comments-nvim
             toggleterm-nvim

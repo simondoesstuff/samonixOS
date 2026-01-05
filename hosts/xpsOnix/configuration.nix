@@ -69,8 +69,9 @@
     description = "mason";
     openssh.authorizedKeys = {
       keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZblT7Q/WxYTQnb3WL9lJMclp1DeQeYzdBKOBPAX0bD" # mbp14
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqYhMkfTYA7biVs4xp0OxhcV0Zk4yxvMTLn7u6S0PWc" # windows 3080pc
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGkXARiuSNUpCWhhRtp35ldIeg0T/2J6vaCr4CzUBeoz" # mason@wslOnix
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIZblT7Q/WxYTQnb3WL9lJMclp1DeQeYzdBKOBPAX0bD" # mason@masonmac
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqYhMkfTYA7biVs4xp0OxhcV0Zk4yxvMTLn7u6S0PWc" # mason@[nixless windows 3080pc]
       ];
     };
     extraGroups = [
@@ -79,12 +80,18 @@
     ];
   };
 
+  # INFO: Remote control
   services.openssh = {
     enable = true;
     ports = [ 22 ];
     settings = {
       PasswordAuthentication = false;
     };
+  };
+
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "startplasma-x11";
   };
 
   # INFO: Networking
@@ -99,4 +106,17 @@
   };
 
   services.vnstat.enable = true;
+
+  # INFO: Secrets setup
+  sops.defaultSopsFile = ../../secrets/default.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+  # writes secrets to /run/secrets/...
+  sops.secrets = {
+    "personalEmail" = { }; # uses defaults
+    "wgQuickConfiguration" = {
+      sopsFile = ../../secrets/nordConfig.yaml;
+    };
+  };
 }
