@@ -22,12 +22,14 @@
 -- 	}),
 -- }
 
--- Lu-- Lua
 return {
-	"folke/persistence.nvim",
-	-- event = "BufReadPre",
-	lazy = false,
-	opts = {
-		-- add any custom options here
+	{
+		"folke/persistence.nvim",
+		-- event = "BufReadPre",
+		lazy = false,
+		opts = {
+			-- add any custom options here
+		},
 	},
+	{ "wakatime/vim-wakatime", lazy = false },
 }

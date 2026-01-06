@@ -7,6 +7,10 @@ let
   binds = import ./binds.nix;
 in
 {
+  imports = [
+    ./wakatime.nix # wakatime requires some small system config
+  ];
+
   nixCats = {
     enable = true;
     luaPath = ./nvim;
@@ -200,6 +204,7 @@ in
             todo-comments-nvim
             toggleterm-nvim
             which-key-nvim
+            vim-wakatime
           ];
 
           # All necessary baseline plugins
