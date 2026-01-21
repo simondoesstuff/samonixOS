@@ -30,26 +30,10 @@ in
   };
 
   config = lib.mkIf config.entertainment.enable {
-    xdg.configFile.jerry = {
-      source = "${root}/dotfiles/jerry";
-      recursive = true;
-    };
-
-    xdg.configFile.lobster = {
-      source = "${root}/dotfiles/lobster";
-      recursive = true;
-    };
-
     home.packages = [
       # video players and other
       pkgs.ffmpeg-full # just useful for a lot of things
       pkgs.yt-dlp # yt downloading util
-      # pkgs.jellyfin-mpv-shim
-
-      (pkgs.jerry {
-        imagePreviewSupport = true;
-      })
-      (pkgs.lobster { })
 
       # music
       pkgs.spotifyd
@@ -170,8 +154,8 @@ in
       enabledExtensions = with pkgs-spice.extensions; [
         # INFO: nice-to-haves
         shuffle # fischer-yates lets go (ballotery)
-        adblockify
         beautifulLyrics # adds epic lyrics with cool fullscreen mode
+
         # INFO: stats
         songStats # shows song key and other
         # INFO: opinionated
@@ -179,15 +163,11 @@ in
 
         # lowkey this fullscreen mode looks epic but it kinda overlaps with
         # simpleBeautiful lyrics fullscreen and it feels weird to have two
-        # fullScreen
-
-        # actually im not sure if that full screen was the issue, I still have 2 after removing
+        # fullScreen # cooler group screen but adds a dupe button
       ];
     };
 
     home.shellAliases = {
-      jerry = "command jerry --dub";
-      jerrysub = "command jerry";
       spt = "spotify_player";
       mpv = "mpv --idle --force-window";
     };
