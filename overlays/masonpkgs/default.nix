@@ -3,26 +3,25 @@ self: super:
 let
   lib = super.lib;
 
-  # INFO: -------------------------------
-  #         custom nvim plugins
-  # -------------------------------------
+  # INFO: --------------------------------------------------------------
+  #         auto read nvim-plugins dir to an attr set for overlay
+  # --------------------------------------------------------------------
 
-  # Read plugin files from relative dir
-  nvimPluginsPath = ./nvim-plugins;
-  nvimPluginFiles = lib.attrNames (
+  pluginsPath = ./nvim-plugins;
+  pluginFiles = lib.attrNames (
     lib.filterAttrs (name: type: type == "regular" && lib.strings.hasSuffix ".nix" name) (
-      builtins.readDir nvimPluginsPath
+      builtins.readDir pluginsPath
     )
   );
 
-  # Create a custom plugins attr set
   customVimPlugins = lib.listToAttrs (
     lib.map (file: {
-      # The key for the attr set, e.g., "slimline.nix" -> "slimline-masonpkgs"
+      # plugin name for the vim plugin overlay is based on file name + masonpkgs
+      # "slimline.nix" -> "slimline-masonpkgs"
       name = "${lib.strings.removeSuffix ".nix" file}-masonpkgs";
       # The value for the attr set, e.g., callPackage ./nvim-plugins/slimline.nix {}
-      value = super.callPackage (nvimPluginsPath + "/${file}") { };
-    }) nvimPluginFiles
+      value = super.callPackage (pluginsPath + "/${file}") { };
+    }) pluginFiles
   );
 
   # INFO: --------------------------------
@@ -42,11 +41,8 @@ let
       value = super.callPackage "${nodePackagesPath}/${file}" { };
     }) nodePackagesFiles
   );
-
 in
 {
-  lobster = args: super.callPackage ./lobster/default.nix args;
-  jerry = args: super.callPackage ./jerry/default.nix args;
   timetrack = args: super.callPackage ./timetrack/default.nix args;
 
   vimPlugins = super.vimPlugins // customVimPlugins;
