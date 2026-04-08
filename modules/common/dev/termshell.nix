@@ -17,7 +17,7 @@
     pkgs.parallel
     pkgs.mitmproxy
     pkgs.wget
-    pkgs-unstable.claude-code
+    # pkgs-unstable.claude-code
     pkgs.onefetch
   ]
   ++ lib.optional config.isLinux pkgs.ghostty;
