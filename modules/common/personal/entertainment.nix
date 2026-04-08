@@ -8,7 +8,7 @@
   ...
 }:
 let
-  enableSpice = true; # toggle between spicetify and regular spotify desktop
+  enableSpice = false; # toggle between spicetify and regular spotify desktop
 
   # Note for IINA: must import the input.conf as
   # keybindings manually. Found in dotfiles directory
