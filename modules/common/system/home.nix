@@ -81,9 +81,7 @@ in
   };
   # INFO: If home-manager is not isolated then home-manager is not in the path,
   # we need to add home-manager to the path by installing the package
-  home.packages = [
-    (lib.mkIf (!config.homeManagerIsolated) pkgs.home-manager)
-  ];
+  home.packages = [ (lib.mkIf (!config.homeManagerIsolated) pkgs.home-manager) ];
 
   # Add nix only on home-manager isolated systems since nixos has it in default module
   nix = lib.mkIf config.homeManagerIsolated {
@@ -97,7 +95,7 @@ in
     };
     gc = {
       automatic = true;
-      frequency = "weekly";
+      dates = "weekly";
       options = "--delete-older-than 30d";
     };
   };

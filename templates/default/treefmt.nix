@@ -7,18 +7,12 @@
       enable = true;
       package = pkgs.nixfmt-rfc-style;
     };
+    deadnix.enable = true;
 
     # general formatting (markdown, yaml, json, etc)
-    prettier = {
-      enable = true;
-      package = pkgs.nodePackages.prettier;
-    };
+    prettier.enable = true;
 
     # project formatting
-    stylua.enable = true;
+    ruff.enable = true; # python
   };
-
-  settings.global.excludes = [
-    "secrets/**"
-  ];
 }

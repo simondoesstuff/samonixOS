@@ -5,9 +5,5 @@
   ...
 }:
 {
-  config = lib.mkIf config.language.c.enable {
-    home.packages = with pkgs; [
-      clang
-    ];
-  };
+  config = lib.mkIf config.language.c.enable { home.packages = with pkgs; [ clang ]; };
 }

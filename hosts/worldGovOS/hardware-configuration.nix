@@ -7,9 +7,7 @@
 }:
 
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   networking.interfaces."enp2s0".wakeOnLan.enable = true;
 
@@ -53,7 +51,7 @@
     extraPackages = with pkgs; [
       intel-media-driver # required for Skylake+ (HD 530)
       intel-vaapi-driver # fallback driver
-      vaapiVdpau
+      libva-vdpau-driver
       libvdpau-va-gl
 
       intel-compute-runtime # OpenCL support

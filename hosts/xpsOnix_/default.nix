@@ -5,10 +5,12 @@ in
 utils.nixosHomeManagerSystem {
   system = "x86_64-linux";
   username = "mason";
-  extraModules = [
+  extraNixosModules = [
+    ../../modules/linux/media-server
     ./configuration.nix
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.dell-xps-15-7590-nvidia
+    inputs.nixarr.nixosModules.default
   ];
   config = {
     personal.enable = true;
@@ -16,5 +18,6 @@ utils.nixosHomeManagerSystem {
     language = {
       python.enable = true;
     };
+    nvim.showBattery = true;
   };
 }

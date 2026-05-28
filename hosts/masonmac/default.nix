@@ -28,5 +28,7 @@ utils.homeManagerSetup {
       unset __mamba_setup
       # <<< mamba initialize <<<
     '';
+    nvim.showBattery = true;
   };
+  extraHomeModules = [ ./home.nix ];
 }
