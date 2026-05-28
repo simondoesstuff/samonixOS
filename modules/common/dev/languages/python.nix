@@ -17,8 +17,6 @@ in
       python312 # necessary in addition to uv because nix must manage the executables
     ];
 
-    ldLibraryPathParts = [
-      (lib.makeLibraryPath runtimeLibs)
-    ];
+    ldLibraryPathParts = [ (lib.makeLibraryPath runtimeLibs) ];
   };
 }

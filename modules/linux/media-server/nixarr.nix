@@ -1,14 +1,11 @@
 { config, ... }:
 {
-
   nixarr = {
     enable = true;
-    # this is the default, but leaving it in b/c it is
-    # useful to know where all the data is stored
-    mediaDir = "/data/media";
+    mediaDir = "/data/media"; # default media dir, still specified to be explicit
     mediaUsers = [ "mason" ];
 
-    # vpn setup for use by services
+    # vpn setup for media services, relies on a wireguard config secret in sops
     vpn = {
       enable = true;
       wgConf = config.sops.secrets."wgQuickConfiguration".path;
@@ -24,38 +21,40 @@
       openFirewall = true; # port 8096
       expose.https = {
         enable = true;
-        domainName = "jellyfin.masonbott.com";
+        domainName = "fin.masonbott.com";
         acmeMail = "masonmbott@gmail.com";
       };
     };
-    jellyseerr = {
+    seerr = {
       enable = true;
       openFirewall = true; # port 5055
       expose.https = {
         enable = true;
-        domainName = "jellyseerr.masonbott.com";
+        domainName = "seerr.masonbott.com";
         acmeMail = "masonmbott@gmail.com";
       };
     };
     transmission = {
       enable = true;
+      peerPort = 51413; # set explicitly to avoid upstream nixarr error with null peerPort
       flood.enable = true;
       # with vpn on, firewalling doesn't work for local access, using ssh forwarding
-      # to access the page on other devices is the best strategy
+      # to access the page on other devices is the best replacemen strategy
       vpn.enable = true;
       extraSettings = {
-        # Below only lets host access transmission
+        # below only lets host access transmission
         rpc-host-whitelist-enabled = false; # allow any hostname to access
         rpc-whitelist-enabled = false; # allow any ip to access
 
-        rpc-authentication-required = false; # require user/pass (might be useful in future)
+        # no user/pass needed since only local host
+        rpc-authentication-required = false;
         rpc-username = "N/A";
         rpc-password = "N/A";
 
-        # Seeding and download configs
+        # seeding and download configs
         ratio-limit-enabled = true;
         download-queue-size = 8;
-        ratio-limit = 0.1; # set on show basis with sonarr
+        ratio-limit = 0; # should be set on show basis with *arr stack
         preallocation = 2; # (0 = Off, 1 = Fast, 2 = Full (slower but reduces disk fragmentation), default = 1)
       };
     };
@@ -64,12 +63,25 @@
     #         *arr services
     # -----------------------------
 
-    sonarr.enable = true;
-    radarr.enable = true;
-    bazarr.enable = true;
-    prowlarr.enable = true;
+    sonarr = {
+      enable = true;
+      openFirewall = true; # port 8989
+    };
+    radarr = {
+      enable = true;
+      openFirewall = true; # port 7878
+    };
+    bazarr = {
+      enable = true;
+      openFirewall = true; # port 6767
+    };
+    prowlarr = {
+      enable = true;
+      openFirewall = true; # port 9696
+    };
     autobrr = {
       enable = true;
+      openFirewall = true; # port 7474
       settings = {
         checkForUpdates = false;
         host = "0.0.0.0";

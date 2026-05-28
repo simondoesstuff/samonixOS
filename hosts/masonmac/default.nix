@@ -11,5 +11,7 @@ utils.homeManagerSetup {
     language = {
       python.enable = true;
     };
+    nvim.showBattery = true;
   };
+  extraHomeModules = [ ./home.nix ];
 }

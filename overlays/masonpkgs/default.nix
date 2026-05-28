@@ -1,7 +1,6 @@
-# overlays/default.nix
-self: super:
+final: prev:
 let
-  lib = super.lib;
+  lib = prev.lib;
 
   # INFO: --------------------------------------------------------------
   #         auto read nvim-plugins dir to an attr set for overlay
@@ -19,8 +18,7 @@ let
       # plugin name for the vim plugin overlay is based on file name + masonpkgs
       # "slimline.nix" -> "slimline-masonpkgs"
       name = "${lib.strings.removeSuffix ".nix" file}-masonpkgs";
-      # The value for the attr set, e.g., callPackage ./nvim-plugins/slimline.nix {}
-      value = super.callPackage (pluginsPath + "/${file}") { };
+      value = prev.callPackage (pluginsPath + "/${file}") { };
     }) pluginFiles
   );
 
@@ -43,8 +41,16 @@ let
   );
 in
 {
-  timetrack = args: super.callPackage ./timetrack/default.nix args;
+  entire-masonpkgs = prev.callPackage ./entire/default.nix { };
+  run-in-roblox = prev.callPackage ./run-in-roblox/default.nix { };
 
-  vimPlugins = super.vimPlugins // customVimPlugins;
-  nodePackages = super.nodePackages // customNodePackages;
+  timetrack = prev.callPackage ./timetrack/default.nix { };
+  vimPlugins = prev.vimPlugins // customVimPlugins;
+
+  mpvacious = prev.callPackage ./mpvacious/default.nix {
+    inherit (prev.mpvScripts) buildLua;
+  };
+  mpvScripts = prev.mpvScripts // {
+    mpvacious = final.mpvacious;
+  };
 }

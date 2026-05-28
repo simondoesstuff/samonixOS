@@ -1,6 +1,7 @@
 # packages and config for media and gaming
 {
   pkgs-spice,
+  pkgs-unstable,
   config,
   root,
   pkgs,
@@ -33,7 +34,6 @@ in
     home.packages = [
       # video players and other
       pkgs.ffmpeg-full # just useful for a lot of things
-      pkgs.yt-dlp # yt downloading util
 
       # music
       pkgs.spotifyd
@@ -77,6 +77,9 @@ in
       ];
 
       scriptOpts = {
+        ytdl_hook = {
+          ytdl_path = "${pkgs-unstable.yt-dlp}/bin/yt-dlp";
+        };
         simpleSubSync = {
           ffsubsync_bin = "${pkgs.ffsubsync}/bin/ffsubsync";
         };
@@ -107,14 +110,28 @@ in
           secondary_field = "SentenceEnglish";
           miscinfo_field = "MiscInfo";
           image_field = "Picture";
-          deck_name = "daily decks::mining";
-          model_name = "Lapis";
+          deck_name = "日本語::vocab::ruri vocab";
+          model_name = "Ruri Vocab Note";
           snapshot_quality = 100;
           snapshot_height = 480;
           animated_snapshot_enabled = true;
           animated_snapshot_quality = 100;
           animated_snapshot_height = 480;
+          enable_new_note_timer = false;
         };
+      };
+    };
+
+    programs.yt-dlp = {
+      enable = true;
+      package = pkgs-unstable.yt-dlp;
+      settings = {
+        write-sub = true;
+        write-auto-sub = true;
+        sub-lang = "en,ja,ja-orig";
+        sub-format = "srt/vrt/best";
+        cookies-from-browser = "firefox";
+        output = "%(title)s.%(ext)s";
       };
     };
 
@@ -149,7 +166,8 @@ in
     # to stop the update request from appearing yet, haven't experimented much
     programs.spicetify = {
       enable = enableSpice;
-      theme = pkgs-spice.themes.lucid; # best theme there is trust
+      # broken https://github.com/Gerg-L/spicetify-nix/pull/354
+      # theme = pkgs-spice.themes.lucid; # best theme there is trust
       alwaysEnableDevTools = true; # doesn't work on mac I dont think
       enabledExtensions = with pkgs-spice.extensions; [
         # INFO: nice-to-haves

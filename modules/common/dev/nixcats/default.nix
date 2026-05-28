@@ -1,13 +1,20 @@
 {
-  config,
   pkgs-unstable,
+  config,
+  lib,
   ...
 }:
 let
   binds = import ./binds.nix;
 in
 {
-  nixCats = {
+  options.nvim = {
+    showBattery = lib.mkEnableOption "show battery in statusline?" // {
+      default = false;
+    };
+  };
+
+  config.nixCats = {
     enable = true;
     luaPath = ./nvim;
 
@@ -34,6 +41,7 @@ in
             # ----------------------
             necessary = true;
             general = true;
+            show_battery = config.nvim.showBattery;
 
             # INFO: -------------------
             #    Language categories
@@ -96,9 +104,7 @@ in
             clang-tools # includes clangd langserver
           ];
 
-          glsl = [
-            glsl_analyzer
-          ];
+          glsl = [ glsl_analyzer ];
 
           java = [
             jdt-language-server
@@ -110,11 +116,10 @@ in
           lua = [
             lua-language-server
             stylua
+            selene
           ];
 
-          markdown = [
-            prettierd
-          ];
+          markdown = [ prettierd ];
 
           markup = [
             prettierd
@@ -182,6 +187,7 @@ in
             floaterm-masonpkgs
             gitsigns-nvim
             inc-rename-nvim
+            minuet-ai-nvim
             neo-tree-nvim
             neotree-nesting-config-masonpkgs
             noice-nvim
@@ -216,17 +222,11 @@ in
           # INFO: -------------------
           #    Language categories
           # -------------------------
-          java = with pkgs.vimPlugins; [
-            nvim-jdtls
-          ];
+          java = with pkgs.vimPlugins; [ nvim-jdtls ];
 
-          lua = with pkgs.vimPlugins; [
-            lazydev-nvim
-          ];
+          lua = with pkgs.vimPlugins; [ lazydev-nvim ];
 
-          python = with pkgs.vimPlugins; [
-            nvim-dap-python
-          ];
+          python = with pkgs.vimPlugins; [ nvim-dap-python ];
         };
       }
     );

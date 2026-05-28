@@ -2,7 +2,6 @@
   config,
   root,
   pkgs,
-  pkgs-unstable,
   lib,
   ...
 }:
@@ -15,9 +14,7 @@
     pkgs.fswatch
     pkgs.watch
     pkgs.parallel
-    pkgs.mitmproxy
     pkgs.wget
-    pkgs-unstable.claude-code
     pkgs.onefetch
   ]
   ++ lib.optional config.isLinux pkgs.ghostty;
@@ -84,10 +81,11 @@
         + lib.optionalString config.isDarwin ''
           export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
         '';
-      completionInit = "
-    	  bindkey '^ ' autosuggest-accept
-    	  bindkey '^l' autosuggest-accept
-			";
+      completionInit = ''
+
+            	  bindkey '^ ' autosuggest-accept
+            	  bindkey '^l' autosuggest-accept
+        			'';
     };
   };
 }
