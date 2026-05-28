@@ -21,24 +21,6 @@ let
       value = prev.callPackage (pluginsPath + "/${file}") { };
     }) pluginFiles
   );
-
-  # INFO: --------------------------------
-  #         custom node packages
-  # --------------------------------------
-
-  nodePackagesPath = ./node-packages;
-  nodePackagesFiles = lib.attrNames (
-    lib.filterAttrs (name: type: type == "regular" && lib.strings.hasSuffix ".nix" name) (
-      builtins.readDir nodePackagesPath
-    )
-  );
-
-  customNodePackages = lib.listToAttrs (
-    lib.map (file: {
-      name = "${lib.strings.removeSuffix ".nix" file}-masonpkgs";
-      value = super.callPackage "${nodePackagesPath}/${file}" { };
-    }) nodePackagesFiles
-  );
 in
 {
   entire-masonpkgs = prev.callPackage ./entire/default.nix { };
