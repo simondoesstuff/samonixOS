@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   options.isDarwin = lib.mkEnableOption "is platform darwin?" // {
     default = pkgs.stdenv.hostPlatform.isDarwin;
