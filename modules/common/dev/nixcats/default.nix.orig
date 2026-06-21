@@ -66,8 +66,12 @@
             # INFO: ----------------
             #    Config variables
             # ----------------------
+<<<<<<< HEAD
+            binds = binds;
             flake_path = config.flakePath;
+=======
             binds = lib.recursiveUpdate (import ./binds.nix) config.nvim.binds;
+>>>>>>> upstream/main
             javaPaths = {
               java_debug_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
               java_test_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
