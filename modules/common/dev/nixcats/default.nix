@@ -4,13 +4,15 @@
   lib,
   ...
 }:
-let
-  binds = import ./binds.nix;
-in
 {
   options.nvim = {
-    showBattery = lib.mkEnableOption "show battery in statusline?" // {
+    showBattery = lib.mkEnableOption "Show battery in statusline?" // {
       default = false;
+    };
+    binds = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
+      description = "Keybinding overrides for Neovim (overrides defaults defined in binds.nix)";
     };
   };
 
@@ -64,8 +66,8 @@ in
             # INFO: ----------------
             #    Config variables
             # ----------------------
-            binds = binds;
             flake_path = config.flakePath;
+            binds = lib.recursiveUpdate (import ./binds.nix) config.nvim.binds;
             javaPaths = {
               java_debug_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
               java_test_dir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
@@ -78,18 +80,14 @@ in
     categoryDefinitions.replace = (
       {
         pkgs,
-        settings,
-        categories,
-        extra,
-        name,
-        mkPlugin,
         ...
       }:
       {
         lspsAndRuntimeDeps = with pkgs; {
-          # INFO: ----------------
-          #    Broad categories
-          # ----------------------
+          # INFO: --------------------------
+          #         broad categories
+          # --------------------------------
+
           general = [
             nodejs-slim # required for copilot
             codespell
@@ -97,9 +95,10 @@ in
             fd
           ];
 
-          # INFO: -------------------
-          #    Language categories
-          # -------------------------
+          # INFO: -----------------------------
+          #         language categories
+          # -----------------------------------
+
           clang = [
             clang-tools # includes clangd langserver
           ];
@@ -127,7 +126,7 @@ in
           ];
 
           nix = [
-            nixfmt-rfc-style
+            nixfmt
             nixd
           ];
 
@@ -171,9 +170,21 @@ in
         # Even though every plugin is a "startup plugin",
         # lazy-nvim manages the lazy loading of them.
         startupPlugins = {
-          # INFO: ----------------
-          #    Broad categories
-          # ----------------------
+          # All necessary baseline plugins
+          necessary = with pkgs.vimPlugins; [
+            lazy-nvim
+
+            # common dependencies
+            friendly-snippets
+            nvim-web-devicons
+            nvim-lspconfig
+            plenary-nvim
+          ];
+
+          # INFO: --------------------------
+          #         broad categories
+          # --------------------------------
+
           general = with pkgs.vimPlugins; [
             barbar-nvim
             battery-nvim-masonpkgs
@@ -184,49 +195,44 @@ in
             colorful-menu-nvim
             copilot-lua
             fidget-nvim
-            floaterm-masonpkgs
+            floaterm
             gitsigns-nvim
             inc-rename-nvim
             minuet-ai-nvim
+            neotest
             neo-tree-nvim
             neotree-nesting-config-masonpkgs
             noice-nvim
-            pkgs-unstable.vimPlugins.nui-nvim # unstable fixes an annoying deprecation warning 8/28/25
-            tint-nvim
-            todo-comments-nvim
             nvim-dap-ui
             nvim-treesitter.withAllGrammars
+            nui-nvim
             nvzone-minty
+            oil-nvim
             persistence-nvim
             slimline-masonpkgs
+            render-markdown-nvim
             smart-splits-nvim
             snacks-nvim
-            oil-nvim
-            render-markdown-nvim
+            tint-nvim
+            todo-comments-nvim
             todo-comments-nvim
             toggleterm-nvim
             which-key-nvim
           ];
 
-          # All necessary baseline plugins
-          necessary = with pkgs.vimPlugins; [
-            lazy-nvim
+          # INFO: -----------------------------
+          #         language categories
+          # -----------------------------------
 
-            # Common dependencies
-            friendly-snippets
-            nvim-web-devicons
-            nvim-lspconfig
-            plenary-nvim
-          ];
-
-          # INFO: -------------------
-          #    Language categories
-          # -------------------------
           java = with pkgs.vimPlugins; [ nvim-jdtls ];
 
           lua = with pkgs.vimPlugins; [ lazydev-nvim ];
 
           python = with pkgs.vimPlugins; [ nvim-dap-python ];
+
+          rust = with pkgs.vimPlugins; [
+            rustaceanvim
+          ];
         };
       }
     );
