@@ -46,6 +46,7 @@
       ".DS_Store"
       "GEMINI.md"
       "claude.md"
+      "**/.claude/settings.local.json"
       ".gemini"
       ".antigravitycli"
       ".agents"
