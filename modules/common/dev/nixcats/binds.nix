@@ -40,6 +40,7 @@
   files = {
     explorer = "<leader>e";
     float = "<leader>E";
+    toggle_node = "<tab>";
   };
   splits = {
     # related to window management

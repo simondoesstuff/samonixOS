@@ -39,7 +39,7 @@ return {
 				mappings = {
 					-- disable default space (interferes with <space> leader key) replace it with tab
 					["<space>"] = false,
-					["<tab>"] = {
+					[nixCats("binds.files.toggle_node")] = {
 						command = "toggle_node",
 					},
 				},
