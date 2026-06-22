@@ -60,6 +60,7 @@
             shell.enable = true;
             web.enable = true;
             zig.enable = true;
+            elixir.enable = true;
             svelte.enable = true;
             ts.enable = true;
 
@@ -155,6 +156,10 @@
 
           zig = [
             zls # zig langserver
+          ];
+
+          elixir = [
+            (beam29Packages.elixir-ls.override { elixir = beam29Packages.elixir_1_20; })
           ];
 
           svelte = [

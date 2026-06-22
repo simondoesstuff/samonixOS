@@ -27,6 +27,7 @@ return {
 			vim.lsp.enable("nixd")
 			vim.lsp.enable("zls") -- zig
 			vim.lsp.enable("svelte")
+			vim.lsp.enable("elixirls")
 
 			-- INFO: --------------------------------
 			--         tweaked config servers
