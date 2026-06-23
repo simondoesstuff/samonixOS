@@ -26,6 +26,7 @@ return {
 					vim.keymap.set({ "n", "t" }, nixCats("binds.splits.move_right"), function()
 						require("floaterm.api").switch_wins()
 					end, { buffer = buf })
+					vim.keymap.set("t", nixCats("binds.terminals.floaterm_esc"), "<Esc>", { buffer = buf, noremap = true, silent = true })
 				end,
 				term = function(buf)
 					vim.keymap.set(
@@ -37,6 +38,7 @@ return {
 					vim.keymap.set({ "n", "t" }, nixCats("binds.terminals.floaterm_new"), function()
 						require("floaterm.api").new_term()
 					end, { buffer = buf })
+					vim.keymap.set("t", nixCats("binds.terminals.floaterm_esc"), "<Esc>", { buffer = buf, noremap = true, silent = true })
 				end,
 			},
 		},
