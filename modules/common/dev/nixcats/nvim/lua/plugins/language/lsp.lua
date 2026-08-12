@@ -19,6 +19,7 @@ return {
 			-- --------------------------------------
 			vim.lsp.enable("basedpyright")
 			vim.lsp.enable("tailwindcss")
+			vim.lsp.enable("unocss")
 			vim.lsp.enable("clangd")
 			-- vim.lsp.enable("jdtls") -- java is handeld in dap.lua
 			vim.lsp.enable("lua_ls")

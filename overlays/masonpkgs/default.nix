@@ -23,6 +23,8 @@ let
   );
 in
 {
+  unocss-language-server = prev.callPackage ./node-packages/unocss-language-server.nix { };
+
   entire-masonpkgs = prev.callPackage ./entire/default.nix { };
   run-in-roblox = prev.callPackage ./run-in-roblox/default.nix { };
 
