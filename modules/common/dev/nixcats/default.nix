@@ -152,6 +152,7 @@
           web = [
             typescript-language-server
             tailwindcss-language-server
+            unocss-language-server
           ];
 
           zig = [
@@ -203,6 +204,7 @@
             floaterm
             gitsigns-nvim
             inc-rename-nvim
+            mini-pairs
             minuet-ai-nvim
             neotest
             neo-tree-nvim
@@ -224,6 +226,8 @@
             toggleterm-nvim
             which-key-nvim
           ];
+
+          web = with pkgs.vimPlugins; [ nvim-ts-autotag ];
 
           # INFO: -----------------------------
           #         language categories

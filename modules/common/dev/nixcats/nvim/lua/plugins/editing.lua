@@ -1,5 +1,10 @@
 return {
 	{
+		"echasnovski/mini.pairs",
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {},
+	},
+	{
 		"smjonas/inc-rename.nvim",
 		dependencies = { "folke/snacks.nvim", "folke/noice.nvim" },
 		opts = {},

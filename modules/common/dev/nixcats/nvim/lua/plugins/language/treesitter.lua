@@ -1,5 +1,20 @@
 return {
 	{
+		"windwp/nvim-ts-autotag",
+		ft = {
+			"html",
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+			"svelte",
+			"tsx",
+			"jsx",
+			"xml",
+		},
+		opts = {},
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			vim.api.nvim_create_autocmd("FileType", {
