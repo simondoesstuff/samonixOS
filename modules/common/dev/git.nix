@@ -42,6 +42,8 @@
         prune = true; # auto prune deleted remote branches from local
         pruneTags = true; # auto prune deleted remote tags from local
       };
+      # auto sign commits
+      commit.gpgsign = true;
     };
 
     ignores = [
