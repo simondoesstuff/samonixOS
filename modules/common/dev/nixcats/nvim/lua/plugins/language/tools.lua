@@ -1,6 +1,16 @@
 -- Tools is for any language specific "tools" that don't get covered by the braod
 -- language server, formatter, etc.
 return {
+	{
+		"ajbucci/ipynb.nvim",
+		ft = "ipynb",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"neovim/nvim-lspconfig",
+		},
+		opts = {},
+	},
+
 	-- optimized rust experience (LSP, DAP, respect vscode conf analyzer options, etc)
 	{
 		"mrcjkb/rustaceanvim",

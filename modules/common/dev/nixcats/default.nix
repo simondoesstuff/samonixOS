@@ -237,7 +237,10 @@
 
           lua = with pkgs.vimPlugins; [ lazydev-nvim ];
 
-          python = with pkgs.vimPlugins; [ nvim-dap-python ];
+          python = with pkgs.vimPlugins; [
+            nvim-dap-python
+            ipynb-nvim
+          ];
 
           rust = with pkgs.vimPlugins; [
             rustaceanvim
