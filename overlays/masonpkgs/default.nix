@@ -38,7 +38,13 @@ in
       alass = prev.callPackage ./subplz/alass.nix { };
     };
   };
-  vimPlugins = prev.vimPlugins // customVimPlugins;
+  vimPlugins = prev.vimPlugins // customVimPlugins // {
+    copilot-lua = prev.vimPlugins.copilot-lua.overrideAttrs (old: {
+      src = old.src.overrideAttrs (_: {
+        outputHash = "sha256-05f76OeWBlFmlUh90tH4XMMKfNI1jnhuIJDqYPPQokA=";
+      });
+    });
+  };
 
   mpvacious = prev.callPackage ./mpvacious/default.nix {
     inherit (prev.mpvScripts) buildLua;
