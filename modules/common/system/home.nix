@@ -47,6 +47,10 @@ in
         hostname = "fiji.colorado.edu";
         user = "siwa3657";
       };
+      "baffin" = {
+        hostname = "baffin.colorado.edu";
+        user = "siwa3657";
+      };
       "github.com" = {
         identityFile = "~/.ssh/github";
         identitiesOnly = true;
