@@ -4,7 +4,7 @@
     pkgs-unstable.gemini-cli
     pkgs-unstable.antigravity-cli
     pkgs-unstable.claude-code
-    pkgs.codex
+    pkgs-unstable.codex
     # pkgs.entire-masonpkgs
   ];
 }
